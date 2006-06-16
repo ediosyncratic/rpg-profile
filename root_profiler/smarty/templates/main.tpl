@@ -41,11 +41,9 @@
 
     <div id="header">
       <span><a href="{$URI_HOME}">
-<img src="/3eprofiler/imgs/sylnae.gif" width="178" height="73" border="0"></a></span>
-<img src="/3eprofiler/imgs/3eprofiler.gif" width="240" height="73" border="0">
+<img src="{$LOGO}" border="0"></a></span>
       <div class="headerLinks">
 	<a href="{$URI_BASE}index.php">Home</a>
-          | <a href="{$URI_BASE}../forums/">Forums</a>
         {if $__is_logged_in}
           | <a href="{$URI_BASE}logout.php">Logout</a>
           | <a href="{$URI_BASE}cview.php">Characters</a>
@@ -76,8 +74,7 @@
 
       <div id="footer">
         <div>
-	  Powered by Camberra v0.1 &copy; 2005-2006<br />
-          Based on <a href="http://www.3eprofiler.net">3EProfiler&trade;</a> v3.0.1 &copy; 2001-2004<br />
+          Powered by <a href="http://www.3eprofiler.net">3EProfiler&trade;</a> v3.0.1 &copy; 2001-2004<br />
           <a href="{$URI_TOS}">Privacy Policy and Terms of Use</a> Information<br />
 	  Host by <a href="http://www.jatol.com">Jatol Internet Services, Inc</a>
         </div>
