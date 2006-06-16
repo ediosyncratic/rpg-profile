@@ -87,6 +87,7 @@ be a matter of replacing files.
 Open system.php in a text editor, and change the following variables as appropriate:
 
 $BASE_INSTALL = The directory containing the root_profiler directory (eg - /home/username)
+$WEB_INSTALL  = The location of the public_profiler directory (edit if moved).
 
 $DB_HOST  = The address of the computer MySQL is installed on
 $DB_USER  = Username to connect to the database with

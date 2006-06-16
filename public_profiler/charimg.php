@@ -52,29 +52,29 @@ function listImages($dirname=".") {
 function pagelist($pg, $pg_limit, $img_ttl){
         $out = "";
         $pg_ttl = floor($img_ttl/$pg_limit)+2;
-        $pg_st = $pg - 5;
+        $pg_st = $pg - 3;
         if ($pg_st < 1 ) {
                 $pg_st = 1;
         }
         if ($pg > 1){
-                $out .= "<a href='$PHP_SELF?pagenum=1'>&lt;&lt;</a> ";
+                $out .= "<a href='$PHP_SELF?pagenum=1'>&lt;&lt;&nbsp;</a> ";
         }
-        $pg_bk = $pg - 10;
+        $pg_bk = $pg - 1;
         if ($pg_bk > 0){
-                $out .= "<a href='$PHP_SELF?pagenum=$pg_bk'>&lt;</a> ";
+                $out .= "<a href='$PHP_SELF?pagenum=$pg_bk'>&lt;&nbsp;</a> ";
         }
 
 
-        $pg_ed = $pg + 5;
+        $pg_ed = $pg + 4;
         if ($pg_ed > $pg_ttl ) {
                 $pg_ed = $pg_ttl;
         }
-        $pg_eb = $pg + 10;
+        $pg_eb = $pg + 1;
         if ($pg_eb < $pg_ttl){
-                $out2 .= "<a href='$PHP_SELF?pagenum=$pg_eb'>&gt;</a> ";
+                $out2 .= "<a href='$PHP_SELF?pagenum=$pg_eb'>&nbsp;&gt;</a> ";
         }
         if ($pg < ($pg_ttl-1)){
-                $out2 .= "<a href='$PHP_SELF?pagenum=" . ($pg_ttl - 1) . "'>&gt;&gt;</a> ";
+                $out2 .= "<a href='$PHP_SELF?pagenum=" . ($pg_ttl - 1) . "'>&nbsp;&gt;&gt;</a> ";
         }
         for($a=$pg_st; $a<$pg_ed; $a++){
                 if ($pg == $a ) {
@@ -88,9 +88,11 @@ function pagelist($pg, $pg_limit, $img_ttl){
 }
 
 
-$dir = "/home/username/public_html/profiler/charimg/";
-$url = "http://www.mydomain.ext/profiler/charimg/";
+$dir = $WEB_INSTALL . "/charimg/";
+$url = $URI_BASE . "charimg/";
 $pagelimit = "4";
+
+$pagenum = $_GET["pagenum"];
 If ((!$pagenum)||(!is_numeric($pagenum))){
 	$pagenum = 1;
 }

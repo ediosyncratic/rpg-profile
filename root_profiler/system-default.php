@@ -29,7 +29,14 @@
     return;
   define ('_SYSTEM_INCLUDED_', true, true);
 
+
+  // The Base installation directory (containing root_profiler and root_smarty
+  // at the least).
   $BASE_INSTALL = '/home/username';
+
+  // The base directory of the public files, if they have been moved.
+  $WEB_INSTALL = $BASE_INSTALL . '/public_profiler';
+
 
   ////////////////////////////////////////////////////////////////////////
   // Smarty configuration.
