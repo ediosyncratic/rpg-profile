@@ -58,11 +58,12 @@
       $this->cache_dir = dirname(__FILE__) . '/smarty/cache/';
 
       // Instantiate variables used in all templates.
-      global $URI_BASE, $URI_HOME, $URI_TOS, $URI_WEBMASTER;
+      global $URI_BASE, $URI_HOME, $URI_TOS, $URI_WEBMASTER, $LOGO;
       $this->assign('URI_BASE', $URI_BASE);
       $this->assign('URI_HOME', $URI_HOME);
       $this->assign('URI_TOS', $URI_TOS);
       $this->assign('URI_WEBMASTER', $URI_WEBMASTER);
+      $this->assign('LOGO', $LOGO);
     }
 
     // Set which page will fill the bulk of the body.
