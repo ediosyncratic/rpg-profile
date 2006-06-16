@@ -1,0 +1,303 @@
+/*
+  template.css
+
+  3EProfiler (tm) css file containing style definitions.
+  Copyright (C) 2003 Michael J. Eggertson.
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+  **
+
+  The style definitions in this file are used by ALL pages except the
+  character sheets.
+
+  This design is based off the Purple Haze CSS/XHTML template written by
+  haran, available from the Open Source Web Design website at:
+  http://www.oswd.org/viewdesign.phtml?id=1110
+*/
+
+/* ###### Color Scheme ###### */
+
+#footer a, a, input.go
+{ color: #c09f2c; text-decoration: none; }
+
+#footer a:hover, a:hover
+{ text-decoration: underline; }
+
+.topOfPage, q, h1, h2, h3, .headerTitle, .headerLinks, .headerLinks *, .sideBox div, #footer *, .quick, input.go
+{ color: #c0c0c0; }
+
+q, h2,  #header, .sideBox, .sideBox div, #footer, .quick, input.go
+{ border-color: #c0c0c0; }
+
+#header, .sideBox div, .sideBox a:hover, input.go, select.quick
+{ background-color: #191919; }
+
+q, .sideBox a, .sideBox span, #footer, .quick
+{ background-color: black; }
+
+#bodyText span.notice
+{ color: yellow; }
+
+/* ###### Browser-specific Styles ###### */
+
+/* For IE & Mozilla-based browsers: */
+
+.LHS {
+  margin-left: 2.5mm;
+  margin-bottom: 2.5mm;
+  float: left;
+  clear: left;
+}
+
+.RHS {
+  margin-right: 2.5mm;
+  margin-bottom: 2.5mm;
+  float: right;
+  clear: right;
+}
+
+/* For Mozilla-based (CSS2-fully complaint) browsers only: */
+
+[class~="LHS"] {
+  margin-left: 5mm;
+}
+
+[class~="RHS"] {
+  margin-right: 5mm;
+}
+
+
+/* ###### Body Text ###### */
+
+html {
+  font-size: 14px;
+}
+
+#bodyText {
+  line-height: 1.5em;
+  margin: 10mm 10.5em 0 10.5em;
+  padding: 0 1em 1ex 1em;
+  min-width: 35em;
+}
+
+#bodyText p, #bodyText dl, #bodyText ul {
+  padding-bottom: 2ex;
+  text-align: justify;
+}
+
+#bodyText span.help {
+  border-bottom: 1px dashed;
+  cursor: help;
+}
+
+#bodyText span.notice {
+  padding: 0 1em 0 1em;
+  font-size: .7em;
+}
+
+.topOfPage {
+  font-size: 90%;
+  font-weight: bold;
+  font-variant: small-caps;
+  text-decoration: none;
+  padding-left: 1ex;
+  padding-right: 1ex;
+  float: right;
+}
+
+.smallCaps {
+  font-variant: small-caps;
+}
+
+.nobr {
+  white-space: nowrap;
+}
+
+body {
+  background-color: black;
+  color: #c0c0c0;
+  font-family: verdana, tahoma, helvetica, arial, sans-serif;
+  font-size: 95%;
+  margin: 0;
+}
+
+h1, h2, h3 {
+  font-family: "trebuchet ms", tahoma, sans-serif;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 150%;
+  border-bottom: 1px solid;
+  padding-bottom: 0.5ex;
+}
+
+h1 * {
+  font-size: 70%;
+  border: none;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+input.go {
+  border-width: 2px;
+  border-style: solid;
+  cursor: pointer;
+}
+
+input.quick {
+  border: 2px solid;
+  height: 1.3em;
+  padding: .2em;
+}
+
+#bodyText p.code {
+  font-family: "lucida console", monospace;
+  font-size: 90%;
+  margin: 0 1em 0 1em;
+  text-align: left;
+}
+
+img {
+  border: 0;
+}
+
+.smaller {
+  font-size: 70%;
+  line-height: 1.5em;
+}
+
+form, p.indent {
+  margin: 1em;
+}
+table.indent {
+  margin: 0 1em 0 1em;
+}
+
+form.offset {
+  margin: 1em 5em 1em 5em;
+}
+
+dt span {
+  font-weight: bold;
+}
+
+div.inputholder {
+  padding: 2px;
+}
+
+li li {
+  list-style-type: lower-roman;
+}
+table.clist td, table.clist th {
+  padding: 0 1em 0 1em;
+}
+table.clist td.c {
+  text-align: center;
+}
+
+/* ###### Header ###### */
+
+#header {
+  border-bottom: 2px solid;
+  margin-bottom: 5mm;
+  padding: 1em 2.5mm 0.3em 5mm;
+}
+
+.headerTitle {
+  font-size: 250%;
+}
+
+.headerLinks {
+  text-align: right;
+}
+
+.headerLinks * {
+  text-decoration: none;
+  font-weight: bold;
+  padding-right: 1ex;
+  padding-left: 1ex;
+}
+
+.headerLinks a:hover {
+  text-decoration: underline;
+}
+
+
+/* ###### Side Box ###### */
+
+.sideBar {
+  width: 9em;
+}
+
+.sideBox {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  margin-top: 5mm;
+}
+
+.sideBox div {
+  font-weight: bold;
+  border-bottom: 2px solid;
+  padding: 0.5ex 0.5em 0.5ex 0.75em;
+}
+
+.sideBox a, .sideBox a:hover, .sideBox span {
+  color: #c0c0c0;
+  text-decoration: none;
+  line-height: 1.25em;
+  display: block;
+  padding: 1ex 0.5em 1ex 0.75em;
+}
+
+#foot {
+  color: inherit;
+  clear: left;
+  font-size: 70%;
+}
+
+/* ###### Footer ###### */
+
+#footer {
+  color: inherit;
+  border-top: 1px solid;
+  padding-top: 0.75ex;
+  padding-bottom: 0.75ex;
+  clear: left;
+  font-size: 70%;
+}
+
+.footerImg {
+  padding-right: 3mm;
+  padding-top: 2mm;
+  float: right;
+}
+
+#footer div {
+  padding-left: 3mm;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+}
+
+.footerCol2 {
+  position: absolute;
+  left: 7em;
+}

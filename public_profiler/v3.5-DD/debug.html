@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--
+  3EProfiler (tm) character sheet source file.
+  Copyright (C) 2003  Michael J. Eggertson.
+  
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  
+  **
+-->
+  <head>
+    <title>Debug Output</title>
+    <style type="text/css">
+      html {
+        font-family: sans-serif;
+        font-size: 10pt;
+        color: black;
+        background-color: white;
+      }
+      h1 {
+        font-weight: bold;
+        font-size: 1.3em;
+        text-decoration: underline;
+      }
+      span.err {
+        background-color: white;
+        color: #ff9090;
+      }
+    </style>
+    <script type="text/javascript">
+      // Define a function implementation. Once the document is loaded, a
+      // reference to this function is created by the name "trace". This
+      // is done so the calling document can define a dummy trace function
+      // that will swallow any calls to it until this document has
+      // uccessfully been loaded.
+      function trace(msg)
+      {
+        // Reference the message list.
+        var msglist = document.getElementById("messages");
+
+        // Create the new element.
+        var node = document.createElement("li");
+        node.innerHTML = msg;
+
+        // Delete the last element, if we need to.
+        var existingNodes = msglist.getElementsByTagName("li");
+        if (existingNodes.length >= 100)
+          msglist.removeChild(existingNodes[99]);
+        
+        // Insert the new node.
+        msglist.insertBefore(node, msglist.childNodes[0]);
+      }
+    </script>
+  </head>
+  <!--
+    When the load is complete, create a proper trace function reference
+    to replace the temporary reference the calling page created.
+  -->
+  <body onload="trace('Document loaded.')">
+    <h1>3EProfiler Character Sheet Debug Output</h1>
+    <div>
+      Last 100 debug messages, most recent first.
+      <ol id="messages">
+        <li>Loading...</li>
+      </ol>
+    </div>
+  </body>
+</html>

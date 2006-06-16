@@ -1,0 +1,197 @@
+/*
+  main.css
+
+  3EProfiler (tm) character sheet source file.
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+  Defines the implementation of the 3EProfiler character sheet.
+*/
+
+/************************************************************************/
+
+/*
+  Define the html root element, all elements will inherit from this
+  element. Defining the td element is an Explorer hack.
+*/
+
+html {
+	font-size: 	9px;
+	color: 		black;
+	background-color: white;
+	font-family: 	Arial, Helvetica, sans-serif;
+}
+
+body {
+        margin:         auto;
+        width:          7in;
+}
+
+/* Stupid IE Crap */
+#maintable
+{
+  width: 100%;
+}
+#main
+{
+  width: 7in;
+}
+
+#maintable td
+{
+  font-size: 9px;
+  color: black;
+  background-color: white;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+
+/* Generic Input settings */
+table input {
+	border:		none;
+	border-bottom:	solid 1px black;
+	font-size: 	14px;
+}
+
+input.large {
+	width:		120px;
+}
+
+input.medium {
+	width:		50px;
+}
+
+input.small {
+        width:          25px;
+}
+
+input.tiny {
+	width:		15px;
+}
+input.full-skill {
+	width:		100%;
+        font-size:      9px;
+}
+
+input.skill {
+	font-size:	9px;
+        width:          35px;
+}
+
+
+input.full {
+	width:		100%;
+}
+
+input.check {
+	width:		12px;
+	height:		12px;
+	border:		none;
+}
+
+textarea {
+	width:		100%;
+}
+
+/* Generic Heading Settings */
+h1 {
+	font-size:	15px;
+        background:     black;
+        color:          white;
+        margin:         0px;
+	padding-left:	2px;
+        text-align:     left;
+        font-variant:   small-caps;
+        text-transform: lowercase;
+}
+
+.label {
+	font-weight:	bold;
+	font-size:	11px;
+}
+
+.label th {
+	text-align: 	left;
+}
+
+img {
+	float:		right;
+	vertical-align:	bottom;
+}
+
+#pic {
+        float:          right;
+        vertical-align: bottom;
+	border:		solid 1px black;
+}
+
+br {
+	clear:		both;
+}
+
+br.page {
+	clear:		both;
+	page-break-before: always;
+}
+/* Generic Section Stuff */
+.section {
+  	padding:	0px;
+	margin-top:	5px;
+	margin-bottom:	5px;
+	clear:		both;
+}
+
+.section-half {
+	width:		49%;
+        padding:        0px;
+	margin-right:	2px;
+        margin-top:     5px;
+        margin-bottom:  5px;
+        float:		left;
+}
+
+table {
+	width:		100%;
+}
+
+table.half {
+        width:          48%;
+	float:		left;
+}
+
+/* Attributes Section Specific Layout */
+table.attributes {
+	width:		20%;
+	float:		left;
+	margin-right:	15px;
+}
+
+table.attributes-bottom {
+	clear:		left;
+	width:		50%;
+}
+
+/* Footer Settings */
+#footer td
+{
+  font-size: 9px;
+  background-color: white;
+  color: gray;
+}
+#save
+{
+  text-align: center;
+}
+

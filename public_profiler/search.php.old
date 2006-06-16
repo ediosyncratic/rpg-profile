@@ -1,0 +1,93 @@
+<?php
+  // search.php
+
+  // 3EProfiler (tm) source file.
+  // Copyright (C) 2003 Michael J. Eggertson.
+
+  // This program is free software; you can redistribute it and/or modify
+  // it under the terms of the GNU General Public License as published by
+  // the Free Software Foundation; either version 2 of the License, or
+  // (at your option) any later version.
+
+  // This program is distributed in the hope that it will be useful,
+  // but WITHOUT ANY WARRANTY; without even the implied warranty of
+  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  // GNU General Public License for more details.
+
+  // You should have received a copy of the GNU General Public License
+  // along with this program; if not, write to the Free Software
+  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+  // **
+
+  // Performs a search based on character name.
+
+  include_once("config.php");
+  include_once("$INCLUDE_PATH/engine/db.php");
+  include_once("$INCLUDE_PATH/engine/sid.class.php");
+  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/error.php");
+  include_once("$INCLUDE_PATH/system.php");
+
+  // Try to respawn a session to keep the menu nav in context.
+  $sid = new SId();
+
+  $cname = $_GET['cname'];
+
+  $T = new Template();
+  $T->assign('title', '3EProfiler :: Character Search');
+  if ($sid->IsSessionValid())
+    $T->AssignSession($sid);
+
+  if ((strlen($cname) > 0) && (strlen($cname) < 21))
+  {
+    // Generate the search string.
+    $type = $_GET['type'];
+    if ($type == "begins")
+      $qname = $cname . "%";
+    else if ($type == "ends")
+      $qname = "%" . $cname;
+    else if ($type == "contains")
+      $qname = "%" . $cname . "%";
+    else
+      // Invalid search type.
+      __printFatalErr("Invalid search type.");
+    
+    // Determine which rows to return.
+    $rowsperpage = 20;
+    $page = (int) $_GET['page'];
+    if ($page < 1)
+      $page = 1;
+    $offset = ($page - 1) * $rowsperpage;
+
+    $res = mysql_query(sprintf("SELECT id, cname, DATE_FORMAT(lastedited, '%%W %%M %%D %%Y') FROM %s WHERE cname LIKE '%s' AND public = 'y' ORDER BY cname LIMIT %d OFFSET %d",
+      $TABLE_CHARS,
+      addslashes($qname),
+      $rowsperpage,
+      $offset));
+    if (!$res)
+      __printFatalErr("Failed to query database.", __LINE__, __FILE__);
+    $results = array();
+    while ($row = mysql_fetch_row($res))
+      array_push($results, array('id' => $row[0], 'cname' => $row[1], 'lastedited' => $row[2]));
+
+    $T->SetBodyTemplate('search_results.tpl');
+    $T->assign('characters', $results);
+
+    $T->assign('type', $_GET['type']);
+    $T->assign('cname', $_GET['cname']);
+
+    if ($page > 1)
+      $T->assign('prevpage', $page - 1);
+
+    if (sizeof($results) == $rowsperpage)
+      $T->assign('nextpage', $page + 1);
+  }
+  else
+  {
+    // No query string, show the search page.
+    $T->SetBodyTemplate('search.tpl');
+  }
+
+  $T->send();
+?>
