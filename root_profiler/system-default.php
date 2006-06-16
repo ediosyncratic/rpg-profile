@@ -76,6 +76,8 @@
   $EMAIL_WEBMASTER = 'email@mydomain.ext';
   // URI_TOS: your site's terms of service and privacy policy.
   $URI_TOS = 'legal.php';
+  // LOGO: The image that appears at the top left of the page.
+  $LOGO = 'img/rpgwebprofiler.gif';
 
   ////////////////////////////////////////////////////////////////////////
   // Behavior parameters.
