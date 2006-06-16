@@ -21,6 +21,8 @@
   // **
 
   // Define the include path where all external files are located.
-  Define (INCLUDE_PATH,'../root_profiler');
-  $INCLUDE_PATH = '../root_profiler';
+  $ROOT_PATH = '../root_profiler';
+
+  Define (INCLUDE_PATH,$ROOT_PATH);
+  $INCLUDE_PATH = $ROOT_PATH;
 ?>
