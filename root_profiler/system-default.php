@@ -66,7 +66,7 @@
   // Change URI_BASE to the base uri that all pages are displayed from.
   $URI_BASE = 'http://www.mydomain.ext/profiler/';
   // URI_HOME: the resource (front-page) for your site.
-  $URI_HOME = 'http://www.mydomain.ext/';
+  $URI_HOME = $URI_BASE;
   // URI_WEBMASTER: the resource to contact the webmaster.
   // If using an email address, you may wish to obfuscate it so it doesn't
   // get harvested by web bots.
