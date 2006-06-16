@@ -4,6 +4,7 @@ RPG Web Profiler is based on the 3eProfiler released by M J Eggertson.
 
 The aim of the application is to allow people to host character sheets for RPG games online.
 
+===================================
 Contents
 ===================================
 
@@ -13,8 +14,7 @@ Contents
 4. Configure RPG Web Profiler
 5. Configure Apache
 
-
-
+===================================
 1. Requirements
 ===================================
 
@@ -28,10 +28,11 @@ Apache 2.x -
 
 MySQL 4+ -
   
-
+===================================
 2. Downloading and Installing
 ===================================
 
+-----------------------------------
 2.1. Downloading
 -----------------------------------
 
@@ -43,6 +44,7 @@ Files downloaded should always be named rpgwebprofiler-x.x.x.tgz
 If you want the development version, this can be downloaded from the Subversion repository
 in the above project. 
 
+-----------------------------------
 2.2. Installing
 -----------------------------------
 
@@ -50,15 +52,78 @@ Once you have the archive, create a directory for the profiler, and extract the 
 Note, the directories that are created are accessed by Apache, so ensure the permission reflect
 this. 
 
+Note, this directory should NOT be directly shared by Apache. Rather, the public_profiler directory
+should be accessed via an Alias directive. If you want to put the public directory directly into a 
+web accessible folder, you should do the following:
+
+- Copy root_profiler and root_smarty into a non-web accessible folder.
+- Copy public_profiler into a web accessible folder.
+- Edit the config.php file in public_profiler, and change the $ROOT_PATH variable to point
+  to the location of your root_profiler directory.
+- Rename public_profiler to something more friendly.
+
+===================================
 3. Create a MySQL Database
 ===================================
 
+Create a MySQL database, refering to the MySQL documentation if you need assistance.
+
+Once the database is created, import the root_profiler/setup-mysqldb.sql file into the database.
+
+===================================
 4. Configure RPG Web Profiler
 ===================================
 
-Open the file 'system.php', located in the 'root_profiler' directory.
+Ensure the Apache process has write access to the root_profiler/smarty/templates_c folder.
+This is where the Smarty templates are compiled to.
 
+In the root_profiler directory, copy the system-default.php file to system.php, as follows:
+
+cp system-default.php system.php
+
+By renaming the file in the archive, any upgrades that don't affect this config file should simply
+be a matter of replacing files.
+
+Open system.php in a text editor, and change the following variables as appropriate:
+
+$BASE_INSTALL = The directory containing the root_profiler directory (eg - /home/username)
+
+$DB_HOST  = The address of the computer MySQL is installed on
+$DB_USER  = Username to connect to the database with
+$DB_PWD   = Password to connect to the database with
+$DB       = The name of the database.
+
+$URI_BASE = The browser address the profiler will be accessible at.
+$URI_HOME = The homepage of your site. By default, this is the same as $URI_BASE
+
+$URI_WEBMASTER = The URI the webmaster can be contacted at. This can be a web page or a mailto link.
+$EMAIL_WEBMASTER = The webmasters email address
+
+$URI_TOS  = Terms of service
+
+$LOGO     = If you don't want to use the default profiler logo, this file can be changed.
+
+===================================
 5. Configure Apache
 ===================================
+
+If you copied the public_profiler directory into an existing web-accessible folder, then
+you should not need to do any additional Apache configuration.
+
+If you didn't put the public_profiler directory into a web-accessible folder, you need to 
+add an Alias to the Apache configuration file.
+
+Eg.
+----
+
+Alias /profiler /home/username/rpgwebprofiler/public_profiler
+
+<Directory "/home/username/rpgwebprofiler/public_profiler">
+    AllowOverride All
+
+    Order allow,deny
+    Allow from all
+</Directory>
+----
 
 
