@@ -1,0 +1,64 @@
+------------------ RPG Web Profiler Installation Instructions -----------------
+
+RPG Web Profiler is based on the 3eProfiler released by M J Eggertson.
+
+The aim of the application is to allow people to host character sheets for RPG games online.
+
+Contents
+===================================
+
+1. Requirements
+2. Downloading and Installing
+3. Create a MySQL Database
+4. Configure RPG Web Profiler
+5. Configure Apache
+
+
+
+1. Requirements
+===================================
+
+PHP v4.3 - 
+  There are reports of the profiler working on PHP v5, but at the 
+  time of writing, PHP v5 is not officially supported.
+
+Apache 2.x -
+  The profiler should be able to be installed with Apache 1, but 
+  this configuration is not supported.
+
+MySQL 4+ -
+  
+
+2. Downloading and Installing
+===================================
+
+2.1. Downloading
+-----------------------------------
+
+The latest release of the profiler can be downloaded from the Sourceforge project,
+at http://sourceforge.net/projects/rpgwebprofiler/
+
+Files downloaded should always be named rpgwebprofiler-x.x.x.tgz
+
+If you want the development version, this can be downloaded from the Subversion repository
+in the above project. 
+
+2.2. Installing
+-----------------------------------
+
+Once you have the archive, create a directory for the profiler, and extract the archive into it.
+Note, the directories that are created are accessed by Apache, so ensure the permission reflect
+this. 
+
+3. Create a MySQL Database
+===================================
+
+4. Configure RPG Web Profiler
+===================================
+
+Open the file 'system.php', located in the 'root_profiler' directory.
+
+5. Configure Apache
+===================================
+
+
