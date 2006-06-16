@@ -32,7 +32,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="css/template.css" title="Main Stylesheet" />
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=iso-8859-1" />
-    <title>Sylnae's :: {$title}</title>
+    <title>RPG Web Profiler :: {$title}</title>
     {$head}
   </head>
   <body>
@@ -74,9 +74,8 @@
 
       <div id="footer">
         <div>
-          Powered by <a href="http://www.3eprofiler.net">3EProfiler&trade;</a> v3.0.1 &copy; 2001-2004<br />
-          <a href="{$URI_TOS}">Privacy Policy and Terms of Use</a> Information<br />
-	  Host by <a href="http://www.jatol.com">Jatol Internet Services, Inc</a>
+          Powered by <a href="http://sourceforge.net/projects/rpgwebprofiler/">RPGWebProfiler&trade;</a><br />
+          <a href="{$URI_TOS}">Privacy Policy and Terms of Use</a> Information<
         </div>
       </div>
     </div>

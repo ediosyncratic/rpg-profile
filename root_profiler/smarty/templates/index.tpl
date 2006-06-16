@@ -1,10 +1,9 @@
 {*
   index.tpl
 
-  Camberra (tm) template file
-  Copyright (C) 2005 Tim Tooley
-  -- based on --
-  3EProfiler (tm) template file.
+  RPGWebProfiler (tm) template file.
+  based on 
+  3eProfiler (tm) template file.
   Copyright (C) 2003 Michael J. Eggertson.
 
   This program is free software; you can redistribute it and/or modify
@@ -27,39 +26,8 @@
   logged in goes to the login page.
 *}
 <h1>News</h1>
-<h2>Dec, 2005</h2>
 <p>
-  We have Started on Camberra ( Meeting place for DM's and players )
-<blockquote>
-Some features will include:
- <blockquote>
-Players:<br>
-&nbsp; HackandSlash vs RolePlayer meter<br>
-&nbsp; Prefered days to play<br>
-&nbsp; Prefered times to play<br>
-&nbsp; Background ( i.e. other games they have played, etc. )<br>
-&nbsp; Request to join game ( and to remove self from game )<br>
-
- </blockquote>
- <blockquote>
-DM's:<br>
-&nbsp; HackandSlash vs RolePayer meter<br>
-  <blockquote>
-Campaign settings<br>
-&nbsp; Name<br>
-&nbsp; Description<br>
-&nbsp; PC Level Requirements<br>
-&nbsp; PC Alignment Requirements<br>
-&nbsp; Max # of players ( with how many are already in group )<br>
-&nbsp; Player List - link to profiles of characters<br>
-&nbsp; Open / Closed / Full status<br>
-&nbsp; Day and Time of sessions<br>
-&nbsp; list of requests by players to join ( add/hold/drop )<br>
-
-  </blockquote>
- </blockquote>
-</blockquote>
-If you have any suggestions on features please visit the <a href='http://www.sylnae.net/forums/'>forums</a> and let us know.
+Welcome to RPG Web Profiler
 </p>
       <h1>Login</h1>
       <p>
