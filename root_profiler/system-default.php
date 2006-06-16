@@ -29,6 +29,8 @@
     return;
   define ('_SYSTEM_INCLUDED_', true, true);
 
+  $BASE_INSTALL = '/home/username';
+
   ////////////////////////////////////////////////////////////////////////
   // Smarty configuration.
 
@@ -36,7 +38,7 @@
   // is located at. If Smarty has been installed and is in the include
   // path for php, this string can be left as-is, otherwise this variable
   // must be set to the FULL path to the file (INCLUDING THE FILENAME).
-  $SMARTY_PATH = '/home/username/root_smarty/libs/Smarty.class.php';
+  $SMARTY_PATH = $BASE_INSTALL . '/root_smarty/libs/Smarty.class.php';
 
   ////////////////////////////////////////////////////////////////////////
   // MySQL Database configuration.
@@ -46,8 +48,8 @@
 
   $DB_HOST = 'localhost';
   $DB_USER = 'db_username';
-  $DB_PWD = 'mypassword';
-  $DB = 'database_name';
+  $DB_PWD = 'db_password';
+  $DB = 'db_name';
 
   // The $TABLE parameters will only need to be changed if you modify the
   // default table structure 3EProfiler uses.
@@ -73,7 +75,7 @@
   // This address is used for outgoing emails, so shouldn't be obfuscated.
   $EMAIL_WEBMASTER = 'email@mydomain.ext';
   // URI_TOS: your site's terms of service and privacy policy.
-  $URI_TOS = "legal.php";
+  $URI_TOS = 'legal.php';
 
   ////////////////////////////////////////////////////////////////////////
   // Behavior parameters.
