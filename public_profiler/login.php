@@ -33,7 +33,7 @@
   if ($sid->IsSessionValid())
   {
     $T = new Template();
-    $T->assign('title', 'Camberra :: Active Session');
+    $T->assign('title', 'Active Session');
     $T->SetBodyTemplate('login_forward.tpl');
     $T->AssignSession($sid);
     $T->send();
@@ -41,7 +41,7 @@
   else
   {
     $T = new Template();
-    $T->assign('title', 'Camberra Login');
+    $T->assign('title', 'RPG Web Profiler Login');
     $T->assign('count_users', GetUserCount());
     $T->assign('count_characters', GetCharacterCount());
     $T->assign('count_online', GetUsersOnlineCount());

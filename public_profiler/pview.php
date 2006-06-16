@@ -31,7 +31,7 @@
 
   // Draw the profile options.
   $T = new Template();
-  $T->assign('title', 'Camberra :: Profile Options');
+  $T->assign('title', 'Profile Options');
   $T->SetBodyTemplate('pview.tpl');
   $T->AssignSession($sid);
   $T->send();

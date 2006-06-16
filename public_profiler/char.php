@@ -56,7 +56,7 @@
     $T->assign('template_updated', apply_template($sid, $character, (int) $_POST['tid']) ? 'Updated!' : 'Updated Failed!');
   
   // Draw the page.
-  $T->assign('title', 'Camberra :: Character Permissions');
+  $T->assign('title', 'Character Permissions');
   $T->assign('character', $character->cname);
   $T->assign('id', $id);
   $T->assign('is_public', $character->public == 'y');

@@ -62,7 +62,7 @@
     {
       // The key is no longer valid.
       $T = new Template();
-      $T->assign('title', 'Camberra :: Error');
+      $T->assign('title', 'Error');
       $T->SetBodyTemplate('resetpwd_invalidkey.tpl');
       $T->send();
     }
@@ -70,7 +70,7 @@
     {
       // The key is still valid, show the change password form.
       $T = new Template();
-      $T->assign('title', 'Camberra :: New Password');
+      $T->assign('title', 'New Password');
       $T->assign('pname', $pname);
       $T->assign('key', $key);
       $T->SetBodyTemplate('resetpwd_passwordform.tpl');
@@ -119,14 +119,14 @@
     // Send off the message.
     $to = $email;
     $from = "From: $EMAIL_WEBMASTER";
-    $subject = "Camberra password reset.";
-    $body = "$pname,\n\nYour Camberra password at $URI_HOME was recently requested to be reset. To complete the process, visit the link below and follow the directions that 3EProfiler asks.\n\n$URI_BASE/resetpwd.php?p=$pname&k=$id\n\nIf you never requested your password to be reset, please disregard this message. No information was given to the person requesting your password.";
+    $subject = "RPG Web Profiler password reset.";
+    $body = "$pname,\n\nYour RPG Web Profiler password at $URI_HOME was recently requested to be reset. To complete the process, visit the link below and follow the directions that 3EProfiler asks.\n\n$URI_BASE/resetpwd.php?p=$pname&k=$id\n\nIf you never requested your password to be reset, please disregard this message. No information was given to the person requesting your password.";
     if (!mail($to, $subject, $body, $from))
       __printFatalErr("Failed to send email to address listed in profile.");
 
     // Send a success message.
     $T = new Template();
-    $T->assign('title', 'Camberra :: Reset Password');
+    $T->assign('title', 'Reset Password');
     $T->assign('pname', $pname);
     $T->SetBodyTemplate('resetpwd_checkmail.tpl');
     $T->send();
@@ -138,7 +138,7 @@
     // No proper query received: show a form allowing the user to give
     // their profile name.
     $T = new Template();
-    $T->assign('title', 'Camberra :: Reset Password');
+    $T->assign('title', 'Reset Password');
     $T->SetBodyTemplate('resetpwd.tpl');
     $T->send();
   }

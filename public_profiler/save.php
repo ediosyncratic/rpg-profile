@@ -51,7 +51,7 @@
     __printFatalErr("Failed to update database.", __LINE__, __FILE__);
 
   $T = new Template();
-  $T->assign('title', 'Camberra :: Character Updated');
+  $T->assign('title', 'Character Updated');
   $T->AssignSession($sid);
   $T->SetBodyTemplate('save.tpl');
   $T->assign('id', $id);

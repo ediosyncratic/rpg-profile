@@ -40,7 +40,7 @@
   if (!is_valid_cname($name, $err))
   {
     $T = new Template();
-    $T->assign('title', 'Camberra :: Error');
+    $T->assign('title', 'Error');
     $T->SetBodyTemplate('new_badname.tpl');
     $T->AssignSession($sid);
     $T->send();
@@ -87,7 +87,7 @@
 
   // Everything should be fine, generate the success message.
   $T = new Template();
-  $T->assign('title', 'Camberra :: New Character');
+  $T->assign('title', 'New Character');
   $T->SetBodyTemplate('new_success.tpl');
   $T->AssignSession($sid);
   $T->assign('name', $name);

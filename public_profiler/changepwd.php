@@ -65,7 +65,7 @@
   {
     // Something's wrong with the passwords, print an error message.
     $T = new Template();
-    $T->assign('title', 'Camberra :: Error');
+    $T->assign('title', 'Error');
     $T->SetBodyTemplate('changepwd_error.tpl');
     $T->assign('messages', $err);
     $T->send();
@@ -83,7 +83,7 @@
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
 
     $T = new Template();
-    $T->assign('title', 'Camberra :: New Password');
+    $T->assign('title', 'New Password');
     $T->assign('pname', $pname);
     $T->SetBodyTemplate('changepwd.tpl');
     $T->send();

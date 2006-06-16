@@ -58,7 +58,7 @@
   {
     // Draw the confirmation screen.
     $T = new Template();
-    $T->assign('title', 'Camberra :: Remove Character');
+    $T->assign('title', 'Remove Character');
     $T->SetBodyTemplate('del_confirm.tpl');
     $T->AssignSession($sid);
     $T->assign('character', $character);
@@ -98,7 +98,7 @@
 
     // Draw the result screen.
     $T = new Template();
-    $T->assign('title', 'Camberra :: Remove Character');
+    $T->assign('title', 'Remove Character');
     $T->SetBodyTemplate('del.tpl');
     $T->AssignSession($sid);
     $T->assign('character', $character);

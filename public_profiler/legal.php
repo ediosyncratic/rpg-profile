@@ -28,7 +28,7 @@
   // showing the proper buttons.
   $sid = new SId();
   $T = new Template();
-  $T->assign('title', 'Camberra :: Legal Information');
+  $T->assign('title', 'Legal Information');
   if ($sid->IsSessionValid())
     $T->AssignSession($sid);
   $T->SetBodyTemplate('legal.tpl');

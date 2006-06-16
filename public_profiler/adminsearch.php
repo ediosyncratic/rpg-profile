@@ -52,7 +52,7 @@ function dotemplatename($passed){
   $cname = $_GET['cname'];
 
   $T = new Template();
-  $T->assign('title', 'Camberra :: Character Search');
+  $T->assign('title', 'Character Search');
   if ($sid->IsSessionValid())
     $T->AssignSession($sid);
 

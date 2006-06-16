@@ -28,7 +28,7 @@
   // showing the proper buttons.
   $sid = new SId();
   $T = new Template();
-  $T->assign('title', 'Camberra :: Frequently Asked Questions');
+  $T->assign('title', 'Frequently Asked Questions');
   if ($sid->IsSessionValid())
     $T->AssignSession($sid);
   $T->SetBodyTemplate('faq.tpl');

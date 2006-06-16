@@ -33,7 +33,7 @@
   if ($sid->IsSessionValid())
   {
     $T = new Template();
-    $T->assign('title', 'Camberra :: Index - News');
+    $T->assign('title', 'Index - News');
     $T->assign('count_users', GetUserCount());
     $T->assign('count_characters', GetCharacterCount());
     $T->assign('count_online', GetUsersOnlineCount());
@@ -45,7 +45,7 @@
   else
   {
     $T = new Template();
-    $T->assign('title', 'Camberra :: Index - News');
+    $T->assign('title', 'Index - News');
     $T->assign('count_users', GetUserCount());
     $T->assign('count_characters', GetCharacterCount());
     $T->assign('count_online', GetUsersOnlineCount());

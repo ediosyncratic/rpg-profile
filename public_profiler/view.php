@@ -76,7 +76,7 @@
     $READONLY = $_GET['preview'] == 'true';
     $SHOWSAVE = $_GET['preview'] != 'true';
     $DATA = $char->GetData();
-    $TITLE = "Camberra :: " . htmlspecialchars($char->cname);
+    $TITLE = "" . htmlspecialchars($char->cname);
     $CHARID = (int) $char->id;
 
     header("Cache-Control: no-store, no-cache, must-revalidate");
@@ -97,7 +97,7 @@
     $READONLY = true;
     $SHOWSAVE = false;
     $DATA = $char->GetData();
-    $TITLE = "Camberra :: " . htmlspecialchars($char->cname) . " (Readonly)";
+    $TITLE = "" . htmlspecialchars($char->cname) . " (Readonly)";
     $CHARID = (int) $char->id;
 
     header("Cache-Control: no-store, no-cache, must-revalidate");
@@ -114,7 +114,7 @@
   function draw_error()
   {
     $T = new Template();
-    $T->assign('title', 'Camberra Error');
+    $T->assign('title', 'RPG Web Profiler Error');
     $T->SetBodyTemplate('view_error.tpl');
     $T->send();
     exit;

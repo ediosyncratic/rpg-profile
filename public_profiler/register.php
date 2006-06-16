@@ -81,7 +81,7 @@
 
     // Show the user a success message.
     $T = new Template();
-    $T->assign('title', 'Camberra :: Registration Complete');
+    $T->assign('title', 'Registration Complete');
     $T->assign('pname', $user);
     $T->SetBodyTemplate('register_success.tpl');
     $T->send();
@@ -91,7 +91,7 @@
     // No data was sent:
     // Display the registration page.
     $T = new Template();
-    $T->assign('title', 'Camberra :: Registration');
+    $T->assign('title', 'Registration');
     $T->assign('pname', $user);
     $T->SetBodyTemplate('register.tpl');
     $T->send();
@@ -104,7 +104,7 @@
   function __printRegistrationErr($errmsgs = null)
   {
     $T = new Template();
-    $T->assign('title', 'Camberra :: Error');
+    $T->assign('title', 'Error');
     $T->SetBodyTemplate('register_error.tpl');
     if ($errmsgs)
       $T->assign('messages', $errmsgs);

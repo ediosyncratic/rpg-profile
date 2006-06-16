@@ -123,7 +123,7 @@
   function print_autodetect_failed($sid, $id)
   {
     $T = new Template();
-    $T->assign('title', 'Camberra :: Data Upload');
+    $T->assign('title', 'Data Upload');
     $T->SetBodyTemplate('upload_autodetect_failed.tpl');
     $T->AssignSession($sid);
     $T->assign('id', $id);
@@ -136,7 +136,7 @@
   function print_upload_failed($sid, $formatname)
   {
     $T = new Template();
-    $T->assign('title', 'Camberra :: Data Upload');
+    $T->assign('title', 'Data Upload');
     $T->assign('format', $formatname);
     $T->SetBodyTemplate('upload_failed.tpl');
     $T->AssignSession($sid);
@@ -148,7 +148,7 @@
   function print_upload_success($sid)
   {
     $T = new Template();
-    $T->assign('title', 'Camberra :: Data Upload');
+    $T->assign('title', 'Data Upload');
     $T->SetBodyTemplate('upload_success.tpl');
     $T->AssignSession($sid);
     $T->send();

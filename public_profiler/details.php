@@ -52,7 +52,7 @@
   if (sizeof($err))
   {
     $T = new Template();
-    $T->assign('title', 'Camberra :: Error');
+    $T->assign('title', 'Error');
     $T->SetBodyTemplate('details_error.tpl');
     $T->AssignSession($sid);
     $T->assign('messages', $err);
@@ -66,7 +66,7 @@
     update_slength(addslashes($_POST['slength']), $sid);
 
     $T = new Template();
-    $T->assign('title', 'Camberra :: Profile Updated');
+    $T->assign('title', 'Profile Updated');
     $T->SetBodyTemplate('details.tpl');
     $T->AssignSession($sid);
     $T->send();

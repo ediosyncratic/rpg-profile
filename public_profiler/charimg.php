@@ -138,7 +138,7 @@ $pg_out .= "</div>\n";
 
   $T = new Template();
 
-  $T->assign('title', 'Camberra :: Character Images');
+  $T->assign('title', 'Character Images');
   $T->assign('output', $pg_out);
   $T->SetBodyTemplate('charimg.tpl');
   $T->AssignSession($sid);

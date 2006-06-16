@@ -32,7 +32,7 @@
 
   // Show the logged out page.
   $T = new Template();
-  $T->assign('title', 'Camberra :: Logout');
+  $T->assign('title', 'Logout');
   $T->SetBodyTemplate('logout.tpl');
   $T->send();
 ?>

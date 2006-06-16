@@ -44,7 +44,7 @@
     {
       // Login has failed, show an error.
       $T = new Template();
-      $T->assign('title', 'Camberra Error');
+      $T->assign('title', 'RPG Web Profiler Error');
       $T->SetBodyTemplate('login_error.tpl');
       $T->send();
       exit;
@@ -59,7 +59,7 @@
   if ($sid == null)
     $sid = RespawnSession(__LINE__, __FILE__);
   $T = new Template();
-  $T->assign('title', 'Camberra :: Character Options');
+  $T->assign('title', 'Character Options');
   $T->SetBodyTemplate('cview.tpl');
   $T->AssignSession($sid);
   $T->assign('characters', $sid->GetCharacters());
