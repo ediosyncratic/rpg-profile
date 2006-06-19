@@ -84,7 +84,7 @@
   // URI_TOS: your site's terms of service and privacy policy.
   $URI_TOS = 'legal.php';
   // LOGO: The image that appears at the top left of the page.
-  $LOGO = 'img/rpgwebprofiler.gif';
+  $LOGO = 'imgs/rpgwebprofiler.gif';
 
   ////////////////////////////////////////////////////////////////////////
   // Behavior parameters.
