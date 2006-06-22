@@ -11,6 +11,9 @@ function updateAttributes() {
   sheet().Initiative2.value = sheet().Alertness.value;
  
   sheet().LifePoints.value = Add(sheet().Vitality.value, sheet().Willpower.value);
+
+  // See if life stuff needs to change
+  updateLife();
 }
 
 // Check current damage and figure out status.
