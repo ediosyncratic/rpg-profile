@@ -30,13 +30,17 @@
   require('system.php');
   require('engine/templates.php');
 
+  $title = '';
+  $body = '';
+
   // __printFatalErr: Generates a quick error page, notifying the user of
   // the error and exits the script. If the global $DEBUG is true, the
   // function will show the exact line and file that called the function,
   // if they are supplied.
   function __printFatalErr($sMsg, $line = null, $file = null)
   {
-    global $DEBUG;
+    global $DEBUG, $title, $body;
+
     $title = 'RPG Web Profiler Error';
     if ($DEBUG && $line && $file)
       $sMsg .= "\n\nThis error occurred at line $line of file $file.";
@@ -49,6 +53,8 @@
   // the page they requested can only be done if they're logged in.
   function __printLoginRequiredErr()
   {
+    global $title;
+
     $title = 'RPG Web Profiler Error';
     draw_page('login_required.php');
     exit;
@@ -57,7 +63,7 @@
   // General error handler.
   function __on_err ($errtype, $errmsg, $errfile, $errline)
   {
-    global $DEBUG;
+    global $DEBUG, $title, $body;
 
     switch ($errtype)
     {
