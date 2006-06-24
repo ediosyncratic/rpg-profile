@@ -37,16 +37,6 @@
   // The base directory of the public files, if they have been moved.
   $WEB_INSTALL = $BASE_INSTALL . '/public_profiler';
 
-
-  ////////////////////////////////////////////////////////////////////////
-  // Smarty configuration.
-
-  // $SMARTY_PATH must be set to the path that the Smarty.class.php file
-  // is located at. If Smarty has been installed and is in the include
-  // path for php, this string can be left as-is, otherwise this variable
-  // must be set to the FULL path to the file (INCLUDING THE FILENAME).
-  $SMARTY_PATH = $BASE_INSTALL . '/root_smarty/libs/Smarty.class.php';
-
   ////////////////////////////////////////////////////////////////////////
   // MySQL Database configuration.
 
