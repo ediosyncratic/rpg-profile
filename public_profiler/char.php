@@ -30,7 +30,6 @@
   include_once("$INCLUDE_PATH/engine/validation.php");
   include_once("$INCLUDE_PATH/engine/character.class.php");
   include_once("$INCLUDE_PATH/engine/templates.php");
-  include_once("$INCLUDE_PATH/template.class.php");
   include_once("$INCLUDE_PATH/engine/serialization.php");
 
   $sid = RespawnSession(__LINE__, __FILE__);
@@ -45,29 +44,25 @@
   if (!$character->IsValid())
     __printFatalErr("Failed to retrieve character data.", __LINE__, __FILE__);
   
-  $T = new Template();
-
   // Perform any simple actions that are requested.
   if (isset($_POST['public']))
-    $T->assign('public_updated', apply_public($sid, $character, $_POST['public'] == 'true' ? true : false) ? 'Updated!' : 'Update Failed!');
+    $public_updated =  apply_public($sid, $character, $_POST['public'] == 'true') ? 'Updated!' : 'Update Failed!';
   if (isset($_POST['add_profile']))
-    $T->assign('profiles_updated', apply_add_profile($character, $_POST['add_profile']) ? 'Updated!' : 'Update Failed!');
+    $profiles_updated = apply_add_profile($character, $_POST['add_profile']) ? 'Updated!' : 'Update Failed!';
   if (isset($_POST['tid']))
-    $T->assign('template_updated', apply_template($sid, $character, (int) $_POST['tid']) ? 'Updated!' : 'Updated Failed!');
+    $template_updated = apply_template($sid, $character, (int) $_POST['tid']) ? 'Updated!' : 'Updated Failed!';
   
   // Draw the page.
-  $T->assign('title', 'Character Permissions');
-  $T->assign('character', $character->cname);
-  $T->assign('id', $id);
-  $T->assign('is_public', $character->public == 'y');
-  $T->assign('profiles', $character->GetProfiles());
-  $T->assign('templates', generate_template_array());
-  $T->assign('current_template', get_sheet_name($character->template_id));
-  $T->assign('exp_formats', get_export_scripts());
-  $T->assign('imp_formats', get_import_scripts());
-  $T->SetBodyTemplate('char.tpl');
-  $T->AssignSession($sid);
-  $T->send();
+  $title = 'Character Permissions';
+
+  $cname = $character->cname;
+  $is_public = $character->public == 'y';
+  $profiles = $character->GetProfiles();
+  $templates = generate_template_array();
+  $current_template = get_sheet_name($character->template_id);
+  $exp_formats = get_export_scripts();
+  $imp_formats = get_import_scripts();
+  draw_page('char.php');
 
   ////////////////////////////////////////////////////////////////////////
   // Helper functions.

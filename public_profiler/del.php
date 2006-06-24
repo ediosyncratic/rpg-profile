@@ -31,7 +31,7 @@
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/sid.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/error.php");
 
   // Respawn the user session.
@@ -57,13 +57,8 @@
   if ($_POST['confirm'] != "yes")
   {
     // Draw the confirmation screen.
-    $T = new Template();
-    $T->assign('title', 'Remove Character');
-    $T->SetBodyTemplate('del_confirm.tpl');
-    $T->AssignSession($sid);
-    $T->assign('character', $character);
-    $T->assign('id', $id);
-    $T->send();
+    $title = 'Remove Character';
+    draw_page('del_confirm.php');
   }
   else
   {
@@ -97,13 +92,7 @@
     }
 
     // Draw the result screen.
-    $T = new Template();
-    $T->assign('title', 'Remove Character');
-    $T->SetBodyTemplate('del.tpl');
-    $T->AssignSession($sid);
-    $T->assign('character', $character);
-    $T->assign('id', $id);
-    $T->assign('removed', $removed);
-    $T->send();
+    $title = 'Remove Character';
+    draw_page('del.php');
   }
 ?>

@@ -24,15 +24,12 @@
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/sid.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
 
   // Respawn the user session.
   $sid = RespawnSession(__LINE__, __FILE__);
 
   // Draw the profile options.
-  $T = new Template();
-  $T->assign('title', 'Profile Options');
-  $T->SetBodyTemplate('pview.tpl');
-  $T->AssignSession($sid);
-  $T->send();
+  $title = 'Profile Options';
+  draw_page('pview.php');
 ?>

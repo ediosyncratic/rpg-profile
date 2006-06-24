@@ -27,12 +27,16 @@
   include_once("$INCLUDE_PATH/error.php");
   include_once("$INCLUDE_PATH/engine/sid.php");
   include_once("$INCLUDE_PATH/engine/db.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/engine/character.class.php");
   include_once("$INCLUDE_PATH/engine/serialization.php");
 
   // Respawn the user session.
   $sid = RespawnSession(__LINE__, __FILE__);
+
+  $title = '';
+  $formats = null;
+  $formatname = '';
 
   // Get the character id and ensure permission.
   $id = (int) $_POST['id'];
@@ -122,36 +126,32 @@
   // Show that the autodetect has failed.
   function print_autodetect_failed($sid, $id)
   {
-    $T = new Template();
-    $T->assign('title', 'Data Upload');
-    $T->SetBodyTemplate('upload_autodetect_failed.tpl');
-    $T->AssignSession($sid);
-    $T->assign('id', $id);
-    $T->assign('formats', get_import_scripts());
-    $T->send();
+    global $title, $formats;
+
+    $title = 'Data Upload';
+    $formats = get_import_scripts();
+    draw_page('upload_autodetect_failed.php');
     exit;
   }
 
   // Show that upload has failed.
-  function print_upload_failed($sid, $formatname)
+  function print_upload_failed($sid, $format)
   {
-    $T = new Template();
-    $T->assign('title', 'Data Upload');
-    $T->assign('format', $formatname);
-    $T->SetBodyTemplate('upload_failed.tpl');
-    $T->AssignSession($sid);
-    $T->send();
+    global $title, $formatname; 
+
+    $title = 'Data Upload';
+    $formatname = $format;
+    draw_page('upload_failed.php');
     exit;
   }
 
   // Show that the upload has succeeded.
   function print_upload_success($sid)
   {
-    $T = new Template();
-    $T->assign('title', 'Data Upload');
-    $T->SetBodyTemplate('upload_success.tpl');
-    $T->AssignSession($sid);
-    $T->send();
+    global $title;
+
+    $title = 'Data Upload';
+    draw_page('upload_success.php');
     exit;
   }
 ?>

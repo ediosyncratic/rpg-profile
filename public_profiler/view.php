@@ -35,13 +35,19 @@
   include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/engine/character.class.php");
 
-  // Validate input.
-  $char = new Character((int) $_GET['id']);
-  if (!$char->IsValid())
-    draw_error();
+  $title = 'RPG Web Profiler Error';
+  $error_page = 'view_error.php';
 
   // Attempt to respawn a session.
   $sid = new SId();
+
+  // Validate input.
+  $char = new Character((int) $_GET['id']);
+  if (!$char->IsValid()) {
+    draw_page($error_page);
+    exit;
+  }
+
   if ($sid->IsSessionValid())
   {
     // User is logged in, check to see if they have permission to access
@@ -53,8 +59,10 @@
   // We aren't in editable mode, check for public access.
   if ($char->public == 'y')
     draw_sheet_public($char);
-  else
-    draw_error();
+  else {
+    draw_page($error_page);
+    exit;
+  }
 
   ////////////////////////////////////////////////////////////////////////
   // Helper functions.
@@ -108,15 +116,6 @@
     // Include the template.
     include_once("$INCLUDE_PATH/sheets/" . get_sheet_path((int) $char->template_id));
 
-    exit;
-  }
-
-  function draw_error()
-  {
-    $T = new Template();
-    $T->assign('title', 'RPG Web Profiler Error');
-    $T->SetBodyTemplate('view_error.tpl');
-    $T->send();
     exit;
   }
 ?>

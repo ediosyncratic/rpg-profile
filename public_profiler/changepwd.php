@@ -25,10 +25,13 @@
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/db.php");
-  include_once("$INCLUDE_PATH/template.class.php");
   include_once("$INCLUDE_PATH/engine/validation.php");
+  include_once("$INCLUDE_PATH/engine/sid.class.php");
   include_once("$INCLUDE_PATH/engine/id.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/error.php");
+
+  $sid = new SId();
 
   // Validate the profile name.
   $pname = $_POST['pname'];
@@ -64,11 +67,9 @@
   if (sizeof($err))
   {
     // Something's wrong with the passwords, print an error message.
-    $T = new Template();
-    $T->assign('title', 'Error');
-    $T->SetBodyTemplate('changepwd_error.tpl');
-    $T->assign('messages', $err);
-    $T->send();
+    $title = 'Error';
+    $messages = $err;
+    draw_page('changepwd_error.php');
   }
   else
   {
@@ -82,10 +83,7 @@
     if (mysql_affected_rows() != 1)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
 
-    $T = new Template();
-    $T->assign('title', 'New Password');
-    $T->assign('pname', $pname);
-    $T->SetBodyTemplate('changepwd.tpl');
-    $T->send();
+    $title = 'New Password';
+    draw_page('changepwd.php');
   }
 ?>

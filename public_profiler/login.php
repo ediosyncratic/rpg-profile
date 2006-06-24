@@ -1,9 +1,4 @@
 <?php
-  // index.php
-
-  // 3EProfiler (tm) source file.
-  // Copyright (C) 2003 Michael J. Eggertson.
-
   // This program is free software; you can redistribute it and/or modify
   // it under the terms of the GNU General Public License as published by
   // the Free Software Foundation; either version 2 of the License, or
@@ -18,36 +13,18 @@
   // along with this program; if not, write to the Free Software
   // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
-  // **
-
-  // Defines the entry point for users of 3EProfiler. This file
-  // generates a login screen if the user is not logged in, or an
-  // info screen if the user is already logged in.
-
   include_once("config.php");
+  include_once("$INCLUDE_PATH/system.php");
   include_once("$INCLUDE_PATH/engine/sid.class.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/userstats.php");
 
+  global $URI_BASE, $URI_HOME, $LOGO;
+
+  $title = 'Log In';
+  
+  // Attempt to respawn a session.
   $sid = new SId();
-  if ($sid->IsSessionValid())
-  {
-    $T = new Template();
-    $T->assign('title', 'Active Session');
-    $T->SetBodyTemplate('login_forward.tpl');
-    $T->AssignSession($sid);
-    $T->send();
-  }
-  else
-  {
-    $T = new Template();
-    $T->assign('title', 'RPG Web Profiler Login');
-    $T->assign('count_users', GetUserCount());
-    $T->assign('count_characters', GetCharacterCount());
-    $T->assign('count_online', GetUsersOnlineCount());
-    $T->assign('count_public', GetPublicCount());
-    $T->SetBodyTemplate('login.tpl');
-    $T->send();
-  }
+  draw_page('login.php');
 
 ?>

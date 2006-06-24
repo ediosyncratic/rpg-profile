@@ -22,15 +22,11 @@
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/sid.class.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
 
   // Try to respawn a session, only for the sake of the main nav bar
   // showing the proper buttons.
   $sid = new SId();
-  $T = new Template();
-  $T->assign('title', 'Frequently Asked Questions');
-  if ($sid->IsSessionValid())
-    $T->AssignSession($sid);
-  $T->SetBodyTemplate('faq.tpl');
-  $T->send();
+  $title = 'Frequently Asked Questions';
+  draw_page('faq.php');
 ?>

@@ -30,7 +30,6 @@
   include_once("$INCLUDE_PATH/engine/validation.php");
   include_once("$INCLUDE_PATH/engine/character.class.php");
   include_once("$INCLUDE_PATH/engine/templates.php");
-  include_once("$INCLUDE_PATH/template.class.php");
   include_once("$INCLUDE_PATH/engine/serialization.php");
 
   $sid = RespawnSession(__LINE__, __FILE__);
@@ -137,13 +136,8 @@ $pg_out .= pagelist($pagenum, $pagelimit, $ttl_imgs);
 $pg_out .= "</div>\n";
 
 
-
-  $T = new Template();
-
-  $T->assign('title', 'Character Images');
-  $T->assign('output', $pg_out);
-  $T->SetBodyTemplate('charimg.tpl');
-  $T->AssignSession($sid);
-  $T->send();
+$title = 'Character Images';
+$output = $pg_out;
+draw_page('charimg.php');
 
 ?>

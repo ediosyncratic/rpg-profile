@@ -25,7 +25,7 @@
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/db.php");
   include_once("$INCLUDE_PATH/engine/sid.class.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/error.php");
   include_once("$INCLUDE_PATH/system.php");
 
@@ -50,10 +50,7 @@ function dotemplatename($passed){
 
   $cname = $_GET['cname'];
 
-  $T = new Template();
-  $T->assign('title', 'Character Search');
-  if ($sid->IsSessionValid())
-    $T->AssignSession($sid);
+  $title = 'Character Search';
 
   if ((($ch)||($type=='all')) || ((strlen($cname) > 0) && (strlen($cname) < 21)))
   {
@@ -130,27 +127,21 @@ $np = "&ch=$ch&orby=$orby";
     while ($row = mysql_fetch_row($res))
       array_push($results, array('id' => $row[0], 'cname' => $row[1], 'lastedited' => $row[2], 'template' => dotemplatename($row[3])));
 
-    $T->SetBodyTemplate('search_results.tpl');
-    $T->assign('ch_name', $ch_name);
-    $T->assign('ls_mod', $ls_mod);
-    $T->assign('characters', $results);
-
-    $T->assign('type', $_GET['type']);
-    $T->assign('cname', $_GET['cname']);
-
-    $T->assign('np',$np);
+    $characters = $results;
+    $type = $_GET['type'];
+    $cname = $_GET['cname'];
 
     if ($page > 1)
-      $T->assign('prevpage', $page - 1);
+      $prevpage = $page - 1;
 
     if (sizeof($results) == $rowsperpage)
-      $T->assign('nextpage', $page + 1);
+      $nextpage = $page + 1;
+ 
+    draw_page('search_results.php');
   }
   else
   {
     // No query string, show the search page.
-    $T->SetBodyTemplate('search.tpl');
+    draw_page('search.php');
   }
-
-  $T->send();
 ?>

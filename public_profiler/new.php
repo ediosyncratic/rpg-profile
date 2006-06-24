@@ -25,7 +25,6 @@
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/sid.php");
-  include_once("$INCLUDE_PATH/template.class.php");
   include_once("$INCLUDE_PATH/engine/db.php");
   include_once("$INCLUDE_PATH/error.php");
   include_once("$INCLUDE_PATH/engine/validation.php");
@@ -39,11 +38,8 @@
   $err = array();
   if (!is_valid_cname($name, $err))
   {
-    $T = new Template();
-    $T->assign('title', 'Error');
-    $T->SetBodyTemplate('new_badname.tpl');
-    $T->AssignSession($sid);
-    $T->send();
+    $title = 'Error';
+    draw_page('new_badname.php');
     exit;
   }
 
@@ -86,11 +82,7 @@
     __printFatalErr("Failed to set profile permissions for new character.", __LINE__, __FILE__);
 
   // Everything should be fine, generate the success message.
-  $T = new Template();
-  $T->assign('title', 'New Character');
-  $T->SetBodyTemplate('new_success.tpl');
-  $T->AssignSession($sid);
-  $T->assign('name', $name);
-  $T->assign('id', $charID);
-  $T->send();
+  $title = 'New Character';
+  $id = $charID;
+  draw_page('new_success.php');
 ?>

@@ -21,7 +21,6 @@
   // **
 
   include_once("config.php");
-  include_once("$INCLUDE_PATH/template.class.php");
   include_once("$INCLUDE_PATH/engine/sid.php");
   include_once("$INCLUDE_PATH/engine/db.php");
   include_once("$INCLUDE_PATH/error.php");
@@ -43,10 +42,8 @@
     if (!$sid->SpawnSession())
     {
       // Login has failed, show an error.
-      $T = new Template();
-      $T->assign('title', 'RPG Web Profiler Error');
-      $T->SetBodyTemplate('login_error.tpl');
-      $T->send();
+      $title = 'RPG Web Profiler Error';
+      draw_page('login_error.php');
       exit;
     }
   }
@@ -56,13 +53,12 @@
 
   // Respawn the session if necessary and draw the character options (the
   // session may already exist from checking _POST info).
-  if ($sid == null)
+  if ($sid == null) {
     $sid = RespawnSession(__LINE__, __FILE__);
-  $T = new Template();
-  $T->assign('title', 'Character Options');
-  $T->SetBodyTemplate('cview.tpl');
-  $T->AssignSession($sid);
-  $T->assign('characters', $sid->GetCharacters());
-  $T->assign('templates', generate_template_array());
-  $T->send();
+  }
+
+  $title = 'Character Options';
+  $characters = $sid->GetCharacters();
+  $templates = generate_template_array();
+  draw_page('cview.php');
 ?>

@@ -25,7 +25,7 @@
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/sid.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/error.php");
   include_once("$INCLUDE_PATH/engine/validation.php");
 
@@ -51,12 +51,9 @@
   
   if (sizeof($err))
   {
-    $T = new Template();
-    $T->assign('title', 'Error');
-    $T->SetBodyTemplate('details_error.tpl');
-    $T->AssignSession($sid);
-    $T->assign('messages', $err);
-    $T->send();
+    $title = 'Error';
+    $messages = $err;
+    draw_page('details_error.php');
   }
   else
   {
@@ -65,11 +62,8 @@
     update_email(addslashes($_POST['email']), $sid);
     update_slength(addslashes($_POST['slength']), $sid);
 
-    $T = new Template();
-    $T->assign('title', 'Profile Updated');
-    $T->SetBodyTemplate('details.tpl');
-    $T->AssignSession($sid);
-    $T->send();
+    $title = 'Profile Updated';
+    draw_page('details.php');
   }
 
   ////////////////////////////////////////////////////////////////////////

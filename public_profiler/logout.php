@@ -24,15 +24,15 @@
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/sid.class.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
 
   // Clear the session cookie.
   $sid = new SId();
   $sid->ClearSession();
 
+  $title = 'Logged Out';
+  
+ 
   // Show the logged out page.
-  $T = new Template();
-  $T->assign('title', 'Logout');
-  $T->SetBodyTemplate('logout.tpl');
-  $T->send();
+  draw_page('logout.php');
 ?>

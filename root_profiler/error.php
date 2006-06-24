@@ -28,7 +28,7 @@
   define ('_ERROR_INCLUDED_', true, true);
 
   require('system.php');
-  require('template.class.php');
+  require('engine/templates.php');
 
   // __printFatalErr: Generates a quick error page, notifying the user of
   // the error and exits the script. If the global $DEBUG is true, the
@@ -37,13 +37,11 @@
   function __printFatalErr($sMsg, $line = null, $file = null)
   {
     global $DEBUG;
-    $T = new Template();
-    $T->SetBodyTemplate('error.tpl');
-    $T->assign('title', '3EProfiler Error');
+    $title = 'RPG Web Profiler Error';
     if ($DEBUG && $line && $file)
       $sMsg .= "\n\nThis error occurred at line $line of file $file.";
-    $T->assign('body', nl2br(htmlspecialchars($sMsg)));
-    $T->send();
+    $body = nl2br(htmlspecialchars($sMsg));
+    draw_page('error.php');
     exit;
   }
 
@@ -51,10 +49,8 @@
   // the page they requested can only be done if they're logged in.
   function __printLoginRequiredErr()
   {
-    $T = new Template();
-    $T->assign('title', '3EProfiler Error');
-    $T->SetBodyTemplate('login_required.tpl');
-    $T->send();
+    $title = 'RPG Web Profiler Error';
+    draw_page('login_required.php');
     exit;
   }
 
@@ -67,13 +63,11 @@
     {
     case E_USER_ERROR:
     case E_USER_WARNING:
-      $tpl = new Template();
-      $tpl->SetBodyTemplate('error.tpl');
-      $tpl->assign('title', '3EProfiler Error');
+      $title = '3EProfiler Error';
       if ($DEBUG)
         $errmsg .= "\n\nThis error occurred at line $errline of file $errfile.";
-      $tpl->assign('body', nl2br(htmlspecialchars($errmsg)));
-      $tpl->send();
+      $body = nl2br(htmlspecialchars($errmsg));
+      draw_page('error.php');
       exit;
       break;
     case E_USER_NOTICE:

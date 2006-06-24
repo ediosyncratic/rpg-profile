@@ -23,7 +23,10 @@
   // Handles new user registration.
 
   include_once("config.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
+  include_once("$INCLUDE_PATH/engine/sid.class.php");
+  
+  $sid = new SId();  
 
   if (isset($_POST['user']))
   {
@@ -53,9 +56,15 @@
     if ($pwd1 != $pwd2)
       array_push($err, "Your passwords do not match.");
 
+    $title = 'Error';    
+    $error_page = 'register_error.php';
+
     // Check for errors.
-    if (sizeof($err) > 0)
-      __printRegistrationErr($err);
+    if (sizeof($err) > 0) {
+      $messages = $err;
+      draw_page($error_page);
+      exit;
+    }
 
     // Check to see if the profile name already exists.
     $_r = mysql_query(sprintf("SELECT COUNT(pname) FROM %s WHERE pname = '%s'",
@@ -67,7 +76,8 @@
     if ($r[0] != 0)
     {
       array_push($err, "The selected username ($user) has already been registered by another user.");
-      __printRegistrationErr($err);
+      $messages = $err;
+      draw_page($error_page);
     }
 
     // Attempt to add the new user.
@@ -80,35 +90,17 @@
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
 
     // Show the user a success message.
-    $T = new Template();
-    $T->assign('title', 'Registration Complete');
-    $T->assign('pname', $user);
-    $T->SetBodyTemplate('register_success.tpl');
-    $T->send();
+    $title = 'Registration Complete';
+    $pname = $user;
+    draw_page('register_success.php');
   }
   else
   {
     // No data was sent:
     // Display the registration page.
-    $T = new Template();
-    $T->assign('title', 'Registration');
-    $T->assign('pname', $user);
-    $T->SetBodyTemplate('register.tpl');
-    $T->send();
+    $title = 'Registration';
+    $pname = $user;
+    draw_page('register.php');
   }
 
-  ////////////////////////////////////////////////////////////////////////
-  // Helper functions.
-
-  // Print an error screen.
-  function __printRegistrationErr($errmsgs = null)
-  {
-    $T = new Template();
-    $T->assign('title', 'Error');
-    $T->SetBodyTemplate('register_error.tpl');
-    if ($errmsgs)
-      $T->assign('messages', $errmsgs);
-    $T->send();
-    exit;
-  }
 ?>

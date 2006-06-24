@@ -26,7 +26,7 @@
   include_once("$INCLUDE_PATH/system.php");
   include_once("$INCLUDE_PATH/engine/sid.php");
   include_once("$INCLUDE_PATH/error.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/engine/character.class.php");
 
   // Respawn the session.
@@ -50,10 +50,6 @@
   if (!$char->Save($sid))
     __printFatalErr("Failed to update database.", __LINE__, __FILE__);
 
-  $T = new Template();
-  $T->assign('title', 'Character Updated');
-  $T->AssignSession($sid);
-  $T->SetBodyTemplate('save.tpl');
-  $T->assign('id', $id);
-  $T->send();
+  $title = 'Character Updated';
+  draw_page('save.php');
 ?>

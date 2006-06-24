@@ -31,10 +31,13 @@
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/db.php");
-  include_once("$INCLUDE_PATH/template.class.php");
+  include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/engine/validation.php");
   include_once("$INCLUDE_PATH/engine/id.class.php");
+  include_once("$INCLUDE_PATH/engine/sid.class.php");
   include_once("$INCLUDE_PATH/error.php");
+
+  $sid = new SId();
 
   ////////////////////////////////////////////////////////////////////////
   if ($_GET['p'] && $_GET['k'])
@@ -61,20 +64,14 @@
     if (mysql_num_rows($_r) != 1)
     {
       // The key is no longer valid.
-      $T = new Template();
-      $T->assign('title', 'Error');
-      $T->SetBodyTemplate('resetpwd_invalidkey.tpl');
-      $T->send();
+      $title = 'Error';
+      draw_page('resetpwd_invalidkey.php');
     }
     else
     {
       // The key is still valid, show the change password form.
-      $T = new Template();
-      $T->assign('title', 'New Password');
-      $T->assign('pname', $pname);
-      $T->assign('key', $key);
-      $T->SetBodyTemplate('resetpwd_passwordform.tpl');
-      $T->send();
+      $title = 'New Password';
+      draw_page('resetpwd_passwordform.php');
     }
   }
 
@@ -125,11 +122,8 @@
       __printFatalErr("Failed to send email to address listed in profile.");
 
     // Send a success message.
-    $T = new Template();
-    $T->assign('title', 'Reset Password');
-    $T->assign('pname', $pname);
-    $T->SetBodyTemplate('resetpwd_checkmail.tpl');
-    $T->send();
+    $title = 'Reset Password';
+    draw_page('resetpwd_checkmail.php');
   }
 
   ////////////////////////////////////////////////////////////////////////
@@ -137,9 +131,7 @@
   {
     // No proper query received: show a form allowing the user to give
     // their profile name.
-    $T = new Template();
-    $T->assign('title', 'Reset Password');
-    $T->SetBodyTemplate('resetpwd.tpl');
-    $T->send();
+    $title = 'Reset Password';
+    draw_page('resetpwd.php');
   }
 ?>
