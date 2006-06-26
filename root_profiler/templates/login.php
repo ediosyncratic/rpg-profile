@@ -22,6 +22,8 @@
 
   Defines the body text for the login page.
 -->
+<?php global $OPEN_REGISTRATION; ?>
+
       <h1>Login</h1>
       <p>
         Please provide your profile details below to login:
@@ -49,6 +51,10 @@
         Public Characters: <?php echo GetPublicCount(); ?>
       </p>
       <p>
+        <?php if ( $OPEN_REGISTRATION ) { ?>
         You must have previously <a href="register.php">registered</a> before you can login.<br />
+        <?php } else { ?>
+        This site is private. Contact the webmaster for an account.<br />
+        <?php } ?>
         Can't remember your password? Have it <a href="resetpwd.php">reset</a>.
       </p>

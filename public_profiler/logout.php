@@ -29,10 +29,11 @@
   // Clear the session cookie.
   $sid = new SId();
   $sid->ClearSession();
+  $sid = null;
 
   $title = 'Logged Out';
-  
- 
+
+
   // Show the logged out page.
   draw_page('logout.php');
 ?>

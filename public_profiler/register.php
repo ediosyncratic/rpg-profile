@@ -25,8 +25,14 @@
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/engine/sid.class.php");
-  
-  $sid = new SId();  
+
+  $sid = new SId();
+
+  if( ! $OPEN_REGISTRATION ) {
+    draw_page('register_closed.php');
+    exit;
+  }
+
 
   if (isset($_POST['user']))
   {
@@ -56,7 +62,7 @@
     if ($pwd1 != $pwd2)
       array_push($err, "Your passwords do not match.");
 
-    $title = 'Error';    
+    $title = 'Error';
     $error_page = 'register_error.php';
 
     // Check for errors.

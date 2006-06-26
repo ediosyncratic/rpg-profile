@@ -24,7 +24,7 @@
   character options page.
 -->
 <?php
-global $templates, $characters;
+global $templates, $characters, $NEW_WINDOW;
 ?>
 
 
@@ -64,11 +64,11 @@ global $templates, $characters;
   <table class="clist indent">
     <thead>
       <tr>
-        <th>Character Name</th>
+        <th>Character</th>
         <th>ID</th>
         <th>Public?</th>
-        <th>Last Edited</th>
-        <th>Edited By</th>
+        <th>Edited</th>
+        <th>Editor</th>
         <th>Template</th>
         <th>Modify</th>
       </tr>
@@ -79,7 +79,7 @@ if( count( $characters ) > 0 ) {
   foreach( $characters as $character ) {
 ?>
       <tr>
-        <td><a href="view.php?id=<?php echo $character['id']; ?>" target="_blank"><?php echo $character['name']; ?></a></td>
+        <td><a href="view.php?id=<?php echo $character['id']; ?>" <?php if( $NEW_WINDOW ) { ?>target="_blank"<?php } ?>><?php echo $character['name']; ?></a></td>
         <td class="c"><?php echo $character['id']; ?></td>
         <td class="c"><?php echo $character['public'] == 'y' ? 'Yes' : 'No'; ?></td>
         <td class="c"><?php echo $character['lastedited']; ?></td>

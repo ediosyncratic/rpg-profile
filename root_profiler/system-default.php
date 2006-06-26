@@ -37,6 +37,9 @@
   // The base directory of the public files, if they have been moved.
   $WEB_INSTALL = $BASE_INSTALL . '/public_profiler';
 
+  // Site CSS File
+  $SITE_CSS = 'css/template.css';
+
   ////////////////////////////////////////////////////////////////////////
   // MySQL Database configuration.
 
@@ -62,19 +65,40 @@
 
   // Change URI_BASE to the base uri that all pages are displayed from.
   $URI_BASE = 'http://www.mydomain.ext/profiler/';
+
   // URI_HOME: the resource (front-page) for your site.
   $URI_HOME = $URI_BASE;
+
   // URI_WEBMASTER: the resource to contact the webmaster.
   // If using an email address, you may wish to obfuscate it so it doesn't
   // get harvested by web bots.
   $URI_WEBMASTER = 'mailto:email&#64;mydomain.ext';
+
   // EMAIL_WEBMASTER: the email address of the webmaster.
   // This address is used for outgoing emails, so shouldn't be obfuscated.
   $EMAIL_WEBMASTER = 'email@mydomain.ext';
+
   // URI_TOS: your site's terms of service and privacy policy.
   $URI_TOS = 'legal.php';
+
   // LOGO: The image that appears at the top left of the page.
+  // Note: The image should be 73 pixels in height
   $LOGO = 'imgs/rpgwebprofiler.gif';
+
+  // Open character sheets in a new window
+  $NEW_WINDOW = true;
+
+  // Require Login to view any characters (including public)
+  $REQUIRE_LOGIN = false;
+
+  // Allow anyone to register on the profiler
+  $OPEN_REGISTRATION = true;
+
+  // Display Character Image page
+  $DISPLAY_IMAGES = true;
+
+  // Display FAQ Link
+  $DISPLAY_FAQ = true;
 
   ////////////////////////////////////////////////////////////////////////
   // Behavior parameters.

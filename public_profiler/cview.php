@@ -57,6 +57,11 @@
     $sid = RespawnSession(__LINE__, __FILE__);
   }
 
+  if( !$sid || !$sid->IsSessionValid() ) {
+    draw_page('login_required.php');
+    exit;
+  }
+
   $title = 'Character Options';
   $characters = $sid->GetCharacters();
   $templates = generate_template_array();

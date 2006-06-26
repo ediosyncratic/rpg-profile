@@ -41,6 +41,11 @@
   // Attempt to respawn a session.
   $sid = new SId();
 
+  if( $REQUIRE_LOGIN && !$sid->IsSessionValid() ) {
+    draw_page('login_required.php');
+    exit;
+  }
+
   // Validate input.
   $char = new Character((int) $_GET['id']);
   if (!$char->IsValid()) {

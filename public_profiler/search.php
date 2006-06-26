@@ -32,6 +32,12 @@
   // Try to respawn a session to keep the menu nav in context.
   $sid = new SId();
 
+  if( $REQUIRE_LOGIN && !$sid->IsSessionValid() ) {
+    draw_page('login_required.php');
+    exit;
+  }
+
+
     $resx = mysql_query("SELECT id, name, filename FROM sheet_templates");
     if (!$resx)
       __printFatalErr(mysql_error()."<br>Failed to query database.", __LINE__, __FILE__);
@@ -136,7 +142,7 @@ $np = "&ch=$ch&orby=$orby";
 
     if (sizeof($results) == $rowsperpage)
       $nextpage = $page + 1;
- 
+
     draw_page('search_results.php');
   }
   else
