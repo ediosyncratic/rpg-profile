@@ -18,7 +18,7 @@
       <span><a href="<?php echo getUriHome(); ?>">
         <img height="73" src="<?php echo getLogo(); ?>" border="0"></a></span>
       <div class="headerLinks">
-	<a href="<?php echo getUriBase(); ?>index.php">Home</a>
+	<a href="<?php echo getUriHome(); ?>">Home</a>
         <?php if( $sid && loggedIn() ) { ?>
           | <a href="<?php echo getUriBase(); ?>logout.php">Logout</a>
           | <a href="<?php echo getUriBase(); ?>cview.php">Characters</a>
