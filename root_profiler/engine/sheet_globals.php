@@ -44,7 +44,7 @@
   // attribute if necessary.
   function getn($name, $setread = true)
   {
-    global $READONLY;
+    global $DATA, $READONLY;
 
     echo "name=\"$name\"";
     echo ' title="' . $DATA[$name] . '"';
