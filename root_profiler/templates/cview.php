@@ -69,13 +69,14 @@ global $templates, $characters;
         <th>Public?</th>
         <th>Last Edited</th>
         <th>Edited By</th>
-	<th>Template</th>
+        <th>Template</th>
+        <th>Modify</th>
       </tr>
     </thead>
     <tbody>
 <?php
-if( count( $characters ) > 0 ) { 
-  foreach( $characters as $character ) { 
+if( count( $characters ) > 0 ) {
+  foreach( $characters as $character ) {
 ?>
       <tr>
         <td><a href="view.php?id=<?php echo $character['id']; ?>" target="_blank"><?php echo $character['name']; ?></a></td>
@@ -84,9 +85,10 @@ if( count( $characters ) > 0 ) {
         <td class="c"><?php echo $character['lastedited']; ?></td>
         <td class="c"><?php echo $character['editedby']; ?></td>
         <td class="c"><?php echo $character['template']; ?></td>
+        <td><a href="char.php?id=<?php echo $character['id']; ?>">Details</a></td>
       </tr>
 <?php
-  } 
+  }
 } else { ?>
       <tr>
         <td colspan="5">You don't have any characters!</td>
@@ -94,21 +96,3 @@ if( count( $characters ) > 0 ) {
 <?php } ?>
     </tbody>
   </table>
-<h1>Modify Character Details</h1>
-<form action="char.php" method="post">
-  <p>
-    Change permissions for a character sheet such as making it publicly
-    viewable or sharing it with another profile, change which template
-    your character sheet uses, and various other character specific options
-    that aren't settable from your character sheet.
-  </p>
-  <p>
-    <select name="id" class="quick">
-      <option>&lt;--Select a character--&gt;</option>
-<?php foreach( $characters as $character ) { ?>
-      <option value="<?php echo $character['id']; ?>"><?php echo $character['name']; ?> (#<?php echo $character['id']; ?>)</option>
-<?php } ?>
-    </select>
-    <input type="submit" class="go" value="Go!" />
-  </p>
-</form>

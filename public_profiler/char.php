@@ -36,6 +36,11 @@
 
   // Validate permission for the requested character.
   $id = (int) $_POST['id'];
+
+  if (!$id) {
+    $id = (int) $_GET['id'];
+  }
+
   if (!$sid->HasAccessTo($id))
     __printFatalErr("Access denied.");
 
@@ -43,7 +48,7 @@
   $character = new Character($id);
   if (!$character->IsValid())
     __printFatalErr("Failed to retrieve character data.", __LINE__, __FILE__);
-  
+
   // Perform any simple actions that are requested.
   if (isset($_POST['public']))
     $public_updated =  apply_public($sid, $character, $_POST['public'] == 'true') ? 'Updated!' : 'Update Failed!';
@@ -51,7 +56,7 @@
     $profiles_updated = apply_add_profile($character, $_POST['add_profile']) ? 'Updated!' : 'Update Failed!';
   if (isset($_POST['tid']))
     $template_updated = apply_template($sid, $character, (int) $_POST['tid']) ? 'Updated!' : 'Updated Failed!';
-  
+
   // Draw the page.
   $title = 'Character Permissions';
 
