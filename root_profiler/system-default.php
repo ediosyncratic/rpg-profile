@@ -39,6 +39,12 @@
 
   // Site CSS File
   $SITE_CSS = 'css/template.css';
+  
+  // Site News File
+  // - If you don't want a news section, just comment this out.
+  // - If you use your own file, the default file is located in the 
+  //   root_profiler/templates/ directory.
+  $SITE_NEWS = 'news.php';
 
   ////////////////////////////////////////////////////////////////////////
   // MySQL Database configuration.

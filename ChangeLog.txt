@@ -1,0 +1,29 @@
+===========================================
+v0.2.0 - 28 June 2006
+===========================================
+
+- Removed Smarty Templates
+- New Admin Options
+  - SITE_CSS: Change the CSS file in use to make updates easier
+  - SITE_NEWS: Change the file used to display news.
+  - NEW_WINDOW: Prevent Character sheets opening in a new window
+  - REQUIRE_LOGIN: Remove public access to character sheets, so only registered users can see them
+  - OPEN_REGISTRATION: Stop people from registering. Makes the site a private installation.
+  - DISPLAY_IMAGES: Show/Hide the link to the character image library
+  - DISPLAY_FAQ: Show/Hide the link to the FAQ
+- Added imgs/blank.gif for use when no LOGO image is desired.
+
+The first two admin options listed above, along with the previous renaming of
+the system configuration file within the Subversion repository are intended to 
+make future upgrade paths easier. Ideally, you should be able to extract a new
+version of the application into the install directory without then having to
+re-configure the application for your site.
+
+===========================================
+v0.1.0 - 15 June 2006
+===========================================
+
+- First release of RPG Web Profiler.
+- Re-branded application with new name
+- Some search improvements over 3eProfiler
+- Character Image library browser
