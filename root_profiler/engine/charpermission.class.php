@@ -170,7 +170,7 @@
       global $TABLE_CAMPAIGNS, $TABLE_CHARS;
 
       $this->_campaigns = array();
-      $sql = sprintf("SELECT ca.id, ca.name, ca.active, count(ch.id) FROM %s ca, %s ch WHERE ca.owner = '%s' and ca.id = ch.campaign GROUP BY ca.id",
+      $sql = sprintf("SELECT ca.id, ca.name, ca.active, count(ch.id) FROM %s ca LEFT JOIN %s ch ON ca.id = ch.campaign WHERE ca.owner = '%s' GROUP BY ca.id",
                      $TABLE_CAMPAIGNS,
                      $TABLE_CHARS,
                      addslashes($this->_pname));
