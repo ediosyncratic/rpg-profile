@@ -62,6 +62,9 @@ global $templates, $characters, $NEW_WINDOW;
     from the list below.
   </p>
   <table class="clist indent">
+<?php
+if( count( $characters ) > 0 ) {
+?>
     <thead>
       <tr>
         <th>Character</th>
@@ -75,7 +78,6 @@ global $templates, $characters, $NEW_WINDOW;
     </thead>
     <tbody>
 <?php
-if( count( $characters ) > 0 ) {
   foreach( $characters as $character ) {
 ?>
       <tr>

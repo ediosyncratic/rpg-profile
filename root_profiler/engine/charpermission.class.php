@@ -37,8 +37,10 @@
       $this->_pname = $pname;
       $this->_cid = $cid;
 
-      if ($pname && !$cid)
+      if ($pname && !$cid) {
         $this->get_characters_by_profile();
+        $this->get_campaigns();
+      }
       else if ($cid && !$pname)
         $this->get_profiles_by_character();
 
@@ -64,6 +66,11 @@
     function GetCharacters()
     {
       return $this->_characters;
+    }
+
+    function GetCampaigns()
+    {
+      return $this->_campaigns;
     }
 
     // Add a new permission entry to the table for the contained pname
@@ -118,6 +125,7 @@
 
     var $_profiles = array();
     var $_characters = array();
+    var $_campaigns = array();
 
     var $_pname = null;
     var $_cid = null;
@@ -155,6 +163,23 @@
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
       while ($row = mysql_fetch_row($res))
         array_push($this->_characters, array('id' => $row[0], 'name' => $row[1], 'lastedited' => $row[2], 'editedby' => $row[3], 'public' => $row[4], 'template' => $row[5]));
+    }
+
+    function get_campaigns() 
+    {
+      global $TABLE_CAMPAIGNS, $TABLE_CHARS;
+
+      $this->_campaigns = array();
+      $sql = sprintf("SELECT ca.id, ca.name, ca.active, count(ch.id) FROM %s ca, %s ch WHERE ca.owner = '%s' and ca.id = ch.campaign GROUP BY ca.id",
+                     $TABLE_CAMPAIGNS,
+                     $TABLE_CHARS,
+                     addslashes($this->_pname));
+      $res = mysql_query($sql);
+      if (!$res)
+        __printFatalErr("Failed to query database.", __LINE__, __FILE__);
+      while ($row = mysql_fetch_row($res)) {
+        array_push($this->_campaigns, array('id' => $row[0], 'name' => $row[1], 'active' => ($row[2] == 'Y'), 'pcs' => $row[3]));
+      }
     }
   }
 ?>

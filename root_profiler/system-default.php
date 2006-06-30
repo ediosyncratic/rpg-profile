@@ -65,6 +65,7 @@
   $TABLE_OWNERS = 'character_owners';
   $TABLE_TEMPLATES = 'sheet_templates';
   $TABLE_SERIALIZE = 'serialization_formats';
+  $TABLE_CAMPAIGNS = 'campaign';
 
   ////////////////////////////////////////////////////////////////////////
   // Site parameters.

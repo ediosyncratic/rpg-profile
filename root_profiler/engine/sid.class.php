@@ -81,6 +81,11 @@
       return $this->_username;
     }
 
+    function IsDM()
+    {
+      return $this->_dm;
+    }
+
     //////////////////////////////////////////////////////////////////////
     // General methods.
 
@@ -110,6 +115,11 @@
     function GetCharacters()
     {
       return $this->_permission->GetCharacters();
+    }
+    
+    function GetCampaigns()
+    {
+      return $this->_permission->GetCampaigns();
     }
 
     // Determine if the user has access to the specified character.
@@ -151,7 +161,7 @@
         return false;
 
       // Check the user against the db.
-      $res = mysql_query(sprintf("SELECT iplog, slength, email FROM %s WHERE pname = '%s' AND pwd = PASSWORD('%s')",
+      $res = mysql_query(sprintf("SELECT iplog, slength, email, dm FROM %s WHERE pname = '%s' AND pwd = PASSWORD('%s')",
         $TABLE_USERS,
         addslashes($_POST['user']),
         addslashes($_POST['pwd'])));
@@ -166,6 +176,7 @@
       $this->_iplog = unserialize(stripslashes($row[0]));
       $this->_slength = $row[1];
       $this->_email = $row[2];
+      $this->_dm = $row[3] == 'Y';
 
       // Update the iplog.
       $this->update_iplog();
@@ -233,6 +244,9 @@
     // CharPermission object, reflecting this sessions access rights.
     var $_permission = null;
 
+    // Enable DM functionality.
+    var $_dm = false; 
+
     //////////////////////////////////////////////////////////////////////
     // Methods.
 
@@ -272,7 +286,7 @@
         return;
 
       // Attempt to retrieve the session details from the db.
-      $res = mysql_query(sprintf("SELECT pname, iplog, slength, email FROM %s WHERE UNIX_TIMESTAMP(lastlogin) + (slength * 60) > UNIX_TIMESTAMP(NOW()) AND ip = '%s' AND sid = '%s'",
+      $res = mysql_query(sprintf("SELECT pname, iplog, slength, email, dm FROM %s WHERE UNIX_TIMESTAMP(lastlogin) + (slength * 60) > UNIX_TIMESTAMP(NOW()) AND ip = '%s' AND sid = '%s'",
         $TABLE_USERS,
         addslashes($this->_ip),
         addslashes($this->_sid)));
@@ -287,6 +301,7 @@
       $this->_iplog = unserialize(stripslashes($row[1]));
       $this->_slength = $row[2];
       $this->_email = $row[3];
+      $this->_dm = $row[4] == 'Y';
 
       // Update the iplog.
       $this->update_iplog();

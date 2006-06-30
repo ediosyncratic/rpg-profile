@@ -45,7 +45,8 @@
   <div class="inputholder"><input type="password" class="quick" name="pwd2" /> Verify new password.</div>
   <div class="inputholder"><input type="text" class="quick" name="email" value="<?php echo $sid->GetEmail(); ?>" /> Email address.</div>
   <div class="inputholder"><input type="text" class="quick" name="slength" value="<?php echo $sid->GetSLength(); ?>" /> Session length, in minutes.</div>
+  <div class="inputholder"><input type="checkbox" class="quick" name="dm" <?php if( $sid->IsDM() ) { ?>checked<?php } ?>/>Enable DM Functions</div>
   <p>
-    <input type="submit" class="go" value="Change Login Details" />
+    <input type="submit" class="go" value="Update Profile" />
   </p>
 </form>

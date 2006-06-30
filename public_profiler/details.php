@@ -61,6 +61,7 @@
       update_password(addslashes($_POST['pwd1']), $sid);
     update_email(addslashes($_POST['email']), $sid);
     update_slength(addslashes($_POST['slength']), $sid);
+    update_dm($_POST['dm'], $sid);
 
     $title = 'Profile Updated';
     draw_page('details.php');
@@ -107,4 +108,20 @@
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
   }
+
+  // Updates the db with the user's dm setting
+  function update_dm($dm, &$sid)
+  {
+    global $TABLE_USERS;
+
+    $dm = $dm == 'on' ? 'Y' : 'N';
+
+    $_r = mysql_query(sprintf("UPDATE %s SET dm = '%s' WHERE pname = '%s' LIMIT 1",
+      $TABLE_USERS,
+      $dm,
+      addslashes($sid->GetUserName())));
+    if (!$_r)
+      __printFatalErr("Failed to update database.", __LINE__, __FILE__);
+  }
+
 ?>
