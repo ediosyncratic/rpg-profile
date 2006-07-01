@@ -78,8 +78,8 @@ global $is_owner;
 </table>
   <p>
     You can grant editing permission to other profiles, but you must do it
-    one profile at a time. Once you grant a profile permission, you can
-    not remove it's permission.
+    one profile at a time. Editing permission can be removed by the owner 
+    of the character.
   </p>
 <form action="char.php" method="post">
   <p>
