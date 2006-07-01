@@ -32,10 +32,8 @@ global $id, $character;
 <form action="del.php" method="post">
   <p>
     Are you sure you want to remove your profile's access to the character
-    <b><?php echo $character; ?></b> (#<?php echo $id; ?>)? If you are the only person who has
-    access to this character, the character data will be permanently deleted.
-    If other profiles have access to this character, the character data will
-    remain for others, but your permission to edit this chracter will be removed.
+    <b><?php echo $character; ?></b> (#<?php echo $id; ?>)? If you are the owner of
+    this character, the character data will be permanently deleted.
   </p>
   <p>
     Remove character?

@@ -49,7 +49,8 @@
       // Retrieve the character information if requested.
       if ($this->id)
       {
-        $res = mysql_query(sprintf("SELECT cname, lastedited, public, editedby, template_id, data FROM $TABLE_CHARS WHERE id = %d",
+        $res = mysql_query(sprintf("SELECT cname, lastedited, public, editedby, template_id, data, owner ".
+                                   "FROM $TABLE_CHARS WHERE id = %d",
           (int) $this->id));
         if (!$res)
           return;
@@ -63,6 +64,7 @@
         $this->editedby = $row[3];
         $this->template_id = $row[4];
         $this->_data = unserialize($row[5]);
+        $this->owner = $row[6];
         while (list($key, $val) = @each($this->_data))
           $this->_data[$key] = stripslashes($val);
         @reset($this->_data);
@@ -85,6 +87,7 @@
     var $public;
     var $editedby;
     var $template_id;
+    var $owner;
 
     //////////////////////////////////////////////////////////////////////
     // Accessors
@@ -139,6 +142,20 @@
       }
       else
         return false;
+    }
+ 
+    function RemoveAccessFrom($name)
+    {
+      $cp = new CharPermission($name, $this->id);
+      if ($cp->RemovePermission())
+      {
+        // Refresh this object's permissions object.
+        $this->_permissions = new CharPermission(null, $this->id);
+        return true;
+      }
+      else
+        return false;
+
     }
 
     function IsValid()

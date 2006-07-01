@@ -55,13 +55,16 @@
   if (isset($_POST['add_profile']))
     $profiles_updated = apply_add_profile($character, $_POST['add_profile']) ? 'Updated!' : 'Update Failed!';
   if (isset($_POST['tid']))
-    $template_updated = apply_template($sid, $character, (int) $_POST['tid']) ? 'Updated!' : 'Updated Failed!';
+    $template_updated = apply_template($sid, $character, (int) $_POST['tid']) ? 'Updated!' : 'Update Failed!';
+  if (isset($_GET['remove_profile']))
+    $profiles_updated = apply_remove_profile($character, $_GET['remove_profile']) ? 'Updated!' : 'Update Failed!';
 
   // Draw the page.
   $title = 'Character Permissions';
 
   $cname = $character->cname;
   $is_public = $character->public == 'y';
+  $is_owner = $character->owner == $sid->GetUserName();
   $profiles = $character->GetProfiles();
   $templates = generate_template_array();
   $current_template = get_sheet_name($character->template_id);
@@ -78,6 +81,15 @@
     $err = array();
     if (is_valid_pname($profile, $err))
       if ($character->GrantAccessTo($profile))
+        return true;
+    return false;
+  }
+ 
+  function apply_remove_profile(&$character, $profile)
+  {
+    $err = array();
+    if (is_valid_pname($profile, $err))
+      if( $character->RemoveAccessFrom($profile))
         return true;
     return false;
   }

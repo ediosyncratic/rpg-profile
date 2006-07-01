@@ -79,6 +79,7 @@ if( count( $characters ) > 0 ) {
     <tbody>
 <?php
   foreach( $characters as $character ) {
+    $otherChar = substr( $character['name'], 0, 1 ) === '*';
 ?>
       <tr>
         <td><a href="view.php?id=<?php echo $character['id']; ?>" <?php if( $NEW_WINDOW ) { ?>target="_blank"<?php } ?>><?php echo $character['name']; ?></a></td>

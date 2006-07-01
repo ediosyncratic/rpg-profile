@@ -1,25 +1,6 @@
 <?php
   // del.php
 
-  // 3EProfiler (tm) source file.
-  // Copyright (C) 2003 Michael J. Eggertson.
-
-  // This program is free software; you can redistribute it and/or modify
-  // it under the terms of the GNU General Public License as published by
-  // the Free Software Foundation; either version 2 of the License, or
-  // (at your option) any later version.
-
-  // This program is distributed in the hope that it will be useful,
-  // but WITHOUT ANY WARRANTY; without even the implied warranty of
-  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  // GNU General Public License for more details.
-
-  // You should have received a copy of the GNU General Public License
-  // along with this program; if not, write to the Free Software
-  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-  // **
-
   // Script that handles deleting a character from a user's profile.
   // Deletion is a two step process, first the user is asked if they are sure
   // they want to remove the character, then if they confirm, their profile
@@ -70,17 +51,15 @@
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
     
-    // If character no longer appears in the owners table, there are no
-    // remaining users that have permission to edit the character, so
-    // remove the character data.
+    // If the user is the owner of the character remove the character data.
     $removed = false;
-    $_r = mysql_query(sprintf("SELECT COUNT(pname) FROM %s WHERE cid = %d",
-      $TABLE_OWNERS,
+    $_r = mysql_query(sprintf("select owner from %s where id = %d",
+      $TABLE_CHARS,
       (int) $id));
     if (!$_r)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
     $row = mysql_fetch_row($_r);
-    if ($row[0] == 0)
+    if ($row[0] == $sid->GetUserName())
     {
       // Remove the character.
       $_r = mysql_query(sprintf("DELETE FROM %s WHERE id = %d LIMIT 1",
@@ -88,6 +67,14 @@
         (int) $id));
       if (!$_r)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
+     
+      // Delete all editors
+      $_r = mysql_query(sprintf("DELETE FROM %s WHERE cid = %d",
+        $TABLE_OWNERS,
+        (int) $id));
+      if (!$_r)
+        __printFatalErr("Failed to query database.", __LINE__, __FILE__);
+ 
       $removed = true;
     }
 

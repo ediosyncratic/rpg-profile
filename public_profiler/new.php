@@ -49,13 +49,15 @@
     __printFatalErr("Invalid template id.");
 
   // Add the character to the master list.
-  $_r = mysql_query(sprintf("INSERT INTO %s SET cname = '%s', editedby = '%s', template_id = %d",
+  $sql = sprintf("INSERT INTO %s SET cname = '%s', editedby = '%s', template_id = %d, owner = '%s'",
     $TABLE_CHARS,
     addslashes($name),
     addslashes($sid->GetUserName()),
-    (int) $template));
+    (int) $template,
+    addslashes($sid->GetUserName()));
+  $_r = mysql_query($sql);
   if (!$_r)
-    __printFatalErr("Failed to update database.", __LINE__, __FILE__);
+    __printFatalErr("Failed to update database: $sql", __LINE__, __FILE__);
   if (mysql_affected_rows() != 1)
     __printFatalErr("Failed to update character list.", __LINE__, __FILE__);
   
@@ -72,14 +74,14 @@
   $charID = $r[0];
 
   // Add the the user as an owner to the character.
-  $_r = mysql_query(sprintf("INSERT INTO %s SET cid = %d, pname = '%s'",
-    $TABLE_OWNERS,
-    (int) $charID,
-    addslashes($sid->GetUserName())));
-  if (!$_r)
-    __printFatalErr("Failed to update database.", __LINE__, __FILE__);
-  if (mysql_affected_rows() != 1)
-    __printFatalErr("Failed to set profile permissions for new character.", __LINE__, __FILE__);
+  //$_r = mysql_query(sprintf("INSERT INTO %s SET cid = %d, pname = '%s'",
+  //  $TABLE_OWNERS,
+  //  (int) $charID,
+  //  addslashes($sid->GetUserName())));
+  //if (!$_r)
+  //  __printFatalErr("Failed to update database.", __LINE__, __FILE__);
+  //if (mysql_affected_rows() != 1)
+  //  __printFatalErr("Failed to set profile permissions for new character.", __LINE__, __FILE__);
 
   // Everything should be fine, generate the success message.
   $title = 'New Character';

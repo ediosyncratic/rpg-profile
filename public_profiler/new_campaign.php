@@ -11,6 +11,7 @@
 
   // Verify the new name is valid.
   $name = $_POST['newname'];
+  $website = $_POST['website'];
   $err = array();
   if (!is_valid_cname($name, $err))
   {
@@ -21,10 +22,11 @@
   }
 
   // Add the campaign to the database
-  $_r = mysql_query(sprintf("INSERT INTO %s SET name = '%s', owner = '%s'",
+  $_r = mysql_query(sprintf("INSERT INTO %s SET name = '%s', owner = '%s', website = '%s'",
     $TABLE_CAMPAIGNS,
     addslashes($name),
-    addslashes($sid->GetUserName())));
+    addslashes($sid->GetUserName()),
+    addslashes($website)));
   if (!$_r)
     __printFatalErr("Failed to update database.", __LINE__, __FILE__);
   if (mysql_affected_rows() != 1)

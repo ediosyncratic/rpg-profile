@@ -24,6 +24,8 @@ CREATE TABLE characters (
   data text,
   editedby varchar(20) default NULL,
   template_id int(11) NOT NULL default '1',
+  owner varchar(20) NOT NULL,
+  campaign integer null,
   PRIMARY KEY  (id)
 ) TYPE=MyISAM;
 
@@ -44,8 +46,31 @@ CREATE TABLE profiles (
   slength int(11) NOT NULL default '180',
   iplog text,
   ip varchar(15) default NULL,
+  dm varchar(1) not null default 'N',
   PRIMARY KEY  (pname)
 ) TYPE=MyISAM;
+
+# --------------------------------------------------------
+
+#
+# Table structure for table `campaign`
+#
+
+DROP TABLE IF EXISTS campaign;
+create table campaign (
+    id integer primary key auto_increment,
+    name varchar(40) not null,
+    owner varchar(20) not null,
+    active varchar(1) not null default 'Y',
+    open varchar(1) not null default 'N',
+    website varchar(250));
+
+drop table if exists campaign_join;
+create table campaign_join(
+    campaign_id integer not null,
+    char_id integer not null,
+    status enum ('RJ','IJ','DI','DJ') not null,
+    primary key (campaign_id, char_id));
 
 # --------------------------------------------------------
 

@@ -34,6 +34,8 @@ if( count( $campaigns ) > 0 ) {
         <th>Campaign</th>
         <th>PCs</th>
         <th>ID</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -45,6 +47,9 @@ if( count( $campaigns ) > 0 ) {
         <td class="c"><?php echo $campaign['pcs']; ?></td>
         <td class="c"><?php echo $campaign['id']; ?></td>
         <td><a href="edit_campaign.php?id=<?php echo $campaign['id']; ?>">Edit</a></td>
+        <?php if( $campaign['website'] ) { ?>
+        <td class="c"><a href="<?php echo $campaign['website']; ?>">Website</a></td>
+        <?php } ?>
       </tr>
 <?php
   }

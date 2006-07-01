@@ -27,12 +27,14 @@
 
 global $public_updated, $profiles_updated, $template_updated, $id;
 global $cname, $is_public, $profiles, $templates, $current_template, $exp_formats, $imp_formats;
+global $is_owner;
 
 ?>
 
 
 <h1><?php echo $username . ' :: ' . $cname; ?> :: Permissions</h1>
 
+<?php if( $is_owner ) { ?>
 <h1>Public Character<?php if( $public_updated ) { ?><span class="notice"><?php echo $public_updated; ?></span><?php } ?></h1>
 <form action="char.php" method="post">
 <?php if( $is_public ) { ?>
@@ -65,32 +67,34 @@ global $cname, $is_public, $profiles, $templates, $current_template, $exp_format
 </form>
 
 <h1>Access Permissions<?php if( $profiles_updated ) { ?><span class="notice"><?php echo $profiles_updated; ?></span><?php } ?></h1>
-<form action="char.php" method="post">
-  <p>
-    The following profiles have permission to edit this character:<br>
+    The following profiles have permission to edit this character:
+<table>
 <?php foreach( $profiles as $profile ) { ?>
-<b><?php echo $profile; ?></b><br>
+<tr>
+<td><b><?php echo $profile; ?></b></td>
+<td><a href="char.php?id=<?php echo $id; ?>&remove_profile=<?php echo $profile; ?>">Remove</a></td>
+</tr>
 <?php } ?>
-  </p>
+</table>
   <p>
     You can grant editing permission to other profiles, but you must do it
     one profile at a time. Once you grant a profile permission, you can
     not remove it's permission.
   </p>
+<form action="char.php" method="post">
   <p>
     <input type="hidden" name="id" value="<?php echo $id; ?>" />
     <input type="text" name="add_profile" class="quick" maxlength="20" /> <input type="submit" value="Grant Editing Permission" class="go" />
   </p>
 </form>
+<?php } ?>
 
 <h1>Remove Character</h1>
 <form action="del.php" method="post">
   <p>
-    You can remove this character from your profile. If no other profiles
-    have access to the character sheet, it will be permanently deleted.
-    If the character sheet is shared with other profiles, access to the
-    sheet from your profile will be removed, but the character data will
-    be unaffected.
+    You can remove this character from your profile. If you are the owner of the
+    character, it will be deleted. If you are not the owner, it will only remove
+    the editor permissions from your profile. 
   </p>
   <p>
     <input type="hidden" name="id" value="<?php echo $id; ?>" />
@@ -98,6 +102,7 @@ global $cname, $is_public, $profiles, $templates, $current_template, $exp_format
   </p>
 </form>
 
+<?php if( $is_owner ) { ?>
 <h1>Character Sheet Template<?php if( $template_updated ) { ?><span class="notice"><?php echo $template_updated; ?></span><?php } ?></h1>
 <form action="char.php" method="post">
   <p>
@@ -124,6 +129,7 @@ global $cname, $is_public, $profiles, $templates, $current_template, $exp_format
     <input type="submit" value="Apply Template" class="go" />
   </p>
 </form>
+<?php } ?>
 
 <h1>Download Character</h1>
 <form action="download.php" method="post">

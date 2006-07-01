@@ -125,11 +125,28 @@
     // Determine if the user has access to the specified character.
     function HasAccessTo($id)
     {
-      $allowed = false;
-      $chars = &$this->_permission->GetCharacters();
-      for ($i = 0; $i < sizeof($chars); $i++)
-        $allowed |= $chars[$i]['id'] == $id;
-      return $allowed;
+      global $TABLE_CHARS, $TABLE_CAMPAIGNS, $TABLE_OWNERS;
+
+      $name = $this->_username;
+      $sql = sprintf("select c.id from %s c where c.owner = '%s' ".
+                     "union select c.id from %s c, %s n where c.campaign = n.id and n.owner = '%s' ".
+                     "union select cid from %s where pname = '%s'",
+                     $TABLE_CHARS, $name,
+                     $TABLE_CHARS, $TABLE_CAMPAIGNS, $name,
+                     $TABLE_OWNERS, $name);
+
+      $res = mysql_query($sql);
+      if( !$res ) {
+        __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
+      }
+
+      while( $row = mysql_fetch_row($res) ) {
+        if( (int) $row[0] == $id ) {
+          return true;
+        }
+      }
+
+      return false;
     }
 
     // Determine if the session is valid or not (this is really just another

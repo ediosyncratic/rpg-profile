@@ -115,6 +115,23 @@
       return mysql_affected_rows() == 1;
     }
 
+    function RemovePermission()
+    {
+      global $TABLE_OWNERS;
+
+      // Verify proper data.
+      if (!($this->_pname && $this->_cid))
+        return false;
+
+      $res = mysql_query(sprintf("DELETE FROM %s WHERE pname = '%s' AND cid = %d",
+            $TABLE_OWNERS, addslashes($this->_pname),
+            (int) $this->_cid));
+      
+      if (!$res)
+        return false;
+      return mysql_affected_rows() == 1;
+    }
+
     //////////////////////////////////////////////////////////////////////
     // Internal members. You should not modify, copy, or use any members
     // declared below this block.
@@ -153,16 +170,39 @@
       global $TABLE_OWNERS, $TABLE_CHARS, $TABLE_TEMPLATES;
 
       $this->_characters = array();
-      $sql = sprintf("SELECT o.cid, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y @ %%H:%%i'), c.editedby, c.public, st.name FROM %s o, %s c, %s st WHERE o.pname = '%s' AND o.cid = c.id AND c.template_id = st.id ORDER BY c.cname",
-        $TABLE_OWNERS,
+      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y @ %%H:%%i'), c.editedby, ".
+                     "c.public, st.name FROM %s c, %s st ".
+                     "WHERE c.owner = '%s' ".
+                     "AND c.template_id = st.id ORDER BY c.cname",
         $TABLE_CHARS,
         $TABLE_TEMPLATES,
         addslashes($this->_pname));
       $res = mysql_query($sql);
       if (!$res)
-        __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-      while ($row = mysql_fetch_row($res))
-        array_push($this->_characters, array('id' => $row[0], 'name' => $row[1], 'lastedited' => $row[2], 'editedby' => $row[3], 'public' => $row[4], 'template' => $row[5]));
+        __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
+      while ($row = mysql_fetch_row($res)) {
+        array_push($this->_characters, array('id' => $row[0], 'name' => $row[1], 
+                  'lastedited' => $row[2], 'editedby' => $row[3], 
+                  'public' => $row[4], 'template' => $row[5]));
+      }
+
+      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y @ %%H:%%i'), c.editedby, ".
+                     "c.public, st.name FROM %s c, %s st, %s o ".
+                     "WHERE c.id = o.cid AND o.pname = '%s' ".
+                     "AND c.template_id = st.id ORDER BY c.cname",
+        $TABLE_CHARS,
+        $TABLE_TEMPLATES,
+        $TABLE_OWNERS,
+        addslashes($this->_pname));
+      $res = mysql_query($sql);
+      if (!$res)
+        __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
+      while ($row = mysql_fetch_row($res)) {
+        array_push($this->_characters, array('id' => $row[0], 'name' => '*'.$row[1],
+                  'lastedited' => $row[2], 'editedby' => $row[3],
+                  'public' => $row[4], 'template' => $row[5]));
+      }
+
     }
 
     function get_campaigns() 

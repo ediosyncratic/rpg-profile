@@ -34,14 +34,12 @@ global $character, $id, $removed;
 </p>
 <?php if( $removed ) { ?>
 <p>
-  Since no other profiles had permission to modify the character,
+  Since you were the owner of the character, 
   <b><?php echo $character; ?></b> was permanently deleted.
 </p>
 <?php } else { ?>
 <p>
-  Since other profiles have permission to modify the character,
-  <b><?php echo $character; ?></b> was not deleted, only your permission
-  to modify the character was removed.
+  Your permission to edit <b><?php echo $character; ?></b> was removed.
 </p>
 <?php } ?>
 <p>
