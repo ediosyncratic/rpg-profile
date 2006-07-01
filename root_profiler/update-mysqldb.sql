@@ -21,7 +21,7 @@ alter table characters add ( campaign integer null,
 update characters set owner = editedby;
 
 -- Alter character_owners to remove owners.
-alter character_owners add ( coid int(11) );
+alter table character_owners add ( coid int(11) );
 set @rownum = 1;
 update character_owners set coid = @rownum:=@rownum+1;
 update characters, character_owners set coid = 0 where id = cid and owner = pname;
