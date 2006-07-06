@@ -24,6 +24,10 @@
 // Dependencies:
 //    (alot...)
 
+var m_names = new Array("January", "February", "March", 
+"April", "May", "June", "July", "August", "September", 
+"October", "November", "December");
+
 // int SkillCount(void)
 // Returns the number of skills listed in the Skills table.
 function SkillsCount()
@@ -94,12 +98,8 @@ function cleanup()
 function SetSaveDate()
 {
   var now = new Date();
-  sheet().LastSaveDate.value = now.getMonth() + "." +
-  							 	       now.getDate()  + "." +
-  							 	       now.getFullYear() + " " +
-  							 	       now.getHours() + ":" +
-  							 	       now.getMinutes() + ":" +
-  							 	       now.getSeconds();
+  sheet().LastSaveDate.value =  now.getDate() + " " + m_names[now.getMonth()] + " " + now.getFullYear() + " " +
+  				now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
 }
 
 function CheckDisplay() {
