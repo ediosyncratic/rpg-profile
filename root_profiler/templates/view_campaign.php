@@ -35,15 +35,6 @@ global $sid, $campaign, $URI_BASE;
       Inactive
     <?php } ?></td>
 </tr>
-<tr>
-  <td>Open for Registrations:</td>
-  <td>
-    <?php if( $campaign->open ) { ?>
-      Yes
-    <?php } else { ?>
-      No
-    <?php } ?></td>
-</tr>
 <?php if( $campaign->website ) { ?>
 <tr>
   <td>Website</td>

@@ -49,6 +49,7 @@
 
     var $id;
     var $cname;
+    var $owner;
     var $active;
     var $open;
     var $website;
@@ -85,7 +86,30 @@
 
     function GetJoinRequests() 
     {
-      return array();
+      global $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_CAMPAIGN_REQUESTS;
+
+      $characters = array();
+
+      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i'), st.name, c.id, cj.status ".
+                     "FROM %s c, %s st, %s cj WHERE cj.campaign_id = %d AND c.id = cj.char_id AND st.id = c.template_id ".
+                     "ORDER BY UPPER(c.cname)",
+                     $TABLE_CHARS,
+                     $TABLE_TEMPLATES,
+                     $TABLE_CAMPAIGN_REQUESTS,
+                     (int) $this->id);
+
+      $res = mysql_query($sql);
+      if( !$res ) {
+        __printFatalErr("Query Failed: $sql");
+      }
+
+      while ($row = mysql_fetch_row($res)) {
+        array_push($characters, array('name' => $row[0], 'owner' => $row[1],
+                                      'edited' => $row[2], 'template' => $row[3], 
+                                      'id' => $row[4], 'type' => $row[5]));
+      }
+
+      return $characters;
     }
 
     function IsValid()
@@ -95,16 +119,15 @@
 
     // Save character data to the db. $sid must be a session id for the
     // user who is editing the character. Return true on success.
-    function Save(&$sid)
+    function Save()
     {
       global $TABLE_CAMPAIGNS;
 
       // Update the db.
-      $res = mysql_query(sprintf("UPDATE %s SET name = '%s', active = '%s', open = '%s', website = '%s' WHERE id = %d LIMIT 1",
+      $res = mysql_query(sprintf("UPDATE %s SET name = '%s', active = '%s', website = '%s' WHERE id = %d LIMIT 1",
         $TABLE_CAMPAIGNS,
         addslashes($this->cname),
         $this->active ? 'Y' : 'N',
-        $this->open ? 'Y' : 'N',
         addslashes($this->website),
         (int) $this->id));
       return $res ? true : false;

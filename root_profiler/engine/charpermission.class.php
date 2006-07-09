@@ -167,15 +167,18 @@
     // Determine which characters are allowed for the given profile.
     function get_characters_by_profile()
     {
-      global $TABLE_OWNERS, $TABLE_CHARS, $TABLE_TEMPLATES;
+      global $TABLE_OWNERS, $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_CAMPAIGNS;
 
       $this->_characters = array();
       $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y @ %%H:%%i'), c.editedby, ".
-                     "c.public, st.name FROM %s c, %s st ".
+                     "c.public, st.name, ca.name ".
+                     "FROM %s c, %s st ".
+                     "LEFT JOIN %s ca ON ca.id = c.campaign ".
                      "WHERE c.owner = '%s' ".
                      "AND c.template_id = st.id ORDER BY c.cname",
         $TABLE_CHARS,
         $TABLE_TEMPLATES,
+        $TABLE_CAMPAIGNS,
         addslashes($this->_pname));
       $res = mysql_query($sql);
       if (!$res)
@@ -183,16 +186,19 @@
       while ($row = mysql_fetch_row($res)) {
         array_push($this->_characters, array('id' => $row[0], 'name' => $row[1], 
                   'lastedited' => $row[2], 'editedby' => $row[3], 
-                  'public' => $row[4], 'template' => $row[5]));
+                  'public' => $row[4], 'template' => $row[5], 'campaign' => $row[6]));
       }
 
       $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y @ %%H:%%i'), c.editedby, ".
-                     "c.public, st.name FROM %s c, %s st, %s o ".
+                     "c.public, st.name, ca.name ".
+                     "FROM %s c, %s st, %s o ".
+                     "LEFT JOIN %s ca ON ca.id = c.campaign ".
                      "WHERE c.id = o.cid AND o.pname = '%s' ".
                      "AND c.template_id = st.id ORDER BY c.cname",
         $TABLE_CHARS,
         $TABLE_TEMPLATES,
         $TABLE_OWNERS,
+        $TABLE_CAMPAIGNS,
         addslashes($this->_pname));
       $res = mysql_query($sql);
       if (!$res)
@@ -200,7 +206,7 @@
       while ($row = mysql_fetch_row($res)) {
         array_push($this->_characters, array('id' => $row[0], 'name' => '*'.$row[1],
                   'lastedited' => $row[2], 'editedby' => $row[3],
-                  'public' => $row[4], 'template' => $row[5]));
+                  'public' => $row[4], 'template' => $row[5], 'campaign' => $row[6]));
       }
 
     }

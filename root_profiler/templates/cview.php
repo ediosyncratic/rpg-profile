@@ -69,10 +69,11 @@ if( count( $characters ) > 0 ) {
       <tr>
         <th>Character</th>
         <th>ID</th>
-        <th>Public?</th>
+        <th>Public</th>
         <th>Edited</th>
         <th>Editor</th>
         <th>Template</th>
+        <th>Campaign</th>
         <th>Modify</th>
       </tr>
     </thead>
@@ -88,6 +89,7 @@ if( count( $characters ) > 0 ) {
         <td class="c"><?php echo $character['lastedited']; ?></td>
         <td class="c"><?php echo $character['editedby']; ?></td>
         <td class="c"><?php echo $character['template']; ?></td>
+        <td class="c"><?php echo $character['campaign']; ?></td>
         <td><a href="char.php?id=<?php echo $character['id']; ?>">Details</a></td>
       </tr>
 <?php

@@ -18,7 +18,7 @@ alter table profiles add ( dm varchar(1) not null default 'N' );
 alter table characters add ( campaign integer null,
                              owner varchar(20));
 
-update characters set owner = editedby;
+update characters set owner = editedby, lastedited = lastedited;
 
 -- Alter character_owners to remove owners.
 alter table character_owners add ( coid int(11) );

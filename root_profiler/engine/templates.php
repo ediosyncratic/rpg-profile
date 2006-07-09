@@ -36,7 +36,7 @@
   function generate_template_array() {
     global $TABLE_TEMPLATES;
 
-    $res = mysql_query("SELECT id, name, filename FROM $TABLE_TEMPLATES");
+    $res = mysql_query("SELECT id, name, filename FROM $TABLE_TEMPLATES order by upper(name)");
     if (!$res)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
     $templates = array();

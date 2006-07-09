@@ -91,8 +91,6 @@ CREATE TABLE serialization_formats (
 
 INSERT INTO serialization_formats VALUES ('3EProfiler XML', '-//rpgprofiler.net//DTD 3EProfiler 1.0//EN', '3epxml/3epxml_imp.php', '3epxml/3epxml_exp.php', 1);
 
-
-
 # --------------------------------------------------------
 
 #

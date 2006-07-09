@@ -25,14 +25,18 @@
 
 <?php
 
-global $public_updated, $profiles_updated, $template_updated, $id;
-global $cname, $is_public, $profiles, $templates, $current_template, $exp_formats, $imp_formats;
-global $is_owner;
+global $public_updated, $profiles_updated, $template_updated, $campaign_updated;
+global $is_public, $profiles, $templates, $current_template, $exp_formats, $imp_formats;
+global $is_owner, $character, $campaign, $pending_campaign;
 
 ?>
+<script>
+function confirm_leave() {
+  return confirm('Are you sure you want to leave this campaign?');
+}
+</script>
 
-
-<h1><?php echo $username . ' :: ' . $cname; ?> :: Permissions</h1>
+<h1><?php echo $username . ' :: ' . $character->cname; ?> :: Permissions</h1>
 
 <?php if( $is_owner ) { ?>
 <h1>Public Character<?php if( $public_updated ) { ?><span class="notice"><?php echo $public_updated; ?></span><?php } ?></h1>
@@ -41,10 +45,10 @@ global $is_owner;
   <p>
     This character is a public character. This means that anyone can
     view (but not edit) the character sheet. The uri of your character
-    is: <a href="view.php?id=<?php echo $id; ?>"><?php echo getUriBase(); ?>view.php?id=<?php echo $id; ?></a>
+    is: <a href="view.php?id=<?php echo $character->id; ?>"><?php echo getUriBase(); ?>view.php?id=<?php echo $character->id; ?></a>
   </p>
   <p>
-    <input type="hidden" name="id" value="<?php echo $id; ?>" />
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
     <input type="hidden" name="public" value="false" />
     <input type="submit" value="Remove Public Permission" class="go" />
   </p>
@@ -59,11 +63,44 @@ global $is_owner;
     Your character is not a public character.
   </p>
   <p>
-    <input type="hidden" name="id" value="<?php echo $id; ?>" />
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
     <input type="hidden" name="public" value="true" />
     <input type="submit" value="Apply Public Permission" class="go" />
   </p>
 <?php } ?>
+</form>
+
+<h1>Campaign<?php if( $campaign_updated ) { ?><span class="notice"><?php echo $campaign_updated; ?></span><?php } ?></h1>
+<form action="char.php" method="post">
+  <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
+<?php if( $character->campaign_id ) { ?>
+  <p>This character is currently in the campaign <b><?php echo $campaign->cname; ?></b>, which is owned by <b><?php echo $campaign->owner; ?></b>.</p>
+  <p><input type="submit" value="Leave Campaign" class="go" onclick='return confirm_leave();'/></p>
+  <input type="hidden" name="leave_campaign" value="true"/>
+<?php } else if( $pending_campaign ) { ?>
+  <?php if( $pending_campaign['status'] == 'RJ' ) { ?>
+    This character has requested to join the campaign <b><?php echo $campaign->cname; ?></b>, which is owned by <b><?php echo $campaign->owner; ?></b>.</p>
+    <input type="hidden" name="cancel_join_campaign" value="true"/>
+    <p><input type="submit" value="Cancel Request" class="go"/></p>
+  <?php } else if( $pending_campaign['status'] == 'IJ' ) { ?>
+    This character has been invited to join the campaign <b><?php echo $campaign->cname; ?></b>, which is owned by <b><?php echo $campaign->owner; ?></b>.</p>
+    <input type="hidden" name="accept_join_campaign" value="true"/>
+    <p><input type="submit" value="Accept Invitation" class="go"/></p>
+</form>
+<form action="char.php" method="post">
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
+    <input type="hidden" name="cancel_join_campaign" value="true"/>
+    <p><input type="submit" value="Decline Invitation" class="go"/></p>
+  <?php } ?>
+<?php } else { ?>
+  <p>This character is not currently in any campaigns. To request to join a campaign, enter the campaign ID in the box below. 
+     Join requests must be approved by the campaign owner.</p>
+  <p>
+  <input type="text" name="join_campaign" class="quick" maxlength="20" />
+  <input type="submit" value="Join Campaign" class="go"/>
+  </p>
+<?php } ?> 
+
 </form>
 
 <h1>Access Permissions<?php if( $profiles_updated ) { ?><span class="notice"><?php echo $profiles_updated; ?></span><?php } ?></h1>
@@ -72,7 +109,7 @@ global $is_owner;
 <?php foreach( $profiles as $profile ) { ?>
 <tr>
 <td><b><?php echo $profile; ?></b></td>
-<td><a href="char.php?id=<?php echo $id; ?>&remove_profile=<?php echo $profile; ?>">Remove</a></td>
+<td><a href="char.php?id=<?php echo $character->id; ?>&remove_profile=<?php echo $profile; ?>">Remove</a></td>
 </tr>
 <?php } ?>
 </table>
@@ -83,11 +120,11 @@ global $is_owner;
   </p>
 <form action="char.php" method="post">
   <p>
-    <input type="hidden" name="id" value="<?php echo $id; ?>" />
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
     <input type="text" name="add_profile" class="quick" maxlength="20" /> <input type="submit" value="Grant Editing Permission" class="go" />
   </p>
 </form>
-<?php } ?>
+<?php } ?> <!-- End IS OWNER -->
 
 <h1>Remove Character</h1>
 <form action="del.php" method="post">
@@ -97,7 +134,7 @@ global $is_owner;
     the editor permissions from your profile. 
   </p>
   <p>
-    <input type="hidden" name="id" value="<?php echo $id; ?>" />
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
     <input type="submit" class="go" value="Remove Character" />
   </p>
 </form>
@@ -119,7 +156,7 @@ global $is_owner;
     your data is lost and you wish to restore it.
   </p>
   <p>
-    <input type="hidden" name="id" value="<?php echo $id; ?>" />
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
     <select name="tid" class="quick">
       <option>&lt;-- Select Template --&gt;</option>
 <?php foreach( $templates as $template) { ?>
@@ -129,7 +166,7 @@ global $is_owner;
     <input type="submit" value="Apply Template" class="go" />
   </p>
 </form>
-<?php } ?>
+<?php } ?> <!-- END IS OWNER -->
 
 <h1>Download Character</h1>
 <form action="download.php" method="post">
@@ -139,7 +176,7 @@ global $is_owner;
     even import the file into compatible programs.
   </p>
   <p>
-    <input type="hidden" name="id" value="<?php echo $id; ?>" />
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
     Download format: <select name="format" class="quick">
 <?php foreach( $exp_formats as $exp_format ) { ?>
 <option value="<?php echo $exp_format['id']; ?>"><?php echo $exp_format['title']; ?></option>
@@ -157,7 +194,7 @@ global $is_owner;
   </p>
   <p>
     <input type="hidden" name="MAX_FILE_SIZE" value="5120000" />
-    <input type="hidden" name="id" value="<?php echo $id; ?>" />
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
     Upload File: <input type="file" name="userfile" />
     Using Format: <select name="format" class="quick"><option value="0" selected="selected">Auto Detect</option>
 <?php foreach( $imp_formats as $imp_format ) { ?>

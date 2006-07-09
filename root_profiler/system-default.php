@@ -66,6 +66,7 @@
   $TABLE_TEMPLATES = 'sheet_templates';
   $TABLE_SERIALIZE = 'serialization_formats';
   $TABLE_CAMPAIGNS = 'campaign';
+  $TABLE_CAMPAIGN_REQUESTS = 'campaign_join';
 
   ////////////////////////////////////////////////////////////////////////
   // Site parameters.
