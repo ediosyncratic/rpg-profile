@@ -60,7 +60,7 @@
   if (isset($_GET['remove_profile']))
     $profiles_updated = apply_remove_profile($character, $_GET['remove_profile']) ? 'Updated!' : 'Update Failed!';
   if (isset($_POST['join_campaign']))
-    $campaign_updated = apply_join_campaign($character, (int) $_POST['join_campaign']) ? 'Updated!' : 'Update Failed!';
+    $campaign_updated = apply_join_campaign($character, (int) $_POST['join_campaign']);
   if (isset($_POST['cancel_join_campaign']))
     $campaign_updated = apply_cancel_join_campaign($character) ? 'Updated!' : 'Update Failed!';
   if (isset($_POST['accept_join_campaign']))
@@ -102,8 +102,16 @@
   }
  
   // Apply to Join the specified campaign
-  function apply_join_campaign(&$character, $campaign) {
-    return $character->JoinCampaign($campaign, "RJ"); 
+  function apply_join_campaign(&$character, $campaign_id) {
+    $campaign = new Campaign($campaign_id);
+    if( ! $campaign->open ) {
+      return "Campaign " . $campaign->cname . " not open for registration!";
+    }
+
+    if( $character->JoinCampaign($campaign_id, "RJ") ) {
+      return "Updated!";
+    }
+    return "Update Failed!";
   }
 
   // Cancel Joining the specified campaign

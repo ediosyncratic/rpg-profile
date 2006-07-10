@@ -59,9 +59,15 @@ global $update_invite, $update_details, $update_char;
   <td><input type="text" name="name" value="<?php echo $campaign->cname; ?>"/></td>
 </tr>
 <tr>
-  <td>Active:</td>
+  <td>Active</td>
   <td>
     <input type="checkbox" class="quick" name="active" value="yes" <?php if( $campaign->active ) { ?>checked<?php } ?>/>
+  </td>
+</tr>
+<tr>
+  <td>Open for Registration</td>
+  <td>
+    <input type="checkbox" class="quick" name="open" value="yes" <?php if( $campaign->open ) { ?>checked<?php } ?>/>
   </td>
 </tr>
 <tr>
@@ -177,6 +183,7 @@ if( count( $campaign->GetJoinRequests() ) > 0 ) {
 } // if
 ?>
 
+<?php if( $campaign->open ) { ?>
 <h1>Invite Character</h1>
 <p>To invite a character to join this campaign, enter the character ID in the field, and click Invite. 
    Invitations must be accepted by the character owner.</p>
@@ -187,4 +194,4 @@ if( count( $campaign->GetJoinRequests() ) > 0 ) {
   <input type="submit" value="Invite" class="go"/>
 </p>
 </form>
-
+<?php } ?>

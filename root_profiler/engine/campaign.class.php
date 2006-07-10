@@ -124,10 +124,12 @@
       global $TABLE_CAMPAIGNS;
 
       // Update the db.
-      $res = mysql_query(sprintf("UPDATE %s SET name = '%s', active = '%s', website = '%s' WHERE id = %d LIMIT 1",
+      $res = mysql_query(sprintf("UPDATE %s SET name = '%s', active = '%s', open = '%s', website = '%s' ".
+                                 "WHERE id = %d LIMIT 1",
         $TABLE_CAMPAIGNS,
         addslashes($this->cname),
         $this->active ? 'Y' : 'N',
+        $this->open ? 'Y' : 'N',
         addslashes($this->website),
         (int) $this->id));
       return $res ? true : false;

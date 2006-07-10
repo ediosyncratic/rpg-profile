@@ -173,7 +173,7 @@
     function JoinCampaign($campaign_id, $join_type) 
     {
       global $TABLE_CAMPAIGN_REQUESTS;
-
+ 
       $sql = sprintf("INSERT INTO %s (campaign_id, char_id, status) VALUES (%d, %d, '%s')",
         $TABLE_CAMPAIGN_REQUESTS,
         (int) $campaign_id,

@@ -36,6 +36,7 @@
     $campaign->cname = $_POST['name'];
     $campaign->active = isset($_POST['active']);
     $campaign->website = $_POST['website'];
+    $campaign->open = isset($_POST['open']);
 
     $update_details = $campaign->Save() ? "Updated!" : "Update Failed!";
   }
