@@ -28,7 +28,7 @@
  <option value="begins">begins with</option>
  <option value="contains">contains</option>
  <option value="ends">ends with</option>
- <option value="all">all entires</option>
+ <option value="all">all entries</option>
   </select>
  <input type="text" name="cname" maxlength="20" class="quick" />
  <input type="submit" value="Search" class="go" />
