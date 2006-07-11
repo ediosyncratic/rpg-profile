@@ -57,6 +57,10 @@ global $sid, $campaign, $URI_BASE;
   <td><?php echo $campaign->pc_alignment; ?></td>
 </tr>
 <tr valign="top">
+  <td nowrap>Players</td>
+  <td><?php echo count( $campaign->GetCharacters() ); ?></td>
+</tr>
+<tr valign="top">
   <td nowrap>Max Players</td>
   <td><?php echo $campaign->max_players; ?></td>
 </tr>
