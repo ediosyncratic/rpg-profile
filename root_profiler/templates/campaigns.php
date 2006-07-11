@@ -31,9 +31,10 @@ if( count( $campaigns ) > 0 ) {
 ?>
     <thead>
       <tr>
+        <th>ID</th>
         <th>Campaign</th>
         <th>Players</th>
-        <th>ID</th>
+        <th>Open</th>
         <th>Active</th>
         <th></th>
         <th></th>
@@ -44,10 +45,11 @@ if( count( $campaigns ) > 0 ) {
   foreach( $campaigns as $campaign ) {
 ?>
       <tr>
+        <td class="c"><?php echo $campaign['id']; ?></td>
         <td><a href="view_campaign.php?id=<?php echo $campaign['id']; ?>"><?php echo $campaign['name']; ?></a></td>
         <td class="c"><?php echo $campaign['pcs']; ?></td>
-        <td class="c"><?php echo $campaign['id']; ?></td>
-        <td class="c"><?php if( $campaign['active'] ) { ?>Yes<?php } else { ?>No<?php } ?>
+        <td class="c"><?php if( $campaign['open'] ) { ?>Yes<?php } else { ?>No<?php } ?></td>
+        <td class="c"><?php if( $campaign['active'] ) { ?>Yes<?php } else { ?>No<?php } ?></td>
         <td><a href="edit_campaign.php?id=<?php echo $campaign['id']; ?>">Edit</a></td>
         <?php if( $campaign['website'] ) { ?>
         <td class="c"><a href="<?php echo $campaign['website']; ?>">Website</a></td>

@@ -171,7 +171,7 @@
 
       $this->_characters = array();
       $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y'), c.editedby, ".
-                     "c.public, st.name, ca.name ".
+                     "c.public, st.name, ca.name, c.campaign ".
                      "FROM %s c, %s st ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
                      "WHERE c.owner = '%s' ".
@@ -186,11 +186,12 @@
       while ($row = mysql_fetch_row($res)) {
         array_push($this->_characters, array('id' => $row[0], 'name' => $row[1], 
                   'lastedited' => $row[2], 'editedby' => $row[3], 
-                  'public' => $row[4], 'template' => $row[5], 'campaign' => $row[6]));
+                  'public' => $row[4], 'template' => $row[5], 'campaign' => $row[6],
+                  'campaign_id' => $row[7]));
       }
 
       $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y @ %%H:%%i'), c.editedby, ".
-                     "c.public, st.name, ca.name ".
+                     "c.public, st.name, ca.name, c.campaign ".
                      "FROM %s c, %s st, %s o ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
                      "WHERE c.id = o.cid AND o.pname = '%s' ".
@@ -206,7 +207,8 @@
       while ($row = mysql_fetch_row($res)) {
         array_push($this->_characters, array('id' => $row[0], 'name' => '*'.$row[1],
                   'lastedited' => $row[2], 'editedby' => $row[3],
-                  'public' => $row[4], 'template' => $row[5], 'campaign' => $row[6]));
+                  'public' => $row[4], 'template' => $row[5], 'campaign' => $row[6],
+                  'campaign_id' => $row[7]));
       }
 
     }
@@ -216,7 +218,7 @@
       global $TABLE_CAMPAIGNS, $TABLE_CHARS;
 
       $this->_campaigns = array();
-      $sql = sprintf("SELECT ca.id, ca.name, ca.active, count(ch.id) ".
+      $sql = sprintf("SELECT ca.id, ca.name, ca.active, ca.open, count(ch.id) ".
                      "FROM %s ca LEFT JOIN %s ch ON ca.id = ch.campaign ".
                      "WHERE ca.owner = '%s' GROUP BY ca.id ".
                      "ORDER BY UPPER(ca.name)",
@@ -227,7 +229,9 @@
       if (!$res)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
       while ($row = mysql_fetch_row($res)) {
-        array_push($this->_campaigns, array('id' => $row[0], 'name' => $row[1], 'active' => ($row[2] == 'Y'), 'pcs' => $row[3]));
+        array_push($this->_campaigns, array('id' => $row[0], 'name' => $row[1], 
+                                            'active' => ($row[2] == 'Y'), 'open' => ($row[3] == 'Y'), 
+                                            'pcs' => $row[4]));
       }
     }
   }

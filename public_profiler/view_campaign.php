@@ -26,10 +26,10 @@
 
   $campaign = new Campaign($id);
 
-  if( $sid->GetUserName() != $campaign->owner ) {
-    draw_page('view_campaign_error.php');
-    exit;
-  }
+  //if( $sid->GetUserName() != $campaign->owner ) {
+  //  draw_page('view_campaign_error.php');
+  //  exit;
+  //}
 
   draw_page('view_campaign.php');
 ?>

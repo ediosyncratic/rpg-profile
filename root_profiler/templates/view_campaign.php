@@ -22,12 +22,16 @@ global $sid, $campaign, $URI_BASE;
 <h1>Campaign :: <?php echo $campaign->cname; ?></h1>
 
 <table>
-<tr>
-  <td>ID</td>
+<tr valign="top">
+  <td nowrap>ID</td>
   <td><?php echo $campaign->id; ?></td>
 </tr>
-<tr>
-  <td>Status:</td>
+<tr valign="top">
+  <td nowrap>Description</td>
+  <td><?php echo $campaign->desc; ?></td>
+</tr>
+<tr valign="top">
+  <td nowrap>Status</td>
   <td>
     <?php if( $campaign->active ) { ?>
       Active
@@ -35,9 +39,30 @@ global $sid, $campaign, $URI_BASE;
       Inactive
     <?php } ?></td>
 </tr>
+<tr valign="top">
+  <td nowrap>Open for Registrations</td>
+  <td>
+    <?php if( $campaign->open ) { ?>
+      Yes
+    <?php } else { ?>
+      No
+    <?php } ?></td>
+</tr>
+<tr valign="top">
+  <td nowrap>PC Level Requirements</td>
+  <td><?php echo $campaign->pc_level; ?></td>
+</tr>
+<tr valign="top">
+  <td nowrap>Alignment Requirements</td>
+  <td><?php echo $campaign->pc_alignment; ?></td>
+</tr>
+<tr valign="top">
+  <td nowrap>Max Players</td>
+  <td><?php echo $campaign->max_players; ?></td>
+</tr>
 <?php if( $campaign->website ) { ?>
-<tr>
-  <td>Website</td>
+<tr valign="top">
+  <td nowrap>Website</td>
   <td><a href="<?php echo $campaign->website; ?>">Click</a></td>
 </tr>
 <?php } ?>
@@ -45,7 +70,7 @@ global $sid, $campaign, $URI_BASE;
 
 <!-- Character List -->
 <?php
-if( count( $campaign->GetCharacters() ) > 0 ) {
+if( ($sid->GetUserName() == $campaign->owner) && (count( $campaign->GetCharacters() ) > 0) ) {
 ?>
   <h1>Registered Characters</h1>
   <table class="clist indent">

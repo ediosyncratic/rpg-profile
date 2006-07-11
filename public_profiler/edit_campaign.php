@@ -37,6 +37,10 @@
     $campaign->active = isset($_POST['active']);
     $campaign->website = $_POST['website'];
     $campaign->open = isset($_POST['open']);
+    $campaign->pc_level = $_POST['pc_level'];
+    $campaign->desc = $_POST['desc'];
+    $campaign->pc_alignment = $_POST['pc_alignment'];
+    $campaign->max_players = $_POST['max_players'];
 
     $update_details = $campaign->Save() ? "Updated!" : "Update Failed!";
   }

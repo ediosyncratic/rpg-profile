@@ -41,7 +41,7 @@ global $characters, $nextpage, $prevpage, $name, $type;
   <a href="search.php?type=<?php echo $type; ?>&amp;cname=<?php echo $name; ?>&amp;page=<?php echo $nextpage; ?>">Next &gt;</a>
 <?php } ?>
 <br><br>
-<h1>Search</h1>
+<h1>Character Search</h1>
 <form action="search.php" method="get">
 <p>
   Search for a character whose name <select name="type" class="quick">

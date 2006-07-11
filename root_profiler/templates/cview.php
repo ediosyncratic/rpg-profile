@@ -89,7 +89,11 @@ if( count( $characters ) > 0 ) {
         <td class="c"><?php echo $character['lastedited']; ?></td>
         <td class="c"><?php echo $character['editedby']; ?></td>
         <td class="c"><?php echo $character['template']; ?></td>
-        <td class="c"><?php echo $character['campaign']; ?></td>
+        <td class="c">
+          <?php if( $character['campaign'] ) { ?>
+            <a href="view_campaign.php?id=<?php echo $character['campaign_id']; ?>"><?php echo $character['campaign']; ?></a>
+          <?php } ?>
+        </td>
         <td><a href="char.php?id=<?php echo $character['id']; ?>">Details</a></td>
       </tr>
 <?php

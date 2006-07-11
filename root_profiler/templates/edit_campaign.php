@@ -50,29 +50,45 @@ global $update_invite, $update_details, $update_char;
 <h1>Campaign :: <?php echo $campaign->cname; ?><span class="notice"> <?php echo $update_details; ?></span></h1>
 
 <table>
-<tr>
+<tr valign="top">
   <td>ID</td>
   <td><?php echo $campaign->id; ?></td>
 </tr>
-<tr>
+<tr valign="top">
   <td>Name</td>
   <td><input type="text" name="name" value="<?php echo $campaign->cname; ?>"/></td>
 </tr>
-<tr>
+<tr valign="top">
+  <td>Description</td>
+  <td><textarea name="desc" style="width:350px; height:120px;"><?php echo $campaign->desc; ?></textarea></td>
+</tr>
+<tr valign="top">
   <td>Active</td>
   <td>
     <input type="checkbox" class="quick" name="active" value="yes" <?php if( $campaign->active ) { ?>checked<?php } ?>/>
   </td>
 </tr>
-<tr>
+<tr valign="top">
   <td>Open for Registration</td>
   <td>
     <input type="checkbox" class="quick" name="open" value="yes" <?php if( $campaign->open ) { ?>checked<?php } ?>/>
   </td>
 </tr>
-<tr>
+<tr valign="top">
+  <td>PC Level Requirements</td>
+  <td><input type="text" name="pc_level" value="<?php echo $campaign->pc_level; ?>"/></td>
+</tr>
+<tr valign="top">
+  <td>Alignment Requirements</td>
+  <td><input type="text" name="pc_alignment" value="<?php echo $campaign->pc_alignment; ?>"/></td>
+</tr>
+<tr valign="top">
+  <td>Max Players</td>
+  <td><input type="text" name="max_players" value="<?php echo $campaign->max_players; ?>"/></td>
+</tr>
+<tr valign="top">
   <td>Website</td>
-  <td><input type="text" name="website" value="<?php echo $campaign->website; ?>"/></td>
+  <td><input type="text" name="website" style="width:350px;" value="<?php echo $campaign->website; ?>"/></td>
 </tr> 
 <tr><td colspan="2"></td></tr>
 <tr>
