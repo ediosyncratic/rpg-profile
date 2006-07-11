@@ -63,7 +63,11 @@ create table campaign (
     owner varchar(20) not null,
     active varchar(1) not null default 'Y',
     open varchar(1) not null default 'N',
-    website varchar(250));
+    website varchar(250),
+    pc_level varchar(250),
+    description varchar(1000),
+    pc_alignment varchar(250),
+    max_players integer);
 
 drop table if exists campaign_join;
 create table campaign_join(
