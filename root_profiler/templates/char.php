@@ -140,6 +140,19 @@ function confirm_leave() {
 </form>
 
 <?php if( $is_owner ) { ?>
+<h1>Transfer Character</h1>
+<form action="char.php" method="post">
+  <p>
+    You can transfer ownership of a character to a different profile. To do this,
+    enter the profile name below.
+  </p>
+  <p>
+    <input type="text" name="transfer" class="quick" maxlength="20"/>
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
+    <input type="submit" class="go" value="Transfer" />
+  </p>
+</form>
+
 <h1>Character Sheet Template<?php if( $template_updated ) { ?><span class="notice"><?php echo $template_updated; ?></span><?php } ?></h1>
 <form action="char.php" method="post">
   <p>

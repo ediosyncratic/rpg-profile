@@ -162,9 +162,9 @@
 
       // Update the db.
       // - Note, owner is never updated, and campaign is updated in a separate process.
-      $res = mysql_query(sprintf("UPDATE %s SET campaign = %s WHERE id = %d LIMIT 1",
+      $res = mysql_query(sprintf("UPDATE %s SET campaign = %d WHERE id = %d LIMIT 1",
         $TABLE_CHARS,
-        $id,
+        (int) $id,
         (int) $this->id));
       return $res ? true : false;
     }
@@ -185,7 +185,22 @@
         
       return $res ? true : false;
     }
+  
+    function Transfer($profile)
+    {
+      global $TABLE_CHARS;
  
+      $sql = sprintf("UPDATE %s SET owner = '%s' WHERE id = %d",
+        $TABLE_CHARS,
+        $profile,
+        (int) $this->id);
+
+      // Update the db.
+      $res = mysql_query($sql);
+
+      return $res ? true : false;
+    } 
+
     function RemoveJoinRequest()
     {
       global $TABLE_CAMPAIGN_REQUESTS;

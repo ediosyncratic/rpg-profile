@@ -67,7 +67,14 @@
     $campaign_updated = apply_accept_join_campaign($character) ? 'Updated!' : 'Update Failed!';
   if (isset($_POST['leave_campaign']))
     $campaign_updated = apply_leave_campaign($character) ? 'Updated!' : 'Update Failed';
-
+  if (isset($_POST['transfer'])) {
+    if( apply_transfer_character($character, $_POST['transfer']) ) {
+      include_once('cview.php');
+      exit;
+    }
+    $public_updated = 'Transfer Failed!';
+  }
+    
   // Get a campaign join.
   $pending_campaign = $character->GetPendingCampaign();
 
@@ -113,7 +120,11 @@
     }
     return "Update Failed!";
   }
-
+  
+  function apply_transfer_character(&$character, $profile) {
+    return $character->Transfer($profile);
+  }
+ 
   // Cancel Joining the specified campaign
   function apply_cancel_join_campaign(&$character) {
     return $character->RemoveJoinRequest();
