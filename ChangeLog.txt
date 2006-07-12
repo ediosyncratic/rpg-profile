@@ -1,4 +1,31 @@
 ===========================================
+v0.3.0 - 12 July 2006
+===========================================
+
+- Changed characters to have single owner.
+- Character editing permissions can now be removed.
+- Characters owned by different profiles show with * prefix in character list.
+- Only character owner can set public permissions and add/remove editors.
+- Added Transfer Character function, to change owners.
+- Added DM Function checkbox to Profile screen.
+- Added Campaign Functionality.
+  - Users with DM Functions enabled can create campaigns.
+  - Can search on campaign names, and see information on available campaigns.
+  - Characters can request to join, or can be invited to join.
+  - Campaign Owner (DM) automatically gains full edit permissions to all 
+    participating characters.
+- Tidied up search functionality.
+
+The major change for this release is the Campaign functionality. Users can set
+up campaigns, and characters can be added to those campaigns either by request
+or invitation. All requests and invitations must be accepted by both the 
+character and the campaign owner (DM) before the character is added.
+
+One of the advantages of the Campaign functionality is that the DM
+automatically gets edit permissions for all characters, but does not gain the
+ability to change details such as whether or not the character is public.
+
+===========================================
 v0.2.0 - 28 June 2006
 ===========================================
 
