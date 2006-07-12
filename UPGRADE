@@ -1,0 +1,22 @@
+Upgrading RPG Web Profiler v0.2.0 to v0.3.0
+
+1) Extract the archive
+2) Copy the contents of the public_profiler and root_profiler directories into the 
+   existing directories. If you have made any customisations, you should back them
+   up first.
+3) Copy the parameters $TABLE_CAMPAIGNS and $TABLE_CAMPAIGN_REQUESTS from system-default.php
+   to system.php
+4) Run the update-mysqldb.sql on your database.
+   Eg: mysql -u profiler -ppassword profile_database < update-mysqld.sql
+
+That's it!
+
+Note: Since the concept of character owners has been introduced, and the current
+method of determining editors doesn't keep certain information, the character owner
+is set to the last editor of the character.
+
+If this results in the wrong profile owning the character, the owner of that profile
+can transfer the character to the proper owner by using the Transfer Character 
+function on the Character Details screen.
+
+
