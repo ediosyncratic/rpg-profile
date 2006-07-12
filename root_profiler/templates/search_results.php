@@ -11,11 +11,11 @@ global $characters, $nextpage, $prevpage, $name, $type;
 <?php $sort_url = "search.php?type=".$type."&cname=".$name."&sort="; ?>
 <?php if( count($characters) > 0 ) { ?>
     <tr>
-      <th><a style="color: white;" href="<?php echo $sort_url; ?>cname">Character Name</a></th>
-      <th><a style="color: white;" href="<?php echo $sort_url; ?>date">Last Edited</a></th>
-      <th><a style="color: white;" href="<?php echo $sort_url; ?>owner">Owner</a></th>
-      <th><a style="color: white;" href="<?php echo $sort_url; ?>template">Template</a></th>
-      <th><a style="color: white;" href="<?php echo $sort_url; ?>campaign">Campaign</a></th>
+      <th><a href="<?php echo $sort_url; ?>cname">Character Name</a></th>
+      <th><a href="<?php echo $sort_url; ?>date">Last Edited</a></th>
+      <th><a href="<?php echo $sort_url; ?>owner">Owner</a></th>
+      <th><a href="<?php echo $sort_url; ?>template">Template</a></th>
+      <th><a href="<?php echo $sort_url; ?>campaign">Campaign</a></th>
     </tr>
 <?php foreach( $characters as $character ) { ?>
       <tr>
