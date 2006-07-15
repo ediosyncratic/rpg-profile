@@ -861,13 +861,14 @@ if( $firefox ) { echo '<!--'; } ?>
 
                 <table id="spellsaves" cellspacing="0">
                   <tr class="title">
-                    <td colspan="4">Spell Saves</td>
+                    <td colspan="5">Spell Saves</td>
                   </tr>
                   <tr class="header">
                     <td><?php GetStaticHelp( "save dc", $staticHelp, "helplink" ); ?></td>
                     <td class="level">LEVEL</td>
                     <td>Spells<br />/Day</td>
                     <td><?php GetStaticHelp( "bonus spells", $staticHelp, "helplink" ); ?></td>
+                    <td>Cast<br />/Mem</td>
                   </tr>
                   <?php for ( $i = 0; $i <= 9; $i++ ) { ?>
 
@@ -883,12 +884,13 @@ if( $firefox ) { echo '<!--'; } ?>
                   <?php } else { ?>
                     <td><input type="text" <?php getnv('BonusSpells' . $i); ?> /></td>
                   <?php } ?>
+                    <td><input type="text" readonly style="border:none; font-size:1em;" <?php getnv('SpellCast' . $i); ?>/></td>
                   </tr>
 
                   <?php } ?>
 
                   <tr class="header">
-                    <td colspan="4">
+                    <td colspan="5">
                       <table cellspacing="0" class="spellsknown">
                         <tr class="title">
                           <td colspan="5"><?php GetStaticHelp("spellsKnown",$staticHelp ); ?></td>
@@ -939,7 +941,7 @@ if( $firefox ) { echo '<!--'; } ?>
                           <td class="name"><input type="text" <?php getnv($spellName); ?>
                               onchange="CheckForSpellHelp('<?php echo $spellName; ?>')" /></td>
                           <td class="mem"><input type="text" <?php getnv($spellName . 'Level' ); ?> /></td>
-                          <td class="mem"><input type="text" <?php getnv($spellName . 'Cast' ); ?> /></td>
+                          <td class="mem"><input type="text" <?php getnv($spellName . 'Cast' ); ?> onchange="updateCast();"/></td>
                         </tr>
 
                      <?php

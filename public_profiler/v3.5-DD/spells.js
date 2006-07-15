@@ -259,3 +259,34 @@ function ShowSpellListHelp( level )
   window.open( link );
 
 }
+
+function updateCast() {
+    var i;
+    for( i = 0; i <= 9; i++ ) {
+        sheet()["SpellCast" + i].value = 0;
+    }
+
+    for( i = 1; i <= 60; i++ ) {
+        var num = "" + i;
+        if( num.length == 1 ) {
+            num = "0" + num;
+        }
+        var spellLevel = "Spell" + num + "Level";
+        var spellCast = "Spell" + num + "Cast";
+      
+        var castCount = "SpellCast" + sheet()[spellLevel].value;
+
+        var currentCount = parseInt(sheet()[castCount].value);
+        var newCount =     parseInt(sheet()[spellCast].value);
+
+        if( isNaN(currentCount) ) {
+            currentCount = parseInt("0");
+        }
+
+        if( isNaN(newCount) ) {
+            newCount = parseInt("0");
+        }
+
+        sheet()[castCount].value = currentCount + newCount;
+    }
+}
