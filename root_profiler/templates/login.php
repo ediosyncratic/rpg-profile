@@ -48,7 +48,8 @@
         Registered Users: <?php echo GetUserCount(); ?> &nbsp;&nbsp;|&nbsp;&nbsp;
         Registered Characters: <?php echo GetCharacterCount(); ?> &nbsp;&nbsp;|&nbsp;&nbsp;
         Online Users: <?php echo GetUsersOnlineCount(); ?> &nbsp;&nbsp;|&nbsp;&nbsp;
-        Public Characters: <?php echo GetPublicCount(); ?>
+        Public Characters: <?php echo GetPublicCount(); ?> &nbsp;&nbsp;|&nbsp;&nbsp;
+        <a href="stats.php">More Stats</a>
       </p>
       <p>
         <?php if ( $OPEN_REGISTRATION ) { ?>
