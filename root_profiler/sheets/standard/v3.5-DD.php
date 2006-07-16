@@ -1008,7 +1008,7 @@ if( $firefox ) { echo '<!--'; } ?>
                </TR>
                <TR>
                   <TD></TD>
-                  <TD align="right">3.5 version .12 by Deeg &amp; Tarlen.</TD>
+                  <TD align="right">3.5 version .14 by Deeg &amp; Tarlen.</TD>
                </TR>
                <TR>
                   <TD></TD>
