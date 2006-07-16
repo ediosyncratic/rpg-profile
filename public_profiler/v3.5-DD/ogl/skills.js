@@ -154,7 +154,7 @@ var skillAttributes = {
   'sense motive':             [  true,          false        ],
   'sleight of hand':          [  false,         true         ],
   'speak language':           [  false,         false        ],
-  'spellcraft':               [  true,          false        ],
+  'spellcraft':               [  false,         false        ],
   'spot':                     [  true,          false        ],
   'survival':                 [  true,          false        ],
   'swim':                     [  true,          true         ],
