@@ -90,7 +90,17 @@ function SkillCalc(node)
 // or '+' (may be used untrained) appended to it
 function CheckSkillAttribute( skillNameNode )
 {
-  var skillName = skillNameNode.value.toLowerCase();
+  var skillName = skillNameNode.value;
+  if( skillName.indexOf("*") > 0 ) {
+    skillName = skillName.replace("*","");
+  }
+  if( skillName.indexOf("+") > 0 ) {
+    skillName = skillName.replace("+","");
+  }
+  skillName = skillName.replace( /\s+$/g, "" );
+  skillNameNode.value = skillName;
+
+  skillName = skillName.toLowerCase();
 
   if( skillName.length == 0 ) {
     return;
