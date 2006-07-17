@@ -365,7 +365,7 @@ $skillName = str_replace(" ", "_", $skill);
 
 </div>
 
-
+<?php if ($SHOWSAVE) { ?>
 <!-- Private Notes -->
 <div class="section">
 <h1>Private Notes (Will not be displayed publically)</h1>
@@ -377,6 +377,7 @@ $skillName = str_replace(" ", "_", $skill);
 </table>
 
 </div>
+<?php } ?>
 
 
 
