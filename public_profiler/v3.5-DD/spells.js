@@ -273,6 +273,10 @@ function updateCast() {
         }
         var spellLevel = "Spell" + num + "Level";
         var spellCast = "Spell" + num + "Cast";
+        
+        if( isNaN(sheet()[spellLevel].value) ) {
+            continue;
+        }
       
         var castCount = "SpellCast" + sheet()[spellLevel].value;
 
