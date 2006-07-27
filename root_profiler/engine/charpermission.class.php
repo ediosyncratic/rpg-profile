@@ -190,7 +190,7 @@
                   'campaign_id' => $row[7]));
       }
 
-      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y @ %%H:%%i'), c.editedby, ".
+      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y'), c.editedby, ".
                      "c.public, st.name, ca.name, c.campaign ".
                      "FROM %s c, %s st, %s o ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
