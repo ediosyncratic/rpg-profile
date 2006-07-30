@@ -56,7 +56,7 @@ Note, this directory should NOT be directly shared by Apache. Rather, the public
 should be accessed via an Alias directive. If you want to put the public directory directly into a 
 web accessible folder, you should do the following:
 
-- Copy root_profiler and root_smarty into a non-web accessible folder.
+- Copy root_profiler into a non-web accessible folder.
 - Copy public_profiler into a web accessible folder.
 - Edit the config.php file in public_profiler, and change the $ROOT_PATH variable to point
   to the location of your root_profiler directory.
@@ -73,9 +73,6 @@ Once the database is created, import the root_profiler/setup-mysqldb.sql file in
 ===================================
 4. Configure RPG Web Profiler
 ===================================
-
-Ensure the Apache process has write access to the root_profiler/smarty/templates_c folder.
-This is where the Smarty templates are compiled to.
 
 In the root_profiler directory, copy the system-default.php file to system.php, as follows:
 
