@@ -1,4 +1,5 @@
 Upgrading RPG Web Profiler v0.2.0 to v0.3.0
+=================================================================
 
 1) Extract the archive
 2) Copy the contents of the public_profiler and root_profiler directories into the 
@@ -6,8 +7,8 @@ Upgrading RPG Web Profiler v0.2.0 to v0.3.0
    up first.
 3) Copy the parameters $TABLE_CAMPAIGNS and $TABLE_CAMPAIGN_REQUESTS from system-default.php
    to system.php
-4) Run the update-mysqldb.sql on your database.
-   Eg: mysql -u profiler -ppassword profile_database < update-mysqld.sql
+4) Run the update-mysqldb-0.2.0-0.3.0.sql on your database.
+   Eg: mysql -u profiler -ppassword profile_database < update-mysqld-0.2.0-0.3.0.sql
 
 That's it!
 

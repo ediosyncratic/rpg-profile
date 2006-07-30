@@ -4,7 +4,7 @@
 
 DROP TABLE IF EXISTS character_owners;
 CREATE TABLE character_owners (
-  pname varchar(20) binary NOT NULL default '',
+  pname varchar(20) NOT NULL default '',
   cid int(11) NOT NULL default '0',
   PRIMARY KEY  (pname,cid)
 ) TYPE=MyISAM;
@@ -17,7 +17,7 @@ CREATE TABLE character_owners (
 
 DROP TABLE IF EXISTS characters;
 CREATE TABLE characters (
-  cname varchar(20) binary NOT NULL default '',
+  cname varchar(20) NOT NULL default '',
   id int(11) unsigned NOT NULL auto_increment,
   lastedited timestamp(14) NOT NULL,
   public enum('y','n') default 'n',
@@ -37,12 +37,12 @@ CREATE TABLE characters (
 
 DROP TABLE IF EXISTS profiles;
 CREATE TABLE profiles (
-  pname varchar(20) binary NOT NULL default '',
-  pwd varchar(40) binary NOT NULL default '',
+  pname varchar(20) NOT NULL default '',
+  pwd varchar(50) NOT NULL default '',
   email varchar(50) default NULL,
   lastlogin timestamp(14) NOT NULL,
-  pwd_key varchar(32) binary default NULL,
-  sid varchar(32) binary default NULL,
+  pwd_key varchar(32) default NULL,
+  sid varchar(32) default NULL,
   slength int(11) NOT NULL default '180',
   iplog text,
   ip varchar(15) default NULL,
