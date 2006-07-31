@@ -116,7 +116,7 @@
     {
       return $this->_permission->GetCharacters();
     }
-    
+
     function GetCampaigns()
     {
       return $this->_permission->GetCampaigns();
@@ -166,7 +166,7 @@
 
       // Ensure the session state is set correctly.
       $this->_is_session_valid = false;
-      
+
       // Ensure we have both a username and password.
       if (!(isset($_POST['user']) && isset($_POST['pwd'])))
         return false;
@@ -178,9 +178,11 @@
         return false;
 
       // Check the user against the db.
-      $res = mysql_query(sprintf("SELECT iplog, slength, email, dm FROM %s WHERE pname = '%s' AND pwd = PASSWORD('%s')",
+      $res = mysql_query(sprintf("SELECT iplog, slength, email, dm FROM %s WHERE pname = '%s' ".
+                                 "AND (pwd = PASSWORD('%s') OR pwd = OLD_PASSWORD('%s'))",
         $TABLE_USERS,
         addslashes($_POST['user']),
+        addslashes($_POST['pwd']),
         addslashes($_POST['pwd'])));
       if (!$res)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
@@ -262,7 +264,7 @@
     var $_permission = null;
 
     // Enable DM functionality.
-    var $_dm = false; 
+    var $_dm = false;
 
     //////////////////////////////////////////////////////////////////////
     // Methods.
