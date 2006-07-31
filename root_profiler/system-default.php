@@ -30,11 +30,15 @@
   define ('_SYSTEM_INCLUDED_', true, true);
 
 
-  // The Base installation directory (containing root_profiler and root_smarty
-  // at the least).
-  $BASE_INSTALL = '/home/username';
+  // The Base installation directory (containing the root_profiler directory).
+  $BASE_INSTALL = '/home/username/profiler';
 
-  // The base directory of the public files, if they have been moved.
+  // The base directory of the public files. You will only need to change this
+  // value if the root_profiler and public_profiler directories are not in
+  // the same place.
+  //
+  // NOTE: THIS IS NOT THE WEBSITE ADDRESS, THIS IS THE LOCATION OF THE 
+  //       WEB-ACCESSIBLE FILES IN THE LOCAL FILE SYSTEM.
   $WEB_INSTALL = $BASE_INSTALL . '/public_profiler';
 
   // Site CSS File
