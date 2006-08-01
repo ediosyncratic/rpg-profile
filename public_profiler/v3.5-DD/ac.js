@@ -42,6 +42,8 @@ function ACCalc()
     sheet().ACDeflect,
     sheet().ACMisc);
 
+  ACCheckMaxDex();
+
   sheet().AC.value = Clean(Add(
     10,
     sheet().ACArmor.value,
@@ -140,3 +142,47 @@ function ACChangeCarried()
   ACChangeArmor();
 }
 
+function ACCheckMaxDex() {
+
+  var dexBonus = parseInt(sheet().DexMod.value);
+  var dexTempBonus = parseInt(sheet().DexTempMod.value);
+  if( ! isNaN(dexTempBonus) ) {
+    dexBonus = dexTempBonus;
+  }
+
+  var rawBonus = dexBonus;
+
+  for( var i = 1; i <= 4; i++ ) {
+    if( ! isNaN( sheet()["Armor" + i + "Dex"].value) ) {
+      var armorMaxStr = sheet()["Armor" + i + "Dex"].value;
+      if( Trim(armorMaxStr) != "" ) {
+        var armorMax = parseInt(armorMaxStr);
+        if( armorMax < dexBonus ) {
+          dexBonus = armorMax;
+        }
+      }
+    }
+  }
+
+  if ( Clean( sheet().TotalWeight.value ) > Clean( sheet().MediumLoad.value ) ) {
+    if( dexBonus > 1 ) {
+      dexBonus = 1;
+    } 
+  } else if( Clean( sheet().TotalWeight.value ) > Clean( sheet().LightLoad.value ) ) {
+    if( dexBonus > 3 ) {
+      dexBonus = 3;
+    }
+  }
+
+  sheet().ACDex.value = dexBonus;
+
+  if( dexBonus < rawBonus ) {
+    sheet().ACDex.title = "Dexterity bonus reduced by Armor and/or Encumberance.";
+    sheet().ACDex.style.color           = "white";
+    sheet().ACDex.style.backgroundColor = "red";
+  } else {
+    sheet().ACDex.title = "";
+    sheet().ACDex.style.color           = "black";
+    sheet().ACDex.style.backgroundColor = "white";
+  }
+}

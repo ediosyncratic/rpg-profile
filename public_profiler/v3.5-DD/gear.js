@@ -80,36 +80,37 @@ function CalcWeight()
 
     if ( Clean( sheet().TotalWeight.value ) > Clean( sheet().MediumLoad.value ) )
 	 {
-	   maxDexMod = 1;
-      sheet().TotalWeight.title = "Check penalty of -6 while encumbered";
+           maxDexMod = 1;
+           sheet().TotalWeight.title = "Check penalty of -6 while encumbered";
 	 }
 	 else
 	 {
-	   maxDexMod = 3;
-      sheet().TotalWeight.title = "Check penalty of -3 while encumbered";
+           maxDexMod = 3;
+           sheet().TotalWeight.title = "Check penalty of -3 while encumbered";
 	 }
 
 	 debug.trace("MaxDexMod = " + maxDexMod + " DexMod = " + Clean( sheet().DexMod.value ) );
 	 if ( Clean( sheet().DexMod.value ) > maxDexMod )
 	 {
-      sheet().DexMod.title = "Max dex mod is +" + maxDexMod + " while encumbered.";
-      sheet().DexMod.style.color           = "white";
-	   sheet().DexMod.style.backgroundColor = "red";
+           sheet().DexMod.title = "Max dex bonus to AC is +" + maxDexMod + " while encumbered.";
+           sheet().DexMod.style.color           = "white";
+           sheet().DexMod.style.backgroundColor = "red";
 	 }
 	 else
 	 {
-      sheet().DexMod.title = sheet().DexMod.value;
-      sheet().DexMod.style.color           = "black";
+           sheet().DexMod.title = sheet().DexMod.value;
+           sheet().DexMod.style.color           = "black";
 	   sheet().DexMod.style.backgroundColor = "white";
 	 }
 
     sheet().TotalWeight.style.color           = "white";
-	 sheet().TotalWeight.style.backgroundColor = "red";
+    sheet().TotalWeight.style.backgroundColor = "red";
 
     sheet().Speed.title = "Max speed is reduced by roughly 1/3 due to encumbrance";
     sheet().Speed.style.color           = "white";
-	 sheet().Speed.style.backgroundColor = "red";
+    sheet().Speed.style.backgroundColor = "red";
 
+    ACCheckMaxDex(); // Check if the dex bonus to AC should be reduced.
   }
   else
   {
