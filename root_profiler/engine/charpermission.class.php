@@ -24,8 +24,8 @@
     return;
   define ('_CHARPERMISSIONS_CLASS_INCLUDED_', true, true);
 
-  require('db.php');
-  require(dirname(__FILE__) . '/../error.php');
+  require_once('db.php');
+  require_once(dirname(__FILE__) . '/../error.php');
 
   class CharPermission
   {

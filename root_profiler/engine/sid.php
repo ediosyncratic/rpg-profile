@@ -26,8 +26,8 @@
     return;
   define ('_SID_INCLUDED_', true, true);
 
-  require('sid.class.php');
-  require(dirname(__FILE__) . '/../error.php');
+  require_once('sid.class.php');
+  require_once(dirname(__FILE__) . '/../error.php');
 
   // RespawnSession: returns a reference to the valid session object if
   // the session was successfully respawned. Otherwise, an error is

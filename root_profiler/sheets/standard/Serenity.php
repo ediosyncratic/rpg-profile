@@ -27,7 +27,7 @@
   $sheetVer = "0.3";
   
   // Lists for skills and traits.
-  require("Serenity_Include.php");
+  require_once("Serenity_Include.php");
 
   ?>
 

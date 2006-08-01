@@ -27,7 +27,7 @@
     return;
   define ('_USER_STATS_INCLUDED_', true, true);
 
-  require('engine/db.php');
+  require_once('engine/db.php');
 
   // GetUserCount
   // Returns the number of registered profiles.

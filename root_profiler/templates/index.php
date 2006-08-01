@@ -31,7 +31,7 @@
 $newsFile = $INCLUDE_PATH . '/templates/' . $SITE_NEWS;
 
 if( $SITE_NEWS && file_exists($newsFile) ) {
-  include($newsFile); 
+  include_once($newsFile); 
 }
 ?>
 

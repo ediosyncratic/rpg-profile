@@ -26,11 +26,11 @@
     return;
   define('_SID_CLASS_INCLUDED_', true, true);
 
-  require('id.class.php');
-  require('db.php');
-  require('validation.php');
-  require('charpermission.class.php');
-  require(dirname(__FILE__) . '/../system.php');
+  require_once('id.class.php');
+  require_once('db.php');
+  require_once('validation.php');
+  require_once('charpermission.class.php');
+  require_once(dirname(__FILE__) . '/../system.php');
 
   class SId extends Id
   {

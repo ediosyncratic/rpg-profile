@@ -26,7 +26,7 @@
     return;
   define ('_SERIALIZATION_INCLUDED_', true, true);
 
-  require('db.php');
+  require_once('db.php');
 
   // Return an array of all available export scripts. Each element will
   // be a hash containing the title and id of each script.

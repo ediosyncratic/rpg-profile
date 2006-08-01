@@ -27,8 +27,8 @@
     return;
   define ('_ERROR_INCLUDED_', true, true);
 
-  require('system.php');
-  require('engine/templates.php');
+  require_once('system.php');
+  require_once('engine/templates.php');
 
   $title = '';
   $body = '';

@@ -26,7 +26,7 @@
   <?php
   
   // Textual help and links for english translation
-  include("help_english.php");
+  include_once("help_english.php");
 
   function GetStaticHelp( $name, $staticHelp, $class = "help" )
   {

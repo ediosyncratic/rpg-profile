@@ -27,9 +27,9 @@
     return;
   define ('_3EPXML_EXP_INCLUDED_', true, true);
 
-  require(dirname(__FILE__) . '/../../system.php');
-  require(dirname(__FILE__) . '/../../engine/templates.php');
-  require(dirname(__FILE__) . '/../../engine/character.class.php');
+  require_once(dirname(__FILE__) . '/../../system.php');
+  require_once(dirname(__FILE__) . '/../../engine/templates.php');
+  require_once(dirname(__FILE__) . '/../../engine/character.class.php');
 
   // Return a string representing the serialized character data, or null
   // on an error.

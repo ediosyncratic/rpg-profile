@@ -27,8 +27,8 @@
     return;
   define ('_TEMPLATES_INCLUDED_', true, true);
 
-  require('db.php');
-  require(dirname(__FILE__) . '/../error.php');
+  require_once('db.php');
+  require_once(dirname(__FILE__) . '/../error.php');
 
   // Return an array of hashes of available templates. Each hash has the keys
   // 'id', 'name', and 'filename'. May produce a terminal error if db query

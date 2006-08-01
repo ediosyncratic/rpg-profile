@@ -26,8 +26,8 @@
     return;
   define ('_DB_INCLUDED_', true, true);
 
-  require(dirname(__FILE__) . '/../system.php');
-  require(dirname(__FILE__) . '/../error.php');
+  require_once(dirname(__FILE__) . '/../system.php');
+  require_once(dirname(__FILE__) . '/../error.php');
 
   @ mysql_connect($DB_HOST, $DB_USER, $DB_PWD) or
     __printFatalErr(mysql_error().'Database Connection Failed.', __LINE__, __FILE__);

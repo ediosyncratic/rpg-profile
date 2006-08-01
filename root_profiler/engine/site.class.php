@@ -3,8 +3,8 @@
     return;
   define ('_CAMPAIGN_CLASS_INCLUDED_', true, true);
 
-  require('db.php');
-  require(dirname(__FILE__) . '/../system.php');
+  require_once('db.php');
+  require_once(dirname(__FILE__) . '/../system.php');
 
   class Site
   {

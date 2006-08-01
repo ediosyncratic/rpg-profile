@@ -24,8 +24,8 @@
     return;
   define ('_3EPXML_IMP_INCLUDED_', true, true);
 
-  require(dirname(__FILE__) . '/../../engine/templates.php');
-  require(dirname(__FILE__) . '/../../engine/character.class.php');
+  require_once(dirname(__FILE__) . '/../../engine/templates.php');
+  require_once(dirname(__FILE__) . '/../../engine/character.class.php');
 
   // This is a *really* basic parser object. It's included directly in this
   // file because it really isn't meant to be reused since it's specific to

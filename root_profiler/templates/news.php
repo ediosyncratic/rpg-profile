@@ -9,6 +9,17 @@
 ?>
 <h1>RPG Web Profiler News</h1>
 
+<h2>August 2006 - v0.4.0 Development</h2>
+
+<ul>
+<li>Changes for PHP 5 compatibility.</li>
+<li>Increased length of password field to cater for MySQL new password hash.</li>
+<li>Added code to check both new and old password hash to allow for migration to
+    MySQL database with new hashing.</li>
+<li>Added more stats.</li>
+</ul>
+
+
 <h2>13 July 2006 - v0.3.0 Released</h2>
 
 <ul>

@@ -29,9 +29,9 @@
     return;
   define ('_CHARACTER_CLASS_INCLUDED_', true, true);
 
-  require('db.php');
-  require('charpermission.class.php');
-  require(dirname(__FILE__) . '/../system.php');
+  require_once('db.php');
+  require_once('charpermission.class.php');
+  require_once(dirname(__FILE__) . '/../system.php');
 
   class Character
   {
