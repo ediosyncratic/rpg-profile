@@ -248,7 +248,7 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td class="char">+</td>
                     <td class="unit"><input type="text" <?php getnv('ACOther'); ?> onchange="ACCalc()" /></td>
                     <td class="char">+</td>
-                    <td class="unit"><input type="text" <?php getnv('ACDex'); ?> onchange="ACCalc()" /></td>
+                    <td class="unit"><input type="text" <?php getnv('ACDex'); ?> onchange="ACCalc();" /></td>
                     <td class="char">+</td>
                     <td class="unit"><input type="text" <?php getnv('ACSize'); ?> onchange="ACCalc()" /></td>
                     <td class="char">+</td>
@@ -630,7 +630,7 @@ if( $firefox ) { echo '<!--'; } ?>
               <td><input <?php getnv($armorName . 'Weight'); ?> onchange="CalcWeight();" /></td>
               <td><input <?php getnv($armorName . 'Speed'); ?> /></td>
               <td><input <?php getnv($armorName . 'Spell'); ?> /></td>
-              <td><input <?php getnv($armorName . 'Dex'); ?> /></td>
+              <td><input <?php getnv($armorName . 'Dex'); ?> onchange="ACCheckMaxDex();" /></td>
             </tr>
           </table>
           </div>
