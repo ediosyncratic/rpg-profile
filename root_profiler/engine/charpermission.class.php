@@ -172,12 +172,12 @@
       $this->_characters = array();
       $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y'), c.editedby, ".
                      "c.public, st.name, ca.name, c.campaign ".
-                     "FROM %s c, %s st ".
+                     "FROM %s st, %s c ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
                      "WHERE c.owner = '%s' ".
                      "AND c.template_id = st.id ORDER BY c.cname",
-        $TABLE_CHARS,
         $TABLE_TEMPLATES,
+        $TABLE_CHARS,
         $TABLE_CAMPAIGNS,
         addslashes($this->_pname));
       $res = mysql_query($sql);
@@ -192,13 +192,13 @@
 
       $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y'), c.editedby, ".
                      "c.public, st.name, ca.name, c.campaign ".
-                     "FROM %s c, %s st, %s o ".
+                     "FROM %s st, %s o, %s c ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
                      "WHERE c.id = o.cid AND o.pname = '%s' ".
                      "AND c.template_id = st.id ORDER BY c.cname",
-        $TABLE_CHARS,
         $TABLE_TEMPLATES,
         $TABLE_OWNERS,
+        $TABLE_CHARS,
         $TABLE_CAMPAIGNS,
         addslashes($this->_pname));
       $res = mysql_query($sql);

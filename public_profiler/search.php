@@ -29,10 +29,10 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
   $page = $_GET['page'];
 
   $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d %%M %%Y @ %%H:%%i'), c.owner, st.name, ca.name ".
-                 "FROM %s c, %s st LEFT JOIN %s ca on ca.id = c.campaign ".
+                 "FROM %s st, %s c LEFT JOIN %s ca on ca.id = c.campaign ".
                  "WHERE c.public = 'y' AND c.template_id = st.id ",
-             $TABLE_CHARS,
              $TABLE_TEMPLATES,
+             $TABLE_CHARS,
              $TABLE_CAMPAIGNS);
   
   if( $type == 'begins' ) {
