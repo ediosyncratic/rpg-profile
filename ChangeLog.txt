@@ -1,4 +1,27 @@
 ===========================================
+Development
+===========================================
+
+- Removed WEB_INSTALL and BASE_INSTALL parameters from system.php
+  These parameters are no longer required.
+- Changed Character Images page to work from current directory.
+- Tidied up system-default.php
+
+===========================================
+v0.4.0 - 1 August 2006
+===========================================
+
+- Changes for PHP 5 compatibility.
+- Changes for MySQL 5 compatibility.
+- Increased length of password field to cater for MySQL 4.1+ new password
+- hash.
+- Added code to check both new and old password hash to allow for
+- migration to MySQL database with new hashing.
+- Added more stats.
+- Small fixes to D&D 3.5e and Serenity character sheets.
+
+
+===========================================
 v0.3.0 - 12 July 2006
 ===========================================
 

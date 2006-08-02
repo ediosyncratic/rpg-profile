@@ -87,7 +87,7 @@ function pagelist($pg, $pg_limit, $img_ttl){
 }
 
 
-$dir = $WEB_INSTALL . "/charimg/";
+$dir = getcwd() . "/charimg/";
 $url = $URI_BASE . "charimg/";
 $pagelimit = "4";
 

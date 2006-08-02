@@ -88,7 +88,6 @@ Adjust this folder as necessary for your installation.
 3. In the /home/tarlen/profiler/root_profiler directory, copy system-default.php to system.php
 4. Edit the newly created system.php as follows:
 
-   $BASE_INSTALL = '/home/tarlen/profiler';
    $DB_HOST = 'localhost';
    $DB_USER = 'mydbuser';
    $DB_PWD = 'mydbpassword';
@@ -125,8 +124,6 @@ web folder at /home/tarlen/html.
 5. In the /home/tarlen/root_profiler directory, copy system-default.php to system.php
 6. Edit the newly created system.php as follows:
 
-   $BASE_INSTALL = '/home/tarlen/root_profiler';
-   $WEB_INSTALL = '/home/tarlen/html/profiler';
    $DB_HOST = 'localhost';
    $DB_USER = 'mydbuser';
    $DB_PWD = 'mydbpassword';
