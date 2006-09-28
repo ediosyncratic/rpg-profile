@@ -970,9 +970,24 @@ if( $firefox ) { echo '<!--'; } ?>
          <td width="25%">Currency</td>
          <td width="75%">Other Notes <span>[ <a href="javascript:ShowNotes();">Show Printable Version</a> ]</span></td>
        </tr>
-        <tr>
-         <td><textarea <?php getn('Cash'); ?> style="width:160px; height:100px;"><?php getv('Cash'); ?></textarea></td>
-              <td rowspan="2"><textarea <?php getn('Notes'); ?> style="width:500px; height:270px;"><?php getv('Notes'); ?></textarea></td>
+        <tr class="spellsknown">
+         <td align="center">
+          <table>
+           <tr><th>Personal</th><th>Party</th></tr>
+           <tr><td><input onchange="SumCash();" class="cash" <?php getnv('CashPP' ); ?> /> pp</td>
+               <td><input onchange="SumCash();" class="cash" <?php getnv('CashPPParty' ); ?> /> pp</td></tr>
+           <tr><td><input onchange="SumCash();" class="cash" <?php getnv('CashGP' ); ?> /> gp</td>
+               <td><input onchange="SumCash();" class="cash" <?php getnv('CashGPParty' ); ?> /> gp</td></tr>
+           <tr><td><input onchange="SumCash();" class="cash" <?php getnv('CashSP' ); ?> /> sp</td>
+               <td><input onchange="SumCash();" class="cash" <?php getnv('CashSPParty' ); ?> /> sp</td></tr>
+           <tr><td><input onchange="SumCash();" class="cash" <?php getnv('CashCP' ); ?> /> cp</td>
+               <td><input onchange="SumCash();" class="cash" <?php getnv('CashCPParty' ); ?> /> cp</td></tr>
+           <tr><td colspan="2"><hr></td></tr>
+           <tr><td><input class="cash" readonly <?php getnv('CashTotal' ); ?> /> gp</td>
+               <td><input class="cash" <?php getnv('CashTotalParty' ); ?> /> gp</td></tr>
+          </table>
+            <textarea <?php getn('Cash'); ?> style="width:160px; height:50px;"><?php getv('Cash'); ?></textarea></td>
+              <td rowspan="2"><textarea <?php getn('Notes'); ?> style="width:500px; height:370px;"><?php getv('Notes'); ?></textarea></td>
        </tr>
             <tr>
          <td>
