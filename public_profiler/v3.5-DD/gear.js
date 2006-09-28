@@ -169,6 +169,38 @@ function ChangeWeapon( wielded )
   CalcWeight();  
 }
 
+// Sum Cash
+function SumCash() 
+{
+  ZeroFill(sheet()["CashPP"]);
+  ZeroFill(sheet()["CashGP"]);
+  ZeroFill(sheet()["CashSP"]);
+  ZeroFill(sheet()["CashCP"]);
+
+  var total = 0;
+  total += (parseInt(sheet()["CashPP"].value) * 10); 
+  total += (parseInt(sheet()["CashGP"].value));
+  total += (parseInt(sheet()["CashSP"].value) / 10);
+  total += (parseInt(sheet()["CashCP"].value) / 100);
+
+  sheet()["CashTotal"].value = total;
+
+  ZeroFill(sheet()["CashPPParty"]);
+  ZeroFill(sheet()["CashGPParty"]);
+  ZeroFill(sheet()["CashSPParty"]);
+  ZeroFill(sheet()["CashCPParty"]);
+
+  total = 0;
+  total += (parseInt(sheet()["CashPPParty"].value) * 10);
+  total += (parseInt(sheet()["CashGPParty"].value));
+  total += (parseInt(sheet()["CashSPParty"].value) / 10);
+  total += (parseInt(sheet()["CashCPParty"].value) / 100);
+
+  sheet()["CashTotalParty"].value = total;
+
+
+}
+
 // void GearSort(sortfunc)
 // Sorts the gear table according to the sorting function that is passed
 // to sortfunc. GearSort contains members that can act as sorting

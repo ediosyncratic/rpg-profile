@@ -858,7 +858,7 @@ table.weapon input.left
   width: 100%;
   font-size: 12px;
   font-family: Arial, sans-serif;
-  height: 120px;
+  height: 60px;
   padding: 2px;
 }
 
@@ -1025,7 +1025,7 @@ table.weapon input.left
   width: 100%;
   font-size: 12px;
   font-family: Arial, sans-serif;
-  height: 240px;
+  height: 340px;
   padding: 2px;
 }
 #notes div
@@ -1036,6 +1036,16 @@ table.weapon input.left
   padding: 2px;
 }
 
+input.cash
+{
+  border-style: none;
+  border-top: 1px solid white;
+  border-bottom: 1px solid black;
+  font-size: 9px;
+  background-color: white;
+  width: 60px;
+  text-align: right;
+}
 /************************************************************************/
 
 #footer td
