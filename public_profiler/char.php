@@ -80,7 +80,7 @@
 
   // Load campaign.
   $campaign = null;
-  if( $character->campaign_id != null ) {
+  if( $character->campaign_id != null && $character->campaign_id > 0 ) {
     $campaign = new Campaign($character->campaign_id);
   } else if( $pending_campaign != null ) {
     $campaign = new Campaign((int) $pending_campaign['campaign_id']);

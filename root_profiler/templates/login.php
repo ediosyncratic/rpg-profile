@@ -22,7 +22,9 @@
 
   Defines the body text for the login page.
 -->
-<?php global $OPEN_REGISTRATION; ?>
+<?php global $OPEN_REGISTRATION, $FORUM, $FORUM_LOGIN; ?>
+
+<?php if( !$FORUM ) { ?>
 
       <h1>Login</h1>
       <p>
@@ -59,3 +61,7 @@
         <?php } ?>
         Can't remember your password? Have it <a href="resetpwd.php">reset</a>.
       </p>
+<?php } else { ?>
+  <script>document.location.href='<?php echo $FORUM_LOGIN; ?>';</script>
+<?php } ?>
+

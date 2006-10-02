@@ -31,6 +31,8 @@
   include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/error.php");
 
+  global $rpgDB;
+
   $sid = new SId();
 
   // Validate the profile name.
@@ -55,13 +57,13 @@
   is_valid_password($pwd2, $err);
 
   // Verify against the db.
-  $_r = mysql_query(sprintf("SELECT pname FROM %s WHERE pname = '%s' AND pwd_key = '%s'",
+  $_r = $rpgDB->query(sprintf("SELECT pname FROM %s WHERE pname = '%s' AND pwd_key = '%s'",
     $TABLE_USERS,
     addslashes($pname),
     addslashes($key)));
   if (!$_r)
     __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-  if (mysql_num_rows($_r) != 1)
+  if ($rpgDB->num_rows($_r) != 1)
     array_push($err, "The supplied key for the specified profile is not valid.");
 
   if (sizeof($err))
@@ -74,13 +76,13 @@
   else
   {
     // Change the passwords.
-    $_r = mysql_query(sprintf("UPDATE %s SET pwd = PASSWORD('%s'), pwd_key = NULL WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = PASSWORD('%s'), pwd_key = NULL WHERE pname = '%s' LIMIT 1",
       $TABLE_USERS,
       addslashes($pwd1),
       addslashes($pname)));
     if (!$_r)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-    if (mysql_affected_rows() != 1)
+    if ($rpgDB->num_rows() != 1)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
 
     $title = 'New Password';

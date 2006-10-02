@@ -92,7 +92,11 @@
     // Clears the session id cookie and database data.
     function ClearSession()
     {
-      global $TABLE_USERS;
+      global $TABLE_USERS, $FORUM, $rpgDB;
+
+      if( $FORUM ) {
+        return;
+      } 
 
       // We can only clear a session if it's valid.
       if (!$this->_is_session_valid)
@@ -102,12 +106,12 @@
       setcookie('sid', '');
 
       // Clear the db entry.
-      $res = mysql_query(sprintf("UPDATE %s SET sid = NULL WHERE pname = '%s'",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET sid = NULL WHERE pname = '%s'",
         $TABLE_USERS,
         addslashes($this->_username)));
       if (!$res)
         __printFatalErr("Failed to update database.", __LINE__, __FILE__);
-      if (mysql_affected_rows() != 1)
+      if ($rpgDB->num_rows() != 1)
         __printFatalErr("Failed to update user data.", __LINE__, __FILE__);
     }
 
@@ -125,23 +129,23 @@
     // Determine if the user has access to the specified character.
     function HasAccessTo($id)
     {
-      global $TABLE_CHARS, $TABLE_CAMPAIGNS, $TABLE_OWNERS;
+      global $TABLE_CHARS, $TABLE_CAMPAIGNS, $TABLE_OWNERS, $rpgDB;
 
       $name = $this->_username;
-      $sql = sprintf("select c.id from %s c where c.owner = '%s' ".
-                     "union select c.id from %s c, %s n where c.campaign = n.id and n.owner = '%s' ".
-                     "union select cid from %s where pname = '%s'",
+      $sql = sprintf("select c.id as id from %s c where c.owner = '%s' ".
+                     "union select c.id as id from %s c, %s n where c.campaign = n.id and n.owner = '%s' ".
+                     "union select cid as id from %s where pname = '%s'",
                      $TABLE_CHARS, $name,
                      $TABLE_CHARS, $TABLE_CAMPAIGNS, $name,
                      $TABLE_OWNERS, $name);
 
-      $res = mysql_query($sql);
+      $res = $rpgDB->query($sql);
       if( !$res ) {
         __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
       }
 
-      while( $row = mysql_fetch_row($res) ) {
-        if( (int) $row[0] == $id ) {
+      while( $row = $rpgDB->fetch_row($res) ) {
+        if( (int) $row['id'] == $id ) {
           return true;
         }
       }
@@ -162,7 +166,12 @@
     // This function can terminate with an error if db queries fail.
     function SpawnSession()
     {
-      global $TABLE_USERS;
+      global $TABLE_USERS, $FORUM, $rpgDB;
+
+      // If forum software is being used for authentication, don't create sessions.
+      if( $FORUM ) {
+        return;
+      }
 
       // Ensure the session state is set correctly.
       $this->_is_session_valid = false;
@@ -178,7 +187,7 @@
         return false;
 
       // Check the user against the db.
-      $res = mysql_query(sprintf("SELECT iplog, slength, email, dm FROM %s WHERE pname = '%s' ".
+      $res = $rpgDB->query(sprintf("SELECT iplog, slength, email, dm FROM %s WHERE pname = '%s' ".
                                  "AND (pwd = PASSWORD('%s') OR pwd = OLD_PASSWORD('%s'))",
         $TABLE_USERS,
         addslashes($_POST['user']),
@@ -186,16 +195,16 @@
         addslashes($_POST['pwd'])));
       if (!$res)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-      if (mysql_num_rows($res) != 1)
+      if ($rpgDB->num_rows() != 1)
         return false;
-      $row = mysql_fetch_row($res);
+      $row = $rpgDB->fetch_row($res);
 
       // Record the userdata.
       $this->_username = $_POST['user'];
-      $this->_iplog = unserialize(stripslashes($row[0]));
-      $this->_slength = $row[1];
-      $this->_email = $row[2];
-      $this->_dm = $row[3] == 'Y';
+      $this->_iplog = unserialize(stripslashes($row['iplog']));
+      $this->_slength = $row['slength'];
+      $this->_email = $row['email'];
+      $this->_dm = $row['dm'] == 'Y';
 
       // Update the iplog.
       $this->update_iplog();
@@ -210,7 +219,7 @@
       $this->_permission = new CharPermission($this->_username, null);
 
       // Update the db.
-      $res = mysql_query(sprintf("UPDATE %s SET iplog = '%s', ip = '%s', sid = '%s', pwd_key = NULL WHERE pname = '%s'",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET iplog = '%s', ip = '%s', sid = '%s', pwd_key = NULL WHERE pname = '%s'",
         $TABLE_USERS,
         addslashes(serialize($this->_iplog)),
         addslashes($this->_ip),
@@ -218,7 +227,7 @@
         addslashes($this->_username)));
       if (!$res)
         __printFatalErr("Failed to update database.", __LINE__, __FILE__);
-      if (mysql_affected_rows() != 1)
+      if ($rpgDB->num_rows() != 1)
         __printFatalErr("Failed to update user data.", __LINE__, __FILE__);
 
       // Now record that this session is valid.
@@ -290,54 +299,22 @@
     // This function can terminate with an error if db queries fail.
     function retrieve_session()
     {
-      global $TABLE_USERS;
+      global $TABLE_USERS, $FORUM, $rpgDB;
 
       // Ensure the session state is initially correct.
       $this->_is_session_valid = false;
 
-      // Record the session id.
-      if (!isset($_COOKIE['sid']))
+      if( $FORUM ) {
+        require($FORUM.'.php');
+      } else {
+	require_once('cookie.php');
+      }
+      if( !authenticate($this) ) {
         return;
-      $this->_sid = $_COOKIE['sid'];
-
-      // Ensure a valid sid.
-      if (!$this->ValidateId($this->_sid))
-        return;
-
-      // Attempt to retrieve the session details from the db.
-      $res = mysql_query(sprintf("SELECT pname, iplog, slength, email, dm FROM %s WHERE UNIX_TIMESTAMP(lastlogin) + (slength * 60) > UNIX_TIMESTAMP(NOW()) AND ip = '%s' AND sid = '%s'",
-        $TABLE_USERS,
-        addslashes($this->_ip),
-        addslashes($this->_sid)));
-      if (!$res)
-        __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-      if (mysql_num_rows($res) != 1)
-        return;
-
-      // Record the user data.
-      $row = mysql_fetch_row($res);
-      $this->_username = $row[0];
-      $this->_iplog = unserialize(stripslashes($row[1]));
-      $this->_slength = $row[2];
-      $this->_email = $row[3];
-      $this->_dm = $row[4] == 'Y';
-
-      // Update the iplog.
-      $this->update_iplog();
+      }
 
       // Determine character access permissions.
       $this->_permission = new CharPermission($this->_username, null);
-
-      // Update the db.
-      $res = mysql_query(sprintf("UPDATE %s SET iplog = '%s', ip = '%s' WHERE pname = '%s'",
-        $TABLE_USERS,
-        addslashes(serialize($this->_iplog)),
-        addslashes($this->_ip),
-        addslashes($this->_username)));
-      if (!$res)
-        __printFatalErr("Failed to update database.", __LINE__, __FILE__);
-      if (mysql_affected_rows() != 1)
-        __printFatalErr("Failed to update user data.", __LINE__, __FILE__);
 
       // Flag the session as valid.
       $this->_is_session_valid = true;
@@ -346,10 +323,11 @@
     // Increment the iplog for the current user's ip.
     function update_iplog()
     {
-      if ($this->_iplog[$this->_ip])
+      if ($this->_iplog[$this->_ip]) {
         $this->_iplog[$this->_ip]++;
-      else
+      } else {
         $this->_iplog[$this->_ip] = 1;
+      }
     }
   }
 ?>

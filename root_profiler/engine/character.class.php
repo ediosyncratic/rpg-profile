@@ -41,7 +41,7 @@
 
     function Character($id = 0)
     {
-      global $TABLE_CHARS;
+      global $TABLE_CHARS, $rpgDB;
 
       $this->id = (int) $id;
       $this->_valid = false;
@@ -49,23 +49,23 @@
       // Retrieve the character information if requested.
       if ($this->id)
       {
-        $res = mysql_query(sprintf("SELECT cname, lastedited, public, editedby, template_id, data, owner, campaign ".
+        $res = $rpgDB->query(sprintf("SELECT cname, lastedited, public, editedby, template_id, data, owner, campaign ".
                                    "FROM $TABLE_CHARS WHERE id = %d",
           (int) $this->id));
         if (!$res)
           return;
-        if (mysql_num_rows($res) != 1)
+        if ($rpgDB->num_rows($res) != 1)
           return;
-        $row = mysql_fetch_row($res);
+        $row = $rpgDB->fetch_row($res);
 
-        $this->cname = $row[0];
-        $this->lastedited = $row[1];
-        $this->public = $row[2];
-        $this->editedby = $row[3];
-        $this->template_id = $row[4];
-        $this->_data = unserialize($row[5]);
-        $this->owner = $row[6];
-        $this->campaign_id = $row[7];
+        $this->cname = $row['cname'];
+        $this->lastedited = $row['lastedited'];
+        $this->public = $row['public'];
+        $this->editedby = $row['edited'];
+        $this->template_id = $row['template_id'];
+        $this->_data = unserialize($row['data']);
+        $this->owner = $row['owner'];
+        $this->campaign_id = $row['campaign'];
 
         while (list($key, $val) = @each($this->_data))
           $this->_data[$key] = stripslashes($val);
@@ -134,24 +134,24 @@
    
     // Get a pending campaign for the user.
     function GetPendingCampaign() {
-      global $TABLE_CAMPAIGN_REQUESTS;
+      global $TABLE_CAMPAIGN_REQUESTS, $rpgDB;
 
-      $res = mysql_query(sprintf("SELECT campaign_id, status ".
+      $res = $rpgDB->query(sprintf("SELECT campaign_id, status ".
                                  "FROM $TABLE_CAMPAIGN_REQUESTS WHERE char_id = %d",
           (int) $this->id));
       if (!$res)
         return;
-      if (mysql_num_rows($res) != 1)
+      if ($rpgDB->num_rows($res) != 1)
         return;
-      $row = mysql_fetch_row($res);
+      $row = $rpgDB->fetch_row($res);
   
-      return array('campaign_id' => $row[0], 'status' => $row[1], 'user_id' => (int) $this->id );
+      return array('campaign_id' => $row['campaign_id'], 'status' => $row['status'], 'user_id' => (int) $this->id );
     }
      
     // Set the characters campaign ID.
     function SetCampaign($id) 
     {
-      global $TABLE_CHARS;
+      global $TABLE_CHARS, $rpgDB;
 
       if( $id == null ) {
         $id = 'null';
@@ -162,7 +162,7 @@
 
       // Update the db.
       // - Note, owner is never updated, and campaign is updated in a separate process.
-      $res = mysql_query(sprintf("UPDATE %s SET campaign = %d WHERE id = %d LIMIT 1",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET campaign = %d WHERE id = %d LIMIT 1",
         $TABLE_CHARS,
         (int) $id,
         (int) $this->id));
@@ -172,7 +172,7 @@
     // Create a request/invitation to join a campaign.
     function JoinCampaign($campaign_id, $join_type) 
     {
-      global $TABLE_CAMPAIGN_REQUESTS;
+      global $TABLE_CAMPAIGN_REQUESTS, $rpgDB;
  
       $sql = sprintf("INSERT INTO %s (campaign_id, char_id, status) VALUES (%d, %d, '%s')",
         $TABLE_CAMPAIGN_REQUESTS,
@@ -181,14 +181,14 @@
         $join_type);
   
       // Update the db.
-      $res = mysql_query($sql);
+      $res = $rpgDB->query($sql);
         
       return $res ? true : false;
     }
   
     function Transfer($profile)
     {
-      global $TABLE_CHARS;
+      global $TABLE_CHARS, $rpgDB;
  
       $sql = sprintf("UPDATE %s SET owner = '%s' WHERE id = %d",
         $TABLE_CHARS,
@@ -196,21 +196,21 @@
         (int) $this->id);
 
       // Update the db.
-      $res = mysql_query($sql);
+      $res = $rpgDB->query($sql);
 
       return $res ? true : false;
     } 
 
     function RemoveJoinRequest()
     {
-      global $TABLE_CAMPAIGN_REQUESTS;
+      global $TABLE_CAMPAIGN_REQUESTS, $rpgDB;
 
       $sql = sprintf("DELETE FROM %s WHERE char_id = %d",
         $TABLE_CAMPAIGN_REQUESTS,
         (int) $this->id);
 
       // Update the db.
-      $res = mysql_query($sql);
+      $res = $rpgDB->query($sql);
 
       return $res ? true : false;
     }
@@ -253,11 +253,11 @@
     // user who is editing the character. Return true on success.
     function Save(&$sid)
     {
-      global $TABLE_CHARS;
+      global $TABLE_CHARS, $rpgDB;
 
       // Update the db.
       // - Note, owner is never updated, and campaign is updated in a separate process.
-      $res = mysql_query(sprintf("UPDATE %s SET editedby = '%s', public = '%s', template_id = %d, data = '%s' WHERE id = %d LIMIT 1",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET editedby = '%s', public = '%s', template_id = %d, data = '%s' WHERE id = %d LIMIT 1",
         $TABLE_CHARS,
         addslashes($sid->GetUserName()),
         $this->public == 'y' ? 'y' : 'n',

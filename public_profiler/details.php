@@ -34,21 +34,25 @@
 
   $err = array();
 
-  // Validate the passwords (if supplied).
-  if ($_POST['pwd1'] || $_POST['pwd2'])
-  {
-    // Verify passwords.
-    if ($_POST['pwd1'] != $_POST['pwd2'])
-      array_push($err, "Your passwords to not match.");
-    is_valid_password($_POST['pwd1'], $err);
+  global $FORUM;
+
+  if( !$FORUM ) {
+    // Validate the passwords (if supplied).
+    if ($_POST['pwd1'] || $_POST['pwd2'])
+    {
+      // Verify passwords.
+      if ($_POST['pwd1'] != $_POST['pwd2'])
+        array_push($err, "Your passwords to not match.");
+      is_valid_password($_POST['pwd1'], $err);
+    }
+
+    // Validate the email.
+    is_valid_email($_POST['email'], $err);
+  
+    // Validate the session length.
+    is_valid_slength($_POST['slength'], $err);
   }
 
-  // Validate the email.
-  is_valid_email($_POST['email'], $err);
-  
-  // Validate the session length.
-  is_valid_slength($_POST['slength'], $err);
-  
   if (sizeof($err))
   {
     $title = 'Error';
@@ -56,11 +60,13 @@
     draw_page('details_error.php');
   }
   else
-  {
-    if ($_POST['pwd1'] && $_POST['pwd2'])
-      update_password(addslashes($_POST['pwd1']), $sid);
-    update_email(addslashes($_POST['email']), $sid);
-    update_slength(addslashes($_POST['slength']), $sid);
+  { 
+    if( !$FORUM ) {
+      if ($_POST['pwd1'] && $_POST['pwd2'])
+        update_password(addslashes($_POST['pwd1']), $sid);
+      update_email(addslashes($_POST['email']), $sid);
+      update_slength(addslashes($_POST['slength']), $sid);
+    }
     update_dm($_POST['dm'], $sid);
 
     $title = 'Profile Updated';
@@ -73,9 +79,9 @@
   // Updates the db with the user's new password.
   function update_password($pwd, &$sid)
   {
-    global $TABLE_USERS;
+    global $TABLE_USERS, $rpgDB;
 
-    $_r = mysql_query(sprintf("UPDATE %s SET pwd = PASSWORD('%s') WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = PASSWORD('%s') WHERE pname = '%s' LIMIT 1",
       $TABLE_USERS,
       addslashes($pwd),
       addslashes($sid->GetUserName())));
@@ -86,9 +92,9 @@
   // Updates the db with the user's new email address.
   function update_email($email, &$sid)
   {
-    global $TABLE_USERS;
+    global $TABLE_USERS, $rpgDB;
 
-    $_r = mysql_query(sprintf("UPDATE %s SET email = '%s' WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET email = '%s' WHERE pname = '%s' LIMIT 1",
       $TABLE_USERS,
       addslashes($email),
       addslashes($sid->GetUserName())));
@@ -99,9 +105,9 @@
   // Updates the db with the user's new session length.
   function update_slength($slength, &$sid)
   {
-    global $TABLE_USERS;
+    global $TABLE_USERS, $rpgDB;
 
-    $_r = mysql_query(sprintf("UPDATE %s SET slength = %d WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET slength = %d WHERE pname = '%s' LIMIT 1",
       $TABLE_USERS,
       (int) $slength,
       addslashes($sid->GetUserName())));
@@ -112,11 +118,11 @@
   // Updates the db with the user's dm setting
   function update_dm($dm, &$sid)
   {
-    global $TABLE_USERS;
+    global $TABLE_USERS, $rpgDB;
 
     $dm = $dm == 'on' ? 'Y' : 'N';
 
-    $_r = mysql_query(sprintf("UPDATE %s SET dm = '%s' WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET dm = '%s' WHERE pname = '%s' LIMIT 1",
       $TABLE_USERS,
       $dm,
       addslashes($sid->GetUserName())));

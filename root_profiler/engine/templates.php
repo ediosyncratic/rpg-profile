@@ -34,44 +34,44 @@
   // 'id', 'name', and 'filename'. May produce a terminal error if db query
   // fails.
   function generate_template_array() {
-    global $TABLE_TEMPLATES;
+    global $TABLE_TEMPLATES, $rpgDB;
 
-    $res = mysql_query("SELECT id, name, filename FROM $TABLE_TEMPLATES order by upper(name)");
+    $res = $rpgDB->query("SELECT id, name, filename FROM $TABLE_TEMPLATES order by upper(name)");
     if (!$res)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
     $templates = array();
-    while ($row = mysql_fetch_row($res))
-      array_push($templates, array('id' => $row[0], 'name' => $row[1], 'filename' => $row[2]));
+    while ($row = $rpgDB->fetch_row($res))
+      array_push($templates, array('id' => $row['id'], 'name' => $row['name'], 'filename' => $row['filename']));
     return $templates;
   }
 
   // Determine if the supplied template index is a valid one. May produce
   // a terminal error if db query fails.
   function is_valid_template_id($id) {
-    global $TABLE_TEMPLATES;
+    global $TABLE_TEMPLATES, $rpgDB;
 
-    $res = mysql_query(sprintf("SELECT name FROM %s WHERE id = %d",
+    $res = $rpgDB->query(sprintf("SELECT name FROM %s WHERE id = %d",
       $TABLE_TEMPLATES,
       (int) $id));
     if (!$res)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
 
-    return mysql_num_rows($res) == 1;
+    return $rpgDB->num_rows($res) == 1;
   }
 
 
   // Gets the id of a template based off a name. Terminal if db fails...
   function get_sheet_id($name) {
-    global $TABLE_TEMPLATES;
+    global $TABLE_TEMPLATES, $rpgDB;
 
-    $res = mysql_query(sprintf("SELECT id FROM %s WHERE name = '%s' LIMIT 1",
+    $res = $rpgDB->query(sprintf("SELECT id FROM %s WHERE name = '%s' LIMIT 1",
       $TABLE_TEMPLATES, addslashes($name)));
     if (!$res)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-    if (mysql_num_rows($res) == 1)
+    if ($rpgDB->num_rows($res) == 1)
     {
-      $row = mysql_fetch_row($res);
-      return (int) $row[0];
+      $row = $rpgDB->fetch_row($res);
+      return (int) $row['id'];
     }
     else
       // Return the default (first) template if the name is not found.
@@ -80,17 +80,17 @@
 
   // Gets the name of a template from a given id. Terminal if db fails...
   function get_sheet_name($id) {
-    global $TABLE_TEMPLATES;
+    global $TABLE_TEMPLATES, $rpgDB;
 
-    $res = mysql_query(sprintf("SELECT name FROM %s WHERE id = %d",
+    $res = $rpgDB->query(sprintf("SELECT name FROM %s WHERE id = %d",
       $TABLE_TEMPLATES,
       (int) $id));
     if (!$res)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-    if (mysql_num_rows($res))
+    if ($rpgDB->num_rows())
     {
-      $row = mysql_fetch_row($res);
-      return $row[0];
+      $row = $rpgDB->fetch_row($res);
+      return $row['name'];
     }
     else
       return "Unknown template";
@@ -98,17 +98,17 @@
 
   // Gets the path of a template from a given id. Terminal if db fails...
   function get_sheet_path($id) {
-    global $TABLE_TEMPLATES;
+    global $TABLE_TEMPLATES, $rpgDB;
 
-    $res = mysql_query(sprintf("SELECT filename FROM %s WHERE id = %d",
+    $res = $rpgDB->query(sprintf("SELECT filename FROM %s WHERE id = %d",
       $TABLE_TEMPLATES,
       (int) $id));
     if (!$res)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-    if (mysql_num_rows($res))
+    if ($rpgDB->num_rows($res))
     {
-      $row = mysql_fetch_row($res);
-      return $row[0];
+      $row = $rpgDB->fetch_row($res);
+      return $row['filename'];
     }
     else
       return __printFatalErr("Invalid character sheet identifier");
@@ -123,7 +123,7 @@
   //    include_once("$INCLUDE_PATH/engine/sheet_globals.php");
 
     // Include the header
-  	include_once("$INCLUDE_PATH/templates/header.php");
+    include_once("$INCLUDE_PATH/templates/header.php");
 
     // Include the template.
     include_once("$INCLUDE_PATH/templates/" . $page);

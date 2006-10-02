@@ -29,11 +29,16 @@
   Continue to your <a href="cview.php">character</a> or
   <a href="pview.php">profile</a> management pages.
 </p>
+<?php 
+global $FORUM; 
+if( !$FORUM ) {
+?>
 <p>
   If you are not <?php echo getUserName(); ?>, please
   <a href="logout.php">logout</a>, then login with your own
   profile, or register a new profile if you're a new visitor.
 </p>
+<?php } ?>
       <p class="smaller">
         Registered Users: <?php echo GetUserCount(); ?> &nbsp;&nbsp;|&nbsp;&nbsp;
         Registered Characters: <?php echo GetCharacterCount(); ?> &nbsp;&nbsp;|&nbsp;&nbsp;

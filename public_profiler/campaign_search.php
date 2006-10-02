@@ -26,7 +26,7 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
   $type = $_GET['type'];
   $page = $_GET['page'];
 
-  $sql = sprintf("SELECT c.id, c.name, c.owner, count(ch.id) ".
+  $sql = sprintf("SELECT c.id, c.name, c.owner, count(ch.id) as cnt ".
                  "FROM %s c LEFT JOIN %s ch on ch.campaign = c.id ".
                  "WHERE c.active = 'Y' AND c.open = 'Y' ",
              $TABLE_CAMPAIGNS,
@@ -55,16 +55,17 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
      $page = 1;
   }
 
-  $res = mysql_query($sql);
+  global $rpgDB;
+  $res = $rpgDB->query($sql);
   if (!$res) {
      __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
   }
 
   $campaigns = array();
 
-  while ($row = mysql_fetch_row($res)) {
-    array_push($campaigns, array( "id" => $row[0], "name" => $row[1],
-                                  "owner" => $row[2], "characters" => $row[3] ));
+  while ($row = $rpgDB->fetch_row($res)) {
+    array_push($campaigns, array( "id" => $row['id'], "name" => $row['name'],
+                                  "owner" => $row['owner'], "characters" => $row['cnt'] ));
   }
 
 

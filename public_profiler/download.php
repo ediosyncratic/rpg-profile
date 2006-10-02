@@ -28,6 +28,8 @@
   include_once("$INCLUDE_PATH/engine/character.class.php");
   include_once("$INCLUDE_PATH/engine/sid.php");
 
+  global $rpgDB;
+
   // Respawn the user session.
   $sid = RespawnSession(__LINE__, __FILE__);
 
@@ -45,15 +47,15 @@
     __printFatalErr("Invalid character data (?)");
   
   // Determine which script to include.
-  $_r = mysql_query(sprintf("SELECT exp_file FROM %s where exp_file != '' AND id = %d LIMIT 1",
+  $_r = $rpgDB->query(sprintf("SELECT exp_file FROM %s where exp_file != '' AND id = %d LIMIT 1",
     $TABLE_SERIALIZE,
     (int) $format));
   if (!$_r)
     __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-  $row = mysql_fetch_row($_r);
+  $row = $rpgDB->fetch_row($_r);
 
   // Verify we have a path.
-  $path = $INCLUDE_PATH . '/serialization/' . $row[0];
+  $path = $INCLUDE_PATH . '/serialization/' . $row['exp_file'];
   if (!is_file($path))
     __printFatalErr("Failed to locate export script.", __LINE__, __FILE__);
   

@@ -34,6 +34,8 @@
   // Respawn the user session.
   $sid = RespawnSession(__LINE__, __FILE__);
 
+  global $rpgDB;
+
   $title = '';
   $formats = null;
   $formatname = '';
@@ -83,31 +85,31 @@
       print_autodetect_failed($sid, $id);
 
     // Try to obtain the import script to use based on the identifier.
-    $res = mysql_query(sprintf("SELECT imp_file, title FROM %s WHERE imp_file != '' AND identifier = '%s' LIMIT 1",
+    $res = $rpgDB->query(sprintf("SELECT imp_file, title FROM %s WHERE imp_file != '' AND identifier = '%s' LIMIT 1",
       $TABLE_SERIALIZE,
       addslashes($matches[1])));
     if (!$res)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-    if (!mysql_num_rows($res))
+    if (!$rpgDB->num_rows())
       print_autodetect_failed($sid, $id);
-    $row = mysql_fetch_row($res);
+    $row = $rpgDB->fetch_row($res);
   }
   else
   {
     // Attempt to apply a specific format.
     // Obtain the import script for the format.
-    $res = mysql_query(sprintf("SELECT imp_file, title FROM %s WHERE id = %d",
+    $res = $rpgDB->query(sprintf("SELECT imp_file, title FROM %s WHERE id = %d",
       $TABLE_SERIALIZE,
       (int) $format));
     if (!$res)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-    if (mysql_num_rows($res) != 1)
+    if ($rpgDB->num_rows() != 1)
       __printFatalErr("Failed to obtain import script location.", __FILE__, __LINE__);
-    $row = mysql_fetch_row($res);
+    $row = $rpgDB->fetch_row($res);
   }
 
   // Include the proper script.
-  include_once("$INCLUDE_PATH/serialization/" . $row[0]);
+  include_once("$INCLUDE_PATH/serialization/" . $row['imp_file']);
 
   // Call the import routine.
   $char = new Character($id);
@@ -118,7 +120,7 @@
       print_upload_success($sid);
 
   // By now, we've  failed if we got here.
-  print_upload_failed($sid, $row[1]);
+  print_upload_failed($sid, $row['title']);
 
   ////////////////////////////////////////////////////////////////////////
   // Helper functions

@@ -14,33 +14,35 @@
 
     function Campaign($id = 0)
     {
-      global $TABLE_CAMPAIGNS;
+      global $TABLE_CAMPAIGNS, $rpgDB;
 
       $this->id = (int) $id;
       $this->_valid = false;
-      
+ 
       // Retrieve the character information if requested.
       if ($this->id)
       {
         $sql = sprintf("SELECT name, owner, active, open, website, ".
                        "pc_level, max_players, pc_alignment, description ".
-                       "FROM $TABLE_CAMPAIGNS WHERE id = %d", (int) $this->id);
-        $res = mysql_query($sql);
-        if (!$res)
-          return;
-        if (mysql_num_rows($res) != 1)
-          return;
-        $row = mysql_fetch_row($res);
+                       "FROM %s WHERE id = %d", $TABLE_CAMPAIGNS, (int) $this->id);
+        $res = $rpgDB->query($sql);
 
-        $this->cname = $row[0];
-        $this->owner = $row[1];
-        $this->active = $row[2] == 'Y';
-        $this->open = $row[3] == 'Y';
-        $this->website = $row[4];
-        $this->pc_level = $row[5];
-        $this->max_players = $row[6];
-        $this->pc_alignment = $row[7];
-        $this->desc = $row[8];
+        if (!$res) {
+          __printFatalErr('Failed to query database: ' . $rpgDB->error() . '\n' . $sql);
+        }
+        if ($rpgDB->num_rows($res) != 1)
+          return;
+        $row = $rpgDB->fetch_row($res);
+        
+        $this->cname = $row['name'];
+        $this->owner = $row['owner'];
+        $this->active = $row['active'] == 'Y';
+        $this->open = $row['open'] == 'Y';
+        $this->website = $row['website'];
+        $this->pc_level = $row['pc_level'];
+        $this->max_players = $row['max_players'];
+        $this->pc_alignment = $row['pc_alignment'];
+        $this->desc = $row['description'];
 
         $this->_valid = true;
       }
@@ -70,37 +72,37 @@
     // Returns an array of all characters in this campaign
     function GetCharacters()
     {
-      global $TABLE_CHARS, $TABLE_TEMPLATES;
+      global $TABLE_CHARS, $TABLE_TEMPLATES, $rpgDB;
 
       $characters = array();
 
-      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i'), st.name, c.id ".
+      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i') as lastedited, st.name, c.id ".
                      "FROM %s c, %s st WHERE campaign = %d AND st.id = c.template_id ".
                      "ORDER BY UPPER(c.cname)",
                      $TABLE_CHARS,
                      $TABLE_TEMPLATES,
                      (int) $this->id);
 
-      $res = mysql_query($sql);
+      $res = $rpgDB->query($sql);
       if( !$res ) {
         __printFatalErr("Query Failed: $sql");
       } 
  
-      while ($row = mysql_fetch_row($res)) {
-        array_push($characters, array('name' => $row[0], 'owner' => $row[1],
-                                      'edited' => $row[2], 'template' => $row[3], 'id' => $row[4]));
+      while ($row = $rpgDB->fetch_row($res)) {
+        array_push($characters, array('name' => $row['cname'], 'owner' => $row['owner'],
+                                      'edited' => $row['lastedited'], 'template' => $row['name'], 'id' => $row['id']));
       }
 
       return $characters;
     }
 
-    function GetJoinRequests() 
-    {
-      global $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_CAMPAIGN_REQUESTS;
+    function GetJoinRequests() {
+    
+      global $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_CAMPAIGN_REQUESTS, $rpgDB;
 
       $characters = array();
 
-      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i'), st.name, c.id, cj.status ".
+      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i') as lastedited, st.name, c.id, cj.status ".
                      "FROM %s c, %s st, %s cj WHERE cj.campaign_id = %d AND c.id = cj.char_id AND st.id = c.template_id ".
                      "ORDER BY UPPER(c.cname)",
                      $TABLE_CHARS,
@@ -108,15 +110,15 @@
                      $TABLE_CAMPAIGN_REQUESTS,
                      (int) $this->id);
 
-      $res = mysql_query($sql);
+      $res = $rpgDB->query($sql);
       if( !$res ) {
         __printFatalErr("Query Failed: $sql");
       }
 
-      while ($row = mysql_fetch_row($res)) {
-        array_push($characters, array('name' => $row[0], 'owner' => $row[1],
-                                      'edited' => $row[2], 'template' => $row[3], 
-                                      'id' => $row[4], 'type' => $row[5]));
+      while ($row = $rpgDB->fetch_row($res)) {
+        array_push($characters, array('name' => $row['cname'], 'owner' => $row['owner'],
+                                      'edited' => $row['lastedited'], 'template' => $row['name'], 
+                                      'id' => $row['id'], 'type' => $row['status']));
       }
 
       return $characters;
@@ -131,10 +133,10 @@
     // user who is editing the character. Return true on success.
     function Save()
     {
-      global $TABLE_CAMPAIGNS;
+      global $TABLE_CAMPAIGNS, $rpgDB;
 
       // Update the db.
-      $res = mysql_query(sprintf("UPDATE %s SET name = '%s', active = '%s', open = '%s', website = '%s', ".
+      $res = $rpgDB->query(sprintf("UPDATE %s SET name = '%s', active = '%s', open = '%s', website = '%s', ".
                                  "pc_level = '%s', max_players = %d, pc_alignment = '%s', description = '%s' ".
                                  "WHERE id = %d LIMIT 1",
         $TABLE_CAMPAIGNS,
@@ -146,7 +148,7 @@
         (int) $this->max_players,
         addslashes($this->pc_alignment),
         addslashes($this->desc),
-        (int) $this->id));
+        (int) $this->id), $rpgDB);
 
       return $res ? true : false;
     }

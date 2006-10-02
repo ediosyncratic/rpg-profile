@@ -28,6 +28,8 @@
 
   $sid = new SId();
 
+  global $rpgDB;
+
   if( ! $OPEN_REGISTRATION ) {
     draw_page('register_closed.php');
     exit;
@@ -73,13 +75,13 @@
     }
 
     // Check to see if the profile name already exists.
-    $_r = mysql_query(sprintf("SELECT COUNT(pname) FROM %s WHERE pname = '%s'",
+    $_r = $rpgDB->query(sprintf("SELECT COUNT(pname) as cnt FROM %s WHERE pname = '%s'",
       $TABLE_USERS,
       addslashes($user)));
     if (!$_r)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-    $r = mysql_fetch_row($_r);
-    if ($r[0] != 0)
+    $r = $rpgDB->fetch_row($_r);
+    if ($r['cnt'] != 0)
     {
       array_push($err, "The selected username ($user) has already been registered by another user.");
       $messages = $err;
@@ -87,7 +89,7 @@
     }
 
     // Attempt to add the new user.
-    $_r = mysql_query(sprintf("INSERT INTO %s SET pname = '%s', pwd = PASSWORD('%s'), email = '%s'",
+    $_r = $rpgDB->query(sprintf("INSERT INTO %s SET pname = '%s', pwd = PASSWORD('%s'), email = '%s'",
       $TABLE_USERS,
       addslashes($user),
       addslashes($pwd1),

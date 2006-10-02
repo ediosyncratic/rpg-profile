@@ -81,55 +81,55 @@
     // exists.
     function GrantPermission()
     {
-      global $TABLE_OWNERS, $TABLE_CHARS, $TABLE_USERS;
+      global $TABLE_OWNERS, $TABLE_CHARS, $TABLE_USERS, $rpgDB;
 
       // Verify proper data.
       if (!($this->_pname && $this->_cid))
         return false;
 
       // Verify the user exists.
-      $res = mysql_query(sprintf("SELECT pname FROM %s WHERE pname = '%s'",
+      $res = $rpgDB->query(sprintf("SELECT pname FROM %s WHERE pname = '%s'",
         $TABLE_USERS,
         addslashes($this->_pname)));
       if (!$res)
         return false;
-      if (mysql_num_rows($res) != 1)
+      if ($rpgDB->num_rows() != 1)
         return false;
 
       // Verify the character exists.
-      $res = mysql_query(sprintf("SELECT id FROM %s WHERE id = %d",
+      $res = $rpgDB->query(sprintf("SELECT id FROM %s WHERE id = %d",
         $TABLE_CHARS,
         (int) $this->_cid));
       if (!$res)
         return false;
-      if (mysql_num_rows($res) != 1)
+      if ($rpgDB->num_rows() != 1)
         return false;
 
       // Grant permission.
-      $res = mysql_query(sprintf("INSERT INTO %s SET pname = '%s', cid = %d",
+      $res = $rpgDB->query(sprintf("INSERT INTO %s SET pname = '%s', cid = %d",
         $TABLE_OWNERS,
         addslashes($this->_pname),
         (int) $this->_cid));
       if (!$res)
         return false;
-      return mysql_affected_rows() == 1;
+      return $rpgDB->num_rows() == 1;
     }
 
     function RemovePermission()
     {
-      global $TABLE_OWNERS;
+      global $TABLE_OWNERS, $rpgDB;
 
       // Verify proper data.
       if (!($this->_pname && $this->_cid))
         return false;
 
-      $res = mysql_query(sprintf("DELETE FROM %s WHERE pname = '%s' AND cid = %d",
+      $res = $rpgDB->query(sprintf("DELETE FROM %s WHERE pname = '%s' AND cid = %d",
             $TABLE_OWNERS, addslashes($this->_pname),
             (int) $this->_cid));
       
       if (!$res)
         return false;
-      return mysql_affected_rows() == 1;
+      return $rpgDB->num_rows() == 1;
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -152,26 +152,26 @@
     // Determine which profiles are allowed access to the current character.
     function get_profiles_by_character()
     {
-      global $TABLE_OWNERS, $TABLE_CHARS;
+      global $TABLE_OWNERS, $TABLE_CHARS, $rpgDB;
 
       $this->_profiles = array();
-      $res = mysql_query(sprintf("SELECT pname FROM %s WHERE cid = %d",
+      $res = $rpgDB->query(sprintf("SELECT pname FROM %s WHERE cid = %d",
         $TABLE_OWNERS,
         (int) $this->_cid));
       if (!$res)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-      while ($row = mysql_fetch_row($res))
-        array_push($this->_profiles, $row[0]);
+      while ($row = $rpgDB->fetch_row($res))
+        array_push($this->_profiles, $row['pname']);
     }
 
     // Determine which characters are allowed for the given profile.
     function get_characters_by_profile()
     {
-      global $TABLE_OWNERS, $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_CAMPAIGNS;
+      global $TABLE_OWNERS, $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_CAMPAIGNS, $rpgDB;
 
       $this->_characters = array();
-      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y'), c.editedby, ".
-                     "c.public, st.name, ca.name, c.campaign ".
+      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y') as lastedited, c.editedby, ".
+                     "c.public, st.name as tname, ca.name as caname, c.campaign ".
                      "FROM %s st, %s c ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
                      "WHERE c.owner = '%s' ".
@@ -180,18 +180,18 @@
         $TABLE_CHARS,
         $TABLE_CAMPAIGNS,
         addslashes($this->_pname));
-      $res = mysql_query($sql);
+      $res = $rpgDB->query($sql);
       if (!$res)
         __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
-      while ($row = mysql_fetch_row($res)) {
-        array_push($this->_characters, array('id' => $row[0], 'name' => $row[1], 
-                  'lastedited' => $row[2], 'editedby' => $row[3], 
-                  'public' => $row[4], 'template' => $row[5], 'campaign' => $row[6],
-                  'campaign_id' => $row[7]));
+      while ($row = $rpgDB->fetch_row($res)) {
+        array_push($this->_characters, array('id' => $row['id'], 'name' => $row['cname'], 
+                  'lastedited' => $row['lastedited'], 'editedby' => $row['editedby'], 
+                  'public' => $row['public'], 'template' => $row['tname'], 'campaign' => $row['caname'],
+                  'campaign_id' => $row['campaign']));
       }
 
-      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y'), c.editedby, ".
-                     "c.public, st.name, ca.name, c.campaign ".
+      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y') as lastedited, c.editedby, ".
+                     "c.public, st.name as tname, ca.name as caname, c.campaign ".
                      "FROM %s st, %s o, %s c ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
                      "WHERE c.id = o.cid AND o.pname = '%s' ".
@@ -201,37 +201,37 @@
         $TABLE_CHARS,
         $TABLE_CAMPAIGNS,
         addslashes($this->_pname));
-      $res = mysql_query($sql);
+      $res = $rpgDB->query($sql);
       if (!$res)
         __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
-      while ($row = mysql_fetch_row($res)) {
-        array_push($this->_characters, array('id' => $row[0], 'name' => '*'.$row[1],
-                  'lastedited' => $row[2], 'editedby' => $row[3],
-                  'public' => $row[4], 'template' => $row[5], 'campaign' => $row[6],
-                  'campaign_id' => $row[7]));
+      while ($row = $rpgDB->fetch_row($res)) {
+        array_push($this->_characters, array('id' => $row['id'], 'name' => '*' . $row['cname'],
+                  'lastedited' => $row['lastedited'], 'editedby' => $row['editedby'],
+                  'public' => $row['public'], 'template' => $row['tname'], 'campaign' => $row['caname'],
+                  'campaign_id' => $row['campaign']));
       }
 
     }
 
     function get_campaigns() 
     {
-      global $TABLE_CAMPAIGNS, $TABLE_CHARS;
+      global $TABLE_CAMPAIGNS, $TABLE_CHARS, $rpgDB;
 
       $this->_campaigns = array();
-      $sql = sprintf("SELECT ca.id, ca.name, ca.active, ca.open, count(ch.id) ".
+      $sql = sprintf("SELECT ca.id, ca.name, ca.active, ca.open, count(ch.id) as chars ".
                      "FROM %s ca LEFT JOIN %s ch ON ca.id = ch.campaign ".
                      "WHERE ca.owner = '%s' GROUP BY ca.id ".
                      "ORDER BY UPPER(ca.name)",
                      $TABLE_CAMPAIGNS,
                      $TABLE_CHARS,
                      addslashes($this->_pname));
-      $res = mysql_query($sql);
+      $res = $rpgDB->query($sql);
       if (!$res)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-      while ($row = mysql_fetch_row($res)) {
-        array_push($this->_campaigns, array('id' => $row[0], 'name' => $row[1], 
-                                            'active' => ($row[2] == 'Y'), 'open' => ($row[3] == 'Y'), 
-                                            'pcs' => $row[4]));
+      while ($row = $rpgDB->fetch_row($res)) {
+        array_push($this->_campaigns, array('id' => $row['id'], 'name' => $row['name'], 
+                                            'active' => ($row['active'] == 'Y'), 'open' => ($row['open'] == 'Y'), 
+                                            'pcs' => $row['chars']));
       }
     }
   }

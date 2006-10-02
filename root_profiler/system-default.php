@@ -96,6 +96,20 @@
   // Note: The image should be 73 pixels in height
   $LOGO = 'imgs/rpgwebprofiler.gif';
 
+  // FORUM: If you have certain forum software, the profiler can use the
+  // forum authentication mechanism to allow for a single sign on point.
+  // If you wish to use the forum authentication, uncomment the variable,
+  // and specify the appropriate forum.
+  // Currently supported forums: phpBB2
+  //$FORUM = "phpBB2";
+
+  // If you are using forum authentication, define the forum apps root
+  // directory here.
+  //$FORUM_ROOT = "/path/to/phpbb/";
+
+  // URL for forum login page. This is required for redirecting if
+  // authentication fails.
+  //$FORUM_LOGIN = "http://www.mydomaing.com/forum/login.php";
 
   // *********************************************************************
   // OTHER PARAMETERS

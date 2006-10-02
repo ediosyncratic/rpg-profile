@@ -32,13 +32,13 @@
   // be a hash containing the title and id of each script.
   function & get_export_scripts()
   {
-    global $TABLE_SERIALIZE;
+    global $TABLE_SERIALIZE, $rpgDB;
 
     $scripts = array();
-    $_r = mysql_query("SELECT id, title FROM $TABLE_SERIALIZE WHERE exp_file != ''");
+    $_r = $rpgDB->query("SELECT id, title FROM $TABLE_SERIALIZE WHERE exp_file != ''");
     if ($_r)
-      while($row = mysql_fetch_row($_r))
-        array_push($scripts, array('id' => $row[0], 'title' => $row[1]));
+      while($row = $rpgDB->fetch_row($_r))
+        array_push($scripts, array('id' => $row['id'], 'title' => $row['title']));
     return $scripts;
   }
 
@@ -46,13 +46,13 @@
   // be a hash containing the title and id of each script.
   function & get_import_scripts()
   {
-    global $TABLE_SERIALIZE;
+    global $TABLE_SERIALIZE, $rpgDB;
 
     $scripts = array();
-    $_r = mysql_query("SELECT id, title FROM $TABLE_SERIALIZE WHERE imp_file != ''");
+    $_r = $rpgDB->query("SELECT id, title FROM $TABLE_SERIALIZE WHERE imp_file != ''");
     if ($_r)
-      while ($row = mysql_fetch_row($_r))
-        array_push($scripts, array('id' => $row[0], 'title' => $row[1]));
+      while ($row = $rpgDB->fetch_row($_r))
+        array_push($scripts, array('id' => $row['id'], 'title' => $row['title']));
     return $scripts;
   }
 ?>

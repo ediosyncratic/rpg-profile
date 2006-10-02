@@ -30,6 +30,8 @@
   include_once("$INCLUDE_PATH/engine/validation.php");
   include_once("$INCLUDE_PATH/engine/templates.php");
 
+  global $rpgDB;
+
   // Respawn the session.
   $sid = RespawnSession(__LINE__, __FILE__);
 
@@ -55,33 +57,23 @@
     addslashes($sid->GetUserName()),
     (int) $template,
     addslashes($sid->GetUserName()));
-  $_r = mysql_query($sql);
+  $_r = $rpgDB->query($sql);
   if (!$_r)
     __printFatalErr("Failed to update database: $sql", __LINE__, __FILE__);
-  if (mysql_affected_rows() != 1)
+  if ($rpgDB->num_rows() != 1)
     __printFatalErr("Failed to update character list.", __LINE__, __FILE__);
   
   // Get the character's id (the character should be the most recent character
   // edited by this profile, and just to be sure, we restrict the select by
   // cname as well).
-  $_r = mysql_query(sprintf("SELECT id FROM %s WHERE editedby = '%s' AND cname = '%s' ORDER BY lastedited DESC LIMIT 1",
+  $_r = $rpgDB->query(sprintf("SELECT id FROM %s WHERE editedby = '%s' AND cname = '%s' ORDER BY lastedited DESC LIMIT 1",
     $TABLE_CHARS,
     addslashes($sid->GetUserName()),
     addslashes($name)));
   if (!$_r)
     __printFatalErr("Failed to query database for new character id.", __LINE__, __FILE__);
-  $r = mysql_fetch_row($_r);
-  $charID = $r[0];
-
-  // Add the the user as an owner to the character.
-  //$_r = mysql_query(sprintf("INSERT INTO %s SET cid = %d, pname = '%s'",
-  //  $TABLE_OWNERS,
-  //  (int) $charID,
-  //  addslashes($sid->GetUserName())));
-  //if (!$_r)
-  //  __printFatalErr("Failed to update database.", __LINE__, __FILE__);
-  //if (mysql_affected_rows() != 1)
-  //  __printFatalErr("Failed to set profile permissions for new character.", __LINE__, __FILE__);
+  $r = $rpgDB->fetch_row($_r);
+  $charID = $r['id'];
 
   // Everything should be fine, generate the success message.
   $title = 'New Character';

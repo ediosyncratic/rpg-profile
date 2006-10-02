@@ -26,26 +26,26 @@
 
     function Site()
     {
-      global $TABLE_CAMPAIGNS, $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_USERS;
+      global $TABLE_CAMPAIGNS, $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_USERS, $rpgDB;
 
-      $this->totalCharacters = $this->GetCount("select count(*) from " . $TABLE_CHARS);
+      $this->totalCharacters = $this->GetCount("select count(*) as cnt from " . $TABLE_CHARS);
 
-      $this->publicCharacters = $this->GetCount("select count(*) from " . $TABLE_CHARS . " where public = 'y'");
-      $this->totalUsers = $this->GetCount("select count(*) from " . $TABLE_USERS);
+      $this->publicCharacters = $this->GetCount("select count(*) as cnt from " . $TABLE_CHARS . " where public = 'y'");
+      $this->totalUsers = $this->GetCount("select count(*) as cnt from " . $TABLE_USERS);
 
-      $this->totalCampaigns = $this->GetCount("select count(*) from " . $TABLE_CAMPAIGNS);
-      $this->charactersInCampaigns = $this->GetCount("select count(*) from " . $TABLE_CHARS . " where campaign is not null");
+      $this->totalCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CAMPAIGNS);
+      $this->charactersInCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CHARS . " where campaign is not null");
 
-      $this->activeCampaigns = $this->GetCount("select count(*) from " . $TABLE_CAMPAIGNS . " where active = 'Y'");
-      $this->openCampaigns = $this->GetCount("select count(*) from " . $TABLE_CAMPAIGNS . " where open = 'Y'");
+      $this->activeCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CAMPAIGNS . " where active = 'Y'");
+      $this->openCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CAMPAIGNS . " where open = 'Y'");
 
       $this->charsPerTemplate = array();
-      $res = mysql_query("select st.name, count(c.id) from ".
+      $res = $rpgDB->query("select st.name, count(c.id) as cnt from ".
                          $TABLE_TEMPLATES . " st, ".
                          $TABLE_CHARS . " c where c.template_id = st.id group by st.id");
       if( $res ) {
-        while ($row = mysql_fetch_row($res)) {
-          array_push($this->charsPerTemplate, array('template' => $row[0], 'count' => $row[1]));
+        while ($row = $rpgDB->fetch_row($res)) {
+          array_push($this->charsPerTemplate, array('template' => $row['name'], 'count' => $row['cnt']));
         }
       }
 
@@ -63,15 +63,17 @@
 
     function GetCount($sql) {
       
-      $res = mysql_query($sql);
+      global $rpgDB;
+
+      $res = $rpgDB->query($sql);
 
       if( ! $res ) {
         return 0;
       }
 
-      $row = mysql_fetch_row($res);
+      $row = $rpgDB->fetch_row($res);
 
-      return (int) $row[0];
+      return (int) $row['cnt'];
     }
 
 
@@ -79,10 +81,10 @@
     // user who is editing the character. Return true on success.
     function Save()
     {
-      global $TABLE_CAMPAIGNS;
+      global $TABLE_CAMPAIGNS, $rpgDB;
 
       // Update the db.
-      $res = mysql_query(sprintf("UPDATE %s SET name = '%s', active = '%s', open = '%s', website = '%s', ".
+      $res = $rpgDB->query(sprintf("UPDATE %s SET name = '%s', active = '%s', open = '%s', website = '%s', ".
                                  "pc_level = '%s', max_players = %d, pc_alignment = '%s', description = '%s' ".
                                  "WHERE id = %d LIMIT 1",
         $TABLE_CAMPAIGNS,

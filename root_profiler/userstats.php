@@ -32,11 +32,11 @@
   // GetUserCount
   // Returns the number of registered profiles.
   function GetUserCount()  {
-    global $TABLE_USERS;
-    $_r = mysql_query("SELECT COUNT(pname) FROM $TABLE_USERS");
+    global $TABLE_USERS, $rpgDB;
+    $_r = $rpgDB->query("SELECT COUNT(pname) AS cnt FROM $TABLE_USERS");
     if ($_r) {
-     $row = mysql_fetch_row($_r);
-     return $row[0];
+     $row = $rpgDB->fetch_row($_r);
+     return $row['cnt'];
     }
     else
       return '?';
@@ -45,11 +45,11 @@
   // GetCharacterCount
   // Returns the number of registered characters.
   function GetCharacterCount() {
-    global $TABLE_CHARS;
-    $_r = mysql_query("SELECT COUNT(cname) FROM $TABLE_CHARS");
+    global $TABLE_CHARS, $rpgDB;
+    $_r = $rpgDB->query("SELECT COUNT(cname) AS cnt FROM $TABLE_CHARS");
     if ($_r) {
-      $row = mysql_fetch_row($_r);
-      return $row[0];
+      $row = $rpgDB->fetch_row($_r);
+      return $row['cnt'];
     }
     else
       return '?';
@@ -58,11 +58,11 @@
   // GetUsersOnlineCount
   // Returns the number of users who've accessed their accounts recently.
   function GetUsersOnlineCount() {
-    global $TABLE_USERS;
-    $_r = mysql_query("SELECT COUNT(pname) FROM $TABLE_USERS WHERE UNIX_TIMESTAMP(lastlogin) + (slength * 60) > UNIX_TIMESTAMP(NOW())");
+    global $TABLE_USERS, $rpgDB;
+    $_r = $rpgDB->query("SELECT COUNT(pname) AS cnt FROM $TABLE_USERS WHERE UNIX_TIMESTAMP(lastlogin) + (slength * 60) > UNIX_TIMESTAMP(NOW())");
     if ($_r) {
-      $row = mysql_fetch_row($_r);
-      return $row[0];
+      $row = $rpgDB->fetch_row($_r);
+      return $row['cnt'];
     }
     else
       return '?';
@@ -71,11 +71,11 @@
   // GetPublicCount
   // Returns the number of public characters.
   function GetPublicCount() {
-    global $TABLE_CHARS;
-    $_r = mysql_query("SELECT COUNT(cname) FROM $TABLE_CHARS WHERE public = 'y'");
+    global $TABLE_CHARS, $rpgDB;
+    $_r = $rpgDB->query("SELECT COUNT(cname) AS cnt FROM $TABLE_CHARS WHERE public = 'y'");
     if ($_r) {
-      $row = mysql_fetch_row($_r);
-      return $row[0];
+      $row = $rpgDB->fetch_row($_r);
+      return $row['cnt'];
     }
     else
       return '?';

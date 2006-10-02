@@ -13,6 +13,8 @@ include_once("$INCLUDE_PATH/system.php");
 // Try to respawn a session to keep the menu nav in context.
 $sid = new SId();
 
+global $rpgDB;
+
 if( $REQUIRE_LOGIN && !$sid->IsSessionValid() ) {
   draw_page('login_required.php');
   exit;
@@ -28,7 +30,7 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
   $sort = $_GET['sort'];
   $page = $_GET['page'];
 
-  $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d %%M %%Y @ %%H:%%i'), c.owner, st.name, ca.name ".
+  $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d %%M %%Y @ %%H:%%i') as lastedited, c.owner, st.name as tname, ca.name as caname ".
                  "FROM %s st, %s c LEFT JOIN %s ca on ca.id = c.campaign ".
                  "WHERE c.public = 'y' AND c.template_id = st.id ",
              $TABLE_TEMPLATES,
@@ -68,16 +70,16 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
      $page = 1;
   }
 
-  $res = mysql_query($sql);
+  $res = $rpgDB->query($sql);
   if (!$res) {
      __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
   }
 
   $characters = array();
 
-  while ($row = mysql_fetch_row($res)) {
-    array_push($characters, array( "id" => $row[0], "name" => $row[1], "lastedited" => $row[2],
-                                   "owner" => $row[3], "template" => $row[4], "campaign" => $row[5] ));
+  while ($row = $rpgDB->fetch_row($res)) {
+    array_push($characters, array( "id" => $row['id'], "name" => $row['cname'], "lastedited" => $row['lastedited'],
+                                   "owner" => $row['owner'], "template" => $row['tname'], "campaign" => $row['caname'] ));
   }
 
 

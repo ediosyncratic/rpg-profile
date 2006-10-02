@@ -1,4 +1,4 @@
-<?php global $sid, $REQUIRE_LOGIN, $DISPLAY_IMAGES, $DISPLAY_FAQ, $SITE_CSS; ?>
+<?php global $sid, $REQUIRE_LOGIN, $DISPLAY_IMAGES, $DISPLAY_FAQ, $SITE_CSS, $FORUM; ?>
 
 <!DOCTYPE html
      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -20,7 +20,9 @@
       <div class="headerLinks">
 	<a href="<?php echo getUriHome(); ?>">Home</a>
         <?php if( $sid && loggedIn() ) { ?>
+          <?php if( !$FORUM ) { ?>
           | <a href="<?php echo getUriBase(); ?>logout.php">Logout</a>
+          <?php } ?>
           | <a href="<?php echo getUriBase(); ?>cview.php">Characters</a>
           | <a href="<?php echo getUriBase(); ?>pview.php">Profile</a>
           <?php if( $sid->IsDM() ) { ?>
@@ -31,7 +33,9 @@
           <?php } ?>
           | <a href="<?php echo getUriBase(); ?>search.php">Search</a>
         <?php } else { ?>
+          <?php if( !$FORUM ) { ?>
           | <a href="<?php echo getUriBase(); ?>login.php">Login</a>
+          <?php } ?>
           <?php if( !$REQUIRE_LOGIN ) { ?>
         	| <a href="<?php echo getUriBase(); ?>search.php">Search</a>
           <?php } ?>
