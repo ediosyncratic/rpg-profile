@@ -43,14 +43,14 @@
     $sid->_dm = $row['dm'] == 'Y';
 
     // Update the iplog.
-    $this->update_iplog();
+    $sid->update_iplog();
 
     // Update the db.
     $res = $rpgDB->query(sprintf("UPDATE %s SET iplog = '%s', ip = '%s' WHERE pname = '%s'",
       $TABLE_USERS,
-      addslashes(serialize($this->_iplog)),
-      addslashes($this->_ip),
-      addslashes($this->_username)));
+      addslashes(serialize($sid->_iplog)),
+      addslashes($sid->_ip),
+      addslashes($sid->_username)));
     if (!$res)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
     if ($rpgDB->num_rows() != 1)
