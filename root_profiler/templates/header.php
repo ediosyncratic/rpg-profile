@@ -24,10 +24,10 @@
           | <a href="<?php echo getUriBase(); ?>logout.php">Logout</a>
           <?php } ?>
           | <a href="<?php echo getUriBase(); ?>cview.php">Characters</a>
-          | <a href="<?php echo getUriBase(); ?>pview.php">Profile</a>
           <?php if( $sid->IsDM() ) { ?>
           | <a href="<?php echo getUriBase(); ?>campaigns.php">Campaigns</a>
           <?php } ?>
+          | <a href="<?php echo getUriBase(); ?>pview.php">Profile</a>
           <?php if( $DISPLAY_IMAGES ) { ?>
           | <a href="<?php echo getUriBase(); ?>charimg.php">Character Images</a>
           <?php } ?>
