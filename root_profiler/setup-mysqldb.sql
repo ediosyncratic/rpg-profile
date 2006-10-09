@@ -65,7 +65,7 @@ create table campaign (
     open varchar(1) not null default 'N',
     website varchar(250),
     pc_level varchar(250),
-    description varchar(1000),
+    description text,
     pc_alignment varchar(250),
     max_players integer);
 
