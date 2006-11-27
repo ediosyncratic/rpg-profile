@@ -36,7 +36,6 @@
 
   // Authenticate the user and set appropriate values in the SID class.
   function authenticate(&$sid) {
-
     global $userdata, $TABLE_USERS, $rpgDB;
     
     if( ! $userdata['session_logged_in'] ) {
@@ -68,7 +67,7 @@
       $sid->_slength = 180;
       $sid->_dm = false;
     }
-    
+
     return true;
   }
 
@@ -87,4 +86,3 @@
   }
 
 ?>
-

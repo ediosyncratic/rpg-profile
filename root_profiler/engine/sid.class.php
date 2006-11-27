@@ -305,10 +305,11 @@
       $this->_is_session_valid = false;
 
       if( $FORUM ) {
-        require($FORUM.'.php');
+        require('authentication/' . $FORUM . '.php');
       } else {
-	require_once('cookie.php');
+	require_once('authentication/cookie.php');
       }
+
       if( !authenticate($this) ) {
         return;
       }

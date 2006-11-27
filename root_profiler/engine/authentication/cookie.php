@@ -4,11 +4,11 @@
     return;
   define('_COOKIE_CLASS_INCLUDED_', true, true);
 
-  require_once('id.class.php');
-  require_once('db.php');
-  require_once('validation.php');
-  require_once('charpermission.class.php');
-  require_once(dirname(__FILE__) . '/../system.php');
+  require_once(dirname(__FILE__) . '/../id.class.php');
+  require_once(dirname(__FILE__) . '/../db.php');
+  require_once(dirname(__FILE__) . '/../validation.php');
+  require_once(dirname(__FILE__) . '/../charpermission.class.php');
+  require_once(dirname(__FILE__) . '/../../system.php');
 
   function authenticate(&$sid) {
     global $TABLE_USERS, $rpgDB;
