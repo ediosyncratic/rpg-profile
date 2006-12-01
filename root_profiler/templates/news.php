@@ -13,7 +13,7 @@
 
 <h4>Functionality Updates</h4>
 <ul>
-<li>Added ability to Deactive characters.</li>
+<li>Added ability to Deactivate characters.</li>
 <li>Added seperate list for Inactive characters &amp; campaigns, hidden by default.</li>
 <li>Moved New Character/Campaign function to bottom of respective pages.</li>
 <li>Moved Campaign Add/Invite/Accept character controls to View Campaign screen.</li>
