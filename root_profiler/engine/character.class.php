@@ -49,7 +49,7 @@
       // Retrieve the character information if requested.
       if ($this->id)
       {
-        $res = $rpgDB->query(sprintf("SELECT cname, lastedited, public, editedby, template_id, data, owner, campaign ".
+        $res = $rpgDB->query(sprintf("SELECT cname, lastedited, public, editedby, template_id, data, owner, campaign, inactive ".
                                    "FROM $TABLE_CHARS WHERE id = %d",
           (int) $this->id));
         if (!$res)
@@ -66,6 +66,7 @@
         $this->_data = unserialize($row['data']);
         $this->owner = $row['owner'];
         $this->campaign_id = $row['campaign'];
+        $this->inactive = $row['inactive'];
 
         while (list($key, $val) = @each($this->_data))
           $this->_data[$key] = stripslashes($val);
@@ -87,6 +88,7 @@
     var $cname;
     var $lastedited;
     var $public;
+    var $inactive;
     var $editedby;
     var $template_id;
     var $owner;
@@ -257,10 +259,11 @@
 
       // Update the db.
       // - Note, owner is never updated, and campaign is updated in a separate process.
-      $res = $rpgDB->query(sprintf("UPDATE %s SET editedby = '%s', public = '%s', template_id = %d, data = '%s' WHERE id = %d LIMIT 1",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET editedby = '%s', public = '%s', inactive = '%s', template_id = %d, data = '%s' WHERE id = %d LIMIT 1",
         $TABLE_CHARS,
         addslashes($sid->GetUserName()),
         $this->public == 'y' ? 'y' : 'n',
+        $this->inactive == 'y' ? 'y' : 'n',
         (int) $this->template_id,
         addslashes(serialize($this->_data)),
         (int) $this->id));

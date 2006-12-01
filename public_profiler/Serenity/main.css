@@ -135,6 +135,8 @@ img {
         float:          right;
         vertical-align: bottom;
 	border:		solid 1px black;
+	width:		125px;
+	height:		193px;
 }
 
 br {
@@ -173,9 +175,9 @@ table.half {
 
 /* Attributes Section Specific Layout */
 table.attributes {
-	width:		20%;
+	width:		48%;
 	float:		left;
-	margin-right:	15px;
+	margin-right:	5px;
 }
 
 table.attributes-bottom {

@@ -25,16 +25,16 @@
   Defines the page body that is displayed when a user who is already
   logged in goes to the login page.
 -->
-<?php global $OPEN_REGISTRATION, $SITE_NEWS; ?>
+<?php global $OPEN_REGISTRATION, $SITE_NEWS, $FORUM, $FORUM_LOGIN; ?>
 
 <?php 
+if( ! $FORUM ) {
 $newsFile = $INCLUDE_PATH . '/templates/' . $SITE_NEWS;
 
 if( $SITE_NEWS && file_exists($newsFile) ) {
   include_once($newsFile); 
 }
 ?>
-
       <h1>Login</h1>
       <p>
         Please provide your profile details below to login:
@@ -70,4 +70,7 @@ if( $SITE_NEWS && file_exists($newsFile) ) {
         <?php } ?>
         Can't remember your password? Have it <a href="resetpwd.php">reset</a>.
       </p>
+<?php } else { ?>
+  <script>document.location.href='<?php echo $FORUM_LOGIN; ?>';</script>
+<?php } ?>
 

@@ -26,6 +26,7 @@ CREATE TABLE characters (
   template_id int(11) NOT NULL default '1',
   owner varchar(20) NOT NULL,
   campaign integer null,
+  inactive enum('y','n') default 'n',
   PRIMARY KEY  (id)
 ) TYPE=MyISAM;
 

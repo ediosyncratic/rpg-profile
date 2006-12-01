@@ -76,7 +76,7 @@
 
       $characters = array();
 
-      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i') as lastedited, st.name, c.id ".
+      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i') as lastedited, st.name, c.id, c.public ".
                      "FROM %s c, %s st WHERE campaign = %d AND st.id = c.template_id ".
                      "ORDER BY UPPER(c.cname)",
                      $TABLE_CHARS,
@@ -90,7 +90,7 @@
  
       while ($row = $rpgDB->fetch_row($res)) {
         array_push($characters, array('name' => $row['cname'], 'owner' => $row['owner'],
-                                      'edited' => $row['lastedited'], 'template' => $row['name'], 'id' => $row['id']));
+                                      'edited' => $row['lastedited'], 'template' => $row['name'], 'id' => $row['id'], 'public' => $row['public']));
       }
 
       return $characters;

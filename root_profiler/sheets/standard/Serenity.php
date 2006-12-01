@@ -81,11 +81,17 @@ if( $firefox ) { echo '<!--'; } ?>
 <td colspan="2"><input type="text" <?php getnv("Name"); ?> class="full"><br>Name</td>
 <td><input type="text" <?php getnv("Player"); ?> class="full"><br>Player</td>
 <td><input type="text" <?php getnv("Campaign"); ?> class="full"><br>Campaign</td>
+<td rowspan="3" colspan="2">
+<img src="Serenity/serenity_small.jpg">
+</td>
+</tr>
+<tr>
+<td><input type="text" <?php getnv("Occupation"); ?> class="full"><br>Occupation</td>
+<td><input type="text" <?php getnv("HeroicLevel"); ?> class="full"><br>Heroic Level</td>
 <td><input type="text" <?php getnv("PlotPoints"); ?> class="full"><br>Plot Points</td>
 <td><input type="text" <?php getnv("AdvancementPoints"); ?> class="full"><br>Adv Points</td>
 </tr>
-<td><input type="text" <?php getnv("Occupation"); ?> class="full"><br>Occupation</td>
-<td><input type="text" <?php getnv("HeroicLevel"); ?> class="full"><br>Heroic Level</td>
+<tr>
 <td><input type="text" <?php getnv("Gender"); ?> class="full"><br>Gender</td>
 <td><input type="text" <?php getnv("Height"); ?> class="full"><br>Height</td>
 <td><input type="text" <?php getnv("Weight"); ?> class="full"><br>Weight</td>
@@ -97,18 +103,8 @@ if( $firefox ) { echo '<!--'; } ?>
 
 <!-- Attributes & Character Image -->
 
-<div class="section">
+<div class="section-half">
 <h1>Attributes</h1>
-
-<div id="charPic" style="display: none;">
-<img id="pic" src="" onclick="SetPic();">
-<img src="Serenity/serenity_small.jpg">
-</div>
-
-<div id="noCharPic">
-<img src="Serenity/serenity.jpg" onclick="SetPic();">
-</div>
-
 
 <table class="attributes">
 <tr>
@@ -176,6 +172,46 @@ if( $firefox ) { echo '<!--'; } ?>
 
 </div>
 
+<!-- Money & Character Image -->
+
+<div class="section-half">
+<h1>Money</h1>
+
+<div id="charPic" style="display: none;">
+<img id="pic" src="" onclick="SetPic();">
+</div>
+
+<div id="noCharPic">
+<img id="pic" src="Serenity/click.png" onclick="SetPic();">
+</div>
+
+<table class="attributes">
+<tr>
+<td class="label">Credits</td>
+<td>On Hand</td><td><input type="text" <?php getnv("CreditsOnHand"); ?> class="medium"></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Banked</td><td><input type="text" <?php getnv("CreditsBanked"); ?> class="medium"></td>
+</tr>
+
+<tr>
+<td class="label">Cash</td>
+<td>Platinum</td><td><input type="text" <?php getnv("CashPlatinum"); ?> class="medium"></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Gold</td><td><input type="text" <?php getnv("CashGold"); ?> class="medium"></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>Silver</td><td><input type="text" <?php getnv("CashSilver"); ?> class="medium"></td>
+</tr>
+
+</table>
+
+</div>
+
 <br>
 
 <!-- Weapons -->
@@ -213,7 +249,7 @@ if( $firefox ) { echo '<!--'; } ?>
 <th colspan="2">Name</th><th>Rating</th><th>Covers</th><th>Penalty</th><th>Weight</th>
 </tr>
 
-<?php for( $i = 1; $i <= 2; $i++ ) { ?>
+<?php for( $i = 1; $i <= 5; $i++ ) { ?>
 <tr>
 <td colspan="2"><input type="text" <?php getnv("ArmorName".$i); ?> class="full"></td>
 <td><input type="text" <?php getnv("ArmorRating".$i); ?> class="medium"></td>
@@ -222,26 +258,6 @@ if( $firefox ) { echo '<!--'; } ?>
 <td><input type="text" <?php getnv("ArmorWeight".$i); ?> class="medium"></td>
 </tr>
 <?php } ?>
-
-</table>
-
-<!-- Money -->
-
-<h1>Money</h1>
-
-<table>
-<tr>
-<td class="label">Credits</td>
-<td>On Hand</td><td><input type="text" <?php getnv("CreditsOnHand"); ?> class="medium"></td>
-<td>Banked</td><td><input type="text" <?php getnv("CreditsBanked"); ?> class="medium"></td>
-</tr>
-
-<tr>
-<td class="label">Cash</td>
-<td>Platinum</td><td><input type="text" <?php getnv("CashPlatinum"); ?> class="medium"></td>
-<td>Gold</td><td><input type="text" <?php getnv("CashGold"); ?> class="medium"></td>
-<td>Silver</td><td><input type="text" <?php getnv("CashSilver"); ?> class="medium"></td>
-</tr>
 
 </table>
 
@@ -354,6 +370,10 @@ $skillName = str_replace(" ", "_", $skill);
 </div>
 
 <!-- Notes -->
+<input type="checkbox" <?php getnc('NotesDisp'); ?> onchange="ToggleDisplay('notes', this);" style="width:15px; border:none;"/>
+Display Notes
+<div id="notes">
+
 <div class="section">
 <h1>Notes</h1>
 
@@ -377,6 +397,24 @@ $skillName = str_replace(" ", "_", $skill);
 </table>
 
 </div>
+<input type="checkbox" <?php getnc('BackgroundDisp'); ?> onchange="ToggleDisplay('background', this);" style="width:15px; border:none;"/>
+Display Background
+
+<br class="page">
+
+<div id="background" class="section">
+<h1>Character Background (Will not be displayed publically)</h1>
+
+<table>
+<tr><td>
+<textarea <?php getn('Background'); ?> cols="10" rows="50"><?php getv('Background'); ?></textarea>
+</td></tr>
+</table>
+
+</div>
+</div>
+
+
 <?php } ?>
 
 

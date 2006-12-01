@@ -25,9 +25,9 @@
 
 <?php
 
-global $public_updated, $profiles_updated, $template_updated, $campaign_updated;
+global $public_updated, $inactive_updated, $profiles_updated, $template_updated, $campaign_updated;
 global $is_public, $profiles, $templates, $current_template, $exp_formats, $imp_formats;
-global $is_owner, $character, $campaign, $pending_campaign;
+global $is_owner, $character, $campaign, $pending_campaign, $is_inactive;
 
 ?>
 <script>
@@ -102,6 +102,32 @@ function confirm_leave() {
 <?php } ?> 
 
 </form>
+
+<h1>Active Character<?php if( $inactive_updated ) { ?><span class="notice"><?php echo $inactive_updated; ?></span><?php } ?></h1>
+<form action="char.php" method="post">
+<?php if( $is_inactive ) { ?>
+  <p>
+    This character is inactive. This means that it will not appear in your main character list,
+    but will appear further down the page. Activate the character to move it back to the main list.
+  </p>
+  <p>
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
+    <input type="hidden" name="inactive" value="false" />
+    <input type="submit" value="Activate" class="go" />
+  </p>
+<?php } else { ?>
+  <p>
+    This character is active. This means that it will appear in your main character list.
+    Deactivating the character will move it to a secondary list at the bottom of your characters page.
+  </p>
+  <p>
+    <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
+    <input type="hidden" name="inactive" value="true" />
+    <input type="submit" value="Deactivate" class="go" />
+  </p>
+<?php } ?>
+</form>
+
 
 <h1>Access Permissions<?php if( $profiles_updated ) { ?><span class="notice"><?php echo $profiles_updated; ?></span><?php } ?></h1>
     The following profiles have permission to edit this character:

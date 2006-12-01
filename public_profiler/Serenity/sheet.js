@@ -30,6 +30,8 @@ function init() {
     updateAttributes();
     updateLife();
     updateMovement();
+
+    CheckDisplay();
 }
 
 function cleanup() {
@@ -42,5 +44,10 @@ function SetSaveDate()
   sheet().LastSaveDate.value =  now.getDate() + " " + m_names[now.getMonth()] + " " + now.getFullYear() + " " +
                                 now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
 
+}
+
+function CheckDisplay() {
+  ToggleDisplay("background", sheet()["BackgroundDisp"]);
+  ToggleDisplay("notes", sheet()["NotesDisp"]);
 }
 

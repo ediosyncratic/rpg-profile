@@ -15,6 +15,13 @@
 <li>Major change to database access code.</li>
 <li>Extended security to allow 3rd party authentication.</li>
 <li>Added authentication module for phpBB v2 (Requires PHP 4).</li>
+<li>Added ability to Deactive characters.</li>
+<li>Added seperate list for Inactive characters &amp; campaigns, hidden by default.</li>
+<li>Changed layout of Serenity character sheet.</li>
+<li>Fixed bug when removing edit permissions from a character you don't own.</li>
+<li>Moved Campaign Add/Invite/Accept character controls to View Campaign screen.</li>
+<li>Added character list to View Campaign screen for everyone to see.</li>
+<li>Moved New Character/Campaign function to bottom of respective pages.</li>
 </ul>
 
 <h2>1 August 2006 - v0.4.0 Released</h2>

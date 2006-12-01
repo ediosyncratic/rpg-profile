@@ -121,9 +121,19 @@
       return $this->_permission->GetCharacters();
     }
 
+    function GetInactiveCharacters()
+    {
+      return $this->_permission->GetInactiveCharacters();
+    }
+
     function GetCampaigns()
     {
       return $this->_permission->GetCampaigns();
+    }
+
+    function GetInactiveCampaigns()
+    {
+      return $this->_permission->GetInactiveCampaigns();
     }
 
     // Determine if the user has access to the specified character.

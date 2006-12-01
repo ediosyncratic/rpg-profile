@@ -53,6 +53,8 @@
   // Perform any simple actions that are requested.
   if (isset($_POST['public']))
     $public_updated =  apply_public($sid, $character, $_POST['public'] == 'true') ? 'Updated!' : 'Update Failed!';
+  if (isset($_POST['inactive']))
+    $inactive_updated = apply_inactive($sid, $character, $_POST['inactive'] == 'true') ? 'Updated!' : 'Update Failed!';
   if (isset($_POST['add_profile']))
     $profiles_updated = apply_add_profile($character, $_POST['add_profile']) ? 'Updated!' : 'Update Failed!';
   if (isset($_POST['tid']))
@@ -91,6 +93,7 @@
 
   $cname = $character->cname;
   $is_public = $character->public == 'y';
+  $is_inactive = $character->inactive == 'y';
   $is_owner = $character->owner == $sid->GetUserName();
   $profiles = $character->GetProfiles();
   $templates = generate_template_array();
@@ -160,6 +163,13 @@
   function apply_public(&$sid, &$character, $public)
   {
     $character->public = $public ? 'y' : 'n';
+    return $character->Save($sid);
+  }
+
+  // Apply the inactive state
+  function apply_inactive(&$sid, &$character, $inactive)
+  {
+    $character->inactive = $inactive ? 'y' : 'n';
     return $character->Save($sid);
   }
 

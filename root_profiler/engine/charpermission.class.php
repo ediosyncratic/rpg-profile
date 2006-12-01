@@ -68,9 +68,19 @@
       return $this->_characters;
     }
 
+    function GetInactiveCharacters() 
+    {
+      return $this->_inactive_characters;
+    }
+
     function GetCampaigns()
     {
       return $this->_campaigns;
+    }
+
+    function GetInactiveCampaigns()
+    {
+      return $this->_inactive_campaigns;
     }
 
     // Add a new permission entry to the table for the contained pname
@@ -142,7 +152,10 @@
 
     var $_profiles = array();
     var $_characters = array();
+    var $_inactive_characters = array();
+    
     var $_campaigns = array();
+    var $_inactive_campaigns = array();
 
     var $_pname = null;
     var $_cid = null;
@@ -170,8 +183,10 @@
       global $TABLE_OWNERS, $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_CAMPAIGNS, $rpgDB;
 
       $this->_characters = array();
+      $this->_inactive_characters = array();
+
       $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y') as lastedited, c.editedby, ".
-                     "c.public, st.name as tname, ca.name as caname, c.campaign ".
+                     "c.public, st.name as tname, ca.name as caname, c.campaign, c.inactive ".
                      "FROM %s st, %s c ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
                      "WHERE c.owner = '%s' ".
@@ -184,14 +199,21 @@
       if (!$res)
         __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
       while ($row = $rpgDB->fetch_row($res)) {
-        array_push($this->_characters, array('id' => $row['id'], 'name' => $row['cname'], 
+        if( $row['inactive'] == 'y' ) {
+          array_push($this->_inactive_characters, array('id' => $row['id'], 'name' => $row['cname'], 
                   'lastedited' => $row['lastedited'], 'editedby' => $row['editedby'], 
                   'public' => $row['public'], 'template' => $row['tname'], 'campaign' => $row['caname'],
-                  'campaign_id' => $row['campaign']));
+                  'campaign_id' => $row['campaign'], 'inactive' => $row['inactive']));
+        } else {
+          array_push($this->_characters, array('id' => $row['id'], 'name' => $row['cname'],
+                  'lastedited' => $row['lastedited'], 'editedby' => $row['editedby'],
+                  'public' => $row['public'], 'template' => $row['tname'], 'campaign' => $row['caname'],
+                  'campaign_id' => $row['campaign'], 'inactive' => $row['inactive']));
+        }
       }
 
       $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y') as lastedited, c.editedby, ".
-                     "c.public, st.name as tname, ca.name as caname, c.campaign ".
+                     "c.public, st.name as tname, ca.name as caname, c.campaign, c.inactive ".
                      "FROM %s st, %s o, %s c ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
                      "WHERE c.id = o.cid AND o.pname = '%s' ".
@@ -205,10 +227,17 @@
       if (!$res)
         __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
       while ($row = $rpgDB->fetch_row($res)) {
-        array_push($this->_characters, array('id' => $row['id'], 'name' => '*' . $row['cname'],
+        if( $row['inactive'] == 'y' ) {
+          array_push($this->_inactive_characters, array('id' => $row['id'], 'name' => '*' . $row['cname'],
                   'lastedited' => $row['lastedited'], 'editedby' => $row['editedby'],
                   'public' => $row['public'], 'template' => $row['tname'], 'campaign' => $row['caname'],
-                  'campaign_id' => $row['campaign']));
+                  'campaign_id' => $row['campaign'], 'inactive' => $row['inactive']));
+        } else {
+          array_push($this->_characters, array('id' => $row['id'], 'name' => '*' . $row['cname'],
+                  'lastedited' => $row['lastedited'], 'editedby' => $row['editedby'],
+                  'public' => $row['public'], 'template' => $row['tname'], 'campaign' => $row['caname'],
+                  'campaign_id' => $row['campaign'], 'inactive' => $row['inactive']));
+        }
       }
 
     }
@@ -229,9 +258,16 @@
       if (!$res)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
       while ($row = $rpgDB->fetch_row($res)) {
-        array_push($this->_campaigns, array('id' => $row['id'], 'name' => $row['name'], 
+        if( $row['active'] == 'Y' ) {
+          array_push($this->_campaigns, array('id' => $row['id'], 'name' => $row['name'], 
                                             'active' => ($row['active'] == 'Y'), 'open' => ($row['open'] == 'Y'), 
                                             'pcs' => $row['chars']));
+        } else {
+          array_push($this->_inactive_campaigns, array('id' => $row['id'], 'name' => $row['name'],
+                                            'active' => ($row['active'] == 'Y'), 'open' => ($row['open'] == 'Y'),
+                                            'pcs' => $row['chars']));
+
+        }
       }
     }
   }

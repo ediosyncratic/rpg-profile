@@ -24,11 +24,108 @@
   character options page.
 -->
 <?php
-global $templates, $characters, $NEW_WINDOW;
+global $templates, $characters, $icharacters, $NEW_WINDOW;
 ?>
-
+<script src="general.js"></script>
 
 <h1><?php echo getUserName(); ?> :: Character Options</h1>
+<h1>Current Characters</h1>
+  <p class="indent">
+    If you wish to edit or view any of your current characters, select from the list below.
+  </p>
+  <table class="clist indent">
+<?php
+if( count( $characters ) > 0 ) {
+?>
+    <thead>
+      <tr>
+        <th>Character</th>
+        <th>ID</th>
+        <th>Public</th>
+        <th>Edited</th>
+        <th>Editor</th>
+        <th>Template</th>
+        <th>Campaign</th>
+        <th>Modify</th>
+      </tr>
+    </thead>
+    <tbody>
+<?php
+  foreach( $characters as $character ) {
+?>
+      <tr>
+        <td><a href="view.php?id=<?php echo $character['id']; ?>" <?php if( $NEW_WINDOW ) { ?>target="_blank"<?php } ?>><?php echo $character['name']; ?></a></td>
+        <td class="c"><?php echo $character['id']; ?></td>
+        <td class="c"><?php echo $character['public'] == 'y' ? 'Yes' : 'No'; ?></td>
+        <td class="c"><?php echo $character['lastedited']; ?></td>
+        <td class="c"><?php echo $character['editedby']; ?></td>
+        <td class="c"><?php echo $character['template']; ?></td>
+        <td class="c">
+          <?php if( $character['campaign'] ) { ?>
+            <a href="view_campaign.php?id=<?php echo $character['campaign_id']; ?>"><?php echo $character['campaign']; ?></a>
+          <?php } ?>
+        </td>
+        <td><a href="char.php?id=<?php echo $character['id']; ?>">Details</a></td>
+      </tr>
+<?php
+  }
+} else { ?>
+      <tr>
+        <td colspan="5">You don't have any characters!</td>
+      </tr>
+<?php } ?>
+    </tbody>
+  </table>
+
+
+<?php
+if( count( $icharacters ) > 0 ) {
+?>
+<br>
+<small><a href="#" onclick="ToggleDisplay('inactive')">Show/Hide Inactive Characters</a></small>
+<div id="inactive" style="display:none;">
+
+<h1>Inactive Characters</h1>
+  <p class="indent">
+    If you wish to edit or view any of your inactive characters, select from the list below.
+  </p>
+  <table class="clist indent">
+    <thead>
+      <tr>
+        <th>Character</th>
+        <th>ID</th>
+        <th>Public</th>
+        <th>Edited</th>
+        <th>Editor</th>
+        <th>Template</th>
+        <th>Campaign</th>
+        <th>Modify</th>
+      </tr>
+    </thead>
+    <tbody>
+<?php
+  foreach( $icharacters as $character ) {
+?>
+      <tr>
+        <td><a href="view.php?id=<?php echo $character['id']; ?>" <?php if( $NEW_WINDOW ) { ?>target="_blank"<?php } ?>><?php echo $character['name']; ?></a></td>
+        <td class="c"><?php echo $character['id']; ?></td>
+        <td class="c"><?php echo $character['public'] == 'y' ? 'Yes' : 'No'; ?></td>
+        <td class="c"><?php echo $character['lastedited']; ?></td>
+        <td class="c"><?php echo $character['editedby']; ?></td>
+        <td class="c"><?php echo $character['template']; ?></td>
+        <td class="c">
+          <?php if( $character['campaign'] ) { ?>
+            <a href="view_campaign.php?id=<?php echo $character['campaign_id']; ?>"><?php echo $character['campaign']; ?></a>
+          <?php } ?>
+        </td>
+        <td><a href="char.php?id=<?php echo $character['id']; ?>">Details</a></td>
+      </tr>
+<?php } ?>
+    </tbody>
+  </table>
+</div>
+<?php } ?>
+
 <h1>New Character Sheet</h1>
 <form action="new.php" method="post">
   <p>
@@ -56,52 +153,5 @@ global $templates, $characters, $NEW_WINDOW;
     </tr>
   </table>
 </form>
-<h1>View/Edit Character Sheet</h1>
-  <p class="indent">
-    If you wish to edit or view any of your existing characters, select
-    from the list below.
-  </p>
-  <table class="clist indent">
-<?php
-if( count( $characters ) > 0 ) {
-?>
-    <thead>
-      <tr>
-        <th>Character</th>
-        <th>ID</th>
-        <th>Public</th>
-        <th>Edited</th>
-        <th>Editor</th>
-        <th>Template</th>
-        <th>Campaign</th>
-        <th>Modify</th>
-      </tr>
-    </thead>
-    <tbody>
-<?php
-  foreach( $characters as $character ) {
-    $otherChar = substr( $character['name'], 0, 1 ) === '*';
-?>
-      <tr>
-        <td><a href="view.php?id=<?php echo $character['id']; ?>" <?php if( $NEW_WINDOW ) { ?>target="_blank"<?php } ?>><?php echo $character['name']; ?></a></td>
-        <td class="c"><?php echo $character['id']; ?></td>
-        <td class="c"><?php echo $character['public'] == 'y' ? 'Yes' : 'No'; ?></td>
-        <td class="c"><?php echo $character['lastedited']; ?></td>
-        <td class="c"><?php echo $character['editedby']; ?></td>
-        <td class="c"><?php echo $character['template']; ?></td>
-        <td class="c">
-          <?php if( $character['campaign'] ) { ?>
-            <a href="view_campaign.php?id=<?php echo $character['campaign_id']; ?>"><?php echo $character['campaign']; ?></a>
-          <?php } ?>
-        </td>
-        <td><a href="char.php?id=<?php echo $character['id']; ?>">Details</a></td>
-      </tr>
-<?php
-  }
-} else { ?>
-      <tr>
-        <td colspan="5">You don't have any characters!</td>
-      </tr>
-<?php } ?>
-    </tbody>
-  </table>
+
+

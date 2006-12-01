@@ -78,10 +78,7 @@
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
  
       $removed = true;
-    } else {
-      __printFatalErr("You can't delete a character you do not own.");
-    }
-
+    } 
 
     // Draw the result screen.
     $title = 'Remove Character';

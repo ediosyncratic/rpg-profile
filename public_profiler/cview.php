@@ -64,6 +64,7 @@
 
   $title = 'Character Options';
   $characters = $sid->GetCharacters();
+  $icharacters = $sid->GetInactiveCharacters();
   $templates = generate_template_array();
   draw_page('cview.php');
 ?>
