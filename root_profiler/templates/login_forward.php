@@ -30,7 +30,7 @@
   <a href="pview.php">profile</a> management pages.
 </p>
 <?php 
-global $FORUM; 
+global $FORUM, $SITE_NEWS, $INCLUDE_PATH; 
 if( !$FORUM ) {
 ?>
 <p>
@@ -39,6 +39,15 @@ if( !$FORUM ) {
   profile, or register a new profile if you're a new visitor.
 </p>
 <?php } ?>
+
+<?php
+$newsFile = $INCLUDE_PATH . '/templates/' . $SITE_NEWS;
+
+if( $SITE_NEWS && file_exists($newsFile) ) {
+  include_once($newsFile);
+}
+?>
+
       <p class="smaller">
         Registered Users: <?php echo GetUserCount(); ?> &nbsp;&nbsp;|&nbsp;&nbsp;
         Registered Characters: <?php echo GetCharacterCount(); ?> &nbsp;&nbsp;|&nbsp;&nbsp;

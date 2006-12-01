@@ -11,17 +11,28 @@
 
 <h2>October 2006 - v0.5.0 Development</h2>
 
+<h4>Functionality Updates</h4>
 <ul>
-<li>Major change to database access code.</li>
-<li>Extended security to allow 3rd party authentication.</li>
-<li>Added authentication module for phpBB v2 (Requires PHP 4).</li>
 <li>Added ability to Deactive characters.</li>
 <li>Added seperate list for Inactive characters &amp; campaigns, hidden by default.</li>
-<li>Changed layout of Serenity character sheet.</li>
-<li>Fixed bug when removing edit permissions from a character you don't own.</li>
-<li>Moved Campaign Add/Invite/Accept character controls to View Campaign screen.</li>
-<li>Added character list to View Campaign screen for everyone to see.</li>
 <li>Moved New Character/Campaign function to bottom of respective pages.</li>
+<li>Moved Campaign Add/Invite/Accept character controls to View Campaign screen.</li>
+<li>Added character list to View Campaign screen for everyone (still only DM can view/edit character sheets).</li>
+<li>Fixed bug when removing edit permissions from a character you don't own.</li>
+</ul>
+
+<h4>Character Sheet Updates</h4>
+<ul>
+<li>Changed layout of Serenity character sheet.</li>
+<li>Added display toggle of notes sections to Serenity sheet.</li>
+<li>Changed currency section of 3.5e sheet for easier tracking of common coins.</li>
+</ul>
+
+<h4>General Updates</h4>
+<ul>
+<li>Major change to database access code.</li>
+<li>Extended security to allow customized authentication.</li>
+<li>Added authentication module for phpBB v2 (Requires PHP 4).</li>
 </ul>
 
 <h2>1 August 2006 - v0.4.0 Released</h2>
