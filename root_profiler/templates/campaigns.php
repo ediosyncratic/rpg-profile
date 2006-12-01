@@ -9,7 +9,7 @@
     from the list below.
   </p>
   <table class="clist indent">
-<?php 
+<?php
 if( count( $campaigns ) > 0 ) {
 ?>
     <thead>
@@ -40,7 +40,7 @@ if( count( $campaigns ) > 0 ) {
   }
 } else { ?>
       <tr>
-        <td colspan="5">You don't have any campaigns!</td>
+        <td colspan="5">You don't have any active campaigns.</td>
       </tr>
 <?php } ?>
     </tbody>

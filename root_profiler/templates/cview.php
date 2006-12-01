@@ -71,7 +71,7 @@ if( count( $characters ) > 0 ) {
   }
 } else { ?>
       <tr>
-        <td colspan="5">You don't have any characters!</td>
+        <td colspan="5">You don't have any active characters.</td>
       </tr>
 <?php } ?>
     </tbody>
