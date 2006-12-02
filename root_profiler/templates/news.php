@@ -9,7 +9,7 @@
 ?>
 <h1>RPG Web Profiler News</h1>
 
-<h2>October 2006 - v0.5.0 Development</h2>
+<h2>2 December 2006 - v0.5.0 Released</h2>
 
 <h4>Functionality Updates</h4>
 <ul>
