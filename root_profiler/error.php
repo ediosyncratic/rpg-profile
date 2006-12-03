@@ -50,7 +50,7 @@
   }
 
   // __printNotLoggedInErr: Generates an error page, telling the user that
-  // the page they requested can only be done if they're logged in.
+  // the page they requested can only be done if theyre logged in.
   function __printLoginRequiredErr()
   {
     global $title;
@@ -69,7 +69,7 @@
     {
     case E_USER_ERROR:
     case E_USER_WARNING:
-      $title = '3EProfiler Error';
+      $title = 'RPG Web Profiler Error';
       if ($DEBUG)
         $errmsg .= "\n\nThis error occurred at line $errline of file $errfile.";
       $body = nl2br(htmlspecialchars($errmsg));

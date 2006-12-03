@@ -31,7 +31,7 @@
   Sorry, you must be logged in to view this page.
 </p>
 <form action="cview.php" method="post" class="offset">
-  <table> 
+  <table>
     <tr>
       <td>Name:</td>
       <td><input type="text" name="user" class="quick" maxlength="20" /></td>
@@ -44,8 +44,8 @@
 </form>
 <p>
   <b>Were you already logged in?</b> If so, ensure your browser is
-  configured to accept and send cookies, as 3EProfiler uses a cookie to keep
-  track of your login state. You can not use 3EProfiler if you do not allow
+  configured to accept and send cookies, as RPGWebProfiler uses a cookie to keep
+  track of your login state. You can not use RPGWebProfiler if you do not allow
   this site to store cookies on your computer. It is also possible your login
   session expired, which can happen if you don't have any acitivty for a few
   hours. You can change the length of your sessions in your profile options.

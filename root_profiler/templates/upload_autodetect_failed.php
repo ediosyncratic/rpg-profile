@@ -31,7 +31,7 @@ global $id, $formats;
 <h1>Autodetect Failed</h1>
 <form action="upload.php" method="post" enctype="multipart/form-data">
   <p>
-    3EProfiler could not determine which type of file you were trying to upload.
+    RPGWebProfiler could not determine which type of file you were trying to upload.
     Please select the proper format and try to upload the file again.
   </p>
   <p>

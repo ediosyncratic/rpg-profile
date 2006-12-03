@@ -33,7 +33,7 @@
   <li><a href="#browser">What browser is recommended for RPG Web Profiler?</a></li>
 </ul>
 
-<h2>Using 3EProfiler</h2>
+<h2>Using RPG Web Profiler</h2>
 <ul>
   <li><a href="#nosave">Why were my character sheet changes not saved?</a></li>
   <li><a href="#loadtime">Why does it take so long for my character sheet to load?</a></li>

@@ -19,7 +19,7 @@
   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
   **
-  
+
   Defines the character permissions page.
 -->
 
@@ -56,7 +56,7 @@ function confirm_leave() {
   <p>
     You can make your character a public character. Anyone can view
     (but not edit) a public character, regardless of whether they're
-    logged in to 3EProfiler. This is very useful if you wish to share
+    logged in to RPG Web Profiler. This is very useful if you wish to share
     your character in a public forum, for example.
   </p>
   <p>
@@ -93,13 +93,13 @@ function confirm_leave() {
     <p><input type="submit" value="Decline Invitation" class="go"/></p>
   <?php } ?>
 <?php } else { ?>
-  <p>This character is not currently in any campaigns. To request to join a campaign, enter the campaign ID in the box below. 
+  <p>This character is not currently in any campaigns. To request to join a campaign, enter the campaign ID in the box below.
      Join requests must be approved by the campaign owner.</p>
   <p>
   <input type="text" name="join_campaign" class="quick" maxlength="20" />
   <input type="submit" value="Join Campaign" class="go"/>
   </p>
-<?php } ?> 
+<?php } ?>
 
 </form>
 
@@ -141,7 +141,7 @@ function confirm_leave() {
 </table>
   <p>
     You can grant editing permission to other profiles, but you must do it
-    one profile at a time. Editing permission can be removed by the owner 
+    one profile at a time. Editing permission can be removed by the owner
     of the character.
   </p>
 <form action="char.php" method="post">
@@ -157,7 +157,7 @@ function confirm_leave() {
   <p>
     You can remove this character from your profile. If you are the owner of the
     character, it will be deleted. If you are not the owner, it will only remove
-    the editor permissions from your profile. 
+    the editor permissions from your profile.
   </p>
   <p>
     <input type="hidden" name="id" value="<?php echo $character->id; ?>" />
