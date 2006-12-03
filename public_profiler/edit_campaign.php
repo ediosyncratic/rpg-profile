@@ -45,6 +45,18 @@
     $update_details = $campaign->Save() ? "Updated!" : "Update Failed!";
   }
 
+  if( isset($_POST['remove_character'])) {
+    $update_char = process_remove_character((int) $_POST['remove_character']);
+  }
+
   draw_page('edit_campaign.php');
+
+  function process_remove_character($char_id) {
+    $character = new Character($char_id);
+    if( $character->SetCampaign(null) ) {
+      return "Removed character " . $character->cname . ".";
+    }
+    return "Unable to remove character " . $character->cname . ".";
+  }
  
 ?>

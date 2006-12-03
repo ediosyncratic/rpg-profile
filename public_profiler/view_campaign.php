@@ -6,6 +6,7 @@
   include_once("$INCLUDE_PATH/engine/sid.php");
   include_once("$INCLUDE_PATH/engine/validation.php");
   include_once("$INCLUDE_PATH/engine/campaign.class.php");
+  include_once("$INCLUDE_PATH/engine/character.class.php");
   include_once("$INCLUDE_PATH/engine/templates.php");
   include_once("$INCLUDE_PATH/engine/serialization.php");
 
@@ -26,12 +27,8 @@
 
   $campaign = new Campaign($id);
 
-
   if( isset($_POST['invite_character'])) {
     $update_invite = process_invite_character($campaign, (int) $_POST['invite_character']);
-  }
-  if( isset($_POST['remove_character'])) {
-    $update_char = process_remove_character((int) $_POST['remove_character']);
   }
   if( isset($_POST['cancel_join'])) {
     $update_invite = process_cancel_join((int) $_POST['cancel_join']);
@@ -59,14 +56,6 @@
       return "Join request for character " . $character->cname . " cancelled";
     }
     return "Unable to cancel request for character " . $character->cname . ".";
-  }
-
-  function process_remove_character($char_id) {
-    $character = new Character($char_id);
-    if( $character->SetCampaign(null) ) {
-      return "Removed character " . $character->cname . ".";
-    }
-    return "Unable to remove character " . $character->cname . ".";
   }
 
   function process_accept_join(&$campaign, $char_id) {

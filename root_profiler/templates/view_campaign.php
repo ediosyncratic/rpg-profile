@@ -136,7 +136,7 @@ if( count( $campaign->GetJoinRequests() ) > 0 ) {
 <?php if( $character['type'] == 'IJ' ) { ?>
 <td class="c">Invite</td>
 <td class="c">
-  <form action="edit_campaign.php" method="post" style="margin:0px; padding:0px;">
+  <form action="view_campaign.php" method="post" style="margin:0px; padding:0px;">
     <input type="hidden" name="id" value="<?php echo $campaign->id; ?>"/>
     <input type="hidden" name="cancel_join" value="<?php echo $character['id']; ?>"/>
     <input type="submit" class="go" value="Cancel"/>
@@ -145,14 +145,14 @@ if( count( $campaign->GetJoinRequests() ) > 0 ) {
 <?php } else { ?>
 <td class="c">Request</td>
 <td class="c">
-  <form action="edit_campaign.php" method="post" style="margin:0px; padding:0px;">
+  <form action="view_campaign.php" method="post" style="margin:0px; padding:0px;">
     <input type="hidden" name="id" value="<?php echo $campaign->id; ?>"/>
     <input type="hidden" name="accept_join_request" value="<?php echo $character['id']; ?>"/>
     <input type="submit" class="go" value="Accept"/>
   </form>
 </td>
 <td class="c">
-  <form action="edit_campaign.php" method="post" style="margin:0px; padding:0px;">
+  <form action="view_campaign.php" method="post" style="margin:0px; padding:0px;">
     <input type="hidden" name="id" value="<?php echo $campaign->id; ?>"/>
     <input type="hidden" name="cancel_join" value="<?php echo $character['id']; ?>"/>
     <input type="submit" class="go" value="Decline"/>
@@ -173,7 +173,7 @@ if( count( $campaign->GetJoinRequests() ) > 0 ) {
 <h1>Invite Character</h1>
 <p>To invite a character to join this campaign, enter the character ID in the field, and click Invite.
    Invitations must be accepted by the character owner.</p>
-<form action="edit_campaign.php" method="post">
+<form action="view_campaign.php" method="post">
 <p>
   <input type="hidden" name="id" value="<?php echo $campaign->id; ?>"/>
   <input type="text" name="invite_character" class="quick" maxlength="20" />
