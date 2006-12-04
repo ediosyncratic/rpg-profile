@@ -111,6 +111,7 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
 
 <!-- Pending Characters -->
 <?php
+if( $sid->GetUserName() == $campaign->owner ) {
 if( count( $campaign->GetJoinRequests() ) > 0 ) {
 ?>
   <h1>Pending Characters<span class="notice"> <?php echo $update_invite; ?></span></h1>
@@ -166,7 +167,7 @@ if( count( $campaign->GetJoinRequests() ) > 0 ) {
     </tbody>
   </table>
 <?php
-} // if
+  } // if
 ?>
 
 <?php if( $campaign->open ) { ?>
@@ -180,5 +181,6 @@ if( count( $campaign->GetJoinRequests() ) > 0 ) {
   <input type="submit" value="Invite" class="go"/>
 </p>
 </form>
-<?php } ?>
-
+<?php } 
+  }
+?>
