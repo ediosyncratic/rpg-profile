@@ -27,14 +27,16 @@
 
   $campaign = new Campaign($id);
 
-  if( isset($_POST['invite_character'])) {
-    $update_invite = process_invite_character($campaign, (int) $_POST['invite_character']);
-  }
-  if( isset($_POST['cancel_join'])) {
-    $update_invite = process_cancel_join((int) $_POST['cancel_join']);
-  }
-  if( isset($_POST['accept_join_request'])) {
-    $update_char = process_accept_join($campaign, (int) $_POST['accept_join_request']);
+  if( $campaign->owner == $sid->GetUserName() ) {
+    if( isset($_POST['invite_character'])) {
+      $update_invite = process_invite_character($campaign, (int) $_POST['invite_character']);
+    }
+    if( isset($_POST['cancel_join'])) {
+      $update_invite = process_cancel_join((int) $_POST['cancel_join']);
+    }
+    if( isset($_POST['accept_join_request'])) {
+      $update_char = process_accept_join($campaign, (int) $_POST['accept_join_request']);
+    }
   }
 
   draw_page('view_campaign.php');
