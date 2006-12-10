@@ -25,7 +25,7 @@
   <?php
 
   $sheetVer = "0.3";
-  
+
   // Lists for skills and traits.
   require_once("Serenity_Include.php");
 
@@ -73,7 +73,7 @@ if( $firefox ) { echo '<!--'; } ?>
 
 
 <!-- Character -->
-  
+
 <div class="section">
 
 <table>
@@ -313,8 +313,8 @@ $skillName = str_replace(" ", "_", $skill);
 <td nowrap>d<input type="text" <?php getnv($skillName."Dice"); ?> class="skill"></td>
 </tr>
 
-  <?php 
-  for( $i = 1; $i <= 10; $i++ ) { 
+  <?php
+  for( $i = 1; $i <= 10; $i++ ) {
     $lineCount++;
     $maxLineCount = $lineCount > $maxLineCount ? $lineCount : $maxLineCount;
   ?>
@@ -324,10 +324,10 @@ $skillName = str_replace(" ", "_", $skill);
   <td nowrap>d<input type="text" <?php getnv($skillName."SpecDice".$i); ?> class="skill"></td>
   </tr>
 
-  <?php 
+  <?php
     if( ! isset($DATA[$skillName."Spec".$i]) ) {
 	break;
-    } // END IF 
+    } // END IF
   } // END FOR
   if( $skillNum == 12 ) {
     $lineCount = 0;
@@ -412,10 +412,9 @@ Display Background
 </table>
 
 </div>
-</div>
-
 
 <?php } ?>
+</div>
 
 
 

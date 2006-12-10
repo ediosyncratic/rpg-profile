@@ -1,0 +1,285 @@
+/*
+  main.css
+
+  3EProfiler (tm) character sheet source file.
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+  Defines the implementation of the 3EProfiler character sheet.
+*/
+
+/************************************************************************/
+
+/*
+  Define the html root element, all elements will inherit from this
+  element. Defining the td element is an Explorer hack.
+*/
+
+html {
+    font-size:  9px;
+    color:      black;
+    background-color: white;
+    font-family:    Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin:  auto;
+    width:    7in;
+}
+
+br.page {
+    page-break-before: always;
+}
+/* Stupid IE Crap */
+#maintable
+{
+  width: 100%;
+}
+#main
+{
+  width: 7in;
+}
+
+#maintable td
+{
+  font-size: 9px;
+  color: black;
+  background-color: white;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+/* Generic Input settings */
+table input {
+    border:     none;
+    border-bottom:  solid 1px black;
+    font-size:  14px;
+}
+
+.check {
+    border:     none;
+}
+
+input.large {
+    width:      150px;
+}
+
+input.medium {
+    width:      50px;
+}
+
+input.small {
+    width:      25px;
+}
+
+input.tiny {
+    text-align: center;
+    width:      15px;
+}
+
+input.skill {
+    font-size:  9px;
+}
+
+input.check {
+    width:      12px;
+    height:     12px;
+    border:     none;
+}
+
+input.mod,
+input.smod,
+input.mmod,
+input.lmod,
+input.tempmod {
+    width:      100%;
+    border:     solid 1px black;
+    text-align: center;
+}
+
+input.tempmod {
+    border:     solid 1px grey;
+}
+
+input.smod {
+    width:      28px;
+}
+
+input.mmod {
+    width:      48px;
+}
+
+input.lmod {
+    width:      68px;
+}
+
+input.borderless {
+    border:     none;
+    text-align: center;
+    padding:    0px;
+}
+
+input.left {
+    text-align: left;
+}
+
+textarea {
+    width:      100%;
+}
+
+/* Generic Heading Settings */
+h1 {
+    font-size:      15px;
+    background:     black;
+    color:          white;  
+    margin:         0px;
+    padding-left:   3px;
+    text-align:     left;
+    font-variant:   small-caps;
+    text-transform: lowercase;
+}
+
+
+#picDiv {
+    vertical-align: bottom;
+    border:         solid 1px black;
+    width:          125px;
+    height:         193px;
+}
+
+th, .caption {
+    text-align:     center;
+    font-size:      7px;
+    font-weight:    bold;
+    margin:         0px;
+    padding:        0px;
+}
+
+th.abilities {
+    width:          20%;
+}
+
+.caption {
+    text-align:     left;
+    font-size:      8px;
+}
+
+table.abilities,
+table.abilities-nb {
+    width:          100%;
+}
+
+table.abilities {
+    border-left:    solid 2px black;
+    border-spacing:   0px;
+}
+
+table.spaced {
+    border-spacing:   2px;
+}
+
+table.abilities td,
+table.abilities-nb td {
+    text-align:     center;
+    margin:         0px;
+    padding:        0px;
+}
+
+table.character {
+    width:          100%;
+}
+
+table.character td {
+    width:          12%;
+}
+
+td.label, 
+div.label, 
+div.header, 
+div.label-left,
+table.weapon tr.header td{
+    text-align:     center;
+    font-weight:    bold;
+    font-size:      11px;
+    background:     black;
+    color:          white;
+    margin:         0px;
+    padding:        3px 0px;
+}
+
+div.label-left {
+    text-align:     left;
+}
+
+div.header {
+    padding:        0px;
+    height:         100%;
+}
+
+/* ================================================== */
+/* ================================================== */
+/* WEAPONS AND ARMOR */
+
+table.weapon {
+  margin-top:       5px;
+  width:            100%;
+  border-spacing:   0px;
+  padding:          0px;
+  border-left:      solid 1px black;
+}
+
+table.weapon td {
+  padding:          0px;
+  border:           1px solid black;
+  text-align:       center;
+}
+
+table.weapon tr.header td{
+    padding:        0px;
+}
+
+/* ================================================== */
+/* ================================================== */
+
+.full {
+    width:          100%;
+}
+
+.quarter {
+    width:          25%;
+}
+
+.half {
+    width:          50%;
+}
+
+div.label {
+    padding:        3px 0px;
+}
+
+.section {
+    width:          100%;
+}
+
+/* Footer Settings */
+#footer td
+{
+  font-size: 9px;
+  background-color: white;
+  color: gray;
+}
+#save
+{
+  text-align: center;
+}

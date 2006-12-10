@@ -11,7 +11,7 @@
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
-  
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -24,7 +24,7 @@
   **
 -->
   <?php
-  
+
   // Textual help and links for english translation
   include_once("help_english.php");
 
@@ -88,7 +88,7 @@
     <input type="hidden" name="id" value="<?php echo $CHARID; ?>" />
     <input type="hidden" <?php getnv('LastSaveDate'); ?> />
   </div>
-<?php 
+<?php
 $agent = $_SERVER['HTTP_USER_AGENT'];
 $firefox = eregi("Firefox", $agent);
 if( $firefox ) { echo '<!--'; } ?>
@@ -152,7 +152,7 @@ if( $firefox ) { echo '<!--'; } ?>
           <table id="stats" cellspacing="0">
             <tr>
               <td rowspan="2" class="unit top">
-                
+
                 <table id="statblock">
                   <tr>
                     <td class="header">Ability</td>
@@ -214,7 +214,7 @@ if( $firefox ) { echo '<!--'; } ?>
 
               </td>
               <td colspan="2" class="top">
-                
+
                 <table id="hp">
                   <tr>
                     <td />
@@ -286,7 +286,7 @@ if( $firefox ) { echo '<!--'; } ?>
             </tr>
             <tr>
               <td class="unit bottom">
-                
+
                 <table id="init">
                   <tr>
                     <td class="tag"><?php GetStaticHelp( "TOUCH", $staticHelp ); ?></td>
@@ -327,7 +327,7 @@ if( $firefox ) { echo '<!--'; } ?>
 
               </td>
               <td rowspan="2">
-              
+
                 <table id="imgload">
                   <tr>
                     <td rowspan="7" class="piccell"><img id="pic" src="v3.5-DD/click.png" alt="Character Portrait" onclick="SetPic()" /></td>
@@ -359,12 +359,12 @@ if( $firefox ) { echo '<!--'; } ?>
                     <td><input type="text" <?php getnv('LiftPushDrag'); ?> /></td>
                   </tr>
                 </table>
-              
+
               </td>
             </tr>
             <tr>
               <td colspan="2" class="bottom">
-              
+
                 <table id="saves">
                   <tr>
                     <td class="header">Saving Throws</td>
@@ -506,7 +506,7 @@ if( $firefox ) { echo '<!--'; } ?>
               <td class="wide" align="left" nowrap>Weapons:
 
          <?php for ( $i = 1; $i <= 4; $i++ ) { ?>
-<input type="checkbox" <?php getnc('Wep'.$i.'Disp'); ?> onchange="ToggleDisplay('we<?php echo $i ?>', this);" style="width:15px; border:none;"/>
+<input type="checkbox" <?php getnc('Wep'.$i.'Disp'); ?> onclick="ToggleDisplay('we<?php echo $i ?>', this);" style="width:15px; border:none;"/>
          <?php } ?>
    <!--     </tr></table>-->
       </td>
@@ -528,12 +528,12 @@ if( $firefox ) { echo '<!--'; } ?>
               <td />
               <td class="wide" nowrap>Armor:&nbsp;&nbsp;&nbsp;&nbsp;
          <?php for ( $i = 1; $i <= 4; $i++ ) { ?>
-<input type="checkbox" <?php getnc('Arm'.$i.'Disp'); ?> onchange="ToggleDisplay('ar<?php echo $i ?>', this);" style="width:15px; border:none;"/>
+<input type="checkbox" <?php getnc('Arm'.$i.'Disp'); ?> onclick="ToggleDisplay('ar<?php echo $i ?>', this);" style="width:15px; border:none;"/>
          <?php } ?>
                 </td>
             </tr>
           </table> <!-- main -->
-          
+
           <!--
             table.weapon are weapon slots.
           -->
@@ -731,7 +731,7 @@ if( $firefox ) { echo '<!--'; } ?>
                       <input class="text" type="text" <?php getnv($skillName . 'CheckPen'); ?>
                              onchange="SkillCalc(this)" readonly />
                     </td>
-      
+
                   </tr>
 
                   <?php
@@ -772,7 +772,7 @@ if( $firefox ) { echo '<!--'; } ?>
                   </tr>
                   <tr>
                     <td>
-                      
+
                       <!--
                         Keep each column in a table to enforce a vertical tab order.
                         It's easier to do this rather than specify the tab order of
@@ -801,7 +801,7 @@ if( $firefox ) { echo '<!--'; } ?>
                             // After the 15th feat start a new table.
                            if ( $i == 15 ) {
                            ?>
-                             
+
                              </table>
                              </td><td>
                              <table cellspacing="0">
@@ -811,7 +811,7 @@ if( $firefox ) { echo '<!--'; } ?>
                         ?>
 
                       </table>
-                    
+
                     </td>
 
                   </tr>
@@ -844,9 +844,9 @@ if( $firefox ) { echo '<!--'; } ?>
               </td>
             </tr>
           </table> <!-- skillsandgear -->
-          
-          <input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;"/> 
-          Display Spells &amp; Powers  
+
+          <input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;"/>
+          Display Spells &amp; Powers
           <div id="magic">
 
           <p style="page-break-before: always; "/>

@@ -27,12 +27,6 @@
 // automatically closes the windows when the page exits.
 var child_windows = new Array();
 
-// In this version, autocalc is never disabled.
-function disable_autocalc()
-{
-  return false;
-}
-
 // string Add(...)
 // Accepts any number of arguments. Each argument is parsed for integers
 // and the function returns the sum. A zero value is assumed for an
@@ -141,11 +135,11 @@ function Show(node, show)
 // value for an integer fails, a zero will be entered.
 function ZeroFill()
 {
-  if (disable_autocalc())
-    return;
-  for (var i = 0; i < arguments.length; i++)
-    if (isNaN(parseInt(arguments[i].value)))
+  for (var i = 0; i < arguments.length; i++) {
+    if (isNaN(parseInt(arguments[i].value))) {
       arguments[i].value = 0;
+    }
+  }
 }
 
 // string Trim( str )
@@ -158,9 +152,10 @@ function Trim( str )
 function ToggleDisplay( id, tick ) 
 {
   var obj = GetObject(id);
+  
   if( obj != null ) {
-    var state = tick.checked ? "block" : "none";
-    obj.style.display = state;
+      var state = tick.checked ? "block" : "none";
+      obj.style.display = state;
   }
 
 }
