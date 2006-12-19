@@ -89,6 +89,7 @@ input.tiny {
 }
 
 input.skill {
+    text-align: center;
     font-size:  9px;
 }
 
@@ -132,6 +133,10 @@ input.borderless {
 
 input.left {
     text-align: left;
+}
+
+input.center {
+    text-align: center;
 }
 
 textarea {

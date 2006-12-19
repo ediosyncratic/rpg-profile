@@ -43,6 +43,7 @@
     <script type="text/javascript" src="./d20Modern/general.js"></script>
     <script type="text/javascript" src="./d20Modern/sheet.js"></script>
     <script type="text/javascript" src="./d20Modern/pic.js"></script>
+    <script type="text/javascript" src="./d20Modern/calcs.js"></script>
   </head>
   <body onload="init()" onunload="cleanup()">
   <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
@@ -180,20 +181,20 @@ if( $firefox ) { echo '<!--'; } ?>
 
 <tr>
 <td class="label"><div class="label">&nbsp;DEFENSE&nbsp;</div></td>
-<td><input type="text" <?php getnv("Defense"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("Defense"); ?> class="smod" readonly></td>
 <td>=</td>
 <td nowrap><b>10 +</b></td>
-<td nowrap><input type="text" <?php getnv("DefenseClass"); ?> class="smod"></td>
+<td nowrap><input type="text" <?php getnv("DefenseClass"); ?> class="smod" onchange="updateDefense();"></td>
 <td>+</td>
-<td nowrap><input type="text" <?php getnv("DefenseEquipment"); ?> class="smod"></td>
+<td nowrap><input type="text" <?php getnv("DefenseEquipment"); ?> class="smod" onchange="updateDefense();"></td>
 <td>+</td>
 <td nowrap><input type="text" <?php getnv("DefenseDexterity"); ?> class="smod" readonly></td>
 <td>+</td>
-<td nowrap><input type="text" <?php getnv("DefenseSize"); ?> class="smod"></td>
+<td nowrap><input type="text" <?php getnv("DefenseSize"); ?> class="smod" onchange="updateDefense();"></td>
 <td>+</td>
-<td nowrap><input type="text" <?php getnv("DefenseMisc"); ?> class="smod"></td>
+<td nowrap><input type="text" <?php getnv("DefenseMisc"); ?> class="smod" onchange="updateDefense();"></td>
 <td>&nbsp;</td>
-<td nowrap><input type="text" <?php getnv("DefenseArmor"); ?> class="smod"></td>
+<td nowrap><input type="text" <?php getnv("DefenseArmor"); ?> class="smod" onchange="updateDefense();"></td>
 </tr>
 
 <tr>
@@ -248,17 +249,17 @@ if( $firefox ) { echo '<!--'; } ?>
 
 <tr>
 <td class="label"><div class="label">&nbsp;INITIATIVE&nbsp;</div></td>
-<td nowrap><input type="text" <?php getnv("Init"); ?> class="mmod"></td>
+<td nowrap><input type="text" <?php getnv("Init"); ?> class="mmod" readonly></td>
 <td>=</td>
 <td nowrap><input type="text" <?php getnv("InitDex"); ?> class="mmod" readonly></td>
 <td>+</td>
-<td nowrap><input type="text" <?php getnv("InitMisc"); ?> class="mmod"></td>
+<td nowrap><input type="text" <?php getnv("InitMisc"); ?> class="mmod" onchange="updateInitiative();"></td>
 </tr>
 
 <tr>
 <td colspan="2" nowrap class="label"><div class="label">&nbsp;BASE ATTACK&nbsp;</div></td>
 <td></td>
-<td colspan="3"><input type="text" <?php getnv("BaseAttack"); ?> class="mod"></td>
+<td colspan="3"><input type="text" <?php getnv("BaseAttack"); ?> class="mod" onchange="updateBaseAttack();"></td>
 </tr>
 
 <tr>
@@ -323,28 +324,28 @@ if( $firefox ) { echo '<!--'; } ?>
 
 <tr>
 <td class="label"><div class="label">MELEE</div></td>
-<td><input type="text" <?php getnv("MeleeAttack"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("MeleeAttack"); ?> class="smod" readonly></td>
 <td>=</td>
-<td><input type="text" <?php getnv("MeleeBase"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("MeleeBase"); ?> class="smod" readonly></td>
 <td>+</td>
 <td><input type="text" <?php getnv("MeleeStrength"); ?> class="smod" readonly></td>
 <td>+</td>
-<td><input type="text" <?php getnv("MeleeSize"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("MeleeSize"); ?> class="smod" onchange="updateMeleeAttack();"></td>
 <td>+</td>
-<td><input type="text" <?php getnv("MeleeMisc"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("MeleeMisc"); ?> class="smod" onchange="updateMeleeAttack();"></td>
 </tr>
 
 <tr>
 <td class="label"><div class="label">RANGED</div></td>
-<td><input type="text" <?php getnv("RangedAttack"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("RangedAttack"); ?> class="smod" readonly></td>
 <td>=</td>
-<td><input type="text" <?php getnv("RangedBase"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("RangedBase"); ?> class="smod" readonly></td>
 <td>+</td>
 <td><input type="text" <?php getnv("RangedDexterity"); ?> class="smod" readonly></td>
 <td>+</td>
-<td><input type="text" <?php getnv("RangedSize"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("RangedSize"); ?> class="smod" onchange="updateRangedAttack();"></td>
 <td>+</td>
-<td><input type="text" <?php getnv("RangedMisc"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("RangedMisc"); ?> class="smod" onchange="updateRangedAttack();"></td>
 </tr>
 
 <tr>
@@ -386,33 +387,33 @@ if( $firefox ) { echo '<!--'; } ?>
 
 <tr>
 <td class="label"><div class="label">&nbsp;FORTITUDE&nbsp;</div></td>
-<td><input type="text" <?php getnv("FortSave"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("FortSave"); ?> class="smod" readonly></td>
 <td>=</td>
-<td><input type="text" <?php getnv("FortBase"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("FortBase"); ?> class="smod" onchange="updateFortitudeSave();"></td>
 <td>+</td>
 <td><input type="text" <?php getnv("FortAbility"); ?> class="smod" readonly></td>
 <td>+</td>
-<td><input type="text" <?php getnv("FortMisc"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("FortMisc"); ?> class="smod" onchange="updateFortitudeSave();"></td>
 </tr>
 <tr>
 <td class="label"><div class="label">&nbsp;REFLEX&nbsp;</div></td>
-<td><input type="text" <?php getnv("ReflexSave"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("ReflexSave"); ?> class="smod" readonly></td>
 <td>=</td>
-<td><input type="text" <?php getnv("ReflexBase"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("ReflexBase"); ?> class="smod" onchange="updateReflexSave();"></td>
 <td>+</td>
 <td><input type="text" <?php getnv("ReflexAbility"); ?> class="smod" readonly></td>
 <td>+</td>
-<td><input type="text" <?php getnv("ReflexMisc"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("ReflexMisc"); ?> class="smod" onchange="updateReflexSave();"></td>
 </tr>
 <tr>
 <td class="label"><div class="label">&nbsp;WILL&nbsp;</div></td>
-<td><input type="text" <?php getnv("WillSave"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("WillSave"); ?> class="smod" readonly></td>
 <td>=</td>
-<td><input type="text" <?php getnv("WillBase"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("WillBase"); ?> class="smod" onchange="updateWillSave();"></td>
 <td>+</td>
 <td><input type="text" <?php getnv("WillAbility"); ?> class="smod" readonly></td>
 <td>+</td>
-<td><input type="text" <?php getnv("WillMisc"); ?> class="smod"></td>
+<td><input type="text" <?php getnv("WillMisc"); ?> class="smod" onchange="updateWillSave();"></td>
 </tr>
 
 </table>
@@ -545,19 +546,21 @@ if( $firefox ) { echo '<!--'; } ?>
 		<th></th>
 		<th>MISC</th>
 	</tr>
-<?php for( $i = 1; $i <= $skillCount; $i++ ) { ?>
+<?php for( $i = 1; $i <= $skillCount; $i++ ) {
+        $skillName = sprintf( "Skill%02d", $i );
+?>
 
 	<tr>
 		<td><input type="checkbox" <?php getnv("SkillClass".$i); ?> class="check" style="width:10px;"></td>
-		<td><input type="text" <?php getnv("Skill".$i); ?> class="large skill"></td>
-		<td><input type="text" <?php getnv("SkillAbility".$i); ?> class="small skill"></td>
-		<td><input type="text" <?php getnv("SkillTotal".$i); ?> class="small skill"></td>
+		<td><input type="text" <?php getnv($skillName); ?> class="large skill left" onchange="updateSkill(this);"></td>
+		<td><input type="text" <?php getnv($skillName."Ability"); ?> class="small skill center" onchange="updateSkill(this);"></td>
+		<td><input type="text" <?php getnv($skillName."Total"); ?> class="small skill center" readonly></td>
 		<td>=</td>
-		<td><input type="text" <?php getnv("SkillMod".$i); ?> class="small skill"></td>
+		<td><input type="text" <?php getnv($skillName."Mod"); ?> class="small skill center" readonly></td>
 		<td>+</td>
-		<td><input type="text" <?php getnv("SkillRank".$i); ?> class="small skill"></td>
+		<td><input type="text" <?php getnv($skillName."Rank"); ?> class="small skill center" onchange="updateSkill(this);"></td>
 		<td>+</td>
-		<td><input type="text" <?php getnv("SkillMisc".$i); ?> class="small skill"></td>
+		<td><input type="text" <?php getnv($skillName."Misc"); ?> class="small skill center" onchange="updateSkill(this);"></td>
 	</tr>
 
 <?php } ?>

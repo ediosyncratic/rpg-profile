@@ -57,10 +57,25 @@ function applyAbility(nodename) {
       eval("update" + ability + "('" + Clean(sheet()[ability + "Mod"].value) + "')");
     }
   }
+  
+  updateSkills(ability);
+}
+
+function getAbilityMod(name) {
+    var ability = name.substr(0,3).toLowerCase();
+    ability = name.substr(0,1).toUpperCase() + name.substr(1,2);
+    
+    var val = String(sheet()[ability + "TempMod"].value).length > 0
+                     ? sheet()[ability + "TempMod"].value
+                     : sheet()[ability + "Mod"].value;
+    
+    return Clean(val);
 }
 
 function updateStr(val) {
     sheet().MeleeStrength.value = val;
+    
+    updateMeleeAttack();
 }
 
 function updateDex(val) {
@@ -68,10 +83,17 @@ function updateDex(val) {
     sheet().InitDex.value = val;
     sheet().DefenseDexterity.value = val;
     sheet().ReflexAbility.value = val;
+    
+    updateDefense();
+    updateInitiative();
+    updateRangedAttack();
+    updateReflexSave();
 }
 
 function updateCon(val) {
     sheet().FortAbility.value = val;
+    
+    updateFortitudeSave();
 }
 
 function updateInt(val) {
@@ -80,6 +102,8 @@ function updateInt(val) {
 
 function updateWis(val) {
     sheet().WillAbility.value = val;
+    
+    updateWillSave();
 }
 
 function updateCha(val) {
