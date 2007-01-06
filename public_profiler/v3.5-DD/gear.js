@@ -49,7 +49,7 @@ function CalcWeight()
   {
      // If the armor is flagged as not carried, then don't add it to the weight.
      if ( !sheet()["Armor" + i + "Carried"].checked )
-	     continue;
+         continue;
 
      var num = parseFloat(sheet()["Armor" + i + "Weight"].value);
      if (isNaN(num))
@@ -61,12 +61,12 @@ function CalcWeight()
   for ( var i = 1; i <= 4; i++ )
   {
     if ( sheet()[ "Weapon" + i + "Carried" ].checked )
-	 {
+     {
       var num = parseFloat(sheet()["Weapon" + i + "Weight"].value);
       if (isNaN(num))
          num = 0.0;
       total += num;
-	 }
+     }
   }
 
   sheet().TotalWeight.value = total.toFixed(1);
@@ -75,33 +75,33 @@ function CalcWeight()
   // color of "Total Weight", Speed, and DexMod input fields to red.
   if ( Clean( sheet().TotalWeight.value ) > Clean( sheet().LightLoad.value ) )
   {
-	 debug.trace("Character is encumbered.");					  
-	 var maxDexMod = 99;
+     debug.trace("Character is encumbered.");                     
+     var maxDexMod = 99;
 
     if ( Clean( sheet().TotalWeight.value ) > Clean( sheet().MediumLoad.value ) )
-	 {
+     {
            maxDexMod = 1;
            sheet().TotalWeight.title = "Check penalty of -6 while encumbered";
-	 }
-	 else
-	 {
+     }
+     else
+     {
            maxDexMod = 3;
            sheet().TotalWeight.title = "Check penalty of -3 while encumbered";
-	 }
+     }
 
-	 debug.trace("MaxDexMod = " + maxDexMod + " DexMod = " + Clean( sheet().DexMod.value ) );
-	 if ( Clean( sheet().DexMod.value ) > maxDexMod )
-	 {
+     debug.trace("MaxDexMod = " + maxDexMod + " DexMod = " + Clean( sheet().DexMod.value ) );
+     if ( Clean( sheet().DexMod.value ) > maxDexMod )
+     {
            sheet().DexMod.title = "Max dex bonus to AC is +" + maxDexMod + " while encumbered.";
            sheet().DexMod.style.color           = "white";
            sheet().DexMod.style.backgroundColor = "red";
-	 }
-	 else
-	 {
+     }
+     else
+     {
            sheet().DexMod.title = sheet().DexMod.value;
            sheet().DexMod.style.color           = "black";
-	   sheet().DexMod.style.backgroundColor = "white";
-	 }
+       sheet().DexMod.style.backgroundColor = "white";
+     }
 
     sheet().TotalWeight.style.color           = "white";
     sheet().TotalWeight.style.backgroundColor = "red";
@@ -114,17 +114,17 @@ function CalcWeight()
   }
   else
   {
-    sheet().TotalWeight.title 					 = sheet().TotalWeight.value;
+    sheet().TotalWeight.title                    = sheet().TotalWeight.value;
     sheet().TotalWeight.style.color           = "black";
-	 sheet().TotalWeight.style.backgroundColor = "white";
+     sheet().TotalWeight.style.backgroundColor = "white";
 
-    sheet().DexMod.title      			  = sheet().DexMod.value;
+    sheet().DexMod.title                  = sheet().DexMod.value;
     sheet().DexMod.style.color           = "black";
-	 sheet().DexMod.style.backgroundColor = "white";
+     sheet().DexMod.style.backgroundColor = "white";
 
-    sheet().Speed.title 					 = sheet().Speed.value;
+    sheet().Speed.title                      = sheet().Speed.value;
     sheet().Speed.style.color           = "black";
-	 sheet().Speed.style.backgroundColor = "white";
+     sheet().Speed.style.backgroundColor = "white";
   }
 
 
@@ -148,21 +148,21 @@ function ChangeWeapon( wielded )
 
   if ( wielded )
   {
-  	 source = "Wielded";
-	 target = "Carried";
-	 value  = true;
+     source = "Wielded";
+     target = "Carried";
+     value  = true;
   }
   else
   {
-  	 source = "Carried";
-	 target = "Wielded";
-	 value  = false;
+     source = "Carried";
+     target = "Wielded";
+     value  = false;
   }
 
   for ( var i = 1; i <= 4; i++ )
   {
     if ( sheet()[ "Weapon" + i + source ].checked == value )
-	    sheet()[ "Weapon" + i + target ].checked = value;
+        sheet()[ "Weapon" + i + target ].checked = value;
   }
 
   // We need to call this because we may have changed the 'carried' flag
@@ -183,6 +183,10 @@ function SumCash()
   total += (parseInt(sheet()["CashSP"].value) / 10);
   total += (parseInt(sheet()["CashCP"].value) / 100);
 
+  total *= 100;
+  total = Math.round(total);
+  total /= 100;
+
   sheet()["CashTotal"].value = total;
 
   ZeroFill(sheet()["CashPPParty"]);
@@ -195,6 +199,10 @@ function SumCash()
   total += (parseInt(sheet()["CashGPParty"].value));
   total += (parseInt(sheet()["CashSPParty"].value) / 10);
   total += (parseInt(sheet()["CashCPParty"].value) / 100);
+
+  total *= 100;
+  total = Math.round(total);
+  total /= 100;
 
   sheet()["CashTotalParty"].value = total;
 

@@ -139,6 +139,10 @@ input.center {
     text-align: center;
 }
 
+a.sort {
+    color:      black;
+}
+
 textarea {
     width:      100%;
 }

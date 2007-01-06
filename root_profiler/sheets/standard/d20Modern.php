@@ -44,6 +44,9 @@
     <script type="text/javascript" src="./d20Modern/sheet.js"></script>
     <script type="text/javascript" src="./d20Modern/pic.js"></script>
     <script type="text/javascript" src="./d20Modern/calcs.js"></script>
+    <script type="text/javascript" src="./d20Modern/gear.js"></script>
+    <script type="text/javascript" src="./d20Modern/sort.js"></script>
+    <script type="text/javascript" src="./d20Modern/skills.js"></script>
   </head>
   <body onload="init()" onunload="cleanup()">
   <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
@@ -533,11 +536,11 @@ if( $firefox ) { echo '<!--'; } ?>
 
 <?php $skillCount = 50; ?>
 
-<table class="abilities">
+<table id="skills" class="abilities">
 	<tr>
 		<th>CLS</th>
-		<th>SKILL</th>
-		<th>ABILITY</th>
+		<th><a class="sort" href="javascript:SkillSort(Sort.ByName);">SKILL</a></th>
+		<th><a class="sort" href="javascript:SkillSort(SkillSort.ByAbility);">ABILITY</a></th>
 		<th>TOT</th>
 		<th></th>
 		<th>MOD</th>
@@ -579,22 +582,24 @@ if( $firefox ) { echo '<!--'; } ?>
 
 <table class="abilities">
 <tr>
+	<?php $gearTable = 0; ?>
 	<?php for( $i = 1; $i <= $gearCount; $i++ ) { ?>
-
 		<?php if( $i % ($gearCount / 2) == 1 ) { ?>
 			<td>
-				<table class="abilities-nb">
+				<table id="gear<?php echo $gearTable; ?>" class="abilities-nb">
 					<tr class="label">
-						<th class="full">ITEM</th><th>WEIGHT</th>
+						<th class="full"><a class="sort" href="javascript:GearSort(Sort.ByName);">ITEM</a></th>
+						<th><a class="sort" href="javascript:GearSort(Sort.ByWeight);">WEIGHT</a></th>
 					</tr>
 		<?php } ?>
 
 					<tr>
-						<td><input type="text" <?php getnv("Gear".$i); ?> class="full skill"></td>
+						<td><input type="text" <?php getnv("Gear".$i); ?> class="full skill left"></td>
 						<td><input type="text" <?php getnv("GearWeight".$i); ?> class="small skill"></td>
 					</tr>
 
 		<?php if( $i % ($gearCount / 2) == 0 ) { ?>
+			<?php $gearTable++; ?>
 				</table>
 			</td>
 		<?php } ?>
@@ -621,7 +626,7 @@ if( $firefox ) { echo '<!--'; } ?>
 <?php } ?>
 
 	<tr>
-		<td><input type="text" <?php getnv("Feat".$i); ?> class="full skill"></td>
+		<td><input type="text" <?php getnv("Feat".$i); ?> class="full skill left"></td>
 	</tr>
 
 <?php if( $i % ($featCount / 2) == 0 ) { ?>
@@ -653,7 +658,7 @@ if( $firefox ) { echo '<!--'; } ?>
 <?php } ?>
 
 	<tr>
-		<td><input type="text" <?php getnv("Allegiance".$i); ?> class="full skill"></td>
+		<td><input type="text" <?php getnv("Allegiance".$i); ?> class="full skill left"></td>
 	</tr>
 
 <?php if( $i % ($allegianceCount / 2) == 0 ) { ?>
@@ -689,7 +694,7 @@ if( $firefox ) { echo '<!--'; } ?>
 <?php } ?>
 
 	<tr>
-		<td><input type="text" <?php getnv("Language".$i); ?> class="full skill"></td>
+		<td><input type="text" <?php getnv("Language".$i); ?> class="full skill left"></td>
 		<td><input type="text" <?php getnv("LanguageRW".$i); ?> class="small skill"></td>
 	</tr>
 
@@ -726,9 +731,9 @@ if( $firefox ) { echo '<!--'; } ?>
 <?php for( $i = 1; $i <= $fxCount; $i++ ) { ?>
 
 <tr>
-<td><input type="text" <?php getnv("Arcane".$i); ?> class="full skill"></td>
-<td><input type="text" <?php getnv("Divine".$i); ?> class="full skill"></td>
-<td><input type="text" <?php getnv("Psionic".$i); ?> class="full skill"></td>
+<td><input type="text" <?php getnv("Arcane".$i); ?> class="full skill left"></td>
+<td><input type="text" <?php getnv("Divine".$i); ?> class="full skill left"></td>
+<td><input type="text" <?php getnv("Psionic".$i); ?> class="full skill left"></td>
 </tr>
 
 <?php } ?>
@@ -751,7 +756,7 @@ if( $firefox ) { echo '<!--'; } ?>
 	<?php } ?>
 
 	<tr>
-	<td><input type="text" <?php getnv("Talent".$i); ?> class="full skill"></td>
+	<td><input type="text" <?php getnv("Talent".$i); ?> class="full skill left"></td>
 	</tr>
 
 	<?php if( $i % ($talentCount / 2) == 0 ) { ?>
