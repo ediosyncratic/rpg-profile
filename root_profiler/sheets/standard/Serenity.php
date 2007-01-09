@@ -136,7 +136,7 @@ if( $firefox ) { echo '<!--'; } ?>
 <table class="attributes">
 <tr>
 <td class="label">LifePoints</td>
-<td><input type="text" <?php getnv("LifePoints"); ?> class="medium" onchange="updateLife();" readonly></td>
+<td><input type="text" <?php getnv("LifePoints"); ?> class="medium" onchange="updateLife();"></td>
 </tr>
 <tr>
 <td class="label">Initiative</td>

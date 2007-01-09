@@ -10,7 +10,7 @@ function updateAttributes() {
   sheet().Initiative1.value = sheet().Agility.value;
   sheet().Initiative2.value = sheet().Alertness.value;
  
-  sheet().LifePoints.value = Add(sheet().Vitality.value, sheet().Willpower.value);
+//  sheet().LifePoints.value = Add(sheet().Vitality.value, sheet().Willpower.value);
 
   // See if life stuff needs to change
   updateLife();
