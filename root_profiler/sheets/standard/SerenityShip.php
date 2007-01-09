@@ -42,9 +42,8 @@
       }
     </style>
     <script type="text/javascript">var READONLY = <?php echo $READONLY ? "true" : "false"; ?>;</script>
-    <script type="text/javascript" src="./Serenity/attributes.js"></script>
     <script type="text/javascript" src="./Serenity/general.js"></script>
-    <script type="text/javascript" src="./Serenity/sheet.js"></script>
+    <script type="text/javascript" src="./Serenity/ship.js"></script>
     <script type="text/javascript" src="./Serenity/pic.js"></script>
   </head>
   <body onload="init()" onunload="cleanup()">
@@ -110,50 +109,50 @@ if( $firefox ) { echo '<!--'; } ?>
 <table class="attributes">
 <tr>
 <td class="label">Agility</td>
-<td>d<input type="text" <?php getnv("Agility"); ?> class="medium" onchange="updateAttributes();"></td>
+<td>d<input type="text" <?php getnv("Agility"); ?> class="medium"></td>
 </tr>
 <tr>
 <td class="label">Strength</td>
-<td>d<input type="text" <?php getnv("Strength"); ?> class="medium" onchange="updateAttributes();"></td>
+<td>d<input type="text" <?php getnv("Strength"); ?> class="medium"></td>
 </tr>
 <tr>
 <td class="label">Vitality</td>
-<td>d<input type="text" <?php getnv("Vitality"); ?> class="medium" onchange="updateAttributes();"></td>
+<td>d<input type="text" <?php getnv("Vitality"); ?> class="medium"></td>
 </tr>
 <tr>
 <td class="label">Alertness</td>
-<td>d<input type="text" <?php getnv("Alertness"); ?> class="medium" onchange="updateAttributes();"></td>
+<td>d<input type="text" <?php getnv("Alertness"); ?> class="medium"></td>
 </tr>
 <tr>
 <td class="label">Intelligence</td>
-<td>d<input type="text" <?php getnv("Intelligence"); ?> class="medium" onchange="updateAttributes();"></td>
+<td>d<input type="text" <?php getnv("Intelligence"); ?> class="medium"></td>
 </tr>
 <tr>
 <td class="label">Willpower</td>
-<td>d<input type="text" <?php getnv("Willpower"); ?> class="medium" onchange="updateAttributes();"></td>
+<td>d<input type="text" <?php getnv("Willpower"); ?> class="medium"></td>
 </tr>
 </table>
 
 <table class="attributes">
 <tr>
 <td class="label">Life Points</td>
-<td><input type="text" <?php getnv("LifePoints"); ?> class="medium" onchange="updateLife();"></td>
+<td><input type="text" <?php getnv("LifePoints"); ?> class="medium"></td>
 </tr>
 <tr>
 <td class="label">Wound</td>
-<td><input type="text" <?php getnv("Wound"); ?> class="medium" onchange="updateLife();"></td>
+<td><input type="text" <?php getnv("Wound"); ?> class="medium"></td>
 </tr>
 <tr>
 <td class="label">Stun</td>
-<td><input type="text" <?php getnv("Stun"); ?> class="medium" onchange="updateLife();"></td>
+<td><input type="text" <?php getnv("Stun"); ?> class="medium"></td>
 </tr>
 <tr>
 <td class="label">Cruise</td>
-<td><input type="text" <?php getnv("Cruise"); ?> class="medium" onchange="updateLife();"></td>
+<td><input type="text" <?php getnv("Cruise"); ?> class="medium"></td>
 </tr>
 <tr>
 <td class="label">Hard Burn</td>
-<td><input type="text" <?php getnv("HardBurn"); ?> class="medium" onchange="updateLife();"></td>
+<td><input type="text" <?php getnv("HardBurn"); ?> class="medium"></td>
 </tr>
 </table>
 
