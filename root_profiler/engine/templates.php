@@ -29,6 +29,7 @@
 
   require_once('db.php');
   require_once(dirname(__FILE__) . '/../error.php');
+  include_once("$INCLUDE_PATH/engine/campaign.class.php");
 
   // Return an array of hashes of available templates. Each hash has the keys
   // 'id', 'name', and 'filename'. May produce a terminal error if db query
@@ -169,8 +170,8 @@
     global $LOGO;
     return $LOGO;
   }
- 
-  function getTitle() { 
+
+  function getTitle() {
     global $title;
     return $title;
   }

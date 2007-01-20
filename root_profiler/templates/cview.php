@@ -43,10 +43,9 @@ if( count( $characters ) > 0 ) {
         <th>ID</th>
         <th>Public</th>
         <th>Edited</th>
-        <th>Editor</th>
         <th>Template</th>
         <th>Campaign</th>
-        <th>Modify</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -58,14 +57,13 @@ if( count( $characters ) > 0 ) {
         <td class="c"><?php echo $character['id']; ?></td>
         <td class="c"><?php echo $character['public'] == 'y' ? 'Yes' : 'No'; ?></td>
         <td class="c"><?php echo $character['lastedited']; ?></td>
-        <td class="c"><?php echo $character['editedby']; ?></td>
-        <td class="c"><?php echo $character['template']; ?></td>
+        <td class="c" nowrap><?php echo $character['template']; ?></td>
         <td class="c">
           <?php if( $character['campaign'] ) { ?>
             <a href="view_campaign.php?id=<?php echo $character['campaign_id']; ?>"><?php echo $character['campaign']; ?></a>
           <?php } ?>
         </td>
-        <td><a href="char.php?id=<?php echo $character['id']; ?>">Details</a></td>
+        <td><a href="char.php?id=<?php echo $character['id']; ?>">Edit</a></td>
       </tr>
 <?php
   }
@@ -96,10 +94,9 @@ if( count( $icharacters ) > 0 ) {
         <th>ID</th>
         <th>Public</th>
         <th>Edited</th>
-        <th>Editor</th>
         <th>Template</th>
         <th>Campaign</th>
-        <th>Modify</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -111,14 +108,13 @@ if( count( $icharacters ) > 0 ) {
         <td class="c"><?php echo $character['id']; ?></td>
         <td class="c"><?php echo $character['public'] == 'y' ? 'Yes' : 'No'; ?></td>
         <td class="c"><?php echo $character['lastedited']; ?></td>
-        <td class="c"><?php echo $character['editedby']; ?></td>
-        <td class="c"><?php echo $character['template']; ?></td>
+        <td class="c" nowrap><?php echo $character['template']; ?></td>
         <td class="c">
           <?php if( $character['campaign'] ) { ?>
             <a href="view_campaign.php?id=<?php echo $character['campaign_id']; ?>"><?php echo $character['campaign']; ?></a>
           <?php } ?>
         </td>
-        <td><a href="char.php?id=<?php echo $character['id']; ?>">Details</a></td>
+        <td><a href="char.php?id=<?php echo $character['id']; ?>">Edit</a></td>
       </tr>
 <?php } ?>
     </tbody>

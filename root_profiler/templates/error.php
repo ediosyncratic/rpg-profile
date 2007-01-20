@@ -35,6 +35,6 @@
 </p>
 <p>
   Use your browser's <a href="javascript:history.back(1);">back</a> button
-  to go back to the previous page. If this error persists, you may wich to
+  to go back to the previous page. If this error persists, you may wish to
   contact the <a href="<?echo getUriWebmaster(); ?>">site operator</a>.
 </p>

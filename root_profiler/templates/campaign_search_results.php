@@ -29,11 +29,11 @@ global $campaigns, $nextpage, $prevpage, $name, $type;
 </table>
 
 <?php if( $prevpage ) { ?>
-  <a href="search.php?type=<?php echo $type; ?>&amp;cname=<?php echo $name; ?>&amp;page=<?php echo $prevpage; ?>">&lt; Previous</a>
+  <a href="campaign_search.php?type=<?php echo $type; ?>&amp;cname=<?php echo $name; ?>&amp;page=<?php echo $prevpage; ?>">&lt; Previous</a>
   <?php if( $nextpage ) { echo '|'; } ?>
 <?php } ?>
 <?php if( $nextpage ) { ?>
-  <a href="search.php?type=<?php echo $type; ?>&amp;cname=<?php echo $name; ?>&amp;page=<?php echo $nextpage; ?>">Next &gt;</a>
+  <a href="campaign_search.php?type=<?php echo $type; ?>&amp;cname=<?php echo $name; ?>&amp;page=<?php echo $nextpage; ?>">Next &gt;</a>
 <?php } ?>
 <br><br>
 <h1>Campaign Search</h1>

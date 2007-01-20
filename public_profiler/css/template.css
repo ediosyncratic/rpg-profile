@@ -86,11 +86,41 @@ html {
   font-size: 14px;
 }
 
+#quickMenu {
+    color: #c0c0c0;
+    line-height: 1.5em;
+    padding: 0 1em 1ex 1em;
+    border: solid 1px black;
+
+    line-height: 1.5em;
+    width: 80px;
+    vertical-align: top;
+}
+
+#quickMenu a {
+    color: #c0c0c0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#quickMenu a.short {
+    color: #c0c0c0;
+    font-size: 9px;
+    font-weight: normal;
+}
+
 #bodyText {
   line-height: 1.5em;
   margin: 10mm 10.5em 0 10.5em;
   padding: 0 1em 1ex 1em;
   min-width: 35em;
+  vertical-align: top;
+}
+
+#bodyTable {
+  margin: 0px; 
+  padding: 0px;
+  width: 100%;
 }
 
 #bodyText p, #bodyText dl, #bodyText ul {
@@ -238,7 +268,6 @@ table.clist td.c {
 .headerLinks a:hover {
   text-decoration: underline;
 }
-
 
 /* ###### Side Box ###### */
 
