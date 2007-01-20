@@ -9,6 +9,21 @@
 ?>
 <h1>RPG Web Profiler News</h1>
 
+<h2>v0.6.0 Development</h2>
+
+<h4>Functionality Updates</h4>
+<ul>
+<li>Changed nav menu to left side-bar when logged in.</li>
+<li>Added quick links to characters and campaigns.</li>
+<li>
+</ul>
+
+<h4>Character Sheet Updates</h4>
+<ul>
+<li>Added new d20 Modern character sheet</li>
+<li>Minor fixes in Serenity and 3.5e sheets</li>
+</ul>
+
 <h2>2 December 2006 - v0.5.0 Released</h2>
 
 <h4>Functionality Updates</h4>
