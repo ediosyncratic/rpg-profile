@@ -133,7 +133,7 @@ var skillAttributes = {
   'craft':                    [  true,          false        ],
   'decipher script':          [  false,         false        ],
   'diplomacy':                [  true,          false        ],
-  'disable device':           [  true,          false        ],
+  'disable device':           [  false,         false        ],
   'disguise':                 [  true,          false        ],
   'escape artist':            [  true,          true         ],
   'forgery':                  [  true,          false        ],
