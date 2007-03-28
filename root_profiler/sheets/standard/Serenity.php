@@ -307,6 +307,10 @@ foreach( $skills as $skill => $trainedOnly ) {
 $skillNum++;
 $lineCount++;
 $skillName = str_replace(" ", "_", $skill);
+
+if( $skill == "Dicipline" ) {
+    $skill = "Discipline";
+}
 ?>
 <tr>
 <td colspan="2"><?php echo $skill; ?></td>
