@@ -500,14 +500,14 @@ if( $firefox ) { echo '<!--'; } ?>
 <td colspan="3"><div class="header">ARMOR / PROTECTIVE ITEM</div></td>
 <td colspan="2"><div class="header">TYPE</div></td>
 <td><div class="header">MAX DEX</div></td>
-<td><div class="header">CRITICAL</div></td>
+<td><div class="header">DMG RED.</div></td>
 </tr>
 
 <tr>
 <td colspan="3"><input type="text" <?php getnv("Armor".$i); ?> class="full borderless left"></td>
 <td colspan="2"><input type="text" <?php getnv("ArmorType".$i); ?> class="full borderless"></td>
 <td><input type="text" <?php getnv("ArmorMaxDex".$i); ?> class="full borderless"></td>
-<td><input type="text" <?php getnv("ArmorCritical".$i); ?> class="full borderless"></td>
+<td><input type="text" <?php getnv("ArmorDamageReduction".$i); ?> class="full borderless"></td>
 </tr>
 
 <tr class="header">
@@ -523,7 +523,7 @@ if( $firefox ) { echo '<!--'; } ?>
 <td><input type="text" <?php getnv("ArmorSpeed".$i); ?> class="full borderless"></td>
 <td><input type="text" <?php getnv("ArmorWeight".$i); ?> class="full borderless"></td>
 <td><input type="text" <?php getnv("ArmorSize".$i); ?> class="full borderless"></td>
-<td colspan="3"><input type="text" <?php getnv("WeaponProperties".$i); ?> class="full borderless left"></td>
+<td colspan="3"><input type="text" <?php getnv("ArmorProperties".$i); ?> class="full borderless left"></td>
 </tr>
 
 </table>
@@ -730,22 +730,35 @@ if( $firefox ) { echo '<!--'; } ?>
 
 <h1>Force Skills</h1>
 <table class="abilities spaced">
-<?php $forceSkillCount = 15; ?>
 
+	<tr class="label">
+		<th>CLS</th>
+		<th>SKILL</th>
+		<th>ABILITY</th>
+		<th>TOT</th>
+		<th>=</th>
+		<th>MOD</th>
+		<th></th>
+		<th>RANK</th>
+		<th>+</th>
+		<th>MISC</th>
+	</tr>
+
+<?php $forceSkillCount = 15; ?>
 <?php for( $i = 1; $i <= $forceSkillCount; $i++ ) {
     $skillName = sprintf( "ForceSkill%02d", $i );?>
 
 	<tr>
 		<td><input type="checkbox" <?php getnc($skillName."Class"); ?> class="check" style="width:10px;"></td>
-		<td><input type="text" <?php getnv($skillName); ?> class="large skill left" onchange="updateSkill(this);"></td>
-		<td><input type="text" <?php getnv($skillName."Ability"); ?> class="small skill center" onchange="updateSkill(this);"></td>
+		<td><input type="text" <?php getnv($skillName); ?> class="large skill left" onchange="updateForceSkill(this);"></td>
+		<td><input type="text" <?php getnv($skillName."Ability"); ?> class="small skill center" onchange="updateForceSkill(this);"></td>
 		<td><input type="text" <?php getnv($skillName."Total"); ?> class="small skill center" readonly></td>
 		<td>=</td>
 		<td><input type="text" <?php getnv($skillName."Mod"); ?> class="small skill center" readonly></td>
 		<td>+</td>
-		<td><input type="text" <?php getnv($skillName."Rank"); ?> class="small skill center" onchange="updateSkill(this);"></td>
+		<td><input type="text" <?php getnv($skillName."Rank"); ?> class="small skill center" onchange="updateForceSkill(this);"></td>
 		<td>+</td>
-		<td><input type="text" <?php getnv($skillName."Misc"); ?> class="small skill center" onchange="updateSkill(this);"></td>
+		<td><input type="text" <?php getnv($skillName."Misc"); ?> class="small skill center" onchange="updateForceSkill(this);"></td>
 	</tr>
 
 <?php } ?>

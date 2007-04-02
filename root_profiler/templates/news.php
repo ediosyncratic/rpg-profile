@@ -15,12 +15,14 @@
 <ul>
 <li>Changed nav menu to left side-bar when logged in.</li>
 <li>Added quick links to characters and campaigns.</li>
-<li>
+<li>TODO: Add option to use left nav or not.</li>
+<li>TODO: Make dynamic menu items - configure from another file.</li>
 </ul>
 
 <h4>Character Sheet Updates</h4>
 <ul>
 <li>Added new d20 Modern character sheet</li>
+<li>Added new Serenity Ship sheet</li>
 <li>Minor fixes in Serenity and 3.5e sheets</li>
 </ul>
 

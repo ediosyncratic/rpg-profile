@@ -1,6 +1,5 @@
 function updateDefense() {
     ZeroFill(sheet().DefenseClass,
-             sheet().DefenseEquipment,
              sheet().DefenseDexterity,
              sheet().DefenseSize,
              sheet().DefenseMisc);
@@ -8,7 +7,6 @@ function updateDefense() {
     sheet().Defense.value = Clean(Add(
         10,
         sheet().DefenseClass.value,
-        sheet().DefenseEquipment.value,
         sheet().DefenseDexterity.value,
         sheet().DefenseSize.value,
         sheet().DefenseMisc.value));
@@ -103,11 +101,43 @@ function updateSkills(ability) {
             updateSkill(skillAbility);
         }
     }
+    for( i = 1; i <= 15; i++ ) {
+        var num = FormatNumber(i);
+        var skillAbility = sheet()["ForceSkill" + num + "Ability"];        
+                
+        if( skillAbility != null && skillAbility.value == ability ) {
+            updateForceSkill(skillAbility);
+        }
+    }
 }
 
 function updateSkill(node) {
 
     var name = String(node.name).substr(0,7);
+    
+    if( sheet()[name].value.length == 0 ) {
+        sheet()[name + "Ability"].value = "";
+        sheet()[name + "Total"].value = "";
+        sheet()[name + "Mod"].value = "";
+        sheet()[name + "Rank"].value = "";
+        sheet()[name + "Misc"].value = "";    
+    } else {        
+        ZeroFill( sheet()[name + "Total"],
+                  sheet()[name + "Mod"],
+                  sheet()[name + "Rank"],
+                  sheet()[name + "Misc"]);
+                  
+        sheet()[name + "Mod"].value = getAbilityMod(sheet()[name + "Ability"].value);
+        sheet()[name + "Total"].value = Clean(Add(
+            sheet()[name + "Mod"].value,
+            sheet()[name + "Rank"].value,
+            sheet()[name + "Misc"].value));
+    }
+}
+
+function updateForceSkill(node) {
+
+    var name = String(node.name).substr(0,12);
     
     if( sheet()[name].value.length == 0 ) {
         sheet()[name + "Ability"].value = "";
