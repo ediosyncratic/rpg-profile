@@ -32,10 +32,18 @@
         <?php } ?>
         <?php if( !$REQUIRE_LOGIN || loggedIn() ) { ?>
           | <a href="<?php echo getUriBase(); ?>search.php">Search</a>
+        <?php if( $DISPLAY_IMAGES ) { ?>
+          | <a href="<?php echo getUriBase(); ?>charimg.php">Images</a>
+		<?php } ?>
+
         <?php } ?>
         <?php if( $DISPLAY_FAQ ) { ?>
         | <a href="<?php echo getUriBase(); ?>faq.php">FAQ</a>
         <?php } ?>
+        <?php if( !$FORUM && $sid && loggedIn() ) { ?>
+        | <a href="<?php echo getUriBase(); ?>logout.php">Logout</a><br>
+        <?php } ?>
+
       </div>
       <?php } ?>
     </div>
@@ -79,7 +87,10 @@
 	<?php } ?>
 	<a href="<?php echo getUriBase(); ?>pview.php">Profile</a><br>
 	<?php if( $DISPLAY_IMAGES ) { ?>
-		<a href="<?php echo getUriBase(); ?>charimg.php">Character Images</a><br>
+		<a href="<?php echo getUriBase(); ?>charimg.php">Images</a><br>
+	<?php } ?>
+	<?php if( $DISPLAY_FAQ ) { ?>
+		<a href="<?php echo getUriBase(); ?>faq.php">FAQ</a><br>
 	<?php } ?>
 	<a href="<?php echo getUriBase(); ?>search.php">Search</a><br>
     <?php if( !$FORUM ) { ?>
