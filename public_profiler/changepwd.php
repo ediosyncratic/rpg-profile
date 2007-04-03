@@ -1,26 +1,6 @@
 <?php
   // changepwd.php
-
-  // 3EProfiler (tm) source file.
-  // Copyright (C) 2003 Michael J. Eggertson.
-
-  // This program is free software; you can redistribute it and/or modify
-  // it under the terms of the GNU General Public License as published by
-  // the Free Software Foundation; either version 2 of the License, or
-  // (at your option) any later version.
-
-  // This program is distributed in the hope that it will be useful,
-  // but WITHOUT ANY WARRANTY; without even the implied warranty of
-  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  // GNU General Public License for more details.
-
-  // You should have received a copy of the GNU General Public License
-  // along with this program; if not, write to the Free Software
-  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-  // **
-
-  // Changes the user's password based off a supplied key that must have
+  // Changes the users password based off a supplied key that must have
   // been retrieved via email. The mail would have been sent out via resetpwd.php.
 
   include_once("config.php");
@@ -40,13 +20,13 @@
   $err_dummy = array();
   if (!is_valid_pname($pname, $err_dummy))
     __printFatalErr("Invalid profile name.");
-  
+
   // Validate the key.
   $key = $_POST['key'];
   $keygen = new Id();
   if (!$keygen->ValidateId($key))
     __printFatalErr("Invalid key.");
-  
+
   // Validate the passwords.
   $pwd1 = $_POST['pwd1'];
   $pwd2 = $_POST['pwd2'];

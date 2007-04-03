@@ -1,4 +1,4 @@
-<?php global $sid, $REQUIRE_LOGIN, $DISPLAY_IMAGES, $DISPLAY_FAQ, $SITE_CSS, $FORUM; ?>
+<?php global $sid, $REQUIRE_LOGIN, $DISPLAY_IMAGES, $DISPLAY_FAQ, $SITE_CSS, $FORUM, $USE_SIDEBAR; ?>
 
 <!DOCTYPE html
      PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -17,13 +17,20 @@
     <div id="header">
       <span><a href="<?php echo getUriHome(); ?>">
         <img height="73" src="<?php echo getLogo(); ?>" border="0"></a></span>
-      <?php if( !($sid && loggedIn()) ) { ?>
+      <?php if( !$USE_SIDEBAR || !($sid && loggedIn()) ) { ?>
       <div class="headerLinks">
 		<a href="<?php echo getUriHome(); ?>">Home</a>
-        <?php if( !$FORUM ) { ?>
+
+        <?php if( !$FORUM && !loggedIn() ) { ?>
           | <a href="<?php echo getUriBase(); ?>login.php">Login</a>
+        <?php } else if( $sid && loggedIn() ) { ?>
+          | <a href="<?php echo getUriBase(); ?>cview.php">Characters</a>
+        <?php if( $sid->IsDM() ) { ?>
+		  | <a href="<?php echo getUriBase(); ?>campaigns.php">Campaigns</a>
         <?php } ?>
-        <?php if( !$REQUIRE_LOGIN ) { ?>
+          | <a href="<?php echo getUriBase(); ?>pview.php">Profile</a>
+        <?php } ?>
+        <?php if( !$REQUIRE_LOGIN || loggedIn() ) { ?>
           | <a href="<?php echo getUriBase(); ?>search.php">Search</a>
         <?php } ?>
         <?php if( $DISPLAY_FAQ ) { ?>
@@ -36,7 +43,7 @@
 
 <table id="bodyTable">
 <tr style="margin: 0px; padding: 0px;">
-<?php if( $sid && loggedIn() ) { ?>
+<?php if( $sid && $USE_SIDEBAR && loggedIn() ) { ?>
 	<td id="quickMenu">
 
 	<a href="<?php echo getUriHome(); ?>">Home</a><br>

@@ -12,7 +12,7 @@
 
 
   // *********************************************************************
-  // REQUIRED SITE PARAMETERS 
+  // REQUIRED SITE PARAMETERS
   // ------------------------
   // You will need to change the parameters below to match the
   // configuration for your installation.
@@ -42,13 +42,13 @@
   // --------------------------------------------------------------------
 
   // URI_WEBMASTER: the resource to contact the webmaster.
-  // If using an email address, you may wish to obfuscate it so it doesn't
+  // If using an email address, you may wish to obfuscate it so it doesnt
   // get harvested by web bots. Alternatively you could use a 'contact us'
   // web page.
   $URI_WEBMASTER = 'mailto:email&#64;mydomain.ext';
 
   // EMAIL_WEBMASTER: the email address of the webmaster.
-  // This address is used for outgoing emails, so shouldn't be obfuscated.
+  // This address is used for outgoing emails, so shouldnt be obfuscated.
   $EMAIL_WEBMASTER = 'email@mydomain.ext';
 
   // *********************************************************************
@@ -68,6 +68,15 @@
   // you should create your accounts before you do. Once set to false, you
   // have to manually add new accounts to the database.
   $OPEN_REGISTRATION = true;
+
+  // Use the sidebar menu with quick links to chararacters and campaigns
+  // when logged in. If set to false, the site continues to use the old
+  // top menu.
+  $USE_SIDEBAR = true;
+
+  // Display system statistics. Setting this to false will improve system
+  // performance.
+  $DISPLAY_STATS = true;
 
   // Display Character Image page
   $DISPLAY_IMAGES = true;
@@ -89,7 +98,7 @@
   // point to the homepage of your main site rather than the profiler.
   $URI_HOME = $URI_BASE;
 
-  // URI_TOS: your site's terms of service and privacy policy.
+  // URI_TOS: your sites terms of service and privacy policy.
   $URI_TOS = 'legal.php';
 
   // LOGO: The image that appears at the top left of the page.

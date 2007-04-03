@@ -1,24 +1,5 @@
 // skills.js
 
-// 3EProfiler (tm) character sheet source file.
-// Copyright (C) 2003  Michael J. Eggertson.
-// 
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License
-// along with this program; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-// **
-
 // Implements functions used for maintining the skill table. See also
 // ogl/skills.js for data that is used by some of these functions to
 // populate the skill fields.
@@ -119,9 +100,9 @@ function CheckSkillAttribute( skillNameNode )
   if( ! skillAttr[0] ) {
     ZeroFill(sheet()[skill + "Rank"]);
     if( sheet()[skill + "Rank"].value == 0 ) {
-    	skillNameNode.style.textDecoration = "line-through";
+        skillNameNode.style.textDecoration = "line-through";
     } else {
-	skillNameNode.style.textDecoration = "none";
+    skillNameNode.style.textDecoration = "none";
     }
   } else {
     skillNameNode.style.textDecoration = "none";
@@ -228,12 +209,12 @@ function SkillSort(sortfunc)
 
     r = new Object();
     r.skill = sheet()["Skill" + num].value;
-    r.ab 	= sheet()["Skill" + num + "Ab"].value;
-    r.cc 	= sheet()["Skill" + num + "CC"].checked;
-    r.mod 	= sheet()["Skill" + num + "Mod"].value;
+    r.ab    = sheet()["Skill" + num + "Ab"].value;
+    r.cc    = sheet()["Skill" + num + "CC"].checked;
+    r.mod   = sheet()["Skill" + num + "Mod"].value;
     r.abmod = sheet()["Skill" + num + "AbMod"].value;
-    r.rank 	= sheet()["Skill" + num + "Rank"].value;
-    r.misc 	= sheet()["Skill" + num + "MiscMod"].value;
+    r.rank  = sheet()["Skill" + num + "Rank"].value;
+    r.misc  = sheet()["Skill" + num + "MiscMod"].value;
     r.checkpen  = sheet()["Skill" + num + "CheckPen"].value;
     rows_c.push(r);
   }
@@ -372,7 +353,7 @@ function SkillsUpdateCheckPen() {
   
   for (var i = 1; i <= 4; i++) {
     if( sheet()["Armor" + i + "Worn"].checked ) {
-	penalty = Add(penalty, sheet()["Armor" + i + "Check"].value);
+    penalty = Add(penalty, sheet()["Armor" + i + "Check"].value);
     }
   }
 
@@ -402,13 +383,13 @@ function SkillsUpdateCheckPen() {
     }
 
     if( skillAttr[1] ) {
-	if( skill_name == "swim" ) {
- 	  skill_pen.value = 2 * penalty
-	} else {
-	  skill_pen.value = penalty;
-	}
+    if( skill_name == "swim" ) {
+      skill_pen.value = 2 * penalty
     } else {
-	skill_pen.value = 0;
+      skill_pen.value = penalty;
+    }
+    } else {
+    skill_pen.value = 0;
     }
 
     SkillCalc(sheet()["Skill" + num]);
@@ -481,10 +462,10 @@ function _RetrieveMatchingURL( name, helpTable )
   for ( URL in helpTable )
   {
     // If the URL member name starts with the same chars as name, then it matches.
-  	 if ( name.indexOf( URL ) == 0 )
-	 {
-	   return helpTable[ URL ];
-	 }
+     if ( name.indexOf( URL ) == 0 )
+     {
+       return helpTable[ URL ];
+     }
   }
 
   // If we get here we didn't find a match.
@@ -510,11 +491,11 @@ function ShowHelp(node)
 
 /*
 
-	Checks to see if a skill has a help URL associated with it.  If it does
-	then the "help" link will be set to a '?'.  If there is no URL, then the
-	link is set to a null string, basically hiding it.
+    Checks to see if a skill has a help URL associated with it.  If it does
+    then the "help" link will be set to a '?'.  If there is no URL, then the
+    link is set to a null string, basically hiding it.
 
-	'node' is the name of the input field containing the skill text.
+    'node' is the name of the input field containing the skill text.
 
 */
 function CheckForHelp(node)
@@ -583,7 +564,7 @@ function _skillFill()
 
     // Set the skill and the key ability.
     sheet()[ skillNum ].value = skill;
-	 //CheckSkillAttribute( sheet()[ skillNum ] )
+     //CheckSkillAttribute( sheet()[ skillNum ] )
     SkillLookUp( sheet()[ skillNum ] );
   } // for...
 }

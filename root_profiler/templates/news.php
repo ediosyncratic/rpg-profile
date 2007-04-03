@@ -9,14 +9,13 @@
 ?>
 <h1>RPG Web Profiler News</h1>
 
-<h2>v0.6.0 Development</h2>
+<h2>3 April 2007 - v0.6.0 Released</h2>
 
 <h4>Functionality Updates</h4>
 <ul>
-<li>Changed nav menu to left side-bar when logged in.</li>
-<li>Added quick links to characters and campaigns.</li>
-<li>TODO: Add option to use left nav or not.</li>
-<li>TODO: Make dynamic menu items - configure from another file.</li>
+<li>Changed nav menu to optional left side-bar when logged in.</li>
+<li>Added quick links to characters &amp; campaigns on sidebar.</li>
+<li>Added system option to disable statistics display for improved performance.</li>
 </ul>
 
 <h4>Character Sheet Updates</h4>

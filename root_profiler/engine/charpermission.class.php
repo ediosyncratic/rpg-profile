@@ -1,25 +1,6 @@
 <?php
   // charpermissions.class.php
 
-  // 3EProfiler (tm) source file.
-  // Copyright (C) 2003 Michael J. Eggertson.
-
-  // This program is free software; you can redistribute it and/or modify
-  // it under the terms of the GNU General Public License as published by
-  // the Free Software Foundation; either version 2 of the License, or
-  // (at your option) any later version.
-
-  // This program is distributed in the hope that it will be useful,
-  // but WITHOUT ANY WARRANTY; without even the implied warranty of
-  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  // GNU General Public License for more details.
-
-  // You should have received a copy of the GNU General Public License
-  // along with this program; if not, write to the Free Software
-  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-  // **
-
   if (defined('_CHARPERMISSIONS_CLASS_INCLUDED_'))
     return;
   define ('_CHARPERMISSIONS_CLASS_INCLUDED_', true, true);
@@ -68,7 +49,7 @@
       return $this->_characters;
     }
 
-    function GetInactiveCharacters() 
+    function GetInactiveCharacters()
     {
       return $this->_inactive_characters;
     }
@@ -136,7 +117,7 @@
       $res = $rpgDB->query(sprintf("DELETE FROM %s WHERE pname = '%s' AND cid = %d",
             $TABLE_OWNERS, addslashes($this->_pname),
             (int) $this->_cid));
-      
+
       if (!$res)
         return false;
       return $rpgDB->num_rows() == 1;
@@ -153,7 +134,7 @@
     var $_profiles = array();
     var $_characters = array();
     var $_inactive_characters = array();
-    
+
     var $_campaigns = array();
     var $_inactive_campaigns = array();
 
@@ -200,8 +181,8 @@
         __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
       while ($row = $rpgDB->fetch_row($res)) {
         if( $row['inactive'] == 'y' ) {
-          array_push($this->_inactive_characters, array('id' => $row['id'], 'name' => $row['cname'], 
-                  'lastedited' => $row['lastedited'], 'editedby' => $row['editedby'], 
+          array_push($this->_inactive_characters, array('id' => $row['id'], 'name' => $row['cname'],
+                  'lastedited' => $row['lastedited'], 'editedby' => $row['editedby'],
                   'public' => $row['public'], 'template' => $row['tname'], 'campaign' => $row['caname'],
                   'campaign_id' => $row['campaign'], 'inactive' => $row['inactive']));
         } else {
@@ -242,7 +223,7 @@
 
     }
 
-    function get_campaigns() 
+    function get_campaigns()
     {
       global $TABLE_CAMPAIGNS, $TABLE_CHARS, $rpgDB;
 
@@ -259,8 +240,8 @@
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
       while ($row = $rpgDB->fetch_row($res)) {
         if( $row['active'] == 'Y' ) {
-          array_push($this->_campaigns, array('id' => $row['id'], 'name' => $row['name'], 
-                                            'active' => ($row['active'] == 'Y'), 'open' => ($row['open'] == 'Y'), 
+          array_push($this->_campaigns, array('id' => $row['id'], 'name' => $row['name'],
+                                            'active' => ($row['active'] == 'Y'), 'open' => ($row['open'] == 'Y'),
                                             'pcs' => $row['chars']));
         } else {
           array_push($this->_inactive_campaigns, array('id' => $row['id'], 'name' => $row['name'],

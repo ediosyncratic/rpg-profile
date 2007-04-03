@@ -26,43 +26,45 @@
 
     function Site()
     {
-      global $TABLE_CAMPAIGNS, $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_USERS, $rpgDB;
+      global $TABLE_CAMPAIGNS, $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_USERS, $rpgDB, $DISPLAY_STATS;
 
-      $this->totalCharacters = $this->GetCount("select count(*) as cnt from " . $TABLE_CHARS);
+      if( $DISPLAY_STATS ) {
+		  $this->totalCharacters = $this->GetCount("select count(*) as cnt from " . $TABLE_CHARS);
 
-      $this->publicCharacters = $this->GetCount("select count(*) as cnt from " . $TABLE_CHARS . " where public = 'y'");
-      $this->totalUsers = $this->GetCount("select count(*) as cnt from " . $TABLE_USERS);
+		  $this->publicCharacters = $this->GetCount("select count(*) as cnt from " . $TABLE_CHARS . " where public = 'y'");
+		  $this->totalUsers = $this->GetCount("select count(*) as cnt from " . $TABLE_USERS);
 
-      $this->totalCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CAMPAIGNS);
-      $this->charactersInCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CHARS . " where campaign is not null");
+		  $this->totalCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CAMPAIGNS);
+		  $this->charactersInCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CHARS . " where campaign is not null");
 
-      $this->activeCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CAMPAIGNS . " where active = 'Y'");
-      $this->openCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CAMPAIGNS . " where open = 'Y'");
+		  $this->activeCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CAMPAIGNS . " where active = 'Y'");
+		  $this->openCampaigns = $this->GetCount("select count(*) as cnt from " . $TABLE_CAMPAIGNS . " where open = 'Y'");
 
-      $this->charsPerTemplate = array();
-      $res = $rpgDB->query("select st.name, count(c.id) as cnt from ".
-                         $TABLE_TEMPLATES . " st, ".
-                         $TABLE_CHARS . " c where c.template_id = st.id group by st.id");
-      if( $res ) {
-        while ($row = $rpgDB->fetch_row($res)) {
-          array_push($this->charsPerTemplate, array('template' => $row['name'], 'count' => $row['cnt']));
-        }
-      }
+		  $this->charsPerTemplate = array();
+		  $res = $rpgDB->query("select st.name, count(c.id) as cnt from ".
+							 $TABLE_TEMPLATES . " st, ".
+							 $TABLE_CHARS . " c where c.template_id = st.id group by st.id");
+		  if( $res ) {
+			while ($row = $rpgDB->fetch_row($res)) {
+			  array_push($this->charsPerTemplate, array('template' => $row['name'], 'count' => $row['cnt']));
+			}
+		  }
 
-      if( $this->totalUsers > 0 ) { 
-        $ave = $this->totalCharacters / $this->totalUsers;
-        $this->averageCharactersPerUser = sprintf("%3.2f", $ave);
-      }
+		  if( $this->totalUsers > 0 ) {
+			$ave = $this->totalCharacters / $this->totalUsers;
+			$this->averageCharactersPerUser = sprintf("%3.2f", $ave);
+		  }
 
-      if( $this->totalCampaigns > 0 ) {
-        $ave = $this->charactersInCampaigns / $this->totalCampaigns;
-        $this->averageCharactersPerCampaign = sprintf("%3.2f", $ave);
+		  if( $this->totalCampaigns > 0 ) {
+			$ave = $this->charactersInCampaigns / $this->totalCampaigns;
+			$this->averageCharactersPerCampaign = sprintf("%3.2f", $ave);
+		  }
       }
 
     }
 
     function GetCount($sql) {
-      
+
       global $rpgDB;
 
       $res = $rpgDB->query($sql);

@@ -1,25 +1,6 @@
 <?php
   // download.php
 
-  // 3EProfiler (tm) source file.
-  // Copyright (C) 2003 Michael J. Eggertson.
-
-  // This program is free software; you can redistribute it and/or modify
-  // it under the terms of the GNU General Public License as published by
-  // the Free Software Foundation; either version 2 of the License, or
-  // (at your option) any later version.
-
-  // This program is distributed in the hope that it will be useful,
-  // but WITHOUT ANY WARRANTY; without even the implied warranty of
-  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  // GNU General Public License for more details.
-
-  // You should have received a copy of the GNU General Public License
-  // along with this program; if not, write to the Free Software
-  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-  // **
-
   // Generates a file download with serialized character data.
 
   include_once("config.php");
@@ -45,7 +26,7 @@
   $char = new Character($id);
   if (!$char->IsValid())
     __printFatalErr("Invalid character data (?)");
-  
+
   // Determine which script to include.
   $_r = $rpgDB->query(sprintf("SELECT exp_file FROM %s where exp_file != '' AND id = %d LIMIT 1",
     $TABLE_SERIALIZE,
@@ -58,10 +39,10 @@
   $path = $INCLUDE_PATH . '/serialization/' . $row['exp_file'];
   if (!is_file($path))
     __printFatalErr("Failed to locate export script.", __LINE__, __FILE__);
-  
+
   // Include the script.
   include_once($path);
-  
+
   // Attempt the export.
   $data = export_character($char);
   if (strlen($data))

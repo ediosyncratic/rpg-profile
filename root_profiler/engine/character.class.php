@@ -1,28 +1,9 @@
 <?php
   // character.class.php
 
-  // 3EProfiler (tm) source file.
-  // Copyright (C) 2003 Michael J. Eggertson.
-
-  // This program is free software; you can redistribute it and/or modify
-  // it under the terms of the GNU General Public License as published by
-  // the Free Software Foundation; either version 2 of the License, or
-  // (at your option) any later version.
-
-  // This program is distributed in the hope that it will be useful,
-  // but WITHOUT ANY WARRANTY; without even the implied warranty of
-  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  // GNU General Public License for more details.
-
-  // You should have received a copy of the GNU General Public License
-  // along with this program; if not, write to the Free Software
-  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-  // **
-
-  // Encompasses access to a character. This class isn't designed to hide
+  // Encompasses access to a character. This class isnt designed to hide
   // access to the character data, but rather to provide succinct and easy
-  // access to it. Data that isn't part of the characters table though,
+  // access to it. Data that isnt part of the characters table though,
   // should be accessed using the accessor functions.
 
   if (defined('_CHARACTER_CLASS_INCLUDED_'))
@@ -133,7 +114,7 @@
     {
       return $this->_permissions->GetProfiles();
     }
-   
+
     // Get a pending campaign for the user.
     function GetPendingCampaign() {
       global $TABLE_CAMPAIGN_REQUESTS, $rpgDB;
@@ -146,12 +127,12 @@
       if ($rpgDB->num_rows($res) != 1)
         return;
       $row = $rpgDB->fetch_row($res);
-  
+
       return array('campaign_id' => $row['campaign_id'], 'status' => $row['status'], 'user_id' => (int) $this->id );
     }
-     
+
     // Set the characters campaign ID.
-    function SetCampaign($id) 
+    function SetCampaign($id)
     {
       global $TABLE_CHARS, $rpgDB;
 
@@ -172,26 +153,26 @@
     }
 
     // Create a request/invitation to join a campaign.
-    function JoinCampaign($campaign_id, $join_type) 
+    function JoinCampaign($campaign_id, $join_type)
     {
       global $TABLE_CAMPAIGN_REQUESTS, $rpgDB;
- 
+
       $sql = sprintf("INSERT INTO %s (campaign_id, char_id, status) VALUES (%d, %d, '%s')",
         $TABLE_CAMPAIGN_REQUESTS,
         (int) $campaign_id,
         (int) $this->id,
         $join_type);
-  
+
       // Update the db.
       $res = $rpgDB->query($sql);
-        
+
       return $res ? true : false;
     }
-  
+
     function Transfer($profile)
     {
       global $TABLE_CHARS, $rpgDB;
- 
+
       $sql = sprintf("UPDATE %s SET owner = '%s' WHERE id = %d",
         $TABLE_CHARS,
         $profile,
@@ -201,7 +182,7 @@
       $res = $rpgDB->query($sql);
 
       return $res ? true : false;
-    } 
+    }
 
     function RemoveJoinRequest()
     {
@@ -231,7 +212,7 @@
       else
         return false;
     }
- 
+
     function RemoveAccessFrom($name)
     {
       $cp = new CharPermission($name, $this->id);
@@ -284,7 +265,7 @@
 
     // Profiles that have permission to access this character.
     var $_permissions;
-    
+
     // The main character data hash.
     var $_data = array();
   }

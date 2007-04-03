@@ -3,26 +3,6 @@
   PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<!--
-  3EProfiler (tm) character sheet source file.
-  Copyright (C) 2003  Michael J. Eggertson.
-
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program; if not, write to the Free Software
-  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-  **
--->
   <?php
 
   // Textual help and links for english translation
@@ -1019,11 +999,7 @@ if( $firefox ) { echo '<!--'; } ?>
             <TABLE width="100%" cellspacing="0">
                <TR>
                   <TD>Last saved = <?php getv("LastSaveDate"); ?></TD>
-                  <TD align="right">3EProfiler&trade; Character Sheet, &copy; 2003 by M. J. Eggertson.</TD>
-               </TR>
-               <TR>
-                  <TD></TD>
-                  <TD align="right">3.5 version .14 by Deeg &amp; Tarlen.</TD>
+                  <TD align="right">3.5 sheet Deeg &amp; Tarlen.</TD>
                </TR>
                <TR>
                   <TD></TD>

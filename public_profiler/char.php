@@ -1,25 +1,6 @@
 <?php
   // char.php
 
-  // 3EProfiler (tm) source file.
-  // Copyright (C) 2003 Michael J. Eggertson.
-
-  // This program is free software; you can redistribute it and/or modify
-  // it under the terms of the GNU General Public License as published by
-  // the Free Software Foundation; either version 2 of the License, or
-  // (at your option) any later version.
-
-  // This program is distributed in the hope that it will be useful,
-  // but WITHOUT ANY WARRANTY; without even the implied warranty of
-  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  // GNU General Public License for more details.
-
-  // You should have received a copy of the GNU General Public License
-  // along with this program; if not, write to the Free Software
-  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-  // **
-
   // Defines the character permissions page and also implements some
   // basic permission methods.
 
@@ -76,7 +57,7 @@
     }
     $public_updated = 'Transfer Failed!';
   }
-    
+
   // Get a campaign join.
   $pending_campaign = $character->GetPendingCampaign();
 
@@ -106,11 +87,11 @@
   ////////////////////////////////////////////////////////////////////////
   // Helper functions.
 
-  // Remove a character from the current campaign they are in. 
+  // Remove a character from the current campaign they are in.
   function apply_leave_campaign(&$character) {
     return $character->SetCampaign(null);
   }
- 
+
   // Apply to Join the specified campaign
   function apply_join_campaign(&$character, $campaign_id) {
     $campaign = new Campaign($campaign_id);
@@ -123,11 +104,11 @@
     }
     return "Update Failed!";
   }
-  
+
   function apply_transfer_character(&$character, $profile) {
     return $character->Transfer($profile);
   }
- 
+
   // Cancel Joining the specified campaign
   function apply_cancel_join_campaign(&$character) {
     return $character->RemoveJoinRequest();
@@ -149,7 +130,7 @@
         return true;
     return false;
   }
- 
+
   function apply_remove_profile(&$character, $profile)
   {
     $err = array();

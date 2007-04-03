@@ -1,26 +1,7 @@
 <?php
   // resetpwd.php
 
-  // 3EProfiler (tm) source file.
-  // Copyright (C) 2003 Michael J. Eggertson.
-
-  // This program is free software; you can redistribute it and/or modify
-  // it under the terms of the GNU General Public License as published by
-  // the Free Software Foundation; either version 2 of the License, or
-  // (at your option) any later version.
-
-  // This program is distributed in the hope that it will be useful,
-  // but WITHOUT ANY WARRANTY; without even the implied warranty of
-  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  // GNU General Public License for more details.
-
-  // You should have received a copy of the GNU General Public License
-  // along with this program; if not, write to the Free Software
-  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-  // **
-
-  // Handles resetting a user's password in case they forget/misplace it.
+  // Handles resetting a users password in case they forget/misplace it.
   // Three cases are handled:
   //  1: No _GET info is passed -> A general form is shown.
   //  2: Content is passed to _GET['p'] -> An email is sent to the user specified
@@ -45,7 +26,7 @@
   if ($_GET['p'] && $_GET['k'])
   {
     // Got a profile name and a key, show the reset password form.
-    
+
     $pname = $_GET['p'];
     $err_dummy = array();
     if (!is_valid_pname($pname, $err_dummy))

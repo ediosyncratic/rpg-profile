@@ -1,27 +1,8 @@
 <?php
   // upload.php
 
-  // 3EProfiler (tm) source file.
-  // Copyright (C) 2003 Michael J. Eggertson.
+  // Restores a character sheets data from an uploaded file.
 
-  // This program is free software; you can redistribute it and/or modify
-  // it under the terms of the GNU General Public License as published by
-  // the Free Software Foundation; either version 2 of the License, or
-  // (at your option) any later version.
-
-  // This program is distributed in the hope that it will be useful,
-  // but WITHOUT ANY WARRANTY; without even the implied warranty of
-  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  // GNU General Public License for more details.
-
-  // You should have received a copy of the GNU General Public License
-  // along with this program; if not, write to the Free Software
-  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-  // **
-
-  // Restores a character sheet's data from an uploaded file.
-  
   include_once("config.php");
   include_once("$INCLUDE_PATH/system.php");
   include_once("$INCLUDE_PATH/error.php");
@@ -77,7 +58,7 @@
     $matches = array();
     if (!preg_match('/!DOCTYPE[^"]+"([^"]*)"/', $contents, $matches))
       print_autodetect_failed($sid, $id);
-    
+
     if (!strlen($matches[1]))
       print_autodetect_failed($sid, $id);
 
@@ -139,7 +120,7 @@
   // Show that upload has failed.
   function print_upload_failed($sid, $format)
   {
-    global $title, $formatname; 
+    global $title, $formatname;
 
     $title = 'Data Upload';
     $formatname = $format;

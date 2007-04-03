@@ -326,8 +326,7 @@ Display Background
                   <td>Last saved = <?php getv("LastSaveDate"); ?><br>
                       <a href="http://www.serenityrpg.com/">Serenity RPG</a> by Jamie Chambers &amp; Margaret Weis<br>
                       Serenity&copy; 2005, Universal Studios</td>
-                  <td align="right">3EProfiler&trade; 2003 by M. J. Eggertson<br>
-                      Serenity Character Sheet version <?php echo $sheetVer; ?> by Tarlen</td>
+                  <td align="right">Serenity Character Sheet by Tarlen</td>
                </tr>
             </table>
           </div>
