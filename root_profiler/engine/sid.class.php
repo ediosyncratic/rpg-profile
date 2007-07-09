@@ -123,12 +123,12 @@
       global $TABLE_CHARS, $TABLE_CAMPAIGNS, $TABLE_OWNERS, $rpgDB;
 
       $name = $this->_username;
-      $sql = sprintf("select c.id as id from %s c where c.owner = '%s' ".
-                     "union select c.id as id from %s c, %s n where c.campaign = n.id and n.owner = '%s' ".
-                     "union select cid as id from %s where pname = '%s'",
-                     $TABLE_CHARS, $name,
-                     $TABLE_CHARS, $TABLE_CAMPAIGNS, $name,
-                     $TABLE_OWNERS, $name);
+      $sql = sprintf("select c.id as id from %s c where c.owner = '%s' and c.id = %d ".
+		     "union select c.id as id from %s c, %s n where c.campaign = n.id and n.owner = '%s' and c.id = %d ".
+		     "union select cid as id from %s where pname = '%s' and cid = %d ",
+		     $TABLE_CHARS, $name, $id,
+		     $TABLE_CHARS, $TABLE_CAMPAIGNS, $name, $id,
+		     $TABLE_OWNERS, $name, $id);
       $sql = sprintf("select c.id as id from %s c where c.owner = '%s' and c.id = %d ".
 		     "union select c.id as id from %s c, %s n where c.campaign = n.id and n.owner = '%s' and c.id = %d ".
 		     "union select cid as id from %s where pname = '%s' and cid = %d ",
