@@ -129,12 +129,6 @@
 		     $TABLE_CHARS, $name, $id,
 		     $TABLE_CHARS, $TABLE_CAMPAIGNS, $name, $id,
 		     $TABLE_OWNERS, $name, $id);
-      $sql = sprintf("select c.id as id from %s c where c.owner = '%s' and c.id = %d ".
-		     "union select c.id as id from %s c, %s n where c.campaign = n.id and n.owner = '%s' and c.id = %d ".
-		     "union select cid as id from %s where pname = '%s' and cid = %d ",
-		     $TABLE_CHARS, $name, $id,
-		     $TABLE_CHARS, $TABLE_CAMPAIGNS, $name, $id,
-		     $TABLE_OWNERS, $name, $id);
 
       $res = $rpgDB->query($sql);
       if( !$res ) {
