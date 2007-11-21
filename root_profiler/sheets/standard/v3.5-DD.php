@@ -894,12 +894,12 @@ if( $firefox ) { echo '<!--'; } ?>
 
                 <table id="spells" cellspacing="0">
                   <tr class="title">
-                    <td colspan="2"><?php GetStaticHelp( "Spells", $staticHelp ); ?> &amp; Powers</td>
+                    <td colspan="3"><?php GetStaticHelp( "Spells", $staticHelp ); ?> &amp; Powers</td>
                   </tr>
                   <tr>
 
          <?php
-          for ( $i = 1; $i <= 60; $i++ ) {
+          for ( $i = 1; $i <= 90; $i++ ) {
             $spellName = sprintf( "Spell%02d", $i );
             if ( $i % 30 == 1 ) { ?>
 
