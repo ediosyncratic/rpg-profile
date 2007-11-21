@@ -16,7 +16,7 @@ function SpellSort(sortfunc)
   // Copy the data from each of the items in the rows.
   debug.trace("Copying spell data...");
   var data = new Array();
-  for (var i = 1; i <= 60; i++)
+  for (var i = 1; i <= 90; i++)
   {
     var num = FormatNumber(i);
     var thisdata = new Object();
@@ -32,7 +32,7 @@ function SpellSort(sortfunc)
 
   // Finally, re-copy all the data.
   debug.trace("Copying sorted spell data...");
-  for (var i = 1; i <= 60; i++)
+  for (var i = 1; i <= 90; i++)
   {
     var thisdata = data.shift();
     var num = FormatNumber(i);
@@ -247,7 +247,7 @@ function updateCast() {
         sheet()["SpellCast" + i].value = 0;
     }
 
-    for( i = 1; i <= 60; i++ ) {
+    for( i = 1; i <= 90; i++ ) {
         var num = "" + i;
         if( num.length == 1 ) {
             num = "0" + num;
