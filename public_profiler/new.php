@@ -1,9 +1,4 @@
 <?php
-  // new.php
-
-  // Attempts to create a new character for a logged in user, and displays
-  // the result to the user.
-
   include_once("config.php");
   include_once("$INCLUDE_PATH/engine/sid.php");
   include_once("$INCLUDE_PATH/engine/db.php");
@@ -27,7 +22,7 @@
   }
 
   // Verify we got a proper template for the character.
-  $template = (int) $_POST['template'];
+  $template = (int) $_POST['chartemplate'];
   if (!is_valid_template_id($template))
     __printFatalErr("Invalid template id.");
 

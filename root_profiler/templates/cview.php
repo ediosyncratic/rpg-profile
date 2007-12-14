@@ -118,7 +118,7 @@ if( count( $icharacters ) > 0 ) {
     <tr>
       <td>Using template:</td>
       <td>
-<select name="template" class="quick">
+<select name="chartemplate" class="quick">
 <?php foreach( $templates as $template) { ?>
 <option value="<?php echo $template['id']; ?>"><?php echo $template['name']; ?></option>
 <?php } ?>
