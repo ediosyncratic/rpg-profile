@@ -1,0 +1,313 @@
+/************************************************************************/
+
+/*
+  Define the html root element, all elements will inherit from this
+  element. Defining the td element is an Explorer hack.
+*/
+
+html {
+	font-size: 	9px;
+	color: 		black;
+	background-color: white;
+	font-family: 	Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin:     auto;
+    width:      700px;
+}
+
+br.clear {
+	clear: both;
+}
+
+br.page {
+    clear:      both;
+    page-break-before: always;
+}
+
+div.attr {
+    float: left;
+    margin-right: 3px;
+    text-align: center;
+}
+
+.textleft {
+    text-align: left !important;
+}
+
+.textright {
+    text-align: left !important;
+}
+
+div.total {
+	width: 50px;
+	text-align: center;
+}
+
+span.smalllabel {
+    font-size: 7px; 
+}
+
+span.mediumlabel {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+span.largelabel {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+input.large {
+    width: 200px;
+}
+
+input.medium {
+    width: 100px;
+}
+
+input.small {
+    width: 50px;
+    text-align: center;
+}
+
+input.tiny {
+    width: 30px;
+    text-align: center;
+}
+
+input.xtiny {
+    width: 15px;
+    text-align: center;
+}
+
+.whole {
+    width: 99%;	
+}
+
+.full {
+    width: 215px;    
+}
+
+.half {
+    width: 95px;    
+}
+
+.third {
+    width: 65px;    
+}
+
+.quarter {
+    width: 41px;    
+    text-align: center;
+}
+
+textarea.racefeatures {
+    height: 170px;  
+}
+
+textarea.classfeatures {
+    height: 260px;  
+}
+
+textarea.languages {
+    height: 80px;  
+}
+
+textarea.feats {
+    height: 305px;  
+}
+
+input.tall {
+    height: 30px;
+    font-size: 20pt;
+    text-align: center;	
+}
+
+div.defence {
+    clear: both;
+    margin: 6px 0px 6px 0px;
+    height: 55px;   
+}
+
+div.row {
+    clear: both;
+    margin: 6px 0px 6px 0px;
+}
+
+div.ability {
+	clear: both;
+	background: black;
+	height: 22px;
+	margin-bottom: 2px;
+}
+
+div.heading {
+    background: white;
+    font-weight: bold;
+    color: black;
+    height: 12px;
+}
+
+div.ability p.label {
+    font-size: 10pt;
+    margin: 3px;
+    color: white;
+    font-weight: bold;
+}
+
+div.ability p.heading {
+    margin: 3px;
+    font-weight: bold;
+}
+
+div.ability .quarter {
+    float: left;
+    width: 22%; 
+}
+
+div.skill {
+    clear: both;
+    height: 22px;
+}
+
+div.skilltitle {
+    clear: both;
+    height: 12px;
+}
+
+p.skillname, p.skillnamelabel {
+    float: left;
+    width: 65px;
+    margin: 5px 2px 0px;
+    padding: 0px;
+}
+
+p.skillnamelabel {
+    margin: 0px 2px;	
+}
+
+p.skilllabel {
+    float: left;
+    width: 23px;
+    margin: 0px 0px 0px 2px;
+    text-align: center;
+}
+
+p.skillattr {
+    float: left;
+    width: 18px;
+    margin: 5px 0px;
+    padding: 0px;
+}
+
+input.skilltiny {
+    float: left;
+    width: 18px;
+    margin: 0px 0px 0px 2px;
+    text-align: center;
+}
+
+.skillnopenalty {
+    float: left;
+    width: 17px;
+    height: 17px;
+    margin: 0px 0px 0px 2px;
+    padding: 5px 0px 0px 5px;
+}
+
+.noborder {
+    border: none;
+    padding: 2px;
+}
+
+.bottomborder {
+	border: none;
+	border-bottom: 1px solid #bbb;
+	padding: 2px 2px 3px 2px;
+}
+
+/* Generic Heading Settings */
+h2 {
+    font-size:      17px;
+    background:     black;
+    color:          white;
+    margin:         0px;
+    padding-left:   2px;
+    text-align:     center;
+    font-variant:   small-caps;
+    text-transform: lowercase;
+}
+
+/* Generic Heading Settings */
+h3 {
+    font-size:      11px;
+    background:     black;
+    color:          white;
+    margin:         0px;
+    padding-left:   2px;
+    text-align:     center;
+    font-variant:   small-caps;
+    text-transform: lowercase;
+    float:          left;
+    width:          99%;
+}
+
+#pic {
+    float:          right;
+    vertical-align: bottom;
+    border:         solid 1px black;
+    width:          125px;
+    height:         193px;
+}
+
+/* Generic Section Stuff */
+div.section {
+    width: 100%;
+    display: block;
+    clear: left;
+}
+
+div.column {
+    width: 32%;
+    float: left;
+    margin-right: 3px;	
+}
+
+.right {
+    float: right;
+}
+
+p.top {
+	display: inline;
+    vertical-align: top;    
+}
+
+input.smallcheck {
+    margin: 2px 2px 2px 0px;	
+}
+
+.oddbg {
+    background: #ddd;	
+}
+
+
+/* =========================================================== */
+/* =========================================================== */
+/* =========================================================== */
+/* =========================================================== */
+
+/* Footer Settings */
+#footer
+{
+  font-size: 9px;
+  background-color: white;
+  color: gray;
+}
+#save
+{
+  text-align: center;
+}
+

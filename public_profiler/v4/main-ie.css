@@ -1,0 +1,26 @@
+input.skillcheck {
+    margin: 0px;
+}
+
+input.smallcheck {
+    margin: 0px;
+    padding: 0px;   
+}
+
+input.xtiny {
+    margin: 0px;
+    padding: 0px;
+}
+
+input.tiny {
+    margin: 0px;
+    padding: 0px;
+}
+
+div.attr {
+    margin: 0px 2px 0px 0px;
+}
+
+div.row {
+    margin: 2px 0px 1px 0px;
+}
