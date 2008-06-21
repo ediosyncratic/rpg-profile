@@ -13,16 +13,23 @@ function cleanup() {
 
 }
 
-function SetSaveDate()
-{
-  var now = new Date();
-  sheet().LastSaveDate.value =  now.getDate() + " " + m_names[now.getMonth()] + " " + now.getFullYear() + " " +
-                                now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+function SetSaveDate() {
+	var now = new Date();
+	sheet().LastSaveDate.value =  now.getDate() + " " + m_names[now.getMonth()] + " " + now.getFullYear() + " " +
+	                              now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
 }
 
 function Save() {
-    // TODO - AJAX save, and alert.
-    alert("Not done yet");
+	$('charactersheet').request({
+	    method: 'post',
+        onComplete: function(transport) {
+            if( transport.responseText == 'SUCCESS' ) { 
+                alert('Character saved!');
+            } else {
+                alert('Error: ' + transport.responseText);
+            }
+        }
+	})
 }
 
 function CheckDisplay() {

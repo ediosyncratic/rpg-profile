@@ -19,19 +19,22 @@
   unset($_POST['id']);
 
   // Verify permission.
-  if (!$sid->HasAccessTo($id))
-    __printFatalErr("Access denied.");
+  if (!$sid->HasAccessTo($id)) {
+      print("Access denied.");
+      exit;
+  }
 
   // Package the data.
   $char = new Character($id);
   if (!$char->IsValid()) {
-    __printFatalErr("Failed to retrieve existing data.");
+      print("Couldn't find character.");
+      exit;
   }
   $char->SetData($_POST);
   if (!$char->Save($sid)) {
-    __printFatalErr("Failed to update database.", __LINE__, __FILE__);
+      print("Couldn't save character.");
+      exit;
   }
 
-  $title = 'Character Updated';
-  draw_page('save.php');
+  print("SUCCESS");
 ?>

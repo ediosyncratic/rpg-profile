@@ -4,14 +4,14 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-  <?php
-  $sheetVer = "0.1";
-
-  // Lists for skills and traits.
-  require_once("v4_Include.php");
-  ?>
-
   <head>
+    <?php
+    $sheetVer = "0.1";
+    
+    // Lists for skills and traits.
+    require_once("v4_Include.php");
+    ?>
+
     <title><?= $TITLE ?> - D&amp;D Fourth Edition</title>
     <link type="text/css" rel="stylesheet" href="v4/main.css" />
     <!--[if IE]>
@@ -19,15 +19,17 @@
     <![endif]-->
 
     <script type="text/javascript">var READONLY = <?= $READONLY ? "true" : "false"; ?>;</script>
+    <script type="text/javascript" src="./v4/prototype.js"></script>
     <script type="text/javascript" src="./v4/attributes.js"></script>
     <script type="text/javascript" src="./v4/general.js"></script>
+    <script type="text/javascript" src="./v4/money.js"></script>
     <script type="text/javascript" src="./v4/sheet.js"></script>
     <script type="text/javascript" src="./v4/pic.js"></script>
   </head>
   <body onload="init()" onunload="cleanup()">
   <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
 
-  <form action="save.php" method="post" id="charactersheet">
+  <form action="ajax_save.php" method="post" id="charactersheet">
 
 <input type="hidden" name="firstload" value="<?php echo isset($DATA['firstload']) ? "false" : "true"; ?>" />
 <input type="hidden" <?php getnv('PicURL'); ?> />
@@ -36,25 +38,25 @@
 
 <!-- Character -->
 <div id="character">
-    <div class="attr"><input type="text" <?php getnv("CharacterName"); ?> class="large"><br/>Character Name</div>
-    <div class="attr"><input type="text" <?php getnv("Level"); ?> class="small"><br/>Level</div>
-    <div class="attr"><input type="text" <?php getnv("Class"); ?> class="medium"><br/>Class</div>
+    <div class="attr textleft"><input type="text" <?php getnv("CharacterName"); ?> class="large bottomborder"><br/>Character Name</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Level"); ?> class="small" onchange="updateLevel();"><br/>Level</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Class"); ?> class="medium bottomborder"><br/>Class</div>
     
-    <div class="attr"><input type="text" <?php getnv("ParagonPath"); ?> class="medium"><br/>Paragon Path</div>
-    <div class="attr"><input type="text" <?php getnv("EpicDestiny"); ?> class="medium"><br/>Epic Destiny</div>
-    <div class="attr"><input type="text" <?php getnv("TotalXP"); ?> class="small"><br/>Total XP</div>
+    <div class="attr textleft"><input type="text" <?php getnv("ParagonPath"); ?> class="medium bottomborder"><br/>Paragon Path</div>
+    <div class="attr textleft"><input type="text" <?php getnv("EpicDestiny"); ?> class="medium bottomborder"><br/>Epic Destiny</div>
+    <div class="attr textleft"><input type="text" <?php getnv("TotalXP"); ?> class="small"><br/>Total XP</div>
     
-    <div class="attr"><input type="text" <?php getnv("Race"); ?> class="medium"><br/>Race</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Race"); ?> class="medium bottomborder"><br/>Race</div>
     
-    <div class="attr"><input type="text" <?php getnv("Size"); ?> class="tiny"><br/>Size</div>
-    <div class="attr"><input type="text" <?php getnv("Age"); ?> class="tiny"><br/>Age</div>
-    <div class="attr"><input type="text" <?php getnv("Gender"); ?> class="tiny"><br/>Gender</div>
-    <div class="attr"><input type="text" <?php getnv("Height"); ?> class="tiny"><br/>Height</div>
-    <div class="attr"><input type="text" <?php getnv("Weight"); ?> class="tiny"><br/>Weight</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Size"); ?> class="tiny bottomborder"><br/>Size</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Age"); ?> class="tiny bottomborder"><br/>Age</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Gender"); ?> class="tiny bottomborder"><br/>Gender</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Height"); ?> class="tiny bottomborder"><br/>Height</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Weight"); ?> class="tiny bottomborder"><br/>Weight</div>
     
-    <div class="attr"><input type="text" <?php getnv("Alignment"); ?> class="small"><br/>Alignment</div>
-    <div class="attr"><input type="text" <?php getnv("Deity"); ?> class="small"><br/>Deity</div>
-    <div class="attr"><input type="text" <?php getnv("Company"); ?> class="large"><br/>Adventuring Company/Affiliations</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Alignment"); ?> class="small bottomborder"><br/>Alignment</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Deity"); ?> class="small bottomborder"><br/>Deity</div>
+    <div class="attr textleft"><input type="text" <?php getnv("Company"); ?> class="large bottomborder"><br/>Adventuring Company/Affiliations</div>
 </div>
 <br class="clear"/>
 
@@ -66,13 +68,13 @@
     <div id="initiative" class="section">
         <h2>Initiative</h2>
         <div class="textleft attr">
-            Score<br/><input type="text" <?php getnv("Initiative"); ?> class="tiny">
+            Score<br/><input type="text" <?php getnv("Initiative"); ?> class="tiny" readonly>
             <span class="largelabel">Initiative</span>
         </div>
-        <div class="attr">Dex<br/><input type="text" <?php getnv("InitiativeDex"); ?> class="tiny"></div>
-        <div class="attr">&frac12; Lev<br/><input type="text" <?php getnv("InitiativeLevel"); ?> class="tiny"></div>
-        <div class="attr">Misc<br/><input type="text" <?php getnv("InitiativeMisc"); ?> class="tiny"></div>
-        <div class="attr textleft">Conditional Modifiers<br/><input type="text" <?php getnv("InitiativeModifier"); ?> class="full"></div>
+        <div class="attr">Dex<br/><input type="text" <?php getnv("InitiativeDex"); ?> class="tiny" readonly></div>
+        <div class="attr">&frac12; Lev<br/><input type="text" <?php getnv("InitiativeLevel"); ?> class="tiny" readonly></div>
+        <div class="attr">Misc<br/><input type="text" <?php getnv("InitiativeMisc"); ?> class="tiny" onchange="updateInitiative();"></div>
+        <div class="attr textleft">Conditional Modifiers<br/><input type="text" <?php getnv("InitiativeModifier"); ?> class="full bottomborder"></div>
     </div>
     
     <!-- ======================================== -->
@@ -152,11 +154,11 @@
         <br class="clear"/>
         <div class="attr textleft">
             Current Hit Points<br/>
-            <input type="text" <?php getnv("HitPoints"); ?> class="half"/>
+            <input type="text" <?php getnv("HitPoints"); ?> class="half bottomborder"/>
         </div>
         <div class="attr textright">
             Current Surge Uses<br/>
-            <input type="text" <?php getnv("CurrentSurgeUses"); ?> class="half"/>
+            <input type="text" <?php getnv("CurrentSurgeUses"); ?> class="half bottomborder"/>
         </div>
         <h3>
             <span class="right"><p class="top">Used</p> <input type="checkbox" <? getnc("SecondWind"); ?> class="smallcheck"/></span>
@@ -164,7 +166,7 @@
         </h3>
         <div class="attr textleft">
             Temporary Hit Points<br/>
-            <input type="text" <?php getnv("TemporaryHitPoints"); ?> class="full"/>
+            <input type="text" <?php getnv("TemporaryHitPoints"); ?> class="full noborder"/>
         </div>
         <h3>
             <span class="right"><input type="checkbox" <? getnc("DeathFail1"); ?> class="smallcheck"/><input type="checkbox" <? getnc("DeathFail2"); ?> class="smallcheck"/><input type="checkbox" <? getnc("DeathFail3"); ?> class="smallcheck"/></span>
@@ -172,15 +174,15 @@
         </h3>
         <div class="attr textleft">
             Saving Throw Mods<br/>
-            <input type="text" <?php getnv("SavingThrowMods"); ?> class="full"/>
+            <input type="text" <?php getnv("SavingThrowMods"); ?> class="full bottomborder"/>
         </div>
         <div class="attr textleft">
             Resistances<br/>
-            <input type="text" <?php getnv("Resistances"); ?> class="full"/>
+            <input type="text" <?php getnv("Resistances"); ?> class="full bottomborder"/>
         </div>
         <div class="attr textleft">
             Current Conditions and Effects<br/>
-            <input type="text" <?php getnv("CurrentConditions"); ?> class="full"/>
+            <input type="text" <?php getnv("CurrentConditions"); ?> class="full bottomborder"/>
         </div>
         
     </div>
@@ -212,8 +214,8 @@
             <input type="text" <? getnv($skillName . "SkillBonus"); ?> class="skilltiny" readonly/>
             <p class="skillname"><?= $skillName ?></p>
             <p class="skillattr"><?= $ability ?></p>
-            <input type="text" <? getnv($skillName . "SkillAbility"); ?> class="skilltiny" onchange="updateSkill('<?=$skillName?>');"/>
-            <input type="text" <? getnv($skillName . "Trained"); ?> class="skilltiny" onchange="updateSkill('<?=$skillName?>');"/>
+            <input type="text" <? getnv($skillName . "SkillAbility"); ?> class="skilltiny" readonly/>
+            <input type="text" <? getnv($skillName . "SkillTrained"); ?> class="skilltiny" onchange="updateSkill('<?=$skillName?>');"/>
             <? if( $penalty ) { ?>
                 <input type="text" <? getnv($skillName . "SkillPenalty"); ?> class="skilltiny bottomborder<? if( $skillNum % 2 == 0 ) { ?> oddbg<? } ?>" onchange="updateSkill('<?=$skillName?>');"/>
             <? } else { ?>
@@ -251,7 +253,7 @@
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
-                <input type="text" <? getnv("ACBase"); ?> class="xtiny" onchange="updateAC();"/>
+                <input type="text" <? getnv("ACBase"); ?> class="xtiny" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel">Armor/<br/>Abil<br/></span>
@@ -286,7 +288,7 @@
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
-                <input type="text" <? getnv("FortBase"); ?> class="xtiny" onchange="updateFort();"/>
+                <input type="text" <? getnv("FortBase"); ?> class="xtiny" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Abil<br/></span>
@@ -321,7 +323,7 @@
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
-                <input type="text" <? getnv("ReflexBase"); ?> class="xtiny" onchange="updateReflex();"/>
+                <input type="text" <? getnv("ReflexBase"); ?> class="xtiny" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Abil<br/></span>
@@ -356,7 +358,7 @@
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
-                <input type="text" <? getnv("WillBase"); ?> class="xtiny" onchange="updateWill();"/>
+                <input type="text" <? getnv("WillBase"); ?> class="xtiny" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Abil<br/></span>
@@ -397,7 +399,7 @@
         </div>
         <div class="attr textleft">
             Additional Effects for Spending Action Points<br/>
-            <input type="text" <? getnv("ActionPointsEffect"); ?> class="full"/>
+            <input type="text" <? getnv("ActionPointsEffect"); ?> class="full bottomborder"/>
         </div>
     </div>
 
@@ -516,7 +518,7 @@
         <div class="row">
             <div class="attr textleft">
                 Special Senses<br/>
-                <input type="text" <? getnv("SpecialSenses"); ?> class="full"/>
+                <input type="text" <? getnv("SpecialSenses"); ?> class="full bottomborder"/>
             </div>
         </div>
     </div>
@@ -526,90 +528,50 @@
     <!-- ======================================== -->
     <div class="section">
         <h2>Attack Workspace</h2>
+        <? for( $i = 1; $i <= 2; $i++ ) { ?>
         <div class="row">
             <div class="attr textleft">
                 Ability<br/>
-                <input type="text" <? getnv("Attack1Ability"); ?> class="full"/>
+                <input type="text" <? getnv("AttackAbilityText" . $i); ?> class="full bottomborder"/>
             </div>
         </div>
         <div class="row">
             <div class="right">
                 <div class="attr">
                     <span class="smalllabel">&frac12;Lvl<br/></span>
-                    <input type="text" <? getnv("Attack1Level"); ?> class="xtiny" onchange="updateAttack(1);" readonly/>
+                    <input type="text" <? getnv("AttackLevel" . $i); ?> class="xtiny" readonly/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Abil<br/></span>
-                    <input type="text" <? getnv("Attack1Ability"); ?> class="xtiny" onchange="updateAttack(1);"/>
+                    <input type="text" <? getnv("AttackAbility" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Class<br/></span>
-                    <input type="text" <? getnv("Attack1Class"); ?> class="xtiny" onchange="updateAttack(1);"/>
+                    <input type="text" <? getnv("AttackClass" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Prof<br/></span>
-                    <input type="text" <? getnv("Attack1Prof"); ?> class="xtiny" onchange="updateAttack(1);"/>
+                    <input type="text" <? getnv("AttackProf" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Feat<br/></span>
-                    <input type="text" <? getnv("Attack1Feat"); ?> class="xtiny" onchange="updateAttack(1);"/>
+                    <input type="text" <? getnv("AttackFeat" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Enh<br/></span>
-                    <input type="text" <? getnv("Attack1Enhance"); ?> class="xtiny" onchange="updateAttack(1);"/>
+                    <input type="text" <? getnv("AttackEnhance" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Misc<br/></span>
-                    <input type="text" <? getnv("Attack1Misc"); ?> class="xtiny" onchange="updateAttack(1);"/>
+                    <input type="text" <? getnv("AttackMisc" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
             </div>
             <div class="attr total">
                 <span class="smalllabel">Att Bonus<br/></span>
-                <input type="text" <? getnv("Attack1"); ?> class="tiny" readonly/>
+                <input type="text" <? getnv("Attack" . $i); ?> class="tiny" readonly/>
             </div>
         </div>
-        <div class="row">
-            <div class="attr textleft">
-                Ability<br/>
-                <input type="text" <? getnv("Attack2Ability"); ?> class="full"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="right">
-                <div class="attr">
-                    <span class="smalllabel">&frac12;Lvl<br/></span>
-                    <input type="text" <? getnv("Attack2Level"); ?> class="xtiny" onchange="updateAttack(2);" readonly/>
-                </div>
-                <div class="attr">
-                    <span class="smalllabel">Abil<br/></span>
-                    <input type="text" <? getnv("Attack2Ability"); ?> class="xtiny" onchange="updateAttack(2);"/>
-                </div>
-                <div class="attr">
-                    <span class="smalllabel">Class<br/></span>
-                    <input type="text" <? getnv("Attack2Class"); ?> class="xtiny" onchange="updateAttack(2);"/>
-                </div>
-                <div class="attr">
-                    <span class="smalllabel">Prof<br/></span>
-                    <input type="text" <? getnv("Attack2Prof"); ?> class="xtiny" onchange="updateAttack(2);"/>
-                </div>
-                <div class="attr">
-                    <span class="smalllabel">Feat<br/></span>
-                    <input type="text" <? getnv("Attack2Feat"); ?> class="xtiny" onchange="updateAttack(2);"/>
-                </div>
-                <div class="attr">
-                    <span class="smalllabel">Enh<br/></span>
-                    <input type="text" <? getnv("Attack2Enhance"); ?> class="xtiny" onchange="updateAttack(2);"/>
-                </div>
-                <div class="attr">
-                    <span class="smalllabel">Misc<br/></span>
-                    <input type="text" <? getnv("Attack2Misc"); ?> class="xtiny" onchange="updateAttack(2);"/>
-                </div>
-            </div>
-            <div class="attr total">
-                <span class="smalllabel">Att Bonus<br/></span>
-                <input type="text" <? getnv("Attack2"); ?> class="tiny" readonly/>
-            </div>
-        </div>
+        <? } ?>
     </div>
 
     <!-- ======================================== -->
@@ -617,74 +579,42 @@
     <!-- ======================================== -->
     <div class="section">
         <h2>Damage Workspace</h2>
+        <? for( $i = 1; $i <= 2; $i++ ) { ?>
         <div class="row">
             <div class="attr textleft">
                 Ability<br/>
-                <input type="text" <? getnv("Damage1Ability"); ?> class="full"/>
+                <input type="text" <? getnv("DamageAbilityText" . $i); ?> class="full bottomborder"/>
             </div>
         </div>
         <div class="row">
             <div class="right">
                 <div class="attr">
                     <span class="smalllabel">Abil<br/></span>
-                    <input type="text" <? getnv("Damage1Ability"); ?> class="xtiny" onchange="updateDamage(1);"/>
+                    <input type="text" <? getnv("DamageAbility" . $i); ?> class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Feat<br/></span>
-                    <input type="text" <? getnv("Damage1Feat"); ?> class="xtiny" onchange="updateDamage(1);"/>
+                    <input type="text" <? getnv("DamageFeat" . $i); ?> class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Enh<br/></span>
-                    <input type="text" <? getnv("Damage1Enhance"); ?> class="xtiny" onchange="updateDamage(1);"/>
+                    <input type="text" <? getnv("DamageEnhance" . $i); ?> class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Misc<br/></span>
-                    <input type="text" <? getnv("Damage1Misc1"); ?> class="xtiny" onchange="updateDamage(1);"/>
+                    <input type="text" <? getnv("DamageMisc1" . $i); ?> class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Misc<br/></span>
-                    <input type="text" <? getnv("Damage1Misc2"); ?> class="xtiny" onchange="updateDamage(1);"/>
+                    <input type="text" <? getnv("DamageMisc2" . $i); ?> class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
                 </div>
             </div>
             <div class="attr total">
-                <span class="smalllabel">Att Bonus<br/></span>
-                <input type="text" <? getnv("Damage1"); ?> class="tiny" readonly/>
+                <span class="smalllabel">Bonus<br/></span>
+                <input type="text" <? getnv("Damage" . $i); ?> class="tiny" readonly/>
             </div>
         </div>
-        <div class="row">
-            <div class="attr textleft">
-                Ability<br/>
-                <input type="text" <? getnv("Damage2Ability"); ?> class="full"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="right">
-                <div class="attr">
-                    <span class="smalllabel">Abil<br/></span>
-                    <input type="text" <? getnv("Damage2Ability"); ?> class="xtiny" onchange="updateDamage(2);"/>
-                </div>
-                <div class="attr">
-                    <span class="smalllabel">Feat<br/></span>
-                    <input type="text" <? getnv("Damage2Feat"); ?> class="xtiny" onchange="updateDamage(2);"/>
-                </div>
-                <div class="attr">
-                    <span class="smalllabel">Enh<br/></span>
-                    <input type="text" <? getnv("Damage2Enhance"); ?> class="xtiny" onchange="updateDamage(2);"/>
-                </div>
-                <div class="attr">
-                    <span class="smalllabel">Misc<br/></span>
-                    <input type="text" <? getnv("Damage2Misc1"); ?> class="xtiny" onchange="updateDamage(2);"/>
-                </div>
-                <div class="attr">
-                    <span class="smalllabel">Misc<br/></span>
-                    <input type="text" <? getnv("Damage2Misc2"); ?> class="xtiny" onchange="updateDamage(2);"/>
-                </div>
-            </div>
-            <div class="attr total">
-                <span class="smalllabel">Att Bonus<br/></span>
-                <input type="text" <? getnv("Damage2"); ?> class="tiny" readonly/>
-            </div>
-        </div>
+        <? } ?>
     </div>
 
     <!-- ======================================== -->
@@ -692,78 +622,29 @@
     <!-- ======================================== -->
     <div class="section">
         <h2>Basic Attacks</h2>
+        <? for( $i = 1; $i <= 4; $i++ )  { ?>
         <div class="row">
             <div class="attr">
-                <span class="smalllabel">Attack<br/></span>
-                <input type="text" <? getnv("BasicAttackAttack1"); ?> class="tiny"/>
+                <? if( $i == 1 ) { ?><span class="smalllabel">Attack<br/></span><? } ?>
+                <input type="text" <? getnv("BasicAttackAttack" . $i); ?> class="tiny"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>VS</span>
             </div>
             <div class="attr">
-                <span class="smalllabel">Defense<br/></span>
-                <input type="text" <? getnv("BasicAttackDefense1"); ?> class="tiny"/>
+                <? if( $i == 1 ) { ?><span class="smalllabel">Defense<br/></span><? } ?>
+                <input type="text" <? getnv("BasicAttackDefense" . $i); ?> class="tiny"/>
             </div>
             <div class="attr">
-                <span class="smalllabel">Weapon/Power<br/></span>
-                <input type="text" <? getnv("BasicAttackWeapon1"); ?> class="third"/>
+                <? if( $i == 1 ) { ?><span class="smalllabel">Weapon/Power<br/></span><? } ?>
+                <input type="text" <? getnv("BasicAttackWeapon" . $i); ?> class="third bottomborder"/>
             </div>
             <div class="attr">
-                <span class="smalllabel">Damage<br/></span>
-                <input type="text" <? getnv("BasicAttackDamage1"); ?> class="small"/>
+                <? if( $i == 1 ) { ?><span class="smalllabel">Damage<br/></span><? } ?>
+                <input type="text" <? getnv("BasicAttackDamage" . $i); ?> class="small bottomborder"/>
             </div>
         </div>
-        <div class="row">
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackAttack2"); ?> class="tiny"/>
-            </div>
-            <div class="attr">
-                <span class="smalllabel">VS</span>
-            </div>
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackDefense2"); ?> class="tiny"/>
-            </div>
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackWeapon2"); ?> class="third"/>
-            </div>
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackDamage2"); ?> class="small"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackAttack3"); ?> class="tiny"/>
-            </div>
-            <div class="attr">
-                <span class="smalllabel">VS</span>
-            </div>
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackDefense3"); ?> class="tiny"/>
-            </div>
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackWeapon3"); ?> class="third"/>
-            </div>
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackDamage3"); ?> class="small"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackAttack4"); ?> class="tiny"/>
-            </div>
-            <div class="attr">
-                <span class="smalllabel">VS</span>
-            </div>
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackDefense4"); ?> class="tiny"/>
-            </div>
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackWeapon4"); ?> class="third"/>
-            </div>
-            <div class="attr">
-                <input type="text" <? getnv("BasicAttackDamage4"); ?> class="small"/>
-            </div>
-        </div>
+        <? } ?>
     </div>
 
     <!-- ======================================== -->
@@ -778,45 +659,257 @@
     </div>
 </div>
 
-<br class="page"/>
+<div class="page">&nbsp;</div>
 
-
-
-
-<div id="charPic" style="display: none;">
-<img id="pic" src="" onclick="SetPic();">
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- SECOND PAGE - FIRST COLUMN -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<div class="column">
+    <div class="section">
+        <h2>Power Index</h2>
+        <div class="attr whole">
+            <em>List your powers below.<br/>
+            Check the box when the power is used.<br/>
+            Clear the box when the power renews.</em>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>At-Will Powers</h2>
+        <? for( $i = 1; $i <= 6; $i++ ) { ?>
+        <div class="row">
+            <div class="attr">
+                <input type="text" <? getnv("AtWillPower" . $i); ?> class="full bottomborder"/>
+            </div>
+        </div>
+        <? } ?>
+    </div>
+    
+    <div class="section">
+        <h2>Encounter Powers</h2>
+        <? for( $i = 1; $i <= 6; $i++ ) { ?>
+        <div class="row">
+            <div class="attr">
+                <input type="text" <? getnv("EncounterPower" . $i); ?> class="fullpower bottomborder"/>
+                <input type="checkbox" <? getnc("EncounterPowerUsed" . $i); ?>/>
+            </div>
+        </div>
+        <? } ?>
+    </div>
+    
+    <div class="section">
+        <h2>Daily Powers</h2>
+        <? for( $i = 1; $i <= 6; $i++ ) { ?>
+        <div class="row">
+            <div class="attr">
+                <input type="text" <? getnv("DailyPower" . $i); ?> class="fullpower bottomborder"/>
+                <input type="checkbox" <? getnc("DailyPowerUsed" . $i); ?>/>
+            </div>
+        </div>
+        <? } ?>
+    </div>
+    
+    <div class="section">
+        <h2>Utility Powers</h2>
+        <? for( $i = 1; $i <= 8; $i++ ) { ?>
+        <div class="row">
+            <div class="attr">
+                <input type="text" <? getnv("UtilityPower" . $i); ?> class="fullpower bottomborder"/>
+                <input type="checkbox" <? getnc("UtilityPowerUsed" . $i); ?>/>
+            </div>
+        </div>
+        <? } ?>
+    </div>
 </div>
 
-<div id="noCharPic">
-<img id="pic" src="v4/click.png" onclick="SetPic();">
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- SECOND COLUMN -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<div class="column">
+    <div class="section">
+        <h2>Magic Item Index</h2>
+        <div class="attr whole">
+            <em>List your powers below.<br/>
+            Check the box when the power is used.<br/>
+            Clear the box when the power renews.</em>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Magic Items</h2>
+        <? 
+            $titles = array("Weapon","Weapon","Weapon","Weapon","Armor","Arms","Feet","Hands","Head","Neck","Ring","Ring","Waist");
+            for( $i = 1; $i <= 25; $i++ ) { 
+        ?>
+        <div class="row">
+            <div class="attr">
+                <? 
+                   $className = "fullpower";
+                   if( $i < sizeof($titles) ) { 
+                       $className = "shortpower";
+                ?>
+                <div class="itemlabel textleft"><?= $titles[$i - 1] ?></div>
+                <? } ?>
+                <input type="text" <? getnv("MagicItem" . $i); ?> class="<?= $className ?> bottomborder"/>
+                <input type="checkbox" <? getnc("MagicItemUsed" . $i); ?>/>
+            </div>
+        </div>
+        <? } ?>
+        
+        <div class="row">
+            <div class="attr whole">
+                <span class="mediumlabel"><em>Daily Item Powers Per Day</em></span>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="powertitle">Heroic 1-10</div>
+            <div class="powercheck">
+                <input type="text" <? getnv("HeroicCheck1"); ?> class="xxtiny" maxlength="1"/>
+            </div>
+            <div class="powertitletwo">Milestone</div>
+            <div class="powerchecktwo">
+                <input type="text" <? getnv("HeroicMilestone1"); ?> class="xxtiny" maxlength="1"/>/
+                <input type="text" <? getnv("HeroicMilestone2"); ?> class="xxtiny" maxlength="1"/>/
+                <input type="text" <? getnv("HeroicMilestone3"); ?> class="xxtiny" maxlength="1"/>/
+                <input type="text" <? getnv("HeroicMilestone4"); ?> class="xxtiny" maxlength="1"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="powertitle">Paragon 11-20</div>
+            <div class="powercheck">
+                <input type="text" <? getnv("ParagonCheck1"); ?> class="xxtiny" maxlength="1"/>
+                <input type="text" <? getnv("ParagonCheck2"); ?> class="xxtiny" maxlength="1"/>
+            </div>
+            <div class="powertitletwo">Milestone</div>
+            <div class="powerchecktwo">
+                <input type="text" <? getnv("ParagonMilestone1"); ?> class="xxtiny" maxlength="1"/>/
+                <input type="text" <? getnv("ParagonMilestone2"); ?> class="xxtiny" maxlength="1"/>/
+                <input type="text" <? getnv("ParagonMilestone3"); ?> class="xxtiny" maxlength="1"/>/
+                <input type="text" <? getnv("ParagonMilestone4"); ?> class="xxtiny" maxlength="1"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="powertitle">Epic 21-30</div>
+            <div class="powercheck">
+                <input type="text" <? getnv("EpicCheck1"); ?> class="xxtiny" maxlength="1"/>
+                <input type="text" <? getnv("EpicCheck2"); ?> class="xxtiny" maxlength="1"/>
+                <input type="text" <? getnv("EpicCheck3"); ?> class="xxtiny" maxlength="1"/>
+            </div>
+            <div class="powertitletwo">Milestone</div>
+            <div class="powerchecktwo">
+                <input type="text" <? getnv("EpicMilestone1"); ?> class="xxtiny" maxlength="1"/>/
+                <input type="text" <? getnv("EpicMilestone2"); ?> class="xxtiny" maxlength="1"/>/
+                <input type="text" <? getnv("EpicMilestone3"); ?> class="xxtiny" maxlength="1"/>/
+                <input type="text" <? getnv("EpicMilestone4"); ?> class="xxtiny" maxlength="1"/>
+            </div>
+        </div>
+    </div>
 </div>
 
-<br class="page"/>
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- THIRD COLUMN -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+<!-- ======================================== -->
+
+<div class="column">
+    <div id="charPic" style="display: none;">
+    <img id="pic" src="" onclick="SetPic();"/>
+    </div>
+    
+    <div id="noCharPic">
+    <img id="pic" src="v4/click.png" onclick="SetPic();"/>
+    </div>
+    
+    <div class="section">
+        <h2>Money</h2>
+    
+        <div class="attr">
+            <div class="cashtitle">Personal</div>
+            <div class="cashtitle">Party</div>
+        </div>
+        <div class="attr">
+            <input onchange="sumCash();" class="cash" <?php getnv('CashAD' ); ?> /> ad
+            <input onchange="sumCash();" class="cash" <?php getnv('PartyCashAD' ); ?> /> ad
+        </div>
+        <div class="attr">
+            <input onchange="sumCash();" class="cash" <?php getnv('CashPP' ); ?> /> pp
+            <input onchange="sumCash();" class="cash" <?php getnv('PartyCashPP' ); ?> /> pp
+        </div>
+        <div class="attr">
+            <input onchange="sumCash();" class="cash" <?php getnv('CashGP' ); ?> /> gp
+            <input onchange="sumCash();" class="cash" <?php getnv('PartyCashGP' ); ?> /> gp
+        </div>
+        <div class="attr">
+            <input onchange="sumCash();" class="cash" <?php getnv('CashSP' ); ?> /> sp
+            <input onchange="sumCash();" class="cash" <?php getnv('PartyCashSP' ); ?> /> sp
+        </div>
+        <div class="attr">
+            <input onchange="sumCash();" class="cash" <?php getnv('CashCP' ); ?> /> cp
+            <input onchange="sumCash();" class="cash" <?php getnv('PartyCashCP' ); ?> /> cp
+        </div>
+        <div class="attr whole">
+            <hr/>
+        </div>
+        <div class="attr">
+            <input class="cash" <?php getnv('CashTotal' ); ?> readonly/> gp
+            <input class="cash" <?php getnv('PartyCashTotal' ); ?> readonly/>gp
+        </div>
+        <div class="attr">
+            <textarea class="full money" <? getn("Equipment"); ?>><? getv("Equipment"); ?></textarea>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Equipment</h2>
+        <div class="attr">
+            <textarea class="full equipment" <? getn("Equipment"); ?>><? getv("Equipment"); ?></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="page">&nbsp;</div>
 
 <!-- Notes -->
 <input type="checkbox" <?php getnc('NotesDisp'); ?> onchange="ToggleDisplay('notes', this);" style="width:15px; border:none;"/>
 Display Notes
 <div id="notes">
-
-<h2>Notes</h2>
-<textarea <?php getn('Notes'); ?> class="whole" cols="10" rows="10"><?php getv('Notes'); ?></textarea>
-
-<?php if ($SHOWSAVE) { ?>
-<!-- Private Notes -->
-<h2>Private Notes (Will not be displayed publically)</h2>
-<textarea <?php getn('PrivateNotes'); ?> class="whole" cols="10" rows="10"><?php getv('PrivateNotes'); ?></textarea>
-
-<input type="checkbox" <?php getnc('BackgroundDisp'); ?> onchange="ToggleDisplay('background', this);" style="width:15px; border:none;"/>
-Display Background
-
-<br class="page">
-
-<div id="background" class="section">
-<h2>Character Background (Will not be displayed publically)</h2>
-
-<textarea <?php getn('Background'); ?> class="whole" cols="10" rows="10"><?php getv('Background'); ?></textarea>
-</div>
-<?php } ?>
+    <h2>Notes</h2>
+    <textarea <?php getn('Notes'); ?> class="whole" cols="10" rows="10"><?php getv('Notes'); ?></textarea>
+    
+    <?php if ($SHOWSAVE) { ?>
+    <!-- Private Notes -->
+    <h2>Private Notes (Will not be displayed publically)</h2>
+    <textarea <?php getn('PrivateNotes'); ?> class="whole" cols="10" rows="10"><?php getv('PrivateNotes'); ?></textarea>
+    
+    <input type="checkbox" <?php getnc('BackgroundDisp'); ?> onchange="ToggleDisplay('background', this);" style="width:15px; border:none;"/>
+    Display Background
+    
+    <div id="background" class="section">
+        <h2>Character Background (Will not be displayed publically)</h2>
+        
+        <textarea <?php getn('Background'); ?> class="whole" cols="10" rows="10"><?php getv('Background'); ?></textarea>
+    </div>
+    <?php } ?>
 </div>
 
 <!-- Footer -->
@@ -825,7 +918,7 @@ Display Background
             <table width="100%" cellspacing="0">
                <tr>
                   <td>Last saved = <?php getv("LastSaveDate"); ?></td>
-                  <td align="right">D&D 4th Edition Character Sheet by Tarlen</td>
+                  <td align="right">4th Edition Character Sheet by Tarlen</td>
                </tr>
             </table>
           </div>
@@ -834,7 +927,7 @@ Display Background
           <div id="save">
             <input type="reset" value="Reset Changes" onclick="return confirm('Are you sure you want to reset the character sheet? You will lose all changes you made since you last saved.')" />
             &nbsp;&nbsp;
-            <input type="submit" value="Save Changes" onclick="SetSaveDate(); return true;" />
+            <input type="submit" value="Save Changes" onclick="SetSaveDate(); Save(); return false;" />
           </div>
           <?php } ?>
 

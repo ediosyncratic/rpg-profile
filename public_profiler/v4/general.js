@@ -122,11 +122,14 @@ function Show(node, show)
 // value for an integer fails, a zero will be entered.
 function ZeroFill()
 {
-  if (disable_autocalc())
+  if (disable_autocalc()) {
     return;
-  for (var i = 0; i < arguments.length; i++)
-    if (isNaN(parseInt(arguments[i].value)))
+  }
+  for (var i = 0; i < arguments.length; i++) {
+    if (isNaN(parseInt(arguments[i].value))) {
       arguments[i].value = 0;
+    }
+  }
 }
 
 // string Trim( str )

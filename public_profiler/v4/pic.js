@@ -19,7 +19,7 @@ function SetPic()
     path = "none";
 
   // Get a uri from the user.
-  var uri = prompt("Enter a URI for your character's portrait, or type 'none' to leave the portrait slot blank.\n\nThe image should be 125 pixels wide by 193 pixels high, or a similar aspect ratio.", path);
+  var uri = prompt("Enter a URI for your character's portrait, or type 'none' to leave the portrait slot blank.\n\nThe image should be 215 pixels wide by 215 pixels high, or a similar aspect ratio.", path);
 
   if (uri == "none") {
     sheet().PicURL.value = "";

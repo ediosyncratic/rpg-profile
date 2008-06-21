@@ -21,7 +21,7 @@ br.clear {
 	clear: both;
 }
 
-br.page {
+div.page {
     clear:      both;
     page-break-before: always;
 }
@@ -83,6 +83,13 @@ input.xtiny {
     text-align: center;
 }
 
+input.xxtiny {
+    width: 7px;
+    heigth: 7px;
+    font-size: 9px;
+    text-align: center;
+}
+
 .whole {
     width: 99%;	
 }
@@ -104,6 +111,48 @@ input.xtiny {
     text-align: center;
 }
 
+.fullpower {
+    width: 190px;    
+}
+
+.shortpower {
+    width: 150px;    
+}
+
+div.itemlabel {
+    float: left;
+    width: 40px;
+    margin: 6px 0px 0px 0px;
+}
+
+div.powertitle {
+    float: left;
+    margin: 4px 0px 0px 0px;
+    width: 55px;
+    font-size: 8px;
+}
+
+div.powertitletwo {
+    float: left;
+    margin: 4px 0px 0px 2px;
+    width: 40px;
+    font-size: 8px;
+}
+
+div.powercheck {
+    float: left;
+    width: 50px;
+}
+
+div.powerchecktwo {
+    float: left;
+    width: 70px;
+}
+
+div.powercheck input, div.powerchecktwo input {
+    margin: 0px 0px 0px 0px;	
+}
+
 textarea.racefeatures {
     height: 170px;  
 }
@@ -116,8 +165,27 @@ textarea.languages {
     height: 80px;  
 }
 
+textarea.equipment {
+    height: 280px;  
+}
+
+textarea.money {
+    height: 50px;  
+}
+
 textarea.feats {
     height: 305px;  
+}
+
+input.cash {
+    width: 88px;
+    text-align: right;
+}
+
+div.cashtitle {
+    float: left;
+    width: 105px;
+    text-align: center;	
 }
 
 input.tall {
@@ -206,6 +274,7 @@ p.skillattr {
 input.skilltiny {
     float: left;
     width: 18px;
+    height: 16px;
     margin: 0px 0px 0px 2px;
     text-align: center;
 }
@@ -256,11 +325,10 @@ h3 {
 }
 
 #pic {
-    float:          right;
     vertical-align: bottom;
-    border:         solid 1px black;
-    width:          125px;
-    height:         193px;
+    border:         solid 1px #ccc;
+    width:          215px;
+    height:         215px;
 }
 
 /* Generic Section Stuff */

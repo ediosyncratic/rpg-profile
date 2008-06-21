@@ -33,3 +33,9 @@ $skills["Streetwise"] =    array($ABILITY => $CHA, $PENALTY => false);
 $skills["Thievery"] =      array($ABILITY => $DEX, $PENALTY => true);
 
 ?>
+<script type="text/javascript">
+var skillAbilities = [];
+<? foreach( $skills as $skillName => $skillAttributes) { ?>
+skillAbilities['skill<?= $skillName ?>'] = '<?= $skillAttributes[$ABILITY] ?>';
+<? } ?>
+</script>
