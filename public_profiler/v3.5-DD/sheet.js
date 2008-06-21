@@ -83,6 +83,19 @@ function SetSaveDate()
                 now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
 }
 
+function Save() {
+    $('charactersheet').request({
+        method: 'post',
+        onComplete: function(transport) {
+            if( transport.responseText == 'SUCCESS' ) { 
+                alert('Character saved!');
+            } else {
+                alert('Error: ' + transport.responseText);
+            }
+        }
+    })
+}
+
 function CheckDisplay() {
   for(var i = 1; i <= 4; i++) {
     var obj = sheet()["Wep" + i + "Disp"];

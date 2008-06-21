@@ -35,6 +35,7 @@
     <script type="text/javascript">var READONLY = <?php echo $READONLY ? "true" : "false"; ?>;</script>
     <script type="text/javascript" src="./v3.5-DD/general.js"></script>
     <script type="text/javascript" src="./v3.5-DD/debug.js"></script>
+    <script type="text/javascript" src="./v3.5-DD/prototype.js"></script>
     <script type="text/javascript" src="./v3.5-DD/ogl/skills.js"></script>
     <script type="text/javascript" src="./v3.5-DD/ogl/size.js"></script>
     <script type="text/javascript" src="./v3.5-DD/ogl/capacity.js"></script>
@@ -60,7 +61,7 @@
   <body onload="init()" onunload="cleanup()">
   <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
 
-  <form action="save.php" method="post" id="charactersheet">
+  <form action="ajax_save.php" method="post" id="charactersheet">
 
   <div>
     <input type="hidden" name="firstload" value="<?php echo isset($DATA['firstload']) ? "false" : "true"; ?>" />
@@ -1012,7 +1013,7 @@ if( $firefox ) { echo '<!--'; } ?>
           <div id="save">
             <input type="reset" value="Reset Changes" onclick="return confirm('Are you sure you want to reset the character sheet? You will lose all changes you made since you last saved.')" />
             &nbsp;&nbsp;
-            <input type="submit" value="Save Changes" onclick="SetSaveDate(); return true;" />
+            <input type="submit" value="Save Changes" onclick="SetSaveDate(); Save(); return false;" />
           </div>
           <?php } ?>
 

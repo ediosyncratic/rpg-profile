@@ -39,6 +39,7 @@ div.attr {
     float: left;
     margin-right: 3px;
     text-align: center;
+    color: #888;
 }
 
 .textleft {
@@ -55,18 +56,21 @@ div.total {
 }
 
 span.smalllabel {
-    font-size: 7px; 
+    font-size: 7px;
+    color: #888;
 }
 
 span.mediumlabel {
     font-size: 12px;
     font-weight: bold;
+    color: black;
 }
 
 span.largelabel {
     font-size: 14px;
     font-weight: bold;
     text-align: center;
+    color: black;
 }
 
 input.large {
