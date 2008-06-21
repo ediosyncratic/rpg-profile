@@ -875,7 +875,7 @@
             <input class="cash" <?php getnv('PartyCashTotal' ); ?> readonly/>gp
         </div>
         <div class="attr">
-            <textarea class="full money" <? getn("Equipment"); ?>><? getv("Equipment"); ?></textarea>
+            <textarea class="full money" <? getn("MoneyText"); ?>><? getv("MoneyText"); ?></textarea>
         </div>
     </div>
     
