@@ -12,9 +12,21 @@ input.xtiny {
     padding: 0px;
 }
 
+input.fullpower {
+    width: 180px;   
+}
+
+input.shortpower {
+    width: 140px;   
+}
+
 input.tiny {
     margin: 0px;
     padding: 0px;
+}
+
+input.cash {
+    width: 82px;
 }
 
 div.attr {

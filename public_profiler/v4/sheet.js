@@ -33,7 +33,6 @@ function Save() {
 }
 
 function CheckDisplay() {
-    ToggleDisplay("background", sheet()["BackgroundDisp"]);
     ToggleDisplay("notes", sheet()["NotesDisp"]);
 }
 

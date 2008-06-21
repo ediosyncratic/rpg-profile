@@ -17,6 +17,15 @@ body {
     width:      700px;
 }
 
+input {
+    font-size: 12px;    
+}
+
+textarea {
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;    
+}
+
 br.clear {
 	clear: both;
 }
@@ -166,11 +175,15 @@ textarea.languages {
 }
 
 textarea.equipment {
-    height: 280px;  
+    height: 260px;  
 }
 
 textarea.money {
     height: 50px;  
+}
+
+textarea.notes {
+	height: 210px;
 }
 
 textarea.feats {
@@ -341,7 +354,13 @@ div.section {
 div.column {
     width: 32%;
     float: left;
-    margin-right: 3px;	
+    margin-right: 3px;  
+}
+
+div.twocolumn {
+    width: 64%;
+    float: left;
+    margin-right: 3px;  
 }
 
 .right {

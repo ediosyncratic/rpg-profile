@@ -38,25 +38,28 @@
 
 <!-- Character -->
 <div id="character">
-    <div class="attr textleft"><input type="text" <?php getnv("CharacterName"); ?> class="large bottomborder"><br/>Character Name</div>
-    <div class="attr textleft"><input type="text" <?php getnv("Level"); ?> class="small" onchange="updateLevel();"><br/>Level</div>
-    <div class="attr textleft"><input type="text" <?php getnv("Class"); ?> class="medium bottomborder"><br/>Class</div>
-    
-    <div class="attr textleft"><input type="text" <?php getnv("ParagonPath"); ?> class="medium bottomborder"><br/>Paragon Path</div>
-    <div class="attr textleft"><input type="text" <?php getnv("EpicDestiny"); ?> class="medium bottomborder"><br/>Epic Destiny</div>
-    <div class="attr textleft"><input type="text" <?php getnv("TotalXP"); ?> class="small"><br/>Total XP</div>
-    
-    <div class="attr textleft"><input type="text" <?php getnv("Race"); ?> class="medium bottomborder"><br/>Race</div>
-    
-    <div class="attr textleft"><input type="text" <?php getnv("Size"); ?> class="tiny bottomborder"><br/>Size</div>
-    <div class="attr textleft"><input type="text" <?php getnv("Age"); ?> class="tiny bottomborder"><br/>Age</div>
-    <div class="attr textleft"><input type="text" <?php getnv("Gender"); ?> class="tiny bottomborder"><br/>Gender</div>
-    <div class="attr textleft"><input type="text" <?php getnv("Height"); ?> class="tiny bottomborder"><br/>Height</div>
-    <div class="attr textleft"><input type="text" <?php getnv("Weight"); ?> class="tiny bottomborder"><br/>Weight</div>
-    
-    <div class="attr textleft"><input type="text" <?php getnv("Alignment"); ?> class="small bottomborder"><br/>Alignment</div>
-    <div class="attr textleft"><input type="text" <?php getnv("Deity"); ?> class="small bottomborder"><br/>Deity</div>
-    <div class="attr textleft"><input type="text" <?php getnv("Company"); ?> class="large bottomborder"><br/>Adventuring Company/Affiliations</div>
+    <div class="row">
+        <div class="attr textleft"><input type="text" <?php getnv("CharacterName"); ?> class="large bottomborder"><br/>Character Name</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Level"); ?> class="small" onchange="updateLevel();"><br/>Level</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Class"); ?> class="medium bottomborder"><br/>Class</div>
+        
+        <div class="attr textleft"><input type="text" <?php getnv("ParagonPath"); ?> class="medium bottomborder"><br/>Paragon Path</div>
+        <div class="attr textleft"><input type="text" <?php getnv("EpicDestiny"); ?> class="medium bottomborder"><br/>Epic Destiny</div>
+        <div class="attr textleft"><input type="text" <?php getnv("TotalXP"); ?> class="small"><br/>Total XP</div>
+    </div>
+    <div class="row">
+        <div class="attr textleft"><input type="text" <?php getnv("Race"); ?> class="medium bottomborder"><br/>Race</div>
+        
+        <div class="attr textleft"><input type="text" <?php getnv("Size"); ?> class="tiny bottomborder"><br/>Size</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Age"); ?> class="tiny bottomborder"><br/>Age</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Gender"); ?> class="tiny bottomborder"><br/>Gender</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Height"); ?> class="tiny bottomborder"><br/>Height</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Weight"); ?> class="tiny bottomborder"><br/>Weight</div>
+        
+        <div class="attr textleft"><input type="text" <?php getnv("Alignment"); ?> class="small bottomborder"><br/>Alignment</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Deity"); ?> class="small bottomborder"><br/>Deity</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Company"); ?> class="large bottomborder"><br/>Adventuring Company/Affiliations</div>
+    </div>
 </div>
 <br class="clear"/>
 
@@ -887,30 +890,44 @@
     </div>
 </div>
 
+<br class="clear"/>
+
+<div class="column">
+    <div class="section">
+        <h2>Rituals</h2>
+        <? for( $i = 1; $i <= 10; $i++ ) { ?>
+        <div class="row">
+            <div class="attr">
+                <input type="text" <? getnv("Ritual" . $i); ?> class="full bottomborder"/>
+            </div>
+        </div>
+        <? } ?>
+    </div>
+</div>
+
+<div class="twocolumn">
+    <div class="attr whole">
+        <h2>Notes</h2>
+        <textarea <?php getn('Notes'); ?> class="whole notes" cols="10" rows="10"><?php getv('Notes'); ?></textarea>
+    </div>
+</div>
+
+<?php if ($SHOWSAVE) { ?>
 <div class="page">&nbsp;</div>
 
 <!-- Notes -->
 <input type="checkbox" <?php getnc('NotesDisp'); ?> onchange="ToggleDisplay('notes', this);" style="width:15px; border:none;"/>
-Display Notes
+Display Private Notes
 <div id="notes">
-    <h2>Notes</h2>
-    <textarea <?php getn('Notes'); ?> class="whole" cols="10" rows="10"><?php getv('Notes'); ?></textarea>
-    
-    <?php if ($SHOWSAVE) { ?>
     <!-- Private Notes -->
     <h2>Private Notes (Will not be displayed publically)</h2>
     <textarea <?php getn('PrivateNotes'); ?> class="whole" cols="10" rows="10"><?php getv('PrivateNotes'); ?></textarea>
     
-    <input type="checkbox" <?php getnc('BackgroundDisp'); ?> onchange="ToggleDisplay('background', this);" style="width:15px; border:none;"/>
-    Display Background
+    <h2>Character Background (Will not be displayed publically)</h2>
     
-    <div id="background" class="section">
-        <h2>Character Background (Will not be displayed publically)</h2>
-        
-        <textarea <?php getn('Background'); ?> class="whole" cols="10" rows="10"><?php getv('Background'); ?></textarea>
-    </div>
-    <?php } ?>
+    <textarea <?php getn('Background'); ?> class="whole" cols="10" rows="10"><?php getv('Background'); ?></textarea>
 </div>
+<?php } ?>
 
 <!-- Footer -->
 
