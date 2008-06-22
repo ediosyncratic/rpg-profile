@@ -632,7 +632,7 @@
                 <input type="text" <? getnv("BasicAttackAttack" . $i); ?> class="tiny"/>
             </div>
             <div class="attr">
-                <span class="smalllabel"><br/>VS</span>
+                <span class="smalllabel"><? if( $i == 1 ) { ?><br/><? } ?>VS</span>
             </div>
             <div class="attr">
                 <? if( $i == 1 ) { ?><span class="smalllabel">Defense<br/></span><? } ?>

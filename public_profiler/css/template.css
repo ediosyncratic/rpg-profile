@@ -32,6 +32,8 @@ q, .sideBox a, .sideBox span, #footer, .quick
 #bodyText span.notice
 { color: yellow; }
 
+.oddbg
+{ background: #222; }
 /* ###### Browser-specific Styles ###### */
 
 /* For IE & Mozilla-based browsers: */
@@ -310,4 +312,27 @@ table.clist td.c {
 .footerCol2 {
   position: absolute;
   left: 7em;
+}
+
+ul.character {
+    list-style-type: none;
+    clear: both;
+    font-size: 0.8em;
+    margin: 0px 20px 0px 20px;
+    padding: 0px;
+}
+
+ul.characterattribute {
+    list-style-type: none;
+    clear: both;
+    height: 10px;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.characterattribute li {
+    width: 80px;  
+    list-style-type: none;
+    float: left;
+    display: inline;
 }

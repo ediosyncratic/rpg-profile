@@ -20,6 +20,7 @@ if( count( $campaigns ) > 0 ) {
         <th>Open</th>
         <th></th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -32,6 +33,7 @@ if( count( $campaigns ) > 0 ) {
         <td class="c"><?php echo $campaign['pcs']; ?></td>
         <td class="c"><?php if( $campaign['open'] ) { ?>Yes<?php } else { ?>No<?php } ?></td>
         <td><a href="edit_campaign.php?id=<?php echo $campaign['id']; ?>">Edit</a></td>
+        <td><a href="campaign_summary.php?id=<?php echo $campaign['id']; ?>">Summary</a></td>
         <?php if( $campaign['website'] ) { ?>
         <td class="c"><a href="<?php echo $campaign['website']; ?>">Website</a></td>
         <?php } ?>

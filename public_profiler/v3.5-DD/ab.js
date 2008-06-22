@@ -36,7 +36,7 @@ function GBABCalc()
 {
   if (disable_autocalc())
     return;
-
+    
   ZeroFill(
     sheet().GABBase,
     sheet().GABStr,
@@ -66,10 +66,13 @@ function ParsedAdd(attackBase)
   var attackBonuses = new Array();
   for (var i in attackBases)
   {
-    var addString = "\"" + attackBases[i] + "\"";
-    for (var j = 1; j < arguments.length; j++)
-      addString += (", \"" + arguments[j] + "\"");
-    eval("attackBonuses[i] = Add(" + addString+ ");");
+    if( i.match(/^[0-9*]$/) ) {
+	    var addString = "\"" + attackBases[i] + "\"";
+	    for (var j = 1; j < arguments.length; j++) {
+	      addString += (", \"" + arguments[j] + "\"");
+	    }
+	    eval("attackBonuses[i] = Add(" + addString+ ");");
+    }
   }
 
   return attackBonuses.join("/");
