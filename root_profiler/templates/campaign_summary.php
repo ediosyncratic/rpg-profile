@@ -35,7 +35,7 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
             <li>
                 <ul class="characterattribute">
                     <li><strong>Player</strong></li>
-                    <li><strong>Character</strong></li>
+                    <li><strong>Name</strong></li>
                     <? foreach( $summaryTitles as $title ) { ?>
                     <li><strong><?= $title ?></strong></li>
                     <? } ?>
