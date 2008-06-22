@@ -77,6 +77,7 @@ global $sid, $campaign, $URI_BASE;
 if( count( $campaign->GetCharacters() ) > 0 ) {
 ?>
   <h1>Registered Characters</h1>
+  <p><a href="campaign_summary.php?id=<?= $campaign->id ?>">Attribute Summary</a></p>
   <table class="clist indent">
     <thead>
       <tr>
