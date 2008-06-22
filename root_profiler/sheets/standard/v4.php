@@ -329,7 +329,7 @@
                 <input type="text" <? getnv("ReflexBase"); ?> class="xtiny" readonly/>
             </div>
             <div class="attr">
-                <span class="smalllabel"><br/>Abil<br/></span>
+                <span class="smalllabel">Abil/<br/>Shield<br/></span>
                 <input type="text" <? getnv("ReflexArmor"); ?> class="xtiny" onchange="updateReflex();"/>
             </div>
             <div class="attr">
