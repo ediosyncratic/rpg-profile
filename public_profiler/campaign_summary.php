@@ -32,5 +32,6 @@
     exit;
   }
   
+  $title = $campaign->cname;
   draw_page('campaign_summary.php');
 ?>
