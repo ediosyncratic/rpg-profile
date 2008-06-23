@@ -273,6 +273,13 @@ p.skillnamelabel {
     margin: 0px 2px;	
 }
 
+p.skillbonuslabel {
+    float: left;
+    width: 32px;
+    margin: 0px 0px 0px 2px;
+    text-align: center;
+}
+
 p.skilllabel {
     float: left;
     width: 23px;
@@ -290,6 +297,14 @@ p.skillattr {
 input.skilltiny {
     float: left;
     width: 18px;
+    height: 16px;
+    margin: 0px 0px 0px 2px;
+    text-align: center;
+}
+
+input.skillbonus {
+    float: left;
+    width: 27px;
     height: 16px;
     margin: 0px 0px 0px 2px;
     text-align: center;

@@ -197,7 +197,7 @@
     <div class="section">
         <h2>Skills</h2>
         <div class="skilltitle">
-            <p class="skilllabel">Bon</p>
+            <p class="skillbonuslabel">Bon</p>
             <p class="skillnamelabel">Skill Name</p>
             <p class="skillattr"></p>
             <p class="skilllabel">Mod</p>
@@ -214,7 +214,7 @@
         $skillNum++;
     ?>
         <div class="skill<? if( $skillNum % 2 == 0 ) { ?> oddbg<? } ?>">
-            <input type="text" <? getnv($skillName . "SkillBonus"); ?> class="skilltiny" readonly/>
+            <input type="text" <? getnv($skillName . "SkillBonus"); ?> class="skillbonus" readonly/>
             <p class="skillname"><?= $skillName ?></p>
             <p class="skillattr"><?= $ability ?></p>
             <input type="text" <? getnv($skillName . "SkillAbility"); ?> class="skilltiny" readonly/>
