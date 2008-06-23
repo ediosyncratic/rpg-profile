@@ -72,7 +72,7 @@ function cleanup()
 {
   debug.close();
 
-  for (var i in child_windows)
+  for (var i = 0; i < child_windows.length; ++i)
     child_windows[i].close();
 }
 

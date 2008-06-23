@@ -10,7 +10,7 @@ function _getClassBitSet()
   // Determine which classes the character has and return the bitset.
   var classes = sheet().Class.value.toLowerCase().split("/");
   var classbits = 0;
-  for (var i in classes)
+  for (var i = 0; i < classes.length; ++i)
     if (classIndex[classes[i]])
       classbits |= classIndex[classes[i]];
   return classbits;

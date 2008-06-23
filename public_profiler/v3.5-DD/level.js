@@ -16,7 +16,7 @@ function OnLevelChanged()
   // Determine the toal level of the character.
   var levels = sheet().Level.value.split("/");
   var totalLevel = 0;
-  for (var i in levels)
+  for (var i = 0; i < levels.length; ++i)
     totalLevel += isNaN(parseInt(levels[i])) ? 0 : parseInt(levels[i]);
   if (!totalLevel)
     return;

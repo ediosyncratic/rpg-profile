@@ -430,7 +430,7 @@ function SkillsUpdateCC()
   if (unresolved.length > 0)
   {
     var msg = "Failed to resolve the following skills:\n";
-    for (var i in unresolved)
+    for (var i = 0; i < unresolved.length; ++i)
       msg += unresolved[i] + ", ";
     alert(msg);
   }
