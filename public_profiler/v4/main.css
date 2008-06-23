@@ -407,12 +407,13 @@ input.smallcheck {
 /* Footer Settings */
 #footer
 {
-  font-size: 9px;
-  background-color: white;
-  color: gray;
+    clear: both;
+    font-size: 9px;
+    background-color: white;
+    color: gray;
 }
 #save
 {
-  text-align: center;
+    text-align: center;
 }
 

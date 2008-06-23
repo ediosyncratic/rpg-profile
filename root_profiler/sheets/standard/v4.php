@@ -932,12 +932,8 @@ Display Private Notes
 <!-- Footer -->
 
           <div id="footer">
-            <table width="100%" cellspacing="0">
-               <tr>
-                  <td>Last saved = <?php getv("LastSaveDate"); ?></td>
-                  <td align="right">4th Edition Character Sheet by Tarlen</td>
-               </tr>
-            </table>
+              <span class="right">4th Edition Character Sheet by Tarlen</span>
+              Last saved = <?php getv("LastSaveDate"); ?>
           </div>
 
           <?php if ($SHOWSAVE) { ?>
