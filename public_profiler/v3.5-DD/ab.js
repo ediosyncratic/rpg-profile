@@ -64,15 +64,13 @@ function ParsedAdd(attackBase)
   var attackBases = attackBase.split("/");
 
   var attackBonuses = new Array();
-  for (var i in attackBases)
+  for (var i = 0; i < attackBases.length; ++i)
   {
-    if( i.match(/^[0-9*]$/) ) {
-	    var addString = "\"" + attackBases[i] + "\"";
-	    for (var j = 1; j < arguments.length; j++) {
-	      addString += (", \"" + arguments[j] + "\"");
-	    }
-	    eval("attackBonuses[i] = Add(" + addString+ ");");
+    var addString = "\"" + attackBases[i] + "\"";
+    for (var j = 1; j < arguments.length; j++) {
+      addString += (", \"" + arguments[j] + "\"");
     }
+    eval("attackBonuses[i] = Add(" + addString+ ");");
   }
 
   return attackBonuses.join("/");
