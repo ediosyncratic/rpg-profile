@@ -55,6 +55,11 @@ div.total {
 	text-align: center;
 }
 
+div.defensetotal {
+	width: 55px;
+	text-align: center;
+}
+
 span.smalllabel {
     font-size: 7px;
     color: #888;
@@ -417,3 +422,8 @@ input.smallcheck {
     text-align: center;
 }
 
+input[readonly] {
+    background: #e4e4e4;
+    border: 1px solid #7F9DB9;
+    padding: 2px 1px;
+}

@@ -250,9 +250,9 @@
         <h2>Defenses</h2>
         
         <div class="defence">
-            <div class="attr total">
+            <div class="attr defensetotal">
                 <span class="largelabel">AC<br/></span>
-                <input type="text" <? getnv("AC"); ?> class="tiny tall" readonly/>
+                <input type="text" <? getnv("AC"); ?> class="small tall" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
@@ -285,9 +285,9 @@
         </div>
 
         <div class="defence">
-            <div class="attr total">
+            <div class="attr defensetotal">
                 <span class="largelabel">FORT<br/></span>
-                <input type="text" <? getnv("Fort"); ?> class="tiny tall" readonly/>
+                <input type="text" <? getnv("Fort"); ?> class="small tall" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
@@ -320,9 +320,9 @@
         </div>
 
         <div class="defence">
-            <div class="attr total">
+            <div class="attr defensetotal">
                 <span class="largelabel">REF<br/></span>
-                <input type="text" <? getnv("Reflex"); ?> class="tiny tall" readonly/>
+                <input type="text" <? getnv("Reflex"); ?> class="small tall" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
@@ -355,9 +355,9 @@
         </div>
 
         <div class="defence">
-            <div class="attr total">
+            <div class="attr defensetotal">
                 <span class="largelabel">WILL<br/></span>
-                <input type="text" <? getnv("Will"); ?> class="tiny tall" readonly/>
+                <input type="text" <? getnv("Will"); ?> class="small tall" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
