@@ -36,3 +36,9 @@ div.attr {
 div.row {
     margin: 2px 0px 1px 0px;
 }
+
+input[readonly] {
+    background: #e4e4e4;
+    border: 1px solid #7F9DB9;
+    padding: 1px 2px 1px 2px;
+}

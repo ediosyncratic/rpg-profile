@@ -24,21 +24,21 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
         $sheet = "$INCLUDE_PATH/sheets/" . get_sheet_path($key);
         $sheet = preg_replace("/\.php/", "-Summary.php", $sheet);
         
-        if( !file_exists($sheet) ) {
-            continue;
+        $summaryAvailable = false;
+        if( file_exists($sheet) ) {
+            include($sheet);
+            $summaryAvailable = true;
         }
-        
-        include($sheet);
 ?>
-        <h3><?php echo get_sheet_name($key); ?></h3>
+        <h3><?php echo get_sheet_name($key); ?><? if( !$summaryAvailable ) { ?><span class="notice">No summary sheet available.</span><? } ?></h3>
         <ul class="character">
             <li>
                 <ul class="characterattribute">
                     <li><strong>Player</strong></li>
                     <li><strong>Name</strong></li>
-                    <? foreach( $summaryTitles as $title ) { ?>
-                    <li><strong><?= $title ?></strong></li>
-                    <? } ?>
+                    <? if( $summaryAvailable ) { foreach( $summaryTitles as $title ) { ?>
+                        <li><strong><?= $title ?></strong></li>
+                    <? } } ?>
                 </ul>
             </li>
 <?

@@ -72,7 +72,7 @@
         <h2>Initiative</h2>
         <div class="textleft attr">
             Score<br/><input type="text" <?php getnv("Initiative"); ?> class="tiny" readonly>
-            <span class="largelabel">Initiative</span>
+            <span class="mediumlabel">Initiative</span>
         </div>
         <div class="attr">Dex<br/><input type="text" <?php getnv("InitiativeDex"); ?> class="tiny" readonly></div>
         <div class="attr">&frac12; Lev<br/><input type="text" <?php getnv("InitiativeLevel"); ?> class="tiny" readonly></div>
@@ -252,7 +252,7 @@
         <div class="defence">
             <div class="attr defensetotal">
                 <span class="largelabel">AC<br/></span>
-                <input type="text" <? getnv("AC"); ?> class="small tall" readonly/>
+                <input type="text" <? getnv("AC"); ?> class="xsmall tall" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
@@ -287,7 +287,7 @@
         <div class="defence">
             <div class="attr defensetotal">
                 <span class="largelabel">FORT<br/></span>
-                <input type="text" <? getnv("Fort"); ?> class="small tall" readonly/>
+                <input type="text" <? getnv("Fort"); ?> class="xsmall tall" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
@@ -322,7 +322,7 @@
         <div class="defence">
             <div class="attr defensetotal">
                 <span class="largelabel">REF<br/></span>
-                <input type="text" <? getnv("Reflex"); ?> class="small tall" readonly/>
+                <input type="text" <? getnv("Reflex"); ?> class="xsmall tall" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
@@ -357,7 +357,7 @@
         <div class="defence">
             <div class="attr defensetotal">
                 <span class="largelabel">WILL<br/></span>
-                <input type="text" <? getnv("Will"); ?> class="small tall" readonly/>
+                <input type="text" <? getnv("Will"); ?> class="xsmall tall" readonly/>
             </div>
             <div class="attr">
                 <span class="smalllabel">10 + <br/>&frac12;Lvl<br/></span>
@@ -475,7 +475,7 @@
                 </div>
             </div>
             <div class="attr textleft">
-                Score<br/>
+                <span class="smalllabel">Score<br/></span>
                 <input type="text" <? getnv("Movement"); ?> class="tiny" readonly/>
                 <span class="mediumlabel">Speed</span>
             </div>
@@ -499,7 +499,7 @@
                 </div>
             </div>
             <div class="attr textleft">
-                Score<br/>
+                <span class="smalllabel">Score<br/></span>
                 <input type="text" <? getnv("SenseInsight"); ?> class="tiny" readonly/>
                 <span class="mediumlabel">Passive Insight</span>
             </div>
