@@ -39,9 +39,9 @@
 <!-- Character -->
 <div id="character">
     <div class="row">
+        <div class="attr textleft"><input type="text" <?php getnv("Player"); ?> class="medium bottomborder"><br/>Player</div>
         <div class="attr textleft"><input type="text" <?php getnv("CharacterName"); ?> class="large bottomborder"><br/>Character Name</div>
         <div class="attr textleft"><input type="text" <?php getnv("Level"); ?> class="small" onchange="updateLevel();"><br/>Level</div>
-        <div class="attr textleft"><input type="text" <?php getnv("Class"); ?> class="medium bottomborder"><br/>Class</div>
         
         <div class="attr textleft"><input type="text" <?php getnv("ParagonPath"); ?> class="medium bottomborder"><br/>Paragon Path</div>
         <div class="attr textleft"><input type="text" <?php getnv("EpicDestiny"); ?> class="medium bottomborder"><br/>Epic Destiny</div>
@@ -49,6 +49,7 @@
     </div>
     <div class="row">
         <div class="attr textleft"><input type="text" <?php getnv("Race"); ?> class="medium bottomborder"><br/>Race</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Class"); ?> class="medium bottomborder"><br/>Class</div>
         
         <div class="attr textleft"><input type="text" <?php getnv("Size"); ?> class="tiny bottomborder"><br/>Size</div>
         <div class="attr textleft"><input type="text" <?php getnv("Age"); ?> class="tiny bottomborder"><br/>Age</div>
@@ -56,9 +57,8 @@
         <div class="attr textleft"><input type="text" <?php getnv("Height"); ?> class="tiny bottomborder"><br/>Height</div>
         <div class="attr textleft"><input type="text" <?php getnv("Weight"); ?> class="tiny bottomborder"><br/>Weight</div>
         
-        <div class="attr textleft"><input type="text" <?php getnv("Alignment"); ?> class="small bottomborder"><br/>Alignment</div>
-        <div class="attr textleft"><input type="text" <?php getnv("Deity"); ?> class="small bottomborder"><br/>Deity</div>
-        <div class="attr textleft"><input type="text" <?php getnv("Company"); ?> class="large bottomborder"><br/>Adventuring Company/Affiliations</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Alignment"); ?> class="medium bottomborder"><br/>Alignment</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Deity"); ?> class="medium bottomborder"><br/>Deity</div>
     </div>
 </div>
 <br class="clear"/>
