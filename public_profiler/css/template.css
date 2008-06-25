@@ -322,6 +322,10 @@ ul.character {
     padding: 0px;
 }
 
+ul.character li.row {
+    clear: both;
+}
+
 ul.characterattribute {
     list-style-type: none;
     clear: both;
