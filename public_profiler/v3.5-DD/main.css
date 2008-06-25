@@ -28,6 +28,23 @@ body
   width: 7in;
 }
 
+#buttons {
+    position: fixed;
+    margin: 0px;
+    padding: 4px;
+    background: #f6ffb8;
+    border: 1px solid #c1b44a;
+    right: 20px;
+    top: 20px;  
+}
+
+#processing {
+    position: fixed;
+    right: 20px;
+    top: 90px;
+    display: none;  
+}
+
 /*
   Define the basic layout elements.
 */

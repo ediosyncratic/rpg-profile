@@ -63,6 +63,16 @@
 
   <form action="ajax_save.php" method="post" id="charactersheet">
 
+<?php if ($SHOWSAVE) { ?>
+<div id="buttons">
+    <input type="image" src="v4/save.png" title="Save Character" onclick="SetSaveDate(); Save(); return false;"/><br/>
+    <input type="image" src="v4/undo.png" title="Reset Changes" onclick="if( confirm('Are you sure you want to reset the character sheet? You will lose all changes you made since you last saved.')) { $('charactersheet').reset(); } return false;" /><br/>
+</div>
+<div id="processing">
+    <img src="v4/loading.gif"/>
+</div>
+<? } ?>
+
   <div>
     <input type="hidden" name="firstload" value="<?php echo isset($DATA['firstload']) ? "false" : "true"; ?>" />
     <input type="hidden" <?php getnv('PicURL'); ?> />
