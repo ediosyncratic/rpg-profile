@@ -66,11 +66,11 @@
 
 <?php if ($SHOWSAVE) { ?>
 <div id="buttons">
-    <input type="image" src="v4/save.png" title="Save Character" onclick="SetSaveDate(); Save(); return false;"/><br/>
-    <input type="image" src="v4/undo.png" title="Reset Changes" onclick="if( confirm('Are you sure you want to reset the character sheet? You will lose all changes you made since you last saved.')) { $('charactersheet').reset(); } return false;" /><br/>
+    <input type="image" src="./v3.5-DD/save.png" title="Save Character" onclick="SetSaveDate(); Save(); return false;"/><br/>
+    <input type="image" src="./v3.5-DD/undo.png" title="Reset Changes" onclick="if( confirm('Are you sure you want to reset the character sheet? You will lose all changes you made since you last saved.')) { $('charactersheet').reset(); } return false;" /><br/>
 </div>
 <div id="processing">
-    <img src="v4/loading.gif"/>
+    <img src="./v3.5-DD/loading.gif"/>
 </div>
 <? } ?>
 
