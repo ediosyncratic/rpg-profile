@@ -17,6 +17,23 @@ body {
     width:      700px;
 }
 
+#buttons {
+    position: fixed;
+    margin: 0px;
+    padding: 4px;
+    background: #f6ffb8;
+    border: 1px solid #c1b44a;
+    right: 20px;
+    top: 20px;	
+}
+
+#processing {
+    position: fixed;
+    right: 20px;
+    top: 90px;
+    display: none;	
+}
+
 input {
     font-size: 12px;    
 }
@@ -196,7 +213,11 @@ textarea.money {
 }
 
 textarea.notes {
-	height: 210px;
+    height: 210px;
+}
+
+textarea.privatenotes {
+    height: 410px;
 }
 
 textarea.feats {

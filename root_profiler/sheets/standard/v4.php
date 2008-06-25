@@ -13,7 +13,8 @@
     ?>
 
     <title><?= $TITLE ?> - D&amp;D Fourth Edition</title>
-    <link type="text/css" rel="stylesheet" href="v4/main.css" />
+    <link type="text/css" rel="stylesheet" href="v4/main.css" media="screen,print"/>
+    <link type="text/css" rel="stylesheet" href="v4/print.css" media="print" />
     <!--[if IE]>
     <link type="text/css" rel="stylesheet" href="v4/main-ie.css" />
     <![endif]-->
@@ -30,6 +31,16 @@
   <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
 
   <form action="ajax_save.php" method="post" id="charactersheet">
+
+<?php if ($SHOWSAVE) { ?>
+<div id="buttons">
+    <input type="image" src="v4/save.png" title="Save Character" onclick="SetSaveDate(); Save(); return false;"/><br/>
+    <input type="image" src="v4/undo.png" title="Reset Changes" onclick="if( confirm('Are you sure you want to reset the character sheet? You will lose all changes you made since you last saved.')) { $('charactersheet').reset(); } return false;" /><br/>
+</div>
+<div id="processing">
+    <img src="v4/loading.gif"/>
+</div>
+<? } ?>
 
 <input type="hidden" name="firstload" value="<?php echo isset($DATA['firstload']) ? "false" : "true"; ?>" />
 <input type="hidden" <?php getnv('PicURL'); ?> />
@@ -921,11 +932,11 @@ Display Private Notes
 <div id="notes">
     <!-- Private Notes -->
     <h2>Private Notes (Will not be displayed publically)</h2>
-    <textarea <?php getn('PrivateNotes'); ?> class="whole" cols="10" rows="10"><?php getv('PrivateNotes'); ?></textarea>
+    <textarea <?php getn('PrivateNotes'); ?> class="whole privatenotes" cols="10" rows="10"><?php getv('PrivateNotes'); ?></textarea>
     
     <h2>Character Background (Will not be displayed publically)</h2>
     
-    <textarea <?php getn('Background'); ?> class="whole" cols="10" rows="10"><?php getv('Background'); ?></textarea>
+    <textarea <?php getn('Background'); ?> class="whole privatenotes" cols="10" rows="10"><?php getv('Background'); ?></textarea>
 </div>
 <?php } ?>
 

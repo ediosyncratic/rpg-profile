@@ -20,9 +20,11 @@ function SetSaveDate() {
 }
 
 function Save() {
+    document.getElementById('processing').style.display = 'block';
 	$('charactersheet').request({
 	    method: 'post',
         onComplete: function(transport) {
+            document.getElementById('processing').style.display = 'none';
             if( transport.responseText == 'SUCCESS' ) { 
                 alert('Character saved!');
             } else {
