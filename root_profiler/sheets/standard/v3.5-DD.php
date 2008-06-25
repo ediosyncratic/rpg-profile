@@ -24,7 +24,8 @@
 
   <head>
     <title><?php echo $TITLE; 3.5 ?></title>
-    <link type="text/css" rel="stylesheet" href="v3.5-DD/main.css" />
+    <link type="text/css" rel="stylesheet" href="v3.5-DD/main.css" media="screen,print" />
+    <link type="text/css" rel="stylesheet" href="v3.5-DD/print.css" media="print" />
     <style type="text/css" media="print">
       #save
       , #notes tr.header span
