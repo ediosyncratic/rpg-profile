@@ -46,7 +46,7 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
         foreach( $characters as $character ) { 
             $data = $character->GetData();
 ?>
-            <li>
+            <li class="row">
                 <ul class="characterattribute<? if( $i++ % 2 == 1 ) { ?> oddbg<? } ?>">
                     <li><?php echo $character->owner; ?></li>
                     <li><a href="<?php echo $URI_BASE . "view.php?id=" . $character->id; ?>"><?php echo $character->cname; ?></a></li>
