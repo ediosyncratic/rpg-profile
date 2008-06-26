@@ -57,7 +57,7 @@ function init()
   }
 
   // Set the link for the feats and special abilities.
-  for (var i = 1; i <= 60; i++)
+  for (var i = 1; i <= 90; i++)
   {
     var num = FormatNumber(i);
      CheckForSpellHelp( "Spell" + num );
