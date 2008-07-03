@@ -260,6 +260,10 @@ div.ability {
 	padding: 3px 0px 0px 3px;
 }
 
+div.last {
+    margin-bottom: 3px;	
+}
+
 div.heading {
     background: white;
     font-weight: bold;

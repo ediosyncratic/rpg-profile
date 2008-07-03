@@ -133,7 +133,7 @@
             <input type="text" <?php getnv("WisdomModifier"); ?> class="quarter" readonly/>
             <input type="text" <?php getnv("WisdomBonus"); ?> class="quarter" readonly/>
         </div>
-        <div class="ability">
+        <div class="ability last">
             <input type="text" <?php getnv("Charisma"); ?> class="quarter" onchange="updateAbility(this);"/>
             <p class="quarter label">CHA</p>
             <input type="text" <?php getnv("CharismaModifier"); ?> class="quarter" readonly/>
