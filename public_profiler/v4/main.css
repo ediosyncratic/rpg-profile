@@ -256,7 +256,8 @@ div.ability {
 	clear: both;
 	background: black;
 	height: 22px;
-	margin-bottom: 2px;
+	margin-bottom: 0px;
+	padding: 3px 0px 0px 3px;
 }
 
 div.heading {
