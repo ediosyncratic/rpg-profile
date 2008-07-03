@@ -23,7 +23,7 @@ function updateAbility(node) {
             var skillAbil = skillAbilities[obj];
             if( ability.indexOf(skillAbil) == 0 ) {
                 var skillAbilityNode = sheet()[skillName + "SkillAbility"];
-                skillAbilityNode.value = Clean(modifier);
+                skillAbilityNode.value = Clean(bonus);
                 
                 updateSkill(skillName);
             }
@@ -253,5 +253,12 @@ function updateLevel() {
     for( var i = 1; i <= 2; i++ ) {
         sheet()["AttackLevel" + i].value = bonus;
         updateAttack(i);
+    }
+
+    for( obj in skillAbilities ) {
+        if( obj.match(/^skill/) ) {
+            var skillName = obj.substring(5);
+            updateSkill(skillName);
+        }
     }
 }
