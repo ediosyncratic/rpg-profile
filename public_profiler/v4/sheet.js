@@ -31,7 +31,7 @@ function Save() {
                 alert('Error: ' + transport.responseText);
             }
         }
-	})
+	});
 }
 
 function CheckDisplay() {
