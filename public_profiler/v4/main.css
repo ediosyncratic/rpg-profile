@@ -261,7 +261,8 @@ div.ability {
 }
 
 div.last {
-    margin-bottom: 3px;	
+    margin-bottom: 3px;
+    padding-bottom:3px;	
 }
 
 div.heading {
