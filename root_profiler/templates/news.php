@@ -9,6 +9,21 @@
 ?>
 <h1>RPG Web Profiler News</h1>
 
+<h2>10 July 2008 - v0.7.0 Released</h2>
+
+<h4>Functionality Updates</h4>
+<ul>
+<li>Added AJAX saving to 3.5e and 4e character sheets</li>
+<li>Added character summary to campaign screens (3.5e and 4e sheets only so far)</li>
+</ul>
+
+<h4>Character Sheet Updates</h4>
+<ul>
+<li>Increased spell column count in 3.5e sheet</li>
+<li>Various other small fixes/improvements to 3.5e sheet</li>
+<li>First draft of 4e sheet</li>
+</ul>
+
 <h2>3 April 2007 - v0.6.0 Released</h2>
 
 <h4>Functionality Updates</h4>
