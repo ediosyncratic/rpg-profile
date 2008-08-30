@@ -147,13 +147,14 @@
     <div class="section">
         <h2>Hit Points</h2>
         <div class="attr">
+            <br/>
             Max HP<br/>
-            <input type="text" <?php getnv("MaxHitPoints"); ?> class="quarter tall"/>
+            <input type="text" <?php getnv("MaxHitPoints"); ?> class="quarter" onchange="updateHP();"/>
         </div>
-        <div class="attr">
+        <div class="attr" id="bloodied">
             <br/>
             Bloodied<br/>
-            <input type="text" <?php getnv("BloodiedHitPoints"); ?> class="quarter"/><br/>
+            <input type="text" <?php getnv("BloodiedHitPoints"); ?> class="quarter" onchange="updateHP();"/><br/>
             &frac12; HP
         </div>
         <div class="attr">
@@ -168,11 +169,11 @@
         <br class="clear"/>
         <div class="attr textleft">
             Current Hit Points<br/>
-            <input type="text" <?php getnv("HitPoints"); ?> class="half bottomborder"/>
+            <input type="text" <?php getnv("HitPoints"); ?> class="half tall bottomborder" onchange="updateHP();"/>
         </div>
         <div class="attr textright">
             Current Surge Uses<br/>
-            <input type="text" <?php getnv("CurrentSurgeUses"); ?> class="half bottomborder"/>
+            <input type="text" <?php getnv("CurrentSurgeUses"); ?> class="half tall bottomborder"/>
         </div>
         <h3>
             <span class="right"><p class="top">Used</p> <input type="checkbox" <? getnc("SecondWind"); ?> class="smallcheck"/></span>

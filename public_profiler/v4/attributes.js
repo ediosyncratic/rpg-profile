@@ -262,3 +262,14 @@ function updateLevel() {
         }
     }
 }
+
+function updateHP() {
+    var currentHP = sheet().HitPoints.value;
+    var bloodiedHP = sheet().BloodiedHitPoints.value;
+    
+    if( currentHP <= bloodiedHP ) {
+        $('bloodied').style.color = 'red';
+    } else {
+        $('bloodied').style.color = '#888';
+    }
+}
