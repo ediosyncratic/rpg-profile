@@ -945,7 +945,7 @@ Display Private Notes
 
           <div id="footer">
               <span class="right">4th Edition Character Sheet by Tarlen</span>
-              Last saved = <?php getv("LastSaveDate"); ?>
+              Last saved = <span id="lastSavedDateDisplay"><?php getv("LastSaveDate"); ?></span>
           </div>
 
           <?php if ($SHOWSAVE) { ?>

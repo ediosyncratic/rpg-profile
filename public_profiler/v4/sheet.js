@@ -15,8 +15,12 @@ function cleanup() {
 
 function SetSaveDate() {
 	var now = new Date();
+	var min = FormatNumber(now.getMinutes());
+	var sec = FormatNumber(now.getSeconds());
+	
 	sheet().LastSaveDate.value =  now.getDate() + " " + m_names[now.getMonth()] + " " + now.getFullYear() + " " +
-	                              now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+	                              now.getHours() + ":" + min + ":" + sec;
+	$("lastSavedDateDisplay").update(sheet().LastSaveDate.value);
 }
 
 function Save() {
