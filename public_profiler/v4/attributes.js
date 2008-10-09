@@ -265,7 +265,12 @@ function updateLevel() {
 
 function updateHP() {
     var currentHP = GetNum(sheet().HitPoints);
-    var bloodiedHP = GetNum(sheet().BloodiedHitPoints);
+    var maxHP = GetNum(sheet().MaxHitPoints);
+    var bloodiedHP = Math.floor(maxHP / 2);
+    var surgeValue = Math.floor(maxHP / 4);
+    
+    sheet().BloodiedHitPoints.value = bloodiedHP;
+    sheet().SurgeValue.value = surgeValue;
     
     if( currentHP <= bloodiedHP ) {
         $('bloodied').style.color = 'red';

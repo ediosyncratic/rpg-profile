@@ -154,12 +154,12 @@
         <div class="attr" id="bloodied">
             <br/>
             Bloodied<br/>
-            <input type="text" <?php getnv("BloodiedHitPoints"); ?> class="quarter" onchange="updateHP();"/><br/>
+            <input type="text" <?php getnv("BloodiedHitPoints"); ?> class="quarter" readonly/><br/>
             &frac12; HP
         </div>
         <div class="attr">
             Surge<br/>Value<br/>
-            <input type="text" <?php getnv("SurgeValue"); ?> class="quarter"/><br/>
+            <input type="text" <?php getnv("SurgeValue"); ?> class="quarter" readonly/><br/>
             &frac14; HP
         </div>
         <div class="attr">
