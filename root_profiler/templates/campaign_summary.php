@@ -50,9 +50,9 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
                 <ul class="characterattribute<? if( $i++ % 2 == 1 ) { ?> oddbg<? } ?>">
                     <li><?php echo $character->owner; ?></li>
                     <li><a href="<?php echo $URI_BASE . "view.php?id=" . $character->id; ?>"><?php echo $character->cname; ?></a></li>
-                    <? foreach( $summaryAttributes as $attr ) { ?>
+                    <? if( $summaryAvailable ) { foreach( $summaryAttributes as $attr ) { ?>
                     <li><?= $data[$attr] ?></li>
-                    <? } ?>
+                    <? } } ?>
                 </ul>
             </li>
 <?php 
