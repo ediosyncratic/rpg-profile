@@ -294,6 +294,9 @@
                 <span class="smalllabel"><br/>Misc<br/></span>
                 <input type="text" <? getnv("ACMisc2"); ?> class="xtiny" onchange="updateAC();"/>
             </div>
+            <div class="attr">
+                <input type="text" <? getnv("ACSpecial"); ?> class="full bottomborder"/>
+            </div>
         </div>
 
         <div class="defence">
@@ -328,6 +331,9 @@
             <div class="attr">
                 <span class="smalllabel"><br/>Misc<br/></span>
                 <input type="text" <? getnv("FortMisc2"); ?> class="xtiny" onchange="updateFort();"/>
+            </div>
+            <div class="attr">
+                <input type="text" <? getnv("FortSpecial"); ?> class="full bottomborder"/>
             </div>
         </div>
 
@@ -364,6 +370,9 @@
                 <span class="smalllabel"><br/>Misc<br/></span>
                 <input type="text" <? getnv("ReflexMisc2"); ?> class="xtiny" onchange="updateReflex();"/>
             </div>
+            <div class="attr">
+                <input type="text" <? getnv("ReflexSpecial"); ?> class="full bottomborder"/>
+            </div>
         </div>
 
         <div class="defence">
@@ -398,6 +407,9 @@
             <div class="attr">
                 <span class="smalllabel"><br/>Misc<br/></span>
                 <input type="text" <? getnv("WillMisc2"); ?> class="xtiny" onchange="updateWill();"/>
+            </div>
+            <div class="attr">
+                <input type="text" <? getnv("WillSpecial"); ?> class="full bottomborder"/>
             </div>
         </div>
 
