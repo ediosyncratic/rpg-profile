@@ -890,18 +890,18 @@ table.weapon input.left
   font-size: 9px;
 }
 
-#spells
+#spells, table.spellsHeader
 {
   width: 98%;
-  margin-left: 2%;
+  margin-left: 10px;
 }
-#spells span.help
+#spells span.help, table.spellsHeader span.help
 {
   cursor: help;
   color: white;
   background-color: black;
 }
-#spells tr.title td
+#spells tr.title td, table.spellsHeader tr.title td
 {
   background-color: black;
   color: white;
@@ -985,6 +985,39 @@ table.weapon input.left
   text-decoration: underline;
 }
 
+div#spellScrollWrapper {
+  position: relative;
+  width: 491px;
+  height: 525px;
+  overflow: hidden;
+  margin-left: 10px;
+}
+
+div#spellScroller {
+  width: 1666px;
+  left: 0px;
+  position: relative;
+}
+
+div#spellScroller #spells {
+  margin: 0px;	
+}
+
+td.scrollerArrow a, td.scrollerArrow a:hover, td.scrollerArrow a:visited {
+  color: white;
+  background-color: black;
+  background: black;
+  text-decoration: none;
+}
+
+td.scrollerArrow a:hover {
+  font-weight: bold;
+}
+
+td.scrollerArrow a.disabled {
+  color: #888888;
+  text-decoration: none;
+}
 /************************************************************************/
 
 #notes

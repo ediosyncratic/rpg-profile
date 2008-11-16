@@ -56,8 +56,8 @@ function init()
      CheckForHelp( "Feat" + num );
   }
 
-  // Set the link for the feats and special abilities.
-  for (var i = 1; i <= 90; i++)
+  // Set the link for the spells.
+  for (var i = 1; i <= 300; i++)
   {
     var num = FormatNumber(i);
      CheckForSpellHelp( "Spell" + num );
@@ -84,18 +84,18 @@ function SetSaveDate()
 }
 
 function Save() {
-    document.getElementById('processing').style.display = 'block';
+    $('processing').setStyle({display:'block'});
     $('charactersheet').request({
         method: 'post',
         onComplete: function(transport) {
-            document.getElementById('processing').style.display = 'none';
+            $('processing').setStyle({display:'none'});
             if( transport.responseText == 'SUCCESS' ) { 
                 alert('Character saved!');
             } else {
                 alert('Error: ' + transport.responseText);
             }
         }
-    })
+    });
 }
 
 function CheckDisplay() {

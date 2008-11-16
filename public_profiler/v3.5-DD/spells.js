@@ -2,21 +2,15 @@
 
 // Defines scripts used to maintain the spell list table.
 
+var SPELL_COUNT = 300;
+
 function SpellSort(sortfunc)
 {
-  var tblrows = 
-  [
-    // Three child tables of the spells table, the first one is the spells
-    // known table, which we don't care about, but get a reference to the
-    // the rows of the remaining two tables.
-    document.getElementById("spells").getElementsByTagName("table")[0].rows,
-    document.getElementById("spells").getElementsByTagName("table")[1].rows
-  ];
-  
+ 
   // Copy the data from each of the items in the rows.
   debug.trace("Copying spell data...");
   var data = new Array();
-  for (var i = 1; i <= 90; i++)
+  for (var i = 1; i <= SPELL_COUNT; i++)
   {
     var num = FormatNumber(i);
     var thisdata = new Object();
@@ -32,7 +26,7 @@ function SpellSort(sortfunc)
 
   // Finally, re-copy all the data.
   debug.trace("Copying sorted spell data...");
-  for (var i = 1; i <= 90; i++)
+  for (var i = 1; i <= SPELL_COUNT; i++)
   {
     var thisdata = data.shift();
     var num = FormatNumber(i);
@@ -247,7 +241,7 @@ function updateCast() {
         sheet()["SpellCast" + i].value = 0;
     }
 
-    for( i = 1; i <= 90; i++ ) {
+    for( i = 1; i <= SPELL_COUNT; i++ ) {
         var num = "" + i;
         if( num.length == 1 ) {
             num = "0" + num;
@@ -284,3 +278,43 @@ function updateCast() {
         }
     }
 }
+
+var currentPage = 0;
+var minPage = 0;
+var maxPage = 7;
+var columnWidth = 163.33;
+
+function nextSpellPage() {
+    if( currentPage >= maxPage ) {
+        return;
+    }
+    currentPage++;
+    
+    var targetOffset = -columnWidth * currentPage;
+    
+    $("spellScroller").morph("left:" + targetOffset + "px;");
+    if( currentPage >= maxPage ) {
+        $("nextSpellsArrow").addClassName("disabled");
+    }
+    if( currentPage > minPage ) {
+        $("prevSpellsArrow").removeClassName("disabled");
+    }
+}
+
+function prevSpellPage() {
+    if( currentPage <= minPage ) {
+        return;
+    }
+    currentPage--;
+    
+    var targetOffset = -columnWidth * currentPage;
+    
+    $("spellScroller").morph("left:" + targetOffset + "px;");
+    if( currentPage <= minPage ) {
+        $("prevSpellsArrow").addClassName("disabled");
+    }
+    if( currentPage < maxPage ) {
+        $("nextSpellsArrow").removeClassName("disabled");
+    }
+}
+

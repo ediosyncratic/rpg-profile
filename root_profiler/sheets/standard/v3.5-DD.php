@@ -26,6 +26,11 @@
     <title><?php echo $TITLE; 3.5 ?></title>
     <link type="text/css" rel="stylesheet" href="v3.5-DD/main.css" media="screen,print" />
     <link type="text/css" rel="stylesheet" href="v3.5-DD/print.css" media="print" />
+    
+    <!--[if IE]>
+        <link type="text/css" rel="stylesheet" href="v3.5-DD/ie.css" media="screen,print" />
+    <![endif]-->
+    
     <style type="text/css" media="print">
       #save
       , #notes tr.header span
@@ -37,6 +42,8 @@
     <script type="text/javascript" src="./v3.5-DD/general.js"></script>
     <script type="text/javascript" src="./v3.5-DD/debug.js"></script>
     <script type="text/javascript" src="./v3.5-DD/prototype.js"></script>
+    <script type="text/javascript" src="./v3.5-DD/scriptaculous.js"></script>
+    <script type="text/javascript" src="./v3.5-DD/effects.js"></script>
     <script type="text/javascript" src="./v3.5-DD/ogl/skills.js"></script>
     <script type="text/javascript" src="./v3.5-DD/ogl/size.js"></script>
     <script type="text/javascript" src="./v3.5-DD/ogl/capacity.js"></script>
@@ -771,7 +778,7 @@ if( $firefox ) { echo '<!--'; } ?>
                         each of the thousand or so inputs.
                       -->
 
-                      <table cellspacing="0">
+                      <table cellspacing="0" class="narrow">
                         <?php
 
                          // Loop 30 times and output the feats/abilities lines.
@@ -837,8 +844,8 @@ if( $firefox ) { echo '<!--'; } ?>
             </tr>
           </table> <!-- skillsandgear -->
 
-          <input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;"/>
-          Display Spells &amp; Powers
+          <input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;" id="magiccheck"/>
+          <label for="magiccheck">Display Spells &amp; Powers</label>
           <div id="magic">
 
           <p style="page-break-before: always; "/>
@@ -904,51 +911,59 @@ if( $firefox ) { echo '<!--'; } ?>
               </td>
               <td class="list" rowspan="3">
 
-                <table id="spells" cellspacing="0">
+                <table class="spellsHeader" cellspacing="0">
                   <tr class="title">
-                    <td colspan="3"><?php GetStaticHelp( "Spells", $staticHelp ); ?> &amp; Powers</td>
-                  </tr>
-                  <tr>
-
-         <?php
-          for ( $i = 1; $i <= 90; $i++ ) {
-            $spellName = sprintf( "Spell%02d", $i );
-            if ( $i % 30 == 1 ) { ?>
-
-                    <td>
-                      <table cellspacing="0" class="spelllist">
-                        <tr class="header">
-                          <td>&nbsp;</td>
-                          <td><a href="javascript:SpellSort(SpellSort.ByName)" title="Sort by Spell Name">Spell Name</a></td>
-                          <td><a href="javascript:SpellSort(SpellSort.ByLevel)" title="Sort by Spell Level">Level</a></td>
-                          <td class="mem"><a href="javascript:SpellSort(SpellSort.ByMem)" title="Sort by Number of times cast, memorized, or manifested"># Cast<br />/Mem</a></td>
-                        </tr>
-      <?php } ?>
-
-                        <tr>
-                          <td>
-                             <A href="#" name="<?php echo $spellName; ?>Link"
-                                  onclick="ShowSpellHelp('<?php echo $spellName; ?>');return false;"></A>
-                          </td>
-                          <td class="name"><input type="text" <?php getnv($spellName); ?>
-                              onchange="CheckForSpellHelp('<?php echo $spellName; ?>')" /></td>
-                          <td class="mem"><input type="text" <?php getnv($spellName . 'Level' ); ?> /></td>
-                          <td class="mem"><input type="text" <?php getnv($spellName . 'Cast' ); ?> onchange="updateCast();"/></td>
-                        </tr>
-
-                     <?php
-                          if ( $i % 30 == 0 )
-                          {
-                     ?>
-
-                      </table>
-                    </td>
-                     <?php
-                          }
-                       }
-                     ?>
+                    <td class="scrollerArrow"><a href="#" id="prevSpellsArrow" class="disabled" onclick="prevSpellPage(); return false;">&larr;</a></td>
+                    <td><?php GetStaticHelp( "Spells", $staticHelp ); ?> &amp; Powers</td>
+                    <td class="scrollerArrow"><a href="#" id="nextSpellsArrow" onclick="nextSpellPage(); return false;">&rarr;</a></td>
                   </tr>
                 </table>
+                <div id="spellScrollWrapper">
+                    <div id="spellScroller">
+                    <table id="spells" cellspacing="0">
+                      <tr>
+    
+             <?php
+              for ( $i = 1; $i <= 300; $i++ ) {
+                $spellName = sprintf( "Spell%02d", $i );
+                if ( $i % 30 == 1 ) { ?>
+    
+                        <td class="spellColumn">
+                          <table cellspacing="0" class="spelllist">
+                            <tr class="header">
+                              <td>&nbsp;</td>
+                              <td><a href="javascript:SpellSort(SpellSort.ByName)" title="Sort by Spell Name">Spell Name</a></td>
+                              <td><a href="javascript:SpellSort(SpellSort.ByLevel)" title="Sort by Spell Level">Level</a></td>
+                              <td class="mem"><a href="javascript:SpellSort(SpellSort.ByMem)" title="Sort by Number of times cast, memorized, or manifested">Cast<br />/Mem</a></td>
+                            </tr>
+      <?php } ?>
+
+                            <tr>
+                              <td>
+                                 <A href="#" name="<?php echo $spellName; ?>Link"
+                                      onclick="ShowSpellHelp('<?php echo $spellName; ?>');return false;"></A>
+                              </td>
+                              <td class="name"><input type="text" <?php getnv($spellName); ?>
+                                  onchange="CheckForSpellHelp('<?php echo $spellName; ?>')" /></td>
+                              <td class="mem"><input type="text" <?php getnv($spellName . 'Level' ); ?> /></td>
+                              <td class="mem"><input type="text" <?php getnv($spellName . 'Cast' ); ?> onchange="updateCast();"/></td>
+                            </tr>
+    
+                         <?php
+                              if ( $i % 30 == 0 )
+                              {
+                         ?>
+    
+                          </table>
+                        </td>
+                         <?php
+                              }
+                           }
+                         ?>
+                      </tr>
+                    </table>
+                </div>
+                </div>
 
               </td>
             </tr>
