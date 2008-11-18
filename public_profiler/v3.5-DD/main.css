@@ -937,43 +937,72 @@ table.weapon input.left
   text-align: center;
 }
 
-#spells table.spelllist td
-{
-  padding: 1px 2px 0 2px;;
+
+
+
+
+
+
+
+
+
+
+
+
+div.spellColumn {
+	float: left;
+	display: block;
+	width: 163px;
 }
-#spells table.spelllist
-{
-  width: 100%;
-  margin-top: 1em;
+div.spellColumn div.spellHeaderRow {
+    clear: both;
 }
-#spells table.spelllist tr.header td
-{
-  background-color: white;
-  color: gray;
-  vertical-align: bottom;
+div.spellColumn div.spellHeaderRow a {
+    color: black;
+    text-decoration: none;	
 }
-#spells table.spelllist tr.header td.mem
-, #spells table.spelllist tr td.mem input
-{
-  width: 100%;
-  text-align: center;
+div.spellColumn div.spellRow {
+    clear: both;
 }
-#spells table.spelllist tr td.help
-{
-  cursor: help;
+div.spellColumn input {
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    font-size: 9px;
 }
-#spells table.spelllist td.name
-{
-  width: 85%;
+div.spellHelp, div.spellName, div.spellLevel, div.spellCast {
+    float: left;
+    display: block;
+    margin: 0px 2px 0px 2px;
 }
-#spells table.spelllist input
-{
-  width: 100%;
-  border-style: solid;
-  border-color: black;
-  border-width: 0 0 1px 0;
-  font-size: 9px;
+div.spellHelp {
+    width: 6px;
+    padding-top: 2px;
+    text-align: right;
+    margin-left: 3px;
+    margin-right: 1px;
 }
+div.spellHelp a {
+    color: black;
+    text-decoration: none;
+}
+div.spellName {
+	margin-left: 0px;
+    width: 100px;
+}
+div.spellName input {
+    width: 100px;
+}
+div.spellLevel, div.spellCast {
+    width: 20px;
+    text-align: center;
+}
+div.spellLevel input, div.spellCast input {
+    width: 20px;
+    text-align: center;
+}
+
+
 #spells a
 {
   color: black;
@@ -988,13 +1017,13 @@ table.weapon input.left
 div#spellScrollWrapper {
   position: relative;
   width: 491px;
-  height: 525px;
+  height: 490px;
   overflow: hidden;
   margin-left: 10px;
 }
 
 div#spellScroller {
-  width: 1666px;
+  width: 1630px;
   left: 0px;
   position: relative;
 }

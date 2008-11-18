@@ -920,49 +920,31 @@ if( $firefox ) { echo '<!--'; } ?>
                 </table>
                 <div id="spellScrollWrapper">
                     <div id="spellScroller">
-                    <table id="spells" cellspacing="0">
-                      <tr>
+                    
     
              <?php
               for ( $i = 1; $i <= 300; $i++ ) {
                 $spellName = sprintf( "Spell%02d", $i );
                 if ( $i % 30 == 1 ) { ?>
-    
-                        <td class="spellColumn">
-                          <table cellspacing="0" class="spelllist">
-                            <tr class="header">
-                              <td>&nbsp;</td>
-                              <td><a href="javascript:SpellSort(SpellSort.ByName)" title="Sort by Spell Name">Spell Name</a></td>
-                              <td><a href="javascript:SpellSort(SpellSort.ByLevel)" title="Sort by Spell Level">Level</a></td>
-                              <td class="mem"><a href="javascript:SpellSort(SpellSort.ByMem)" title="Sort by Number of times cast, memorized, or manifested">Cast<br />/Mem</a></td>
-                            </tr>
-      <?php } ?>
-
-                            <tr>
-                              <td>
-                                 <A href="#" name="<?php echo $spellName; ?>Link"
-                                      onclick="ShowSpellHelp('<?php echo $spellName; ?>');return false;"></A>
-                              </td>
-                              <td class="name"><input type="text" <?php getnv($spellName); ?>
-                                  onchange="CheckForSpellHelp('<?php echo $spellName; ?>')" /></td>
-                              <td class="mem"><input type="text" <?php getnv($spellName . 'Level' ); ?> /></td>
-                              <td class="mem"><input type="text" <?php getnv($spellName . 'Cast' ); ?> onchange="updateCast();"/></td>
-                            </tr>
-    
-                         <?php
-                              if ( $i % 30 == 0 )
-                              {
-                         ?>
-    
-                          </table>
-                        </td>
-                         <?php
-                              }
-                           }
-                         ?>
-                      </tr>
-                    </table>
-                </div>
+                        <div class="spellColumn">
+                            <div class="spellHeaderRow">
+                                <div class="spellHelp">&nbsp;</div>
+                                <div class="spellName"><a href="javascript:SpellSort(SpellSort.ByName)" title="Sort by Spell Name"><br/>Spell Name</a></div>
+                                <div class="spellLevel"><a href="javascript:SpellSort(SpellSort.ByLevel)" title="Sort by Spell Level"><br/>Level</a></div>
+                                <div class="spellCast"><a href="javascript:SpellSort(SpellSort.ByMem)" title="Sort by Number of times cast, memorized, or manifested">Cast<br />Mem</a></div>
+                            </div>
+                <?php } ?>
+                            <div class="spellRow">
+                                <div class="spellHelp"><a href="#" name="<?php echo $spellName; ?>Link" onclick="ShowSpellHelp('<?php echo $spellName; ?>');return false;"></a></div>
+                                <div class="spellName"><input type="text" <?php getnv($spellName); ?> onchange="CheckForSpellHelp('<?php echo $spellName; ?>')" /></div>
+                                <div class="spellLevel"><input type="text" <?php getnv($spellName . 'Level' ); ?> /></div>
+                                <div class="spellCast"><input type="text" <?php getnv($spellName . 'Cast' ); ?> onchange="updateCast();"/></div>
+                            </div>
+                <?php if ( $i % 30 == 0 ) { ?>
+                        </div>
+                <?php } ?>
+              <?php } ?>
+                    </div>
                 </div>
 
               </td>

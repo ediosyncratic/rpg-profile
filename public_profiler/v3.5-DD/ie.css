@@ -32,22 +32,9 @@ table.spellsHeader, table.spellsHeader tr, table.spellsHeader tr td {
   font-size: 14px !important;
   margin: 0px 0px 0px 10px !important;
 }
-td.spellColumn {
-  width: 130px !important;
-  padding: 1px !important;	
-}
 table.spells {
   margin: 0px !important;
 }
 div#spellScrollWrapper {
   height: 605px !important;
-}
-#spells table.spelllist {
-  width: 130px !important;
-}
-#spells table.spelllist td input {
-  width: 18px !important;
-}
-#spells table.spelllist td.name input {
-  width: 93px !important;
 }

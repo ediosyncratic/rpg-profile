@@ -282,7 +282,7 @@ function updateCast() {
 var currentPage = 0;
 var minPage = 0;
 var maxPage = 7;
-var columnWidth = 163.33;
+var columnWidth = 163;
 
 function nextSpellPage() {
     if( currentPage >= maxPage ) {
