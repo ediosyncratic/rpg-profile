@@ -27,6 +27,10 @@ body {
     top: 20px;	
 }
 
+#buttons input {
+    border: none;
+}
+
 #processing {
     position: fixed;
     right: 20px;
@@ -36,6 +40,8 @@ body {
 
 input {
     font-size: 12px;    
+    border: 1px solid #AAA;
+    padding: 2px;
 }
 
 textarea {
@@ -253,11 +259,10 @@ div.row {
 }
 
 div.ability {
-	clear: both;
-	background: black;
-	height: 22px;
-	margin-bottom: 0px;
-	padding: 3px 0px 0px 3px;
+    clear: both;
+    background: black;
+    height: 22px;
+    padding: 3px 0px 2px 3px;
 }
 
 div.last {
@@ -404,6 +409,7 @@ div.section {
     width: 100%;
     display: block;
     clear: left;
+    padding-top: 5px;
 }
 
 div.column {

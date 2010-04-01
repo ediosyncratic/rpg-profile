@@ -264,10 +264,13 @@ function updateLevel() {
 }
 
 function updateHP() {
+    ZeroFill(sheet()["SurgeBonus"]);
+
     var currentHP = GetNum(sheet().HitPoints);
     var maxHP = GetNum(sheet().MaxHitPoints);
     var bloodiedHP = Math.floor(maxHP / 2);
     var surgeValue = Math.floor(maxHP / 4);
+    surgeValue += GetNum(sheet().SurgeBonus);
     
     sheet().BloodiedHitPoints.value = bloodiedHP;
     sheet().SurgeValue.value = surgeValue;
