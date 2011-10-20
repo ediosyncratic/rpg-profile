@@ -50,7 +50,7 @@
       $sid->_slength = $row['slength'];
       $sid->_dm = $row['dm'] == 'Y';
     } else {
-      create_user($userdata['username']);
+      create_user($user->data['username']);
 
       $sid->_iplog = "";
       $sid->_slength = 180;
