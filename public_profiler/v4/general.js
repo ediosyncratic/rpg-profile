@@ -162,3 +162,18 @@ function GetObject( id ) {
   }
   return obj;
 }
+
+jQuery(function() {
+	if( !jQuery.browser.msie ) {
+		jQuery(document).keypress(function(e) {
+			if( e.ctrlKey || e.metaKey ) {
+				if( e.which == 115 || e.which == 83 ) {
+					SetSaveDate(); 
+					Save();
+        				e.preventDefault();
+            			}
+			}
+		});
+	}
+});
+
