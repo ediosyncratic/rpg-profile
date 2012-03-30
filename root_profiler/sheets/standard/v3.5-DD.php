@@ -24,6 +24,7 @@
 
   <head>
     <title><?php echo $TITLE; 3.5 ?></title>
+
     <link type="text/css" rel="stylesheet" href="v3.5-DD/main.css" media="screen,print" />
     <link type="text/css" rel="stylesheet" href="v3.5-DD/print.css" media="print" />
     
@@ -782,7 +783,7 @@ if( $firefox ) { echo '<!--'; } ?>
                         <?php
 
                          // Loop 30 times and output the feats/abilities lines.
-                         for ( $i = 1; $i <= 30; $i++ ) {
+                         for ( $i = 1; $i <= 40; $i++ ) {
                            $featName = sprintf( "Feat%02d", $i );
                          ?>
 
@@ -798,7 +799,7 @@ if( $firefox ) { echo '<!--'; } ?>
 
                            <?php
                             // After the 15th feat start a new table.
-                           if ( $i == 15 ) {
+                           if ( $i == 20 ) {
                            ?>
 
                              </table>

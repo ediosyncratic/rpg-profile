@@ -21,11 +21,18 @@
 
     <script type="text/javascript">var READONLY = <?= $READONLY ? "true" : "false"; ?>;</script>
     <script type="text/javascript" src="./v4/prototype.js"></script>
+    <script type="text/javascript" src="./v4/jquery-1.6.1.min.js"></script>
+    <script type="text/javascript">
+        jQuery.noConflict();
+    </script>
+
     <script type="text/javascript" src="./v4/attributes.js"></script>
     <script type="text/javascript" src="./v4/general.js"></script>
     <script type="text/javascript" src="./v4/money.js"></script>
     <script type="text/javascript" src="./v4/sheet.js"></script>
     <script type="text/javascript" src="./v4/pic.js"></script>
+
+    <meta name="viewport" content="width=720,maximum-scale=1.0" />
   </head>
   <body onload="init()" onunload="cleanup()">
   <div id="overDiv" style="position:absolute; visibility:hidden; z-index:1000;"></div>
@@ -52,18 +59,18 @@
     <div class="row">
         <div class="attr textleft"><input type="text" <?php getnv("Player"); ?> class="medium bottomborder"><br/>Player</div>
         <div class="attr textleft"><input type="text" <?php getnv("CharacterName"); ?> class="large bottomborder"><br/>Character Name</div>
-        <div class="attr textleft"><input type="text" <?php getnv("Level"); ?> class="small" onchange="updateLevel();"><br/>Level</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Level"); ?> pattern="\d*" class="small" onchange="updateLevel();"><br/>Level</div>
         
         <div class="attr textleft"><input type="text" <?php getnv("ParagonPath"); ?> class="medium bottomborder"><br/>Paragon Path</div>
         <div class="attr textleft"><input type="text" <?php getnv("EpicDestiny"); ?> class="medium bottomborder"><br/>Epic Destiny</div>
-        <div class="attr textleft"><input type="text" <?php getnv("TotalXP"); ?> class="small"><br/>Total XP</div>
+        <div class="attr textleft"><input type="text" <?php getnv("TotalXP"); ?> pattern="\d*" class="small"><br/>Total XP</div>
     </div>
     <div class="row">
         <div class="attr textleft"><input type="text" <?php getnv("Race"); ?> class="medium bottomborder"><br/>Race</div>
         <div class="attr textleft"><input type="text" <?php getnv("Class"); ?> class="medium bottomborder"><br/>Class</div>
         
         <div class="attr textleft"><input type="text" <?php getnv("Size"); ?> class="tiny bottomborder"><br/>Size</div>
-        <div class="attr textleft"><input type="text" <?php getnv("Age"); ?> class="tiny bottomborder"><br/>Age</div>
+        <div class="attr textleft"><input type="text" <?php getnv("Age"); ?> pattern="\d*" class="tiny bottomborder"><br/>Age</div>
         <div class="attr textleft"><input type="text" <?php getnv("Gender"); ?> class="tiny bottomborder"><br/>Gender</div>
         <div class="attr textleft"><input type="text" <?php getnv("Height"); ?> class="tiny bottomborder"><br/>Height</div>
         <div class="attr textleft"><input type="text" <?php getnv("Weight"); ?> class="tiny bottomborder"><br/>Weight</div>
@@ -87,7 +94,7 @@
         </div>
         <div class="attr">Dex<br/><input type="text" <?php getnv("InitiativeDex"); ?> class="tiny" readonly></div>
         <div class="attr">&frac12; Lev<br/><input type="text" <?php getnv("InitiativeLevel"); ?> class="tiny" readonly></div>
-        <div class="attr">Misc<br/><input type="text" <?php getnv("InitiativeMisc"); ?> class="tiny" onchange="updateInitiative();"></div>
+        <div class="attr">Misc<br/><input type="text" <?php getnv("InitiativeMisc"); ?> pattern="\d*" class="tiny" onchange="updateInitiative();"></div>
         <div class="attr textleft">Conditional Modifiers<br/><input type="text" <?php getnv("InitiativeModifier"); ?> class="full bottomborder"></div>
     </div>
     
@@ -104,37 +111,37 @@
             <p class="quarter heading">Mod+&frac12;Lvl</p>
         </div>
         <div class="ability">
-            <input type="text" <?php getnv("Strength"); ?> class="quarter" onchange="updateAbility(this);"/>
+            <input type="text" <?php getnv("Strength"); ?> pattern="\d*" class="quarter" onchange="updateAbility(this);"/>
             <p class="quarter label">STR</p>
             <input type="text" <?php getnv("StrengthModifier"); ?> class="quarter" readonly/>
             <input type="text" <?php getnv("StrengthBonus"); ?> class="quarter" readonly/>
         </div>
         <div class="ability">
-            <input type="text" <?php getnv("Constitution"); ?> class="quarter" onchange="updateAbility(this);"/>
+            <input type="text" <?php getnv("Constitution"); ?> pattern="\d*" class="quarter" onchange="updateAbility(this);"/>
             <p class="quarter label">CON</p>
             <input type="text" <?php getnv("ConstitutionModifier"); ?> class="quarter" readonly/>
             <input type="text" <?php getnv("ConstitutionBonus"); ?> class="quarter" readonly/>
         </div>
         <div class="ability">
-            <input type="text" <?php getnv("Dexterity"); ?> class="quarter" onchange="updateAbility(this);"/>
+            <input type="text" <?php getnv("Dexterity"); ?> pattern="\d*" class="quarter" onchange="updateAbility(this);"/>
             <p class="quarter label">DEX</p>
             <input type="text" <?php getnv("DexterityModifier"); ?> class="quarter" readonly/>
             <input type="text" <?php getnv("DexterityBonus"); ?> class="quarter" readonly/>
         </div>
         <div class="ability">
-            <input type="text" <?php getnv("Intelligence"); ?> class="quarter" onchange="updateAbility(this);"/>
+            <input type="text" <?php getnv("Intelligence"); ?> pattern="\d*" class="quarter" onchange="updateAbility(this);"/>
             <p class="quarter label">INT</p>
             <input type="text" <?php getnv("IntelligenceModifier"); ?> class="quarter" readonly/>
             <input type="text" <?php getnv("IntelligenceBonus"); ?> class="quarter" readonly/>
         </div>
         <div class="ability">
-            <input type="text" <?php getnv("Wisdom"); ?> class="quarter" onchange="updateAbility(this);"/>
+            <input type="text" <?php getnv("Wisdom"); ?> pattern="\d*" class="quarter" onchange="updateAbility(this);"/>
             <p class="quarter label">WIS</p>
             <input type="text" <?php getnv("WisdomModifier"); ?> class="quarter" readonly/>
             <input type="text" <?php getnv("WisdomBonus"); ?> class="quarter" readonly/>
         </div>
         <div class="ability last">
-            <input type="text" <?php getnv("Charisma"); ?> class="quarter" onchange="updateAbility(this);"/>
+            <input type="text" <?php getnv("Charisma"); ?> pattern="\d*" class="quarter" onchange="updateAbility(this);"/>
             <p class="quarter label">CHA</p>
             <input type="text" <?php getnv("CharismaModifier"); ?> class="quarter" readonly/>
             <input type="text" <?php getnv("CharismaBonus"); ?> class="quarter" readonly/>
@@ -149,31 +156,35 @@
         <div class="attr">
             <br/>
             Max HP<br/>
-            <input type="text" <?php getnv("MaxHitPoints"); ?> class="quarter" onchange="updateHP();"/>
+            <input type="text" pattern="\d*" <?php getnv("MaxHitPoints"); ?> class="tiny" onchange="updateHP();"/>
         </div>
         <div class="attr" id="bloodied">
             <br/>
             Bloodied<br/>
-            <input type="text" <?php getnv("BloodiedHitPoints"); ?> class="quarter" readonly/><br/>
+            <input type="text" <?php getnv("BloodiedHitPoints"); ?> class="tiny" readonly/><br/>
             &frac12; HP
         </div>
         <div class="attr">
             Surge<br/>Value<br/>
-            <input type="text" <?php getnv("SurgeValue"); ?> class="quarter" readonly/><br/>
+            <input type="text" <?php getnv("SurgeValue"); ?> class="tiny" readonly/><br/>
             &frac14; HP
         </div>
         <div class="attr">
             Surges/<br/>Day<br/>
-            <input type="text" <?php getnv("SurgesPerDay"); ?> class="quarter"/>
+            <input type="text" pattern="\d*" <?php getnv("SurgesPerDay"); ?> class="tiny"/>
+        </div>
+        <div class="attr">
+            Surge<br/>Bonus<br/>
+            <input type="text" pattern="\d*" <?php getnv("SurgeBonus"); ?> class="tiny" onchange="updateHP();"/>
         </div>
         <br class="clear"/>
         <div class="attr textleft">
             Current Hit Points<br/>
-            <input type="text" <?php getnv("HitPoints"); ?> class="half tall bottomborder" onchange="updateHP();"/>
+            <input type="text" pattern="\d*" <?php getnv("HitPoints"); ?> class="half tall bottomborder" onchange="updateHP();"/>
         </div>
         <div class="attr textright">
             Current Surge Uses<br/>
-            <input type="text" <?php getnv("CurrentSurgeUses"); ?> class="half tall bottomborder"/>
+            <input type="text" pattern="\d*" <?php getnv("CurrentSurgeUses"); ?> class="half tall bottomborder"/>
         </div>
         <h3>
             <span class="right"><p class="top">Used</p> <input type="checkbox" <? getnc("SecondWind"); ?> class="smallcheck"/></span>
@@ -181,7 +192,7 @@
         </h3>
         <div class="attr textleft">
             Temporary Hit Points<br/>
-            <input type="text" <?php getnv("TemporaryHitPoints"); ?> class="full noborder"/>
+            <input type="text" pattern="\d*" <?php getnv("TemporaryHitPoints"); ?> class="full noborder"/>
         </div>
         <h3>
             <span class="right"><input type="checkbox" <? getnc("DeathFail1"); ?> class="smallcheck"/><input type="checkbox" <? getnc("DeathFail2"); ?> class="smallcheck"/><input type="checkbox" <? getnc("DeathFail3"); ?> class="smallcheck"/></span>
@@ -230,13 +241,13 @@
             <p class="skillname"><?= $skillName ?></p>
             <p class="skillattr"><?= $ability ?></p>
             <input type="text" <? getnv($skillName . "SkillAbility"); ?> class="skilltiny" readonly/>
-            <input type="text" <? getnv($skillName . "SkillTrained"); ?> class="skilltiny" onchange="updateSkill('<?=$skillName?>');"/>
+            <input type="text" <? getnv($skillName . "SkillTrained"); ?> pattern="\d*" class="skilltiny" onchange="updateSkill('<?=$skillName?>');"/>
             <? if( $penalty ) { ?>
                 <input type="text" <? getnv($skillName . "SkillPenalty"); ?> class="skilltiny bottomborder<? if( $skillNum % 2 == 0 ) { ?> oddbg<? } ?>" onchange="updateSkill('<?=$skillName?>');"/>
             <? } else { ?>
                 <div class="skillnopenalty">n/a</div>
             <? } ?>
-            <input type="text" <? getnv($skillName . "SkillMisc"); ?> class="skilltiny bottomborder<? if( $skillNum % 2 == 0 ) { ?> oddbg<? } ?>" onchange="updateSkill('<?=$skillName?>');"/>
+            <input type="text" <? getnv($skillName . "SkillMisc"); ?> pattern="\d*" class="skilltiny bottomborder<? if( $skillNum % 2 == 0 ) { ?> oddbg<? } ?>" onchange="updateSkill('<?=$skillName?>');"/>
         </div>
     <?
     }
@@ -272,27 +283,27 @@
             </div>
             <div class="attr">
                 <span class="smalllabel">Armor/<br/>Abil<br/></span>
-                <input type="text" <? getnv("ACArmor"); ?> class="xtiny" onchange="updateAC();"/>
+                <input type="text" <? getnv("ACArmor"); ?> pattern="\d*" class="xtiny" onchange="updateAC();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Class<br/></span>
-                <input type="text" <? getnv("ACClass"); ?> class="xtiny" onchange="updateAC();"/>
+                <input type="text" <? getnv("ACClass"); ?> pattern="\d*" class="xtiny" onchange="updateAC();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Feat<br/></span>
-                <input type="text" <? getnv("ACFeat"); ?> class="xtiny" onchange="updateAC();"/>
+                <input type="text" <? getnv("ACFeat"); ?> pattern="\d*" class="xtiny" onchange="updateAC();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Enh<br/></span>
-                <input type="text" <? getnv("ACEnhance"); ?> class="xtiny" onchange="updateAC();"/>
+                <input type="text" <? getnv("ACEnhance"); ?> pattern="\d*" class="xtiny" onchange="updateAC();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Misc<br/></span>
-                <input type="text" <? getnv("ACMisc"); ?> class="xtiny" onchange="updateAC();"/>
+                <input type="text" <? getnv("ACMisc"); ?> pattern="\d*" class="xtiny" onchange="updateAC();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Misc<br/></span>
-                <input type="text" <? getnv("ACMisc2"); ?> class="xtiny" onchange="updateAC();"/>
+                <input type="text" <? getnv("ACMisc2"); ?> pattern="\d*" class="xtiny" onchange="updateAC();"/>
             </div>
             <div class="attr">
                 <input type="text" <? getnv("ACSpecial"); ?> class="full bottomborder"/>
@@ -310,27 +321,27 @@
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Abil<br/></span>
-                <input type="text" <? getnv("FortArmor"); ?> class="xtiny" onchange="updateFort();"/>
+                <input type="text" <? getnv("FortArmor"); ?> pattern="\d*" class="xtiny" onchange="updateFort();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Class<br/></span>
-                <input type="text" <? getnv("FortClass"); ?> class="xtiny" onchange="updateFort();"/>
+                <input type="text" <? getnv("FortClass"); ?> pattern="\d*" class="xtiny" onchange="updateFort();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Feat<br/></span>
-                <input type="text" <? getnv("FortFeat"); ?> class="xtiny" onchange="updateFort();"/>
+                <input type="text" <? getnv("FortFeat"); ?> pattern="\d*" class="xtiny" onchange="updateFort();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Enh<br/></span>
-                <input type="text" <? getnv("FortEnhance"); ?> class="xtiny" onchange="updateFort();"/>
+                <input type="text" <? getnv("FortEnhance"); ?> pattern="\d*" class="xtiny" onchange="updateFort();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Misc<br/></span>
-                <input type="text" <? getnv("FortMisc"); ?> class="xtiny" onchange="updateFort();"/>
+                <input type="text" <? getnv("FortMisc"); ?> pattern="\d*" class="xtiny" onchange="updateFort();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Misc<br/></span>
-                <input type="text" <? getnv("FortMisc2"); ?> class="xtiny" onchange="updateFort();"/>
+                <input type="text" <? getnv("FortMisc2"); ?> pattern="\d*" class="xtiny" onchange="updateFort();"/>
             </div>
             <div class="attr">
                 <input type="text" <? getnv("FortSpecial"); ?> class="full bottomborder"/>
@@ -348,27 +359,27 @@
             </div>
             <div class="attr">
                 <span class="smalllabel">Abil/<br/>Shield<br/></span>
-                <input type="text" <? getnv("ReflexArmor"); ?> class="xtiny" onchange="updateReflex();"/>
+                <input type="text" <? getnv("ReflexArmor"); ?> pattern="\d*" class="xtiny" onchange="updateReflex();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Class<br/></span>
-                <input type="text" <? getnv("ReflexClass"); ?> class="xtiny" onchange="updateReflex();"/>
+                <input type="text" <? getnv("ReflexClass"); ?> pattern="\d*" class="xtiny" onchange="updateReflex();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Feat<br/></span>
-                <input type="text" <? getnv("ReflexFeat"); ?> class="xtiny" onchange="updateReflex();"/>
+                <input type="text" <? getnv("ReflexFeat"); ?> pattern="\d*" class="xtiny" onchange="updateReflex();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Enh<br/></span>
-                <input type="text" <? getnv("ReflexEnhance"); ?> class="xtiny" onchange="updateReflex();"/>
+                <input type="text" <? getnv("ReflexEnhance"); ?> pattern="\d*" class="xtiny" onchange="updateReflex();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Misc<br/></span>
-                <input type="text" <? getnv("ReflexMisc"); ?> class="xtiny" onchange="updateReflex();"/>
+                <input type="text" <? getnv("ReflexMisc"); ?> pattern="\d*" class="xtiny" onchange="updateReflex();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Misc<br/></span>
-                <input type="text" <? getnv("ReflexMisc2"); ?> class="xtiny" onchange="updateReflex();"/>
+                <input type="text" <? getnv("ReflexMisc2"); ?> pattern="\d*" class="xtiny" onchange="updateReflex();"/>
             </div>
             <div class="attr">
                 <input type="text" <? getnv("ReflexSpecial"); ?> class="full bottomborder"/>
@@ -386,27 +397,27 @@
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Abil<br/></span>
-                <input type="text" <? getnv("WillArmor"); ?> class="xtiny" onchange="updateWill();"/>
+                <input type="text" <? getnv("WillArmor"); ?> pattern="\d*" class="xtiny" onchange="updateWill();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Class<br/></span>
-                <input type="text" <? getnv("WillClass"); ?> class="xtiny" onchange="updateWill();"/>
+                <input type="text" <? getnv("WillClass"); ?> pattern="\d*" class="xtiny" onchange="updateWill();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Feat<br/></span>
-                <input type="text" <? getnv("WillFeat"); ?> class="xtiny" onchange="updateWill();"/>
+                <input type="text" <? getnv("WillFeat"); ?> pattern="\d*" class="xtiny" onchange="updateWill();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Enh<br/></span>
-                <input type="text" <? getnv("WillEnhance"); ?> class="xtiny" onchange="updateWill();"/>
+                <input type="text" <? getnv("WillEnhance"); ?> pattern="\d*" class="xtiny" onchange="updateWill();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Misc<br/></span>
-                <input type="text" <? getnv("WillMisc"); ?> class="xtiny" onchange="updateWill();"/>
+                <input type="text" <? getnv("WillMisc"); ?> pattern="\d*" class="xtiny" onchange="updateWill();"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><br/>Misc<br/></span>
-                <input type="text" <? getnv("WillMisc2"); ?> class="xtiny" onchange="updateWill();"/>
+                <input type="text" <? getnv("WillMisc2"); ?> pattern="\d*" class="xtiny" onchange="updateWill();"/>
             </div>
             <div class="attr">
                 <input type="text" <? getnv("WillSpecial"); ?> class="full bottomborder"/>
@@ -421,7 +432,7 @@
     <div class="section">
         <h2>Action Points</h2>
         <div class="attr">
-            <input type="text" <? getnv("ActionPoints"); ?> class="small"/>
+            <input type="text" <? getnv("ActionPoints"); ?> pattern="\d*" class="small"/>
             <span class="largelabel">Action Points</span>
         </div>
         <div class="attr textleft">
@@ -483,19 +494,19 @@
             <div class="right">
                 <div class="attr">
                     <span class="smalllabel">Base<br/></span>
-                    <input type="text" <? getnv("MovementBase"); ?> class="xtiny" onchange="updateMovement();"/>
+                    <input type="text" <? getnv("MovementBase"); ?> pattern="\d*" class="xtiny" onchange="updateMovement();"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Armor<br/></span>
-                    <input type="text" <? getnv("MovementArmor"); ?> class="xtiny" onchange="updateMovement();"/>
+                    <input type="text" <? getnv("MovementArmor"); ?> pattern="\d*" class="xtiny" onchange="updateMovement();"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Item<br/></span>
-                    <input type="text" <? getnv("MovementItem"); ?> class="xtiny" onchange="updateMovement();"/>
+                    <input type="text" <? getnv("MovementItem"); ?> pattern="\d*" class="xtiny" onchange="updateMovement();"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Misc<br/></span>
-                    <input type="text" <? getnv("MovementMisc"); ?> class="xtiny" onchange="updateMovement();"/>
+                    <input type="text" <? getnv("MovementMisc"); ?> pattern="\d*" class="xtiny" onchange="updateMovement();"/>
                 </div>
             </div>
             <div class="attr textleft">
@@ -570,27 +581,27 @@
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Abil<br/></span>
-                    <input type="text" <? getnv("AttackAbility" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
+                    <input type="text" <? getnv("AttackAbility" . $i); ?> pattern="\d*" class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Class<br/></span>
-                    <input type="text" <? getnv("AttackClass" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
+                    <input type="text" <? getnv("AttackClass" . $i); ?> pattern="\d*" class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Prof<br/></span>
-                    <input type="text" <? getnv("AttackProf" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
+                    <input type="text" <? getnv("AttackProf" . $i); ?> pattern="\d*" class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Feat<br/></span>
-                    <input type="text" <? getnv("AttackFeat" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
+                    <input type="text" <? getnv("AttackFeat" . $i); ?> pattern="\d*" class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Enh<br/></span>
-                    <input type="text" <? getnv("AttackEnhance" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
+                    <input type="text" <? getnv("AttackEnhance" . $i); ?> pattern="\d*" class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Misc<br/></span>
-                    <input type="text" <? getnv("AttackMisc" . $i); ?> class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
+                    <input type="text" <? getnv("AttackMisc" . $i); ?> pattern="\d*" class="xtiny" onchange="updateAttack(<?= $i ?>);"/>
                 </div>
             </div>
             <div class="attr total">
@@ -617,23 +628,23 @@
             <div class="right">
                 <div class="attr">
                     <span class="smalllabel">Abil<br/></span>
-                    <input type="text" <? getnv("DamageAbility" . $i); ?> class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
+                    <input type="text" <? getnv("DamageAbility" . $i); ?> pattern="\d*" class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Feat<br/></span>
-                    <input type="text" <? getnv("DamageFeat" . $i); ?> class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
+                    <input type="text" <? getnv("DamageFeat" . $i); ?> pattern="\d*" class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Enh<br/></span>
-                    <input type="text" <? getnv("DamageEnhance" . $i); ?> class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
+                    <input type="text" <? getnv("DamageEnhance" . $i); ?> pattern="\d*" class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Misc<br/></span>
-                    <input type="text" <? getnv("DamageMisc1" . $i); ?> class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
+                    <input type="text" <? getnv("DamageMisc1" . $i); ?> pattern="\d*" class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
                 </div>
                 <div class="attr">
                     <span class="smalllabel">Misc<br/></span>
-                    <input type="text" <? getnv("DamageMisc2" . $i); ?> class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
+                    <input type="text" <? getnv("DamageMisc2" . $i); ?> pattern="\d*" class="xtiny" onchange="updateDamage(<?= $i ?>);"/>
                 </div>
             </div>
             <div class="attr total">
@@ -653,7 +664,7 @@
         <div class="row">
             <div class="attr">
                 <? if( $i == 1 ) { ?><span class="smalllabel">Attack<br/></span><? } ?>
-                <input type="text" <? getnv("BasicAttackAttack" . $i); ?> class="tiny"/>
+                <input type="text" <? getnv("BasicAttackAttack" . $i); ?> pattern="\d*" class="tiny"/>
             </div>
             <div class="attr">
                 <span class="smalllabel"><? if( $i == 1 ) { ?><br/><? } ?>VS</span>
@@ -784,7 +795,7 @@
             <div class="attr">
                 <? 
                    $className = "fullpower";
-                   if( $i < sizeof($titles) ) { 
+                   if( $i <= sizeof($titles) ) { 
                        $className = "shortpower";
                 ?>
                 <div class="itemlabel textleft"><?= $titles[$i - 1] ?></div>
@@ -875,24 +886,24 @@
             <div class="cashtitle">Party</div>
         </div>
         <div class="attr">
-            <input onchange="sumCash();" class="cash" <?php getnv('CashAD' ); ?> /> ad
-            <input onchange="sumCash();" class="cash" <?php getnv('PartyCashAD' ); ?> /> ad
+            <input onchange="sumCash();" pattern="\d*" class="cash" <?php getnv('CashAD' ); ?> /> ad
+            <input onchange="sumCash();" pattern="\d*" class="cash" <?php getnv('PartyCashAD' ); ?> /> ad
         </div>
         <div class="attr">
-            <input onchange="sumCash();" class="cash" <?php getnv('CashPP' ); ?> /> pp
-            <input onchange="sumCash();" class="cash" <?php getnv('PartyCashPP' ); ?> /> pp
+            <input onchange="sumCash();" pattern="\d*" class="cash" <?php getnv('CashPP' ); ?> /> pp
+            <input onchange="sumCash();" pattern="\d*" class="cash" <?php getnv('PartyCashPP' ); ?> /> pp
         </div>
         <div class="attr">
-            <input onchange="sumCash();" class="cash" <?php getnv('CashGP' ); ?> /> gp
-            <input onchange="sumCash();" class="cash" <?php getnv('PartyCashGP' ); ?> /> gp
+            <input onchange="sumCash();" pattern="\d*" class="cash" <?php getnv('CashGP' ); ?> /> gp
+            <input onchange="sumCash();" pattern="\d*" class="cash" <?php getnv('PartyCashGP' ); ?> /> gp
         </div>
         <div class="attr">
-            <input onchange="sumCash();" class="cash" <?php getnv('CashSP' ); ?> /> sp
-            <input onchange="sumCash();" class="cash" <?php getnv('PartyCashSP' ); ?> /> sp
+            <input onchange="sumCash();" pattern="\d*" class="cash" <?php getnv('CashSP' ); ?> /> sp
+            <input onchange="sumCash();" pattern="\d*" class="cash" <?php getnv('PartyCashSP' ); ?> /> sp
         </div>
         <div class="attr">
-            <input onchange="sumCash();" class="cash" <?php getnv('CashCP' ); ?> /> cp
-            <input onchange="sumCash();" class="cash" <?php getnv('PartyCashCP' ); ?> /> cp
+            <input onchange="sumCash();" pattern="\d*" class="cash" <?php getnv('CashCP' ); ?> /> cp
+            <input onchange="sumCash();" pattern="\d*" class="cash" <?php getnv('PartyCashCP' ); ?> /> cp
         </div>
         <div class="attr whole">
             <hr/>
