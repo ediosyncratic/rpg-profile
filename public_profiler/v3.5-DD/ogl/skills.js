@@ -391,6 +391,31 @@ var skillsHelpURL = {
   'turn resistance':         baseHelpURL + "naturalSpecialAbilities.htm#turnResistance",
   'vulnerability to energy': baseHelpURL + "naturalSpecialAbilities.htm#vulnerabilitytoEnergy",
 
+  // Barbarian splecial abilities.
+  'illiteracy'       :        baseHelpURL + "classes/barbarian.htm#illiteracy",
+  'rage'             :        baseHelpURL + "classes/barbarian.htm#rage",
+  'greater rage'     :        baseHelpURL + "classes/barbarian.htm#greaterRage",
+  'tireless rage'    :        baseHelpURL + "classes/barbarian.htm#tirelessRage",
+  'mighty rage'      :        baseHelpURL + "classes/barbarian.htm#mightyRage",
+
+  // Bard splecial abilities.
+  'bardic music'     :        baseHelpURL + "classes/bard.htm#bardicMusic",
+  'bardic knowledge' :        baseHelpURL + "classes/bard.htm#bardicKnowledge",
+  'countersong'      :        baseHelpURL + "classes/bard.htm#countersong",
+  'fascinate'        :        baseHelpURL + "classes/bard.htm#fascinate",
+  'inspire courage'  :        baseHelpURL + "classes/bard.htm#inspireCourage",
+  'inspire competence' :      baseHelpURL + "classes/bard.htm#inspireCompetence",
+  'suggestion'       :        baseHelpURL + "classes/bard.htm#suggestion",
+  'inspire greatness':        baseHelpURL + "classes/bard.htm#inspireGreatness",
+  'song of freedom'  :        baseHelpURL + "classes/bard.htm#songofFreedom",
+  'inspire heroics'  :        baseHelpURL + "classes/bard.htm#inspireHeroics",
+  'mass suggestion'  :        baseHelpURL + "classes/bard.htm#massSuggestion",
+
+  // Cleric splecial abilities.
+  'turn undead'      :        baseHelpURL + "classes/cleric.htm#turnorRebukeUndead",
+  'rebuke undead'    :        baseHelpURL + "classes/cleric.htm#turnorRebukeUndead",
+  'turn or rebuke undead':    baseHelpURL + "classes/cleric.htm#turnorRebukeUndead",
+
   // Druid special abilities.
   'animal companion' :        baseHelpURL + "classes/druid.htm#animalCompanion",
   'wild empathy'     :        baseHelpURL + "classes/druid.htm#wildEmpathy",
@@ -408,6 +433,17 @@ var skillsHelpURL = {
   'share spells'     :       baseHelpURL + "classes/druid.htm#shareSpells",
   'devotion'         :       baseHelpURL + "classes/druid.htm#devotion",
   'multiattack'      :       baseHelpURL + "classes/druid.htm#multiattack",
+
+  // Paladin special abilities.
+  'aura of good'     :       baseHelpURL + "classes/paladin.htm#auraofGood",
+  'detect evil'      :       baseHelpURL + "classes/paladin.htm#detectEvil",
+  'smite evil'       :       baseHelpURL + "classes/paladin.htm#smiteEvil",
+  'divine grace'     :       baseHelpURL + "classes/paladin.htm#divineGrace",
+  'lay on hands'     :       baseHelpURL + "classes/paladin.htm#layonHands",
+  'aura of courage'  :       baseHelpURL + "classes/paladin.htm#auraofCourage",
+  'divine health'    :       baseHelpURL + "classes/paladin.htm#divineHealth",
+  'special mount'    :       baseHelpURL + "classes/paladin.htm#specialMount",
+  'remove disease'   :       baseHelpURL + "classes/paladin.htm#removeDisease",
 
   // Ranger special abilities.
   'wild empathy'     :        baseHelpURL + "classes/ranger.htm#wildEmpathy",
