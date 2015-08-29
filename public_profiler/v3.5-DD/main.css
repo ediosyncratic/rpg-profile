@@ -773,6 +773,83 @@ table.weapon input.left
 
 /************************************************************************/
 
+#container
+{
+  width: 100%;
+  margin: 9px 0 0 0;
+}
+#container span.help
+{
+  cursor: help;
+  color: white;
+  background-color: black;
+}
+#container tr.title td
+{
+  color: white;
+  background-color: black;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+#container tr.header td
+{
+  vertical-align: bottom;
+  text-align: center;
+}
+#container tr.header td.name
+{
+  text-align: left;
+}
+#container tr.header span.help
+{
+  cursor: help;
+}
+#container tr.slot td
+{
+  padding: 1px 2px 0 2px;
+}
+#container td.unit
+{
+  width: 5em;
+}
+#container input
+{
+  width: 100%;
+  border-style: none;
+  border-top: 1px solid white;
+  border-bottom: 1px solid black;
+  text-align: center;
+  font-size: 9px
+}
+#container input.name
+{
+  text-align: left;
+}
+#container tr.footer td
+{
+  color: gray;
+  background-color: white;
+  text-align: left;
+}
+#container tr.footer td.total
+{
+  text-align: center;
+}
+#container a
+{
+  color: black;
+  background-color: white;
+  text-decoration: none;
+}
+#container a:hover
+{
+  text-decoration: underline;
+}
+
+/************************************************************************/
+
 #spellstuff
 {
   width: 100%;

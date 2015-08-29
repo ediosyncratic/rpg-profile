@@ -23,6 +23,10 @@ function init()
   // Do total calculations for the skill and weight tables.
   SkillCalcRanks();
   CalcWeight();
+  // Calculate off-character container totals
+  ContainerWeight("Cont01");
+  ContainerWeight("Cont02");
+  ContainerWeight("Cont03");
 
   if (sheet().firstload.value == "true")
   {
@@ -108,5 +112,6 @@ function CheckDisplay() {
     ToggleDisplay("ar" + i, obj);
   }
   ToggleDisplay("magic", sheet()["MagicDisp"]);
+  ToggleDisplay("containers", sheet()["ContainerDisp"]);
 }
 

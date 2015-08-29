@@ -845,6 +845,42 @@ if( $firefox ) { echo '<!--'; } ?>
             </tr>
           </table> <!-- skillsandgear -->
 
+          <input type="checkbox" <?php getnc('ContainerDisp'); ?> onchange="ToggleDisplay('containers', this);" style="width:15px; border:none;"/>
+          Off-Character Containers
+          <div id="containers">
+          <p style="page-break-before: always; "/>
+          <table cellspacing="0" id="container">
+            <tr class="title">
+              <td colspan="3">Off-Character Possessions</td>
+            </tr>
+            <tr>
+<?php for ( $i = 1; $i <= 3; $i++ ) { $containerName = sprintf( "Cont%02d", $i ); ?>
+              <td>
+<?php echo '<table id="'.$containerName.'">'; ?>
+                  <tr class="title">
+                    <td colspan="2">Name: <input type="text" <?php getnv($containerName); ?> /></td>
+                  </tr>
+                  <tr class="header">
+                    <td class="name"><a <?php echo 'href="javascript:ContainerSort(\''.$containerName.'\', GearSort.ByName)"' ?> title="Sort by Item">Item</a></td>
+                    <td class="unit"><a <?php echo 'href="javascript:ContainerSort(\''.$containerName.'\', GearSort.ByWeight)"' ?> title="Sort by Weight">Weight<br />(lbs)</a></td>
+                  </tr>
+<?php for ( $j = 1; $j <= 20; $j++ ) { $gearName = $containerName.sprintf( "Gear%02d", $j ); ?>
+                  <tr class="slot">
+                    <td><input class="name" type="text" <?php getnv($gearName); ?> /></td>
+                    <td><input type="text" <?php getnv($gearName . 'W'); echo 'onchange="ContainerWeight(\''.$containerName.'\')"' ?>  /></td>
+                  </tr>
+<?php } ?>
+                  <tr class="footer">
+                    <td>Total Weight:</td>
+                    <td class="total"><span <?php echo 'id="'.$containerName.'Weight"' ?>>0</span></td>
+                  </tr>
+                </table>
+              </td>
+<?php } ?>
+            </tr>
+          </table>
+          </div>  <!-- containers -->
+
           <input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;" id="magiccheck"/>
           <label for="magiccheck">Display Spells &amp; Powers</label>
           <div id="magic">
