@@ -83,10 +83,11 @@ SpellSort.ByMem = function(a, b)
 // input element that contains the name of the skill.
 function ShowSpellHelp(node)
 {
-  var skillName = document.getElementsByName(node)[0].value;
+  var spellName = document.getElementsByName(node)[0].value;
   var URL;
 
-  URL = _RetrieveMatchingURL( skillName, spellsHelpURL )
+  spellName = Trim(spellName.toLowerCase()).replace(/^(lesser|greater|mass lesser|mass greater|mass) (.*)$/, "$2, $1");
+  URL = _RetrieveMatchingURL( spellName, spellsHelpURL )
 
   // Check to see if a matching skill was found.
   if ( URL == "" )
@@ -107,10 +108,11 @@ function ShowSpellHelp(node)
 */
 function CheckForSpellHelp(node)
 {
-  var skillName = document.getElementsByName(node)[0].value;
+  var spellName = document.getElementsByName(node)[0].value;
   var link      = document.getElementsByName(node + "Link")[ 0 ];
 
-  if ( _RetrieveMatchingURL( skillName, spellsHelpURL ) != "" )
+  spellName = Trim(spellName.toLowerCase()).replace(/^(lesser|greater|mass lesser|mass greater|mass) (.*)$/, "$2, $1");
+  if ( _RetrieveMatchingURL( spellName, spellsHelpURL ) != "" )
   {
     link.innerHTML = "?";
   }
