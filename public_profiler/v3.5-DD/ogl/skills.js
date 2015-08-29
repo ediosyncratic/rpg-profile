@@ -166,7 +166,8 @@ var skillsHelpURL = {
   'bluff':                   baseHelpURL + "skills/bluff.htm",
   'climb':                   baseHelpURL + "skills/climb.htm",
   'concentration':       baseHelpURL + "skills/concentration.htm",
-  'craft':                   baseHelpURL + "skills/craft.htm",
+  //craft moved down a bit to support craft feats
+  //'craft':                   baseHelpURL + "skills/craft.htm",
   'decipher script':         baseHelpURL + "skills/decipherScript.htm",
   'diplomacy':               baseHelpURL + "skills/diplomacy.htm",
   'disable device':      baseHelpURL + "skills/disableDevice.htm",
@@ -310,6 +311,9 @@ var skillsHelpURL = {
   'weapon specialization':            baseHelpURL + 'feats.htm#weaponSpecialization',
   'whirlwind attack':                 baseHelpURL + 'feats.htm#whirlwindAttack',
   'widen spell':                     baseHelpURL + 'feats.htm#widenSpell',
+
+  // craft skill must come after craft feats for everything to get the right URLs.
+  'craft':                   baseHelpURL + "skills/craft.htm",
 
   // Abilities
   'ability damage':          baseHelpURL + "naturalSpecialAbilities.htm#abilityDamage",
