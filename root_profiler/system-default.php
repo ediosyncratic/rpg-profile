@@ -22,17 +22,14 @@
   // MySQL Database configuration
   // --------------------------------------------------------------------
 
-  // Database Host - Usually localhost
-  $DB_HOST = 'localhost';
+  // Database Source Name
+  $DB_DSN = 'mysql:host=localhost;dbname=db_name';
 
   // Database Username - The username used to connect to the database
   $DB_USER = 'db_username';
 
   // Database Password - The password used to connect to the database
   $DB_PWD = 'db_password';
-
-  // Database Name - The name of the database
-  $DB = 'db_name';
 
   // Change URI_BASE to the base uri that all pages are displayed from.
   $URI_BASE = 'http://www.mydomain.ext/profiler/';
