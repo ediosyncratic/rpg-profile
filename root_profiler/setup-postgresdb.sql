@@ -10,6 +10,17 @@ CREATE TYPE campaign_status AS ENUM('RJ','IJ','DI','DJ');
 --
 
 --
+-- Function: unix_timestamp(timestamp)
+--
+
+CREATE OR REPLACE FUNCTION unix_timestamp(t timestamp)
+  RETURNS double precision AS $$
+BEGIN
+  RETURN EXTRACT(EPOCH FROM t);
+END;
+$$ LANGUAGE plpgsql;
+
+--
 -- Function: update_lastlogin()
 --
 

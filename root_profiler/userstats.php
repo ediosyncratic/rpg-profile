@@ -40,7 +40,7 @@
   // Returns the number of users who've accessed their accounts recently.
   function GetUsersOnlineCount() {
     global $TABLE_USERS, $rpgDB;
-    $_r = $rpgDB->query("SELECT COUNT(pname) AS cnt FROM $TABLE_USERS WHERE UNIX_TIMESTAMP(lastlogin) + (slength * 60) > UNIX_TIMESTAMP(NOW())");
+    $_r = $rpgDB->query("SELECT COUNT(pname) AS cnt FROM $TABLE_USERS WHERE UNIX_TIMESTAMP(lastlogin) + (slength * 60) > UNIX_TIMESTAMP(LOCALTIMESTAMP)");
     if ($_r) {
       $row = $rpgDB->fetch_row($_r);
       return $row['cnt'];
