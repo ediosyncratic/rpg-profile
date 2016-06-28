@@ -62,9 +62,9 @@
   {
     global $TABLE_USERS, $rpgDB;
 
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = PASSWORD('%s') WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = '%s' WHERE pname = '%s' LIMIT 1",
       $TABLE_USERS,
-      addslashes($pwd),
+      addslashes(sha1(sha1($pwd, true))),
       addslashes($sid->GetUserName())));
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);

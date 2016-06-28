@@ -173,10 +173,10 @@
 
       // Check the user against the db.
       $res = $rpgDB->query(sprintf("SELECT iplog, slength, email, dm FROM %s WHERE pname = '%s' ".
-                                 "AND (pwd = PASSWORD('%s') OR pwd = OLD_PASSWORD('%s'))",
+                                 "AND pwd = '%s'",
         $TABLE_USERS,
         addslashes($_POST['user']),
-        addslashes($_POST['pwd']),
+        addslashes(sha1(sha1($_POST['pwd'], true))),
         addslashes($_POST['pwd'])));
       if (!$res)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);

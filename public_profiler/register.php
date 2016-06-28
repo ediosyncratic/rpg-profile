@@ -70,10 +70,10 @@
     }
 
     // Attempt to add the new user.
-    $_r = $rpgDB->query(sprintf("INSERT INTO %s SET pname = '%s', pwd = PASSWORD('%s'), email = '%s'",
+    $_r = $rpgDB->query(sprintf("INSERT INTO %s (pname, pwd, email) VALUES ('%s', '%s', '%s')",
       $TABLE_USERS,
       addslashes($user),
-      addslashes($pwd1),
+      addslashes(sha1(sha1($pwd1, true))),
       addslashes($email)));
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);

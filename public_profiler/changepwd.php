@@ -56,9 +56,9 @@
   else
   {
     // Change the passwords.
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = PASSWORD('%s'), pwd_key = NULL WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = '%s', pwd_key = NULL WHERE pname = '%s' LIMIT 1",
       $TABLE_USERS,
-      addslashes($pwd1),
+      addslashes(sha1(sha1($pwd1, true))),
       addslashes($pname)));
     if (!$_r)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);

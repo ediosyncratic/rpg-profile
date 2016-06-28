@@ -27,7 +27,7 @@
     __printFatalErr("Invalid template id.");
 
   // Add the character to the master list.
-  $sql = sprintf("INSERT INTO %s SET cname = '%s', editedby = '%s', template_id = %d, owner = '%s'",
+  $sql = sprintf("INSERT INTO %s (cname, editedby, template_id, owner) VALUES ('%s', '%s', %d, '%s')",
     $TABLE_CHARS,
     addslashes($name),
     addslashes($sid->GetUserName()),

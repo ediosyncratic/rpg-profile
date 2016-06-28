@@ -24,7 +24,7 @@
   }
 
   // Add the campaign to the database
-  $_r = $rpgDB->query(sprintf("INSERT INTO %s SET name = '%s', owner = '%s', website = '%s'",
+  $_r = $rpgDB->query(sprintf("INSERT INTO %s (name, owner, website) VALUES ('%s', '%s', '%s')",
     $TABLE_CAMPAIGNS,
     addslashes($name),
     addslashes($sid->GetUserName()),

@@ -97,7 +97,7 @@
         return false;
 
       // Grant permission.
-      $res = $rpgDB->query(sprintf("INSERT INTO %s SET pname = '%s', cid = %d",
+      $res = $rpgDB->query(sprintf("INSERT INTO %s (pname, cid) VALUES ('%s', %d)",
         $TABLE_OWNERS,
         addslashes($this->_pname),
         (int) $this->_cid));
