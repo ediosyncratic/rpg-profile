@@ -76,7 +76,7 @@
 
       $characters = array();
 
-      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i') as lastedited, st.name, c.id, c.public ".
+      $sql = sprintf("SELECT c.cname, c.owner, c.lastedited, st.name, c.id, c.public ".
                      "FROM %s c, %s st WHERE campaign = %d AND st.id = c.template_id ".
                      "ORDER BY UPPER(c.cname)",
                      $TABLE_CHARS,
@@ -102,7 +102,7 @@
 
       $characters = array();
 
-      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i') as lastedited, st.name, c.id, cj.status ".
+      $sql = sprintf("SELECT c.cname, c.owner, c.lastedited, st.name, c.id, cj.status ".
                      "FROM %s c, %s st, %s cj WHERE cj.campaign_id = %d AND c.id = cj.char_id AND st.id = c.template_id ".
                      "ORDER BY UPPER(c.cname)",
                      $TABLE_CHARS,

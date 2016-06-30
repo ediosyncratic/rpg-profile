@@ -30,7 +30,7 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
   $sort = $_GET['sort'];
   $page = $_GET['page'];
 
-  $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d %%M %%Y @ %%H:%%i') as lastedited, c.owner, st.name as tname, ca.name as caname ".
+  $sql = sprintf("SELECT c.id, c.cname, c.lastedited, c.owner, st.name as tname, ca.name as caname ".
                  "FROM %s st, %s c LEFT JOIN %s ca on ca.id = c.campaign ".
                  "WHERE c.public = 'y' AND c.template_id = st.id ",
              $TABLE_TEMPLATES,

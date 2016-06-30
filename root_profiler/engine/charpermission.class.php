@@ -166,7 +166,7 @@
       $this->_characters = array();
       $this->_inactive_characters = array();
 
-      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y') as lastedited, c.editedby, ".
+      $sql = sprintf("SELECT c.id, c.cname, c.lastedited, c.editedby, ".
                      "c.public, st.name as tname, ca.name as caname, c.campaign, c.inactive ".
                      "FROM %s st, %s c ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
@@ -193,7 +193,7 @@
         }
       }
 
-      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y') as lastedited, c.editedby, ".
+      $sql = sprintf("SELECT c.id, c.cname, c.lastedited, c.editedby, ".
                      "c.public, st.name as tname, ca.name as caname, c.campaign, c.inactive ".
                      "FROM %s st, %s o, %s c ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
