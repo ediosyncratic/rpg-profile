@@ -62,7 +62,7 @@
   {
     global $TABLE_USERS, $rpgDB;
 
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = '%s' WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = '%s' WHERE pname = '%s'",
       $TABLE_USERS,
       addslashes(sha1(sha1($pwd, true))),
       addslashes($sid->GetUserName())));
@@ -75,7 +75,7 @@
   {
     global $TABLE_USERS, $rpgDB;
 
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET email = '%s' WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET email = '%s' WHERE pname = '%s'",
       $TABLE_USERS,
       addslashes($email),
       addslashes($sid->GetUserName())));
@@ -88,7 +88,7 @@
   {
     global $TABLE_USERS, $rpgDB;
 
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET slength = %d WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET slength = %d WHERE pname = '%s'",
       $TABLE_USERS,
       (int) $slength,
       addslashes($sid->GetUserName())));
@@ -103,7 +103,7 @@
 
     $dm = $dm == 'on' ? 'Y' : 'N';
 
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET dm = '%s' WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET dm = '%s' WHERE pname = '%s'",
       $TABLE_USERS,
       $dm,
       addslashes($sid->GetUserName())));

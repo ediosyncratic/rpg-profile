@@ -88,7 +88,7 @@
       // Update the db.
       $res = $rpgDB->query(sprintf("UPDATE %s SET name = '%s', active = '%s', open = '%s', website = '%s', ".
                                  "pc_level = '%s', max_players = %d, pc_alignment = '%s', description = '%s' ".
-                                 "WHERE id = %d LIMIT 1",
+                                 "WHERE id = %d",
         $TABLE_CAMPAIGNS,
         addslashes($this->cname),
         $this->active ? 'Y' : 'N',

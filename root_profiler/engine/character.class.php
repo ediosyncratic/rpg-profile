@@ -145,7 +145,7 @@
 
       // Update the db.
       // - Note, owner is never updated, and campaign is updated in a separate process.
-      $res = $rpgDB->query(sprintf("UPDATE %s SET campaign = %d WHERE id = %d LIMIT 1",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET campaign = %d WHERE id = %d",
         $TABLE_CHARS,
         (int) $id,
         (int) $this->id));
@@ -240,7 +240,7 @@
 
       // Update the db.
       // - Note, owner is never updated, and campaign is updated in a separate process.
-      $res = $rpgDB->query(sprintf("UPDATE %s SET editedby = '%s', public = '%s', inactive = '%s', template_id = %d, data = '%s' WHERE id = %d LIMIT 1",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET editedby = '%s', public = '%s', inactive = '%s', template_id = %d, data = '%s' WHERE id = %d",
         $TABLE_CHARS,
         addslashes($sid->GetUserName()),
         $this->public == 'y' ? 'y' : 'n',

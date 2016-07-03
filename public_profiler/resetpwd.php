@@ -87,7 +87,7 @@
     // Generate a key and put it in the db.
     $keygen = new Id();
     $id = $keygen->GenerateId();
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd_key = '%s' WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd_key = '%s' WHERE pname = '%s'",
       $TABLE_USERS,
       addslashes($id),
       addslashes($pname)), $rpgDB);
