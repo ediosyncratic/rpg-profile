@@ -7,7 +7,7 @@
 global $id, $character;
 ?>
 
-<h1><? echo getUserName(); ?> :: Remove Character</h1>
+<h1><?= getUserName(); ?> :: Remove Character</h1>
 
 <h1>Confirmation</h1>
 <form action="del.php" method="post">
