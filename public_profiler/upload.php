@@ -66,9 +66,9 @@
       print_autodetect_failed($sid, $id);
 
     // Try to obtain the import script to use based on the identifier.
-    $res = $rpgDB->query(sprintf("SELECT imp_file, title FROM %s WHERE imp_file != '' AND identifier = '%s' LIMIT 1",
+    $res = $rpgDB->query(sprintf("SELECT imp_file, title FROM %s WHERE imp_file != '' AND identifier = %s LIMIT 1",
       $TABLE_SERIALIZE,
-      addslashes($matches[1])));
+      $rpgDB->quote($matches[1])));
     if (!$res)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
     if (!$rpgDB->num_rows())

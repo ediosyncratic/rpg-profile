@@ -24,11 +24,11 @@
   }
 
   // Add the campaign to the database
-  $_r = $rpgDB->query(sprintf("INSERT INTO %s (name, owner, website) VALUES ('%s', '%s', '%s')",
+  $_r = $rpgDB->query(sprintf("INSERT INTO %s (name, owner, website) VALUES (%s, %s, %s)",
     $TABLE_CAMPAIGNS,
-    addslashes($name),
-    addslashes($sid->GetUserName()),
-    addslashes($website)));
+    $rpgDB->quote($name),
+    $rpgDB->quote($sid->GetUserName()),
+    $rpgDB->quote($website)));
   if (!$_r)
     __printFatalErr("Failed to update database.", __LINE__, __FILE__);
   if ($rpgDB->num_rows() != 1)

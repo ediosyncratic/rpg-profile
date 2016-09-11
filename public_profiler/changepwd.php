@@ -37,10 +37,10 @@
   is_valid_password($pwd2, $err);
 
   // Verify against the db.
-  $_r = $rpgDB->query(sprintf("SELECT pname FROM %s WHERE pname = '%s' AND pwd_key = '%s'",
+  $_r = $rpgDB->query(sprintf("SELECT pname FROM %s WHERE pname = %s AND pwd_key = %s",
     $TABLE_USERS,
-    addslashes($pname),
-    addslashes($key)));
+    $rpgDB->quote($pname),
+    $rpgDB->quote($key)));
   if (!$_r)
     __printFatalErr("Failed to query database.", __LINE__, __FILE__);
   if ($rpgDB->num_rows($_r) != 1)
@@ -56,10 +56,10 @@
   else
   {
     // Change the passwords.
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = '%s', pwd_key = NULL WHERE pname = '%s'",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = %s, pwd_key = NULL WHERE pname = %s",
       $TABLE_USERS,
-      addslashes(sha1(sha1($pwd1, true))),
-      addslashes($pname)));
+      $rpgDB->quote(sha1(sha1($pwd1, true))),
+      $rpgDB->quote($pname)));
     if (!$_r)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
     if ($rpgDB->num_rows() != 1)

@@ -62,10 +62,10 @@
   {
     global $TABLE_USERS, $rpgDB;
 
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = '%s' WHERE pname = '%s'",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd = %s WHERE pname = %s",
       $TABLE_USERS,
-      addslashes(sha1(sha1($pwd, true))),
-      addslashes($sid->GetUserName())));
+      $rpgDB->quote(sha1(sha1($pwd, true))),
+      $rpgDB->quote($sid->GetUserName())));
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
   }
@@ -75,10 +75,10 @@
   {
     global $TABLE_USERS, $rpgDB;
 
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET email = '%s' WHERE pname = '%s'",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET email = %s WHERE pname = %s",
       $TABLE_USERS,
-      addslashes($email),
-      addslashes($sid->GetUserName())));
+      $rpgDB->quote($email),
+      $rpgDB->quote($sid->GetUserName())));
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
   }
@@ -88,10 +88,10 @@
   {
     global $TABLE_USERS, $rpgDB;
 
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET slength = %d WHERE pname = '%s'",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET slength = %d WHERE pname = %s",
       $TABLE_USERS,
       (int) $slength,
-      addslashes($sid->GetUserName())));
+      $rpgDB->quote($sid->GetUserName())));
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
   }
@@ -103,10 +103,10 @@
 
     $dm = $dm == 'on' ? 'Y' : 'N';
 
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET dm = '%s' WHERE pname = '%s'",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET dm = '%s' WHERE pname = %s",
       $TABLE_USERS,
       $dm,
-      addslashes($sid->GetUserName())));
+      $rpgDB->quote($sid->GetUserName())));
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
   }

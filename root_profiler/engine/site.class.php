@@ -86,18 +86,18 @@
       global $TABLE_CAMPAIGNS, $rpgDB;
 
       // Update the db.
-      $res = $rpgDB->query(sprintf("UPDATE %s SET name = '%s', active = '%s', open = '%s', website = '%s', ".
-                                 "pc_level = '%s', max_players = %d, pc_alignment = '%s', description = '%s' ".
+      $res = $rpgDB->query(sprintf("UPDATE %s SET name = %s, active = '%s', open = '%s', website = %s, ".
+                                 "pc_level = %s, max_players = %d, pc_alignment = %s, description = %s ".
                                  "WHERE id = %d",
         $TABLE_CAMPAIGNS,
-        addslashes($this->cname),
+        $rpgDB->quote($this->cname),
         $this->active ? 'Y' : 'N',
         $this->open ? 'Y' : 'N',
-        addslashes($this->website),
-        addslashes($this->pc_level),
+        $rpgDB->quote($this->website),
+        $rpgDB->quote($this->pc_level),
         (int) $this->max_players,
-        addslashes($this->pc_alignment),
-        addslashes($this->desc),
+        $rpgDB->quote($this->pc_alignment),
+        $rpgDB->quote($this->desc),
         (int) $this->id));
 
       return $res ? true : false;

@@ -87,9 +87,9 @@
       setcookie('sid', '');
 
       // Clear the db entry.
-      $res = $rpgDB->query(sprintf("UPDATE %s SET sid = NULL WHERE pname = '%s'",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET sid = NULL WHERE pname = %s",
         $TABLE_USERS,
-        addslashes($this->_username)));
+        $rpgDB->quote($this->_username)));
       if (!$res)
         __printFatalErr("Failed to update database.", __LINE__, __FILE__);
       if ($rpgDB->num_rows() != 1)
@@ -172,12 +172,11 @@
         return false;
 
       // Check the user against the db.
-      $res = $rpgDB->query(sprintf("SELECT iplog, slength, email, dm FROM %s WHERE pname = '%s' ".
-                                 "AND pwd = '%s'",
+      $res = $rpgDB->query(sprintf("SELECT iplog, slength, email, dm FROM %s WHERE pname = %s ".
+                                 "AND pwd = %s",
         $TABLE_USERS,
-        addslashes($_POST['user']),
-        addslashes(sha1(sha1($_POST['pwd'], true))),
-        addslashes($_POST['pwd'])));
+        $rpgDB->quote($_POST['user']),
+        $rpgDB->quote(sha1(sha1($_POST['pwd'], true)))));
       if (!$res)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
       if ($rpgDB->num_rows() != 1)
@@ -204,12 +203,12 @@
       $this->_permission = new CharPermission($this->_username, null);
 
       // Update the db.
-      $res = $rpgDB->query(sprintf("UPDATE %s SET iplog = '%s', ip = '%s', sid = '%s', pwd_key = NULL WHERE pname = '%s'",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET iplog = %s, ip = %s, sid = %s, pwd_key = NULL WHERE pname = %s",
         $TABLE_USERS,
-        addslashes(serialize($this->_iplog)),
-        addslashes($this->_ip),
-        addslashes($this->_sid),
-        addslashes($this->_username)));
+        $rpgDB->quote(serialize($this->_iplog)),
+        $rpgDB->quote($this->_ip),
+        $rpgDB->quote($this->_sid),
+        $rpgDB->quote($this->_username)));
       if (!$res)
         __printFatalErr("Failed to update database.", __LINE__, __FILE__);
       if ($rpgDB->num_rows() != 1)
