@@ -55,6 +55,11 @@
 		}
 	}
 
+	function quote($string)
+	{
+		return $this->dbh->quote($string);
+	}
+
 	//
 	// Base query method
 	//

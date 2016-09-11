@@ -42,7 +42,7 @@
         $this->cname = $row['cname'];
         $this->lastedited = $row['lastedited'];
         $this->public = $row['public'];
-        $this->editedby = $row['edited'];
+        $this->editedby = $row['editedby'];
         $this->template_id = $row['template_id'];
         $this->_data = unserialize($row['data']);
         $this->owner = $row['owner'];
@@ -240,13 +240,13 @@
 
       // Update the db.
       // - Note, owner is never updated, and campaign is updated in a separate process.
-      $res = $rpgDB->query(sprintf("UPDATE %s SET editedby = '%s', public = '%s', inactive = '%s', template_id = %d, data = '%s' WHERE id = %d",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET editedby = '%s', public = '%s', inactive = '%s', template_id = %d, data = %s WHERE id = %d",
         $TABLE_CHARS,
         addslashes($sid->GetUserName()),
         $this->public == 'y' ? 'y' : 'n',
         $this->inactive == 'y' ? 'y' : 'n',
         (int) $this->template_id,
-        addslashes(serialize($this->_data)),
+        $rpgDB->quote(serialize($this->_data)),
         (int) $this->id));
       return $res ? true : false;
     }
