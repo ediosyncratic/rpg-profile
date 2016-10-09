@@ -468,11 +468,76 @@ var skillsHelpURL = {
   'summon familiar'  :        baseHelpURL + "classes/sorcererWizard.htm#wizardFamiliar",
   'scribe scroll'    :        baseHelpURL + "classes/sorcererWizard.htm#scribeScroll",
 
+  // ******************
+  // Sidequestors Links
+  // ******************
+
+  // Feats:
+  'expeditious dodge':        'https://sidequestors.skydragoness.com/mediawiki/view/Expeditious_Dodge',
+
+  // Dervish special abilities.
+  'dervish dance'    :        'https://sidequestors.skydragoness.com/mediawiki/view/Dervish#Dervish_Dance_.28Ex.29',
+  'movement mastery' :        'https://sidequestors.skydragoness.com/mediawiki/view/Dervish#Movement_Mastery_.28Ex.29',
+  'slashing blades'  :        'https://sidequestors.skydragoness.com/mediawiki/view/Dervish#Slashing_Blades',
+  'dance of death'   :        'https://sidequestors.skydragoness.com/mediawiki/view/Dervish#Dance_of_Death',
+  'improved reaction':        'https://sidequestors.skydragoness.com/mediawiki/view/Dervish#Improved_Reaction_.28Ex.29',
+  'elaborate parry'  :        'https://sidequestors.skydragoness.com/mediawiki/view/Dervish#Elaborate_Parry_.28Ex.29',
+  'tireless dance'   :        'https://sidequestors.skydragoness.com/mediawiki/view/Dervish#Tireless_Dance',
+  'a thousand cuts'  :        'https://sidequestors.skydragoness.com/mediawiki/view/Dervish#A_Thousand_Cuts_.28Ex.29',
+
+  // Radiant servant of Pelor special abilities.
+  'extra greater turning' :   'https://sidequestors.skydragoness.com/mediawiki/view/Radiant_servant_of_Pelor#Extra_Greater_Turning',
+  'radiance'         :        'https://sidequestors.skydragoness.com/mediawiki/view/Radiant_servant_of_Pelor#Radiance',
+  'empower healing'  :        'https://sidequestors.skydragoness.com/mediawiki/view/Radiant_servant_of_Pelor#Empower_Healing_.28Ex.29',
+  'aura of warding'  :        'https://sidequestors.skydragoness.com/mediawiki/view/Radiant_servant_of_Pelor#Aura_of_Warding_.28Su.29',
+  'maximize healing' :        'https://sidequestors.skydragoness.com/mediawiki/view/Radiant_servant_of_Pelor#Maximize_Healing_.28Ex.29',
+  'positive energy burst' :   'https://sidequestors.skydragoness.com/mediawiki/view/Radiant_servant_of_Pelor#Positive_Energy_Burst_.28Su.29',
+  'supreme healing'  :        'https://sidequestors.skydragoness.com/mediawiki/view/Radiant_servant_of_Pelor#Supreme_Healing_.28Ex.29',
+
+
   '###last one###'   :           ""
 };
 
 
 var spellsHelpURL = {
+  // ************************
+  // Begin Sidequestors Links
+  // ************************
+  "blessed aim":"https://sidequestors.skydragoness.com/mediawiki/view/Blessed_aim",
+  "guiding light":"https://sidequestors.skydragoness.com/mediawiki/view/Guiding_light",
+  "light of Lunia":"https://sidequestors.skydragoness.com/mediawiki/view/Light_of_Lunia",
+  "vigor, lesser":"https://sidequestors.skydragoness.com/mediawiki/view/Lesser_vigor",
+  "close wounds":"https://sidequestors.skydragoness.com/mediawiki/view/Close_wounds",
+  "divine protection":"https://sidequestors.skydragoness.com/mediawiki/view/Divine_protection",
+  "ghost touch armor":"https://sidequestors.skydragoness.com/mediawiki/view/Ghost_touch_armor",
+  "healing lorecall":"https://sidequestors.skydragoness.com/mediawiki/view/Healing_lorecall",
+  "light of Mercuria":"https://sidequestors.skydragoness.com/mediawiki/view/Light_of_Mercuria",
+  "protection from negative energy":"https://sidequestors.skydragoness.com/mediawiki/view/Protection_from_negative_energy",
+  "stabilize":"https://sidequestors.skydragoness.com/mediawiki/view/Stabilize",
+  "aid, mass":"https://sidequestors.skydragoness.com/mediawiki/view/Mass_aid",
+  "conviction, mass":"https://sidequestors.skydragoness.com/mediawiki/view/Mass_conviction",
+  "ghost touch weapon":"https://sidequestors.skydragoness.com/mediawiki/view/Ghost_touch_weapon",
+  "grace":"https://sidequestors.skydragoness.com/mediawiki/view/Grace",
+  "light of Venya":"https://sidequestors.skydragoness.com/mediawiki/view/Light_of_Venya",
+  "vigor, mass lesser":"https://sidequestors.skydragoness.com/mediawiki/view/Mass_lesser_vigor",
+  "vigor, greater":"https://sidequestors.skydragoness.com/mediawiki/view/Greater_vigor",
+  "vigor":"https://sidequestors.skydragoness.com/mediawiki/view/Vigor",
+  "glowing orb":"https://sidequestors.skydragoness.com/mediawiki/view/Glowing_orb",
+  "panacea":"https://sidequestors.skydragoness.com/mediawiki/view/Panacea",
+  "summon hound archon":"https://sidequestors.skydragoness.com/mediawiki/view/Summon_hound_archon",
+  "wall of good":"https://sidequestors.skydragoness.com/mediawiki/view/Wall_of_good",
+  "recitation":"https://sidequestors.skydragoness.com/mediawiki/view/Recitation",
+  "sheltered vitality":"https://sidequestors.skydragoness.com/mediawiki/view/Sheltered_vitality",
+  "divine agility":"https://sidequestors.skydragoness.com/mediawiki/view/Divine_agility",
+  "stone shape, greater":"https://sidequestors.skydragoness.com/mediawiki/view/Greater_stone_shape",
+  "life’s grace":"https://sidequestors.skydragoness.com/mediawiki/view/Life’s_grace",
+  "sanctuary, mass":"https://sidequestors.skydragoness.com/mediawiki/view/Mass_sanctuary",
+  "revivify":"https://sidequestors.skydragoness.com/mediawiki/view/Revivify",
+  "righteous wrath of the faithful":"https://sidequestors.skydragoness.com/mediawiki/view/Righteous_wrath_of_the_faithful",
+  // **********************
+  // End Sidequestors Links
+  // **********************
+
   // Spells
   "acid arrow":                              baseHelpURL + "spells/acidArrow.htm",
   "acid fog":                                baseHelpURL + "spells/acidFog.htm",
@@ -1084,7 +1149,6 @@ var spellsHelpURL = {
   "word of recall":                          baseHelpURL + "spells/wordofRecall.htm",
   "zone of silence":                     baseHelpURL + "spells/zoneofSilence.htm",
   "zone of truth":                       baseHelpURL + "spells/zoneofTruth.htm",
-
 
   '###last one###'   :           ""
 };
