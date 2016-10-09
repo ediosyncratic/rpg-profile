@@ -467,12 +467,77 @@ var skillsHelpURL = {
     'turn resistance':                      baseHelpURL + "naturalSpecialAbilities.htm#turnResistance",
     'vulnerability to energy':              baseHelpURL + "naturalSpecialAbilities.htm#vulnerabilitytoEnergy",
 
+    // ****************
+    // Extra help Links
+    // ****************
+
+    // Feats:
+    'expeditious dodge':                    baseExtraHelpURL + 'Expeditious_Dodge',
+
+    // Dervish special abilities.
+    'dervish dance':                        baseExtraHelpURL + 'Dervish#Dervish_Dance_.28Ex.29',
+    'movement mastery':                     baseExtraHelpURL + 'Dervish#Movement_Mastery_.28Ex.29',
+    'slashing blades':                      baseExtraHelpURL + 'Dervish#Slashing_Blades',
+    'dance of death':                       baseExtraHelpURL + 'Dervish#Dance_of_Death',
+    'improved reaction':                    baseExtraHelpURL + 'Dervish#Improved_Reaction_.28Ex.29',
+    'elaborate parry':                      baseExtraHelpURL + 'Dervish#Elaborate_Parry_.28Ex.29',
+    'tireless dance':                       baseExtraHelpURL + 'Dervish#Tireless_Dance',
+    'a thousand cuts':                      baseExtraHelpURL + 'Dervish#A_Thousand_Cuts_.28Ex.29',
+
+    // Radiant servant of Pelor special abilities.
+    'extra greater turning':                baseExtraHelpURL + 'Radiant_servant_of_Pelor#Extra_Greater_Turning',
+    'radiance':                             baseExtraHelpURL + 'Radiant_servant_of_Pelor#Radiance',
+    'empower healing':                      baseExtraHelpURL + 'Radiant_servant_of_Pelor#Empower_Healing_.28Ex.29',
+    'aura of warding':                      baseExtraHelpURL + 'Radiant_servant_of_Pelor#Aura_of_Warding_.28Su.29',
+    'maximize healing':                     baseExtraHelpURL + 'Radiant_servant_of_Pelor#Maximize_Healing_.28Ex.29',
+    'positive energy burst':                baseExtraHelpURL + 'Radiant_servant_of_Pelor#Positive_Energy_Burst_.28Su.29',
+    'supreme healing':                      baseExtraHelpURL + 'Radiant_servant_of_Pelor#Supreme_Healing_.28Ex.29',
+
     '###last one###':                       ""
 };
 
 var spellsHelpURL = {
-    // Sorted in alphabetic order, with end-of-string sorted after all characters.
+    // Each block is sorted in alphabetic order, with end-of-string sorted after all characters.
     // This ensures _RetrieveMatchingURL matches links correctly.
+
+    // **********************
+    // Begin Extra Help Links
+    // **********************
+    "aid, mass":                            baseExtraHelpURL + "Mass_aid",
+    "blessed aim":                          baseExtraHelpURL + "Blessed_aim",
+    "close wounds":                         baseExtraHelpURL + "Close_wounds",
+    "conviction, mass":                     baseExtraHelpURL + "Mass_conviction",
+    "divine agility":                       baseExtraHelpURL + "Divine_agility",
+    "divine protection":                    baseExtraHelpURL + "Divine_protection",
+    "ghost touch armor":                    baseExtraHelpURL + "Ghost_touch_armor",
+    "ghost touch weapon":                   baseExtraHelpURL + "Ghost_touch_weapon",
+    "glowing orb":                          baseExtraHelpURL + "Glowing_orb",
+    "grace":                                baseExtraHelpURL + "Grace",
+    "guiding light":                        baseExtraHelpURL + "Guiding_light",
+    "healing lorecall":                     baseExtraHelpURL + "Healing_lorecall",
+    "life’s grace":                         baseExtraHelpURL + "Life’s_grace",
+    "light of Lunia":                       baseExtraHelpURL + "Light_of_Lunia",
+    "light of Mercuria":                    baseExtraHelpURL + "Light_of_Mercuria",
+    "light of Venya":                       baseExtraHelpURL + "Light_of_Venya",
+    "panacea":                              baseExtraHelpURL + "Panacea",
+    "protection from negative energy":      baseExtraHelpURL + "Protection_from_negative_energy",
+    "recitation":                           baseExtraHelpURL + "Recitation",
+    "revivify":                             baseExtraHelpURL + "Revivify",
+    "righteous wrath of the faithful":      baseExtraHelpURL + "Righteous_wrath_of_the_faithful",
+    "sanctuary, mass":                      baseExtraHelpURL + "Mass_sanctuary",
+    "sheltered vitality":                   baseExtraHelpURL + "Sheltered_vitality",
+    "stabilize":                            baseExtraHelpURL + "Stabilize",
+    "stone shape, greater":                 baseExtraHelpURL + "Greater_stone_shape",
+    "summon hound archon":                  baseExtraHelpURL + "Summon_hound_archon",
+    "vigor, greater":                       baseExtraHelpURL + "Greater_vigor",
+    "vigor, lesser":                        baseExtraHelpURL + "Lesser_vigor",
+    "vigor, mass lesser":                   baseExtraHelpURL + "Mass_lesser_vigor",
+    "vigor":                                baseExtraHelpURL + "Vigor",
+    "wall of good":                         baseExtraHelpURL + "Wall_of_good",
+    // ********************
+    // End Extra Help Links
+    // ********************
+
     "acid arrow":                           baseHelpURL + "spells/acidArrow.htm",
     "acid fog":                             baseHelpURL + "spells/acidFog.htm",
     "acid splash":                          baseHelpURL + "spells/acidSplash.htm",
