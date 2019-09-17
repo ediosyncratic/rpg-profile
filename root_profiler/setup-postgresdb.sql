@@ -3,6 +3,12 @@
 --
 
 CREATE TYPE yesno AS ENUM('y', 'n');
+
+--
+-- RJ : Requested to Join
+-- IJ : Invited to join
+-- DI, DJ : unused (presumably, declined invite, declined request)
+--
 CREATE TYPE campaign_status AS ENUM('RJ','IJ','DI','DJ');
 
 --
@@ -115,7 +121,7 @@ CREATE TRIGGER refresh_lastlogin_onupdate
 
 DROP TABLE IF EXISTS campaign;
 CREATE TABLE campaign (
-  id SERIAL PRIMARY KEY,
+  id SERIAL,
   name varchar(40) not null,
   owner varchar(20) not null,
   active varchar(1) not null default 'Y',
@@ -124,7 +130,8 @@ CREATE TABLE campaign (
   pc_level varchar(250),
   description text,
   pc_alignment varchar(250),
-  max_players integer
+  max_players integer,
+  PRIMARY KEY  (id)
 );
 
 --

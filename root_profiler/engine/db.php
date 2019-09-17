@@ -36,23 +36,21 @@
 	//
 	function close()
 	{
-		if( $this->dbh)
-		{
-			//
-			// Commit any remaining transactions
-			//
-			if( $this->in_transaction )
-			{
-				$this->dbh->exec("COMMIT");
-			}
-
-			$this->dbh = null;
-			return true;
-		}
-		else
+		if(! $this->dbh)
 		{
 			return false;
 		}
+
+		//
+		// Commit any remaining transactions
+		//
+		if( $this->in_transaction )
+		{
+			$this->dbh->exec("COMMIT");
+		}
+
+		$this->dbh = null;
+		return true;
 	}
 
 	function quote($string)
@@ -84,12 +82,9 @@
 
 			$this->query_result = $this->dbh->query($query);
 		}
-		else
+		elseif( $transaction == END_TRANSACTION && $this->in_transaction )
 		{
-			if( $transaction == END_TRANSACTION && $this->in_transaction )
-			{
-				$this->dbh->exec("COMMIT");
-			}
+			$this->dbh->exec("COMMIT");
 		}
 
 		if( $this->query_result )
@@ -107,15 +102,12 @@
 
 			return $this->query_result;
 		}
-		else
+		elseif( $this->in_transaction )
 		{
-			if( $this->in_transaction )
-			{
-				$this->dbh->exec("ROLLBACK");
-				$this->in_transaction = false;
-			}
-			return false;
+			$this->dbh->exec("ROLLBACK");
+			$this->in_transaction = false;
 		}
+		return false;
 	}
 
 	function num_rows()
@@ -134,10 +126,8 @@
 		{
 			return $stmt->fetch(PDO::FETCH_ASSOC);
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	function freeresult($stmt = null)
@@ -149,12 +139,10 @@
 
 		if ( $stmt )
 		{
+			$stmt->closeCursor();
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	function error()

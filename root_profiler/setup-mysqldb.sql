@@ -70,6 +70,16 @@ create table campaign (
     pc_alignment varchar(250),
     max_players integer);
 
+# --------------------------------------------------------
+
+#
+# Table structure for table `campaign_join`
+#
+# RJ : Requested to Join
+# IJ : Invited to join
+# DI, DJ : unused (presumably, declined invite, declined request)
+#
+
 drop table if exists campaign_join;
 create table campaign_join(
     campaign_id integer not null,
