@@ -30,29 +30,29 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
             $summaryAvailable = true;
         }
 ?>
-        <h3><?php echo get_sheet_name($key); ?><? if( !$summaryAvailable ) { ?><span class="notice">No summary sheet available.</span><? } ?></h3>
+        <h3><?php echo get_sheet_name($key); ?><?php if( !$summaryAvailable ) { ?><span class="notice">No summary sheet available.</span><?php } ?></h3>
         <ul class="character">
             <li>
                 <ul class="characterattribute">
                     <li><strong>Player</strong></li>
                     <li><strong>Name</strong></li>
-                    <? if( $summaryAvailable ) { foreach( $summaryTitles as $title ) { ?>
+                    <?php if( $summaryAvailable ) { foreach( $summaryTitles as $title ) { ?>
                         <li><strong><?= $title ?></strong></li>
-                    <? } } ?>
+                    <?php } } ?>
                 </ul>
             </li>
-<?
+<?php
         $i = 1;
         foreach( $characters as $character ) { 
             $data = $character->GetData();
 ?>
             <li class="row">
-                <ul class="characterattribute<? if( $i++ % 2 == 1 ) { ?> oddbg<? } ?>">
+                <ul class="characterattribute<?php if( $i++ % 2 == 1 ) { ?> oddbg<?php } ?>">
                     <li><?php echo $character->owner; ?></li>
                     <li><a href="<?php echo $URI_BASE . "view.php?id=" . $character->id; ?>"><?php echo $character->cname; ?></a></li>
-                    <? if( $summaryAvailable ) { foreach( $summaryAttributes as $attr ) { ?>
+                    <?php if( $summaryAvailable ) { foreach( $summaryAttributes as $attr ) { ?>
                     <li><?= $data[$attr] ?></li>
-                    <? } } ?>
+                    <?php } } ?>
                 </ul>
             </li>
 <?php 

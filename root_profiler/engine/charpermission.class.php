@@ -79,9 +79,9 @@
         return false;
 
       // Verify the user exists.
-      $res = $rpgDB->query(sprintf("SELECT pname FROM %s WHERE pname = '%s'",
+      $res = $rpgDB->query(sprintf("SELECT pname FROM %s WHERE pname = %s",
         $TABLE_USERS,
-        addslashes($this->_pname)));
+        $rpgDB->quote($this->_pname)));
       if (!$res)
         return false;
       if ($rpgDB->num_rows() != 1)
@@ -97,9 +97,9 @@
         return false;
 
       // Grant permission.
-      $res = $rpgDB->query(sprintf("INSERT INTO %s SET pname = '%s', cid = %d",
+      $res = $rpgDB->query(sprintf("INSERT INTO %s (pname, cid) VALUES (%s, %d)",
         $TABLE_OWNERS,
-        addslashes($this->_pname),
+        $rpgDB->quote($this->_pname),
         (int) $this->_cid));
       if (!$res)
         return false;
@@ -114,8 +114,8 @@
       if (!($this->_pname && $this->_cid))
         return false;
 
-      $res = $rpgDB->query(sprintf("DELETE FROM %s WHERE pname = '%s' AND cid = %d",
-            $TABLE_OWNERS, addslashes($this->_pname),
+      $res = $rpgDB->query(sprintf("DELETE FROM %s WHERE pname = %s AND cid = %d",
+            $TABLE_OWNERS, $rpgDB->quote($this->_pname),
             (int) $this->_cid));
 
       if (!$res)
@@ -166,16 +166,16 @@
       $this->_characters = array();
       $this->_inactive_characters = array();
 
-      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y') as lastedited, c.editedby, ".
+      $sql = sprintf("SELECT c.id, c.cname, c.lastedited, c.editedby, ".
                      "c.public, st.name as tname, ca.name as caname, c.campaign, c.inactive ".
                      "FROM %s st, %s c ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
-                     "WHERE c.owner = '%s' ".
+                     "WHERE c.owner = %s ".
                      "AND c.template_id = st.id ORDER BY c.cname",
         $TABLE_TEMPLATES,
         $TABLE_CHARS,
         $TABLE_CAMPAIGNS,
-        addslashes($this->_pname));
+        $rpgDB->quote($this->_pname));
       $res = $rpgDB->query($sql);
       if (!$res)
         __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
@@ -193,17 +193,17 @@
         }
       }
 
-      $sql = sprintf("SELECT c.id, c.cname, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y') as lastedited, c.editedby, ".
+      $sql = sprintf("SELECT c.id, c.cname, c.lastedited, c.editedby, ".
                      "c.public, st.name as tname, ca.name as caname, c.campaign, c.inactive ".
                      "FROM %s st, %s o, %s c ".
                      "LEFT JOIN %s ca ON ca.id = c.campaign ".
-                     "WHERE c.id = o.cid AND o.pname = '%s' ".
+                     "WHERE c.id = o.cid AND o.pname = %s ".
                      "AND c.template_id = st.id ORDER BY c.cname",
         $TABLE_TEMPLATES,
         $TABLE_OWNERS,
         $TABLE_CHARS,
         $TABLE_CAMPAIGNS,
-        addslashes($this->_pname));
+        $rpgDB->quote($this->_pname));
       $res = $rpgDB->query($sql);
       if (!$res)
         __printFatalErr("Failed to query database: $sql", __LINE__, __FILE__);
@@ -230,11 +230,11 @@
       $this->_campaigns = array();
       $sql = sprintf("SELECT ca.id, ca.name, ca.active, ca.open, count(ch.id) as chars ".
                      "FROM %s ca LEFT JOIN %s ch ON ca.id = ch.campaign ".
-                     "WHERE ca.owner = '%s' GROUP BY ca.id ".
+                     "WHERE ca.owner = %s GROUP BY ca.id ".
                      "ORDER BY UPPER(ca.name)",
                      $TABLE_CAMPAIGNS,
                      $TABLE_CHARS,
-                     addslashes($this->_pname));
+                     $rpgDB->quote($this->_pname));
       $res = $rpgDB->query($sql);
       if (!$res)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);

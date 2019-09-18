@@ -46,8 +46,8 @@
   function get_sheet_id($name) {
     global $TABLE_TEMPLATES, $rpgDB;
 
-    $res = $rpgDB->query(sprintf("SELECT id FROM %s WHERE name = '%s' LIMIT 1",
-      $TABLE_TEMPLATES, addslashes($name)));
+    $res = $rpgDB->query(sprintf("SELECT id FROM %s WHERE name = %s LIMIT 1",
+      $TABLE_TEMPLATES, $rpgDB->quote($name)));
     if (!$res)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
     if ($rpgDB->num_rows($res) == 1)

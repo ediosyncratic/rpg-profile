@@ -46,10 +46,10 @@
   else
   {
     // Confirmation received, delete the user's permission for the character.
-    $_r = $rpgDB->query(sprintf("DELETE FROM %s WHERE cid = %d AND pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("DELETE FROM %s WHERE cid = %d AND pname = %s",
       $TABLE_OWNERS,
       (int) $id,
-      addslashes($sid->GetUserName())));
+      $rpgDB->quote($sid->GetUserName())));
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
     
@@ -64,7 +64,7 @@
     if ($row['owner'] == $sid->GetUserName())
     {
       // Remove the character.
-      $_r = $rpgDB->query(sprintf("DELETE FROM %s WHERE id = %d LIMIT 1",
+      $_r = $rpgDB->query(sprintf("DELETE FROM %s WHERE id = %d",
         $TABLE_CHARS,
         (int) $id));
       if (!$_r)

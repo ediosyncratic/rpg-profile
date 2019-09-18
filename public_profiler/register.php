@@ -56,9 +56,9 @@
     }
 
     // Check to see if the profile name already exists.
-    $_r = $rpgDB->query(sprintf("SELECT COUNT(pname) as cnt FROM %s WHERE pname = '%s'",
+    $_r = $rpgDB->query(sprintf("SELECT COUNT(pname) as cnt FROM %s WHERE pname = %s",
       $TABLE_USERS,
-      addslashes($user)));
+      $rpgDB->quote($user)));
     if (!$_r)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
     $r = $rpgDB->fetch_row($_r);
@@ -70,11 +70,11 @@
     }
 
     // Attempt to add the new user.
-    $_r = $rpgDB->query(sprintf("INSERT INTO %s SET pname = '%s', pwd = PASSWORD('%s'), email = '%s'",
+    $_r = $rpgDB->query(sprintf("INSERT INTO %s (pname, pwd, email) VALUES (%s, %s, %s)",
       $TABLE_USERS,
-      addslashes($user),
-      addslashes($pwd1),
-      addslashes($email)));
+      $rpgDB->quote($user),
+      $rpgDB->quote(sha1(sha1($pwd1, true))),
+      $rpgDB->quote($email)));
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
 

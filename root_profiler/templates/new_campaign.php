@@ -1,9 +1,9 @@
-<?php global $name, $id, $success; ?>
+<?php global $name, $success; ?>
 
 <?php if( $success ) { ?>
 <h1>Character Created!</h1>
 <p>
-  <strong><?php echo getUserName(); ?></strong>, the campaign <strong><?php echo $name; ?></strong> (id = <?php echo $id; ?>)
+  <strong><?php echo getUserName(); ?></strong>, the campaign <strong><?php echo $name; ?></strong>
   was created and your profile was registered as owner of the campaign.
 </p>
 <p>

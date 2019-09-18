@@ -23,10 +23,10 @@
       return false;
 
     // Attempt to retrieve the session details from the db.
-    $sql = sprintf("SELECT pname, iplog, slength, email, dm FROM %s WHERE UNIX_TIMESTAMP(lastlogin) + (slength * 60) > UNIX_TIMESTAMP(NOW()) AND ip = '%s' AND sid = '%s'",
+    $sql = sprintf("SELECT pname, iplog, slength, email, dm FROM %s WHERE UNIX_TIMESTAMP(lastlogin) + (slength * 60) > UNIX_TIMESTAMP(LOCALTIMESTAMP) AND ip = %s AND sid = %s",
         $TABLE_USERS,
-        addslashes($sid->_ip),
-        addslashes($sid->_sid));
+        $rpgDB->quote($sid->_ip),
+        $rpgDB->quote($sid->_sid));
 //__printFatalErr($sql);
     $res = $rpgDB->query($sql);
     if (!$res)
@@ -46,11 +46,11 @@
     $sid->update_iplog();
 
     // Update the db.
-    $res = $rpgDB->query(sprintf("UPDATE %s SET iplog = '%s', ip = '%s' WHERE pname = '%s'",
+    $res = $rpgDB->query(sprintf("UPDATE %s SET iplog = %s, ip = %s WHERE pname = %s",
       $TABLE_USERS,
-      addslashes(serialize($sid->_iplog)),
-      addslashes($sid->_ip),
-      addslashes($sid->_username)));
+      $rpgDB->quote(serialize($sid->_iplog)),
+      $rpgDB->quote($sid->_ip),
+      $rpgDB->quote($sid->_username)));
     if (!$res)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
     if ($rpgDB->num_rows() != 1)

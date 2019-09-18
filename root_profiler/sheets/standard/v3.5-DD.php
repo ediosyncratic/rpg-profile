@@ -80,7 +80,7 @@
 <div id="processing">
     <img src="./v3.5-DD/loading.gif"/>
 </div>
-<? } ?>
+<?php } ?>
 
   <div>
     <input type="hidden" name="firstload" value="<?php echo isset($DATA['firstload']) ? "false" : "true"; ?>" />

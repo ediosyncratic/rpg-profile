@@ -11,48 +11,24 @@
   require_once(dirname(__FILE__) . '/../error.php');
 
 
-  class mysql_db
+  class Database
   {
 
-	var $db_connect_id;
+	var $dbh;
 	var $query_result;
-	var $row = array();
-	var $rowset = array();
 	var $num_queries = 0;
 	var $in_transaction = 0;
 
 	//
 	// Constructor
 	//
-	function mysql_db($sqlserver, $sqluser, $sqlpassword, $database)
+	function Database($dsn, $username, $password)
 	{
-		$this->user = $sqluser;
-		$this->password = $sqlpassword;
-		$this->server = $sqlserver;
-		$this->dbname = $database;
+		$this->username = $username;
+		$this->password = $password;
+		$this->dsn = $dsn;
 
-		$this->db_connect_id = mysql_connect($this->server, $this->user, $this->password);
-
-		if( $this->db_connect_id )
-		{
-			if( $database != "" )
-			{
-				$this->dbname = $database;
-				$dbselect = mysql_select_db($this->dbname);
-
-				if( !$dbselect )
-				{
-					mysql_close($this->db_connect_id);
-					$this->db_connect_id = $dbselect;
-				}
-			}
-
-			return $this->db_connect_id;
-		}
-		else
-		{
-			return false;
-		}
+		$this->dbh = new PDO($this->dsn, $this->username, $this->password);
 	}
 
 	//
@@ -60,28 +36,32 @@
 	//
 	function close()
 	{
-		if( $this->db_connect_id )
-		{
-			//
-			// Commit any remaining transactions
-			//
-			if( $this->in_transaction )
-			{
-				mysql_query("COMMIT", $this->db_connect_id);
-			}
-
-			return mysql_close($this->db_connect_id);
-		}
-		else
+		if(! $this->dbh)
 		{
 			return false;
 		}
+
+		//
+		// Commit any remaining transactions
+		//
+		if( $this->in_transaction )
+		{
+			$this->dbh->exec("COMMIT");
+		}
+
+		$this->dbh = null;
+		return true;
+	}
+
+	function quote($string)
+	{
+		return $this->dbh->quote($string);
 	}
 
 	//
 	// Base query method
 	//
-	function query($query = "", $transaction = FALSE)
+	function query($query = "", $transaction = false)
 	{
 		//
 		// Remove any pre-existing queries
@@ -93,109 +73,87 @@
 			$this->num_queries++;
 			if( $transaction == BEGIN_TRANSACTION && !$this->in_transaction )
 			{
-				$result = mysql_query("BEGIN", $this->db_connect_id);
-				if(!$result)
+				if ($this->dbh->exec("BEGIN") === false)
 				{
 					return false;
 				}
-				$this->in_transaction = TRUE;
+				$this->in_transaction = true;
 			}
 
-			$this->query_result = mysql_query($query, $this->db_connect_id);
+			$this->query_result = $this->dbh->query($query);
 		}
-		else
+		elseif( $transaction == END_TRANSACTION && $this->in_transaction )
 		{
-			if( $transaction == END_TRANSACTION && $this->in_transaction )
-			{
-				$result = mysql_query("COMMIT", $this->db_connect_id);
-			}
+			$this->dbh->exec("COMMIT");
 		}
 
 		if( $this->query_result )
 		{
-			unset($this->row[$this->query_result]);
-			unset($this->rowset[$this->query_result]);
-
 			if( $transaction == END_TRANSACTION && $this->in_transaction )
 			{
 				$this->in_transaction = FALSE;
 
-				if ( !mysql_query("COMMIT", $this->db_connect_id) )
+				if ($this->dbh->exec("COMMIT") === false)
 				{
-					mysql_query("ROLLBACK", $this->db_connect_id);
+					$this->dbh->exec("ROLLBACK");
 					return false;
 				}
 			}
 
 			return $this->query_result;
 		}
-		else
+		elseif( $this->in_transaction )
 		{
-			if( $this->in_transaction )
-			{
-				mysql_query("ROLLBACK", $this->db_connect_id);
-				$this->in_transaction = FALSE;
-			}
-			return false;
+			$this->dbh->exec("ROLLBACK");
+			$this->in_transaction = false;
 		}
+		return false;
 	}
 
 	function num_rows()
 	{
-		return ( $this->db_connect_id ) ? mysql_affected_rows($this->db_connect_id) : false;
+		return $this->query_result->rowCount();
 	}
 
-        function fetch_row($query_id = 0)
-        {
-                if( !$query_id )
-                {
-                        $query_id = $this->query_result;
-                }
-
-                if( $query_id )
-                {
-                        $this->row[$query_id] = mysql_fetch_array($query_id, MYSQL_ASSOC);
-                        return $this->row[$query_id];
-                }
-                else
-                {
-                        return false;
-                }
-        }
-
-	function freeresult($query_id = 0)
+	function fetch_row($stmt = null)
 	{
-		if( !$query_id )
+		if( !$stmt )
 		{
-			$query_id = $this->query_result;
+			$stmt = $this->query_result;
 		}
 
-		if ( $query_id )
+		if( $stmt )
 		{
-			unset($this->row[$query_id]);
-			unset($this->rowset[$query_id]);
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+		}
 
-			mysql_free_result($query_id);
+		return false;
+	}
 
+	function freeresult($stmt = null)
+	{
+		if( !$stmt )
+		{
+			$stmt = $this->query_result;
+		}
+
+		if ( $stmt )
+		{
+			$stmt->closeCursor();
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
 
 	function error()
 	{
-		$result['message'] = mysql_error($this->db_connect_id);
-		$result['code'] = mysql_errno($this->db_connect_id);
+		$result['message'] = $this->dbh->errorCode();
+		$result['code'] = $this->dbh->errorInfo;
 
 		return $result;
 	}
 
-  } // class sql_db
+  } // class Database 
 
-  $rpgDB = new mysql_db($DB_HOST, $DB_USER, $DB_PWD, $DB) or
-    __printFatalErr(mysql_error().'Failed to find database.', __LINE__, __FILE__);
-
+  $rpgDB = new Database($DB_DSN, $DB_USER, $DB_PWD)
 ?>

@@ -76,7 +76,7 @@
 
       $characters = array();
 
-      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i') as lastedited, st.name, c.id, c.public ".
+      $sql = sprintf("SELECT c.cname, c.owner, c.lastedited, st.name, c.id, c.public ".
                      "FROM %s c, %s st WHERE campaign = %d AND st.id = c.template_id ".
                      "ORDER BY UPPER(c.cname)",
                      $TABLE_CHARS,
@@ -102,7 +102,7 @@
 
       $characters = array();
 
-      $sql = sprintf("SELECT c.cname, c.owner, DATE_FORMAT(c.lastedited, '%%d/%%m/%%Y %%H:%%i') as lastedited, st.name, c.id, cj.status ".
+      $sql = sprintf("SELECT c.cname, c.owner, c.lastedited, st.name, c.id, cj.status ".
                      "FROM %s c, %s st, %s cj WHERE cj.campaign_id = %d AND c.id = cj.char_id AND st.id = c.template_id ".
                      "ORDER BY UPPER(c.cname)",
                      $TABLE_CHARS,
@@ -136,18 +136,18 @@
       global $TABLE_CAMPAIGNS, $rpgDB;
 
       // Update the db.
-      $res = $rpgDB->query(sprintf("UPDATE %s SET name = '%s', active = '%s', open = '%s', website = '%s', ".
-                                 "pc_level = '%s', max_players = %d, pc_alignment = '%s', description = '%s' ".
-                                 "WHERE id = %d LIMIT 1",
+      $res = $rpgDB->query(sprintf("UPDATE %s SET name = %s, active = '%s', open = '%s', website = %s, ".
+                                 "pc_level = %s, max_players = %d, pc_alignment = %s, description = %s ".
+                                 "WHERE id = %d",
         $TABLE_CAMPAIGNS,
-        addslashes($this->cname),
+        $rpgDB->quote($this->cname),
         $this->active ? 'Y' : 'N',
         $this->open ? 'Y' : 'N',
-        addslashes($this->website),
-        addslashes($this->pc_level),
+        $rpgDB->quote($this->website),
+        $rpgDB->quote($this->pc_level),
         (int) $this->max_players,
-        addslashes($this->pc_alignment),
-        addslashes($this->desc),
+        $rpgDB->quote($this->pc_alignment),
+        $rpgDB->quote($this->desc),
         (int) $this->id), $rpgDB);
 
       return $res ? true : false;

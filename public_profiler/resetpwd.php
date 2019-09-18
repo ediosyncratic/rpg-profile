@@ -38,10 +38,10 @@
       __printFatalErr("Invalid key.");
 
     // Check the key against the db.
-    $_r = $rpgDB->query(sprintf("SELECT pname FROM %s WHERE pname = '%s' AND pwd_key = '%s'",
+    $_r = $rpgDB->query(sprintf("SELECT pname FROM %s WHERE pname = %s AND pwd_key = %s",
       $TABLE_USERS,
-      addslashes($pname),
-      addslashes($key)));
+      $rpgDB->quote($pname),
+      $rpgDB->quote($key)));
     if (!$_r)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
     if ($rpgDB->num_rows($_r) != 1)
@@ -70,9 +70,9 @@
       __printFatalErr("Invalid profile name.");
 
     // Attempt to retrieve the email for the profile.
-    $_r = $rpgDB->query(sprintf("SELECT email FROM %s WHERE pname = '%s'",
+    $_r = $rpgDB->query(sprintf("SELECT email FROM %s WHERE pname = %s",
       $TABLE_USERS,
-      addslashes($pname)));
+      $rpgDB->quote($pname)));
     if (!$_r)
       __printFatalErr("Failed to query database.", __LINE__, __FILE__);
     if ($rpgDB->num_rows() != 1)
@@ -87,10 +87,10 @@
     // Generate a key and put it in the db.
     $keygen = new Id();
     $id = $keygen->GenerateId();
-    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd_key = '%s' WHERE pname = '%s' LIMIT 1",
+    $_r = $rpgDB->query(sprintf("UPDATE %s SET pwd_key = %s WHERE pname = %s",
       $TABLE_USERS,
-      addslashes($id),
-      addslashes($pname)), $rpgDB);
+      $rpgDB->quote($id),
+      $rpgDB->quote($pname)), $rpgDB);
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
     if ($rpgDB->num_rows() != 1)
