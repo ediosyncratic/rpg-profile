@@ -22,7 +22,7 @@
   global $URI_BASE, $URI_HOME, $LOGO;
 
   $title = 'Log In';
-  
+
   // Attempt to respawn a session.
   $sid = new SId();
   draw_page('login.php');

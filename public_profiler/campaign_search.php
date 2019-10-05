@@ -31,7 +31,7 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
                  "WHERE c.active = 'Y' AND c.open = 'Y' ",
              $TABLE_CAMPAIGNS,
              $TABLE_CHARS);
-  
+
   if( $type == 'begins' ) {
     $sql .= "AND UPPER(c.name) LIKE UPPER('" . $name . "%') ";
   } else if( $type == 'contains' ) {
@@ -39,7 +39,7 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
   } else if( $type == 'ends' ) {
     $sql .= "AND UPPER(c.name) LIKE UPPER('%" . $name . "') ";
   }
-  
+
   $sql .= "GROUP BY c.id ";
   $sql .= "ORDER BY UPPER(c.name) ";
 
@@ -49,7 +49,7 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
   // Offset
   if( $page ) {
     $start = 1 + ((((int) $page) - 1) * $recordsPerPage);
-    
+
     $sql .= "OFFSET " . $start . " ";
   } else {
      $page = 1;

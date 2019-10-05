@@ -24,7 +24,7 @@ body {
     background: #f6ffb8;
     border: 1px solid #c1b44a;
     right: 20px;
-    top: 20px;	
+    top: 20px;
 }
 
 #buttons input {
@@ -35,18 +35,18 @@ body {
     position: fixed;
     right: 20px;
     top: 90px;
-    display: none;	
+    display: none;
 }
 
 input {
-    font-size: 12px;    
+    font-size: 12px;
     border: 1px solid #AAA;
     padding: 2px;
 }
 
 textarea {
     font-size: 12px;
-    font-family: Arial, Helvetica, sans-serif;    
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 br.clear {
@@ -136,32 +136,32 @@ input.xxtiny {
 }
 
 .whole {
-    width: 99%;	
+    width: 99%;
 }
 
 .full {
-    width: 215px;    
+    width: 215px;
 }
 
 .half {
-    width: 95px;    
+    width: 95px;
 }
 
 .third {
-    width: 65px;    
+    width: 65px;
 }
 
 .quarter {
-    width: 41px;    
+    width: 41px;
     text-align: center;
 }
 
 .fullpower {
-    width: 190px;    
+    width: 190px;
 }
 
 .shortpower {
-    width: 150px;    
+    width: 150px;
 }
 
 div.itemlabel {
@@ -195,27 +195,27 @@ div.powerchecktwo {
 }
 
 div.powercheck input, div.powerchecktwo input {
-    margin: 0px 0px 0px 0px;	
+    margin: 0px 0px 0px 0px;
 }
 
 textarea.racefeatures {
-    height: 145px;  
+    height: 145px;
 }
 
 textarea.classfeatures {
-    height: 260px;  
+    height: 260px;
 }
 
 textarea.languages {
-    height: 80px;  
+    height: 80px;
 }
 
 textarea.equipment {
-    height: 260px;  
+    height: 260px;
 }
 
 textarea.money {
-    height: 50px;  
+    height: 50px;
 }
 
 textarea.notes {
@@ -227,7 +227,7 @@ textarea.privatenotes {
 }
 
 textarea.feats {
-    height: 305px;  
+    height: 305px;
 }
 
 input.cash {
@@ -238,19 +238,19 @@ input.cash {
 div.cashtitle {
     float: left;
     width: 105px;
-    text-align: center;	
+    text-align: center;
 }
 
 input.tall {
     height: 30px;
     font-size: 20pt;
-    text-align: center;	
+    text-align: center;
 }
 
 div.defence {
     clear: both;
     margin: 6px 0px 6px 0px;
-    height: 55px;   
+    height: 55px;
 }
 
 div.row {
@@ -267,7 +267,7 @@ div.ability {
 
 div.last {
     margin-bottom: 3px;
-    padding-bottom:3px;	
+    padding-bottom:3px;
 }
 
 div.heading {
@@ -291,7 +291,7 @@ div.ability p.heading {
 
 div.ability .quarter {
     float: left;
-    width: 22%; 
+    width: 22%;
 }
 
 div.skill {
@@ -312,7 +312,7 @@ p.skillname, p.skillnamelabel {
 }
 
 p.skillnamelabel {
-    margin: 0px 2px;	
+    margin: 0px 2px;
 }
 
 p.skillbonuslabel {
@@ -415,13 +415,13 @@ div.section {
 div.column {
     width: 32%;
     float: left;
-    margin-right: 3px;  
+    margin-right: 3px;
 }
 
 div.twocolumn {
     width: 64%;
     float: left;
-    margin-right: 3px;  
+    margin-right: 3px;
 }
 
 .right {
@@ -430,15 +430,15 @@ div.twocolumn {
 
 p.top {
 	display: inline;
-    vertical-align: top;    
+    vertical-align: top;
 }
 
 input.smallcheck {
-    margin: 2px 2px 2px 0px;	
+    margin: 2px 2px 2px 0px;
 }
 
 .oddbg {
-    background: #ddd;	
+    background: #ddd;
 }
 
 
@@ -465,4 +465,3 @@ input[readonly] {
     border: 1px solid #7F9DB9;
     padding: 2px;
 }
-

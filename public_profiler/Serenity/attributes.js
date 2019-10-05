@@ -5,11 +5,11 @@ function updateAttributes() {
   ZeroFill(sheet().Vitality);
   ZeroFill(sheet().Willpower);
   ZeroFill(sheet().Strength);
-  ZeroFill(sheet().Intelligence);  
+  ZeroFill(sheet().Intelligence);
 
   sheet().Initiative1.value = sheet().Agility.value;
   sheet().Initiative2.value = sheet().Alertness.value;
- 
+
 //  sheet().LifePoints.value = Add(sheet().Vitality.value, sheet().Willpower.value);
 
   // See if life stuff needs to change
@@ -32,7 +32,7 @@ function updateLife() {
   var lifePoints = GetNum(sheet().LifePoints);
 
   //alert("L:" + lifePoints + ", ST:" + stun + ", SH:" + shock + ", W:" + wounds);
- 
+
   if( wounds >= lifePoints ) {
     status = "<font color='red'>Dyin'</font>";
   } else if( shock >= lifePoints ) {
@@ -48,7 +48,7 @@ function updateLife() {
     status += "<br><font color='red'><b>-2 Step Pen</b></font>";
   }
 
-  GetObject('status').innerHTML = status;  
+  GetObject('status').innerHTML = status;
 }
 
 // Update Hustle and Run attributes.
@@ -69,9 +69,9 @@ function updateMovement() {
     if( running.value == "Running" ) {
       athletics = GetNum(sheet()["AthleticsSpecDice"+i]);
       break;
-    } 
+    }
   }
-  
+
   if( athletics > 0 ) {
     run += "+d" + athletics;
   }

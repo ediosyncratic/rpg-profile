@@ -7,7 +7,7 @@
   <head>
     <?php
     $sheetVer = "0.1";
-    
+
     // Lists for skills and traits.
     require_once("v4_Include.php");
     ?>
@@ -60,7 +60,7 @@
         <div class="attr textleft"><input type="text" <?php getnv("Player"); ?> class="medium bottomborder"><br/>Player</div>
         <div class="attr textleft"><input type="text" <?php getnv("CharacterName"); ?> class="large bottomborder"><br/>Character Name</div>
         <div class="attr textleft"><input type="text" <?php getnv("Level"); ?> pattern="\d*" class="small" onchange="updateLevel();"><br/>Level</div>
-        
+
         <div class="attr textleft"><input type="text" <?php getnv("ParagonPath"); ?> class="medium bottomborder"><br/>Paragon Path</div>
         <div class="attr textleft"><input type="text" <?php getnv("EpicDestiny"); ?> class="medium bottomborder"><br/>Epic Destiny</div>
         <div class="attr textleft"><input type="text" <?php getnv("TotalXP"); ?> pattern="\d*" class="small"><br/>Total XP</div>
@@ -68,13 +68,13 @@
     <div class="row">
         <div class="attr textleft"><input type="text" <?php getnv("Race"); ?> class="medium bottomborder"><br/>Race</div>
         <div class="attr textleft"><input type="text" <?php getnv("Class"); ?> class="medium bottomborder"><br/>Class</div>
-        
+
         <div class="attr textleft"><input type="text" <?php getnv("Size"); ?> class="tiny bottomborder"><br/>Size</div>
         <div class="attr textleft"><input type="text" <?php getnv("Age"); ?> pattern="\d*" class="tiny bottomborder"><br/>Age</div>
         <div class="attr textleft"><input type="text" <?php getnv("Gender"); ?> class="tiny bottomborder"><br/>Gender</div>
         <div class="attr textleft"><input type="text" <?php getnv("Height"); ?> class="tiny bottomborder"><br/>Height</div>
         <div class="attr textleft"><input type="text" <?php getnv("Weight"); ?> class="tiny bottomborder"><br/>Weight</div>
-        
+
         <div class="attr textleft"><input type="text" <?php getnv("Alignment"); ?> class="medium bottomborder"><br/>Alignment</div>
         <div class="attr textleft"><input type="text" <?php getnv("Deity"); ?> class="medium bottomborder"><br/>Deity</div>
     </div>
@@ -82,7 +82,7 @@
 <br class="clear"/>
 
 <div class="column">
-    
+
     <!-- ======================================== -->
     <!-- Initiative -->
     <!-- ======================================== -->
@@ -97,13 +97,13 @@
         <div class="attr">Misc<br/><input type="text" <?php getnv("InitiativeMisc"); ?> pattern="\d*" class="tiny" onchange="updateInitiative();"></div>
         <div class="attr textleft">Conditional Modifiers<br/><input type="text" <?php getnv("InitiativeModifier"); ?> class="full bottomborder"></div>
     </div>
-    
+
     <!-- ======================================== -->
     <!-- Ability Scores -->
     <!-- ======================================== -->
     <div class="section">
         <h2>Ability Scores</h2>
-        
+
         <div class="ability heading">
             <p class="quarter heading">Score</p>
             <p class="quarter heading">Ability</p>
@@ -147,7 +147,7 @@
             <input type="text" <?php getnv("CharismaBonus"); ?> class="quarter" readonly/>
         </div>
     </div>
-    
+
     <!-- ======================================== -->
     <!-- Hit Points -->
     <!-- ======================================== -->
@@ -210,10 +210,10 @@
             Current Conditions and Effects<br/>
             <input type="text" <?php getnv("CurrentConditions"); ?> class="full bottomborder"/>
         </div>
-        
+
     </div>
-    
-    
+
+
     <!-- ======================================== -->
     <!-- Skills -->
     <!-- ======================================== -->
@@ -228,7 +228,7 @@
             <p class="skilllabel">Pen</p>
             <p class="skilllabel">Misc</p>
         </div>
-        
+
     <?php
     $skillNum = 1;
     foreach( $skills as $skillName => $skillAttributes) {
@@ -271,7 +271,7 @@
     <!-- ======================================== -->
     <div class="section">
         <h2>Defenses</h2>
-        
+
         <div class="defence">
             <div class="attr defensetotal">
                 <span class="largelabel">AC<br/></span>
@@ -489,7 +489,7 @@
     <!-- ======================================== -->
     <div class="section">
         <h2>Movement</h2>
-        
+
         <div class="row">
             <div class="right">
                 <div class="attr">
@@ -514,7 +514,7 @@
                 <input type="text" <?php getnv("Movement"); ?> class="tiny" readonly/>
                 <span class="mediumlabel">Speed</span>
             </div>
-        </div>    
+        </div>
     </div>
 
     <!-- ======================================== -->
@@ -693,7 +693,7 @@
         <div class="attr textleft">
             <textarea <?php getn("Feats"); ?> class="full feats"><?php getv("Feats"); ?></textarea>
         </div>
-        
+
     </div>
 </div>
 
@@ -717,7 +717,7 @@
             Clear the box when the power renews.</em>
         </div>
     </div>
-    
+
     <div class="section">
         <h2>At-Will Powers</h2>
         <?php for( $i = 1; $i <= 6; $i++ ) { ?>
@@ -728,7 +728,7 @@
         </div>
         <?php } ?>
     </div>
-    
+
     <div class="section">
         <h2>Encounter Powers</h2>
         <?php for( $i = 1; $i <= 6; $i++ ) { ?>
@@ -740,7 +740,7 @@
         </div>
         <?php } ?>
     </div>
-    
+
     <div class="section">
         <h2>Daily Powers</h2>
         <?php for( $i = 1; $i <= 6; $i++ ) { ?>
@@ -752,7 +752,7 @@
         </div>
         <?php } ?>
     </div>
-    
+
     <div class="section">
         <h2>Utility Powers</h2>
         <?php for( $i = 1; $i <= 8; $i++ ) { ?>
@@ -784,18 +784,18 @@
             Clear the box when the power renews.</em>
         </div>
     </div>
-    
+
     <div class="section">
         <h2>Magic Items</h2>
-        <?php 
+        <?php
             $titles = array("Weapon","Weapon","Weapon","Weapon","Armor","Arms","Feet","Hands","Head","Neck","Ring","Ring","Waist");
-            for( $i = 1; $i <= 25; $i++ ) { 
+            for( $i = 1; $i <= 25; $i++ ) {
         ?>
         <div class="row">
             <div class="attr">
-                <?php 
+                <?php
                    $className = "fullpower";
-                   if( $i <= sizeof($titles) ) { 
+                   if( $i <= sizeof($titles) ) {
                        $className = "shortpower";
                 ?>
                 <div class="itemlabel textleft"><?= $titles[$i - 1] ?></div>
@@ -805,13 +805,13 @@
             </div>
         </div>
         <?php } ?>
-        
+
         <div class="row">
             <div class="attr whole">
                 <span class="mediumlabel"><em>Daily Item Powers Per Day</em></span>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="powertitle">Heroic 1-10</div>
             <div class="powercheck">
@@ -873,14 +873,14 @@
     <div id="charPic" style="display: none;">
     <img id="pic" src="" onclick="SetPic();"/>
     </div>
-    
+
     <div id="noCharPic">
     <img id="pic" src="v4/click.png" onclick="SetPic();"/>
     </div>
-    
+
     <div class="section">
         <h2>Money</h2>
-    
+
         <div class="attr">
             <div class="cashtitle">Personal</div>
             <div class="cashtitle">Party</div>
@@ -916,7 +916,7 @@
             <textarea class="full money" <?php getn("MoneyText"); ?>><?php getv("MoneyText"); ?></textarea>
         </div>
     </div>
-    
+
     <div class="section">
         <h2>Equipment</h2>
         <div class="attr">
@@ -957,9 +957,9 @@ Display Private Notes
     <!-- Private Notes -->
     <h2>Private Notes (Will not be displayed publically)</h2>
     <textarea <?php getn('PrivateNotes'); ?> class="whole privatenotes" cols="10" rows="10"><?php getv('PrivateNotes'); ?></textarea>
-    
+
     <h2>Character Background (Will not be displayed publically)</h2>
-    
+
     <textarea <?php getn('Background'); ?> class="whole privatenotes" cols="10" rows="10"><?php getv('Background'); ?></textarea>
 </div>
 <?php } ?>

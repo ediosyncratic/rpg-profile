@@ -101,7 +101,7 @@ function SkillLookUpKeyAb(node)
   // Can't make any assumptions about the node value, since the user may
   // have written anything.
   var ability = GetText(node);
-  
+
   if (ability == "str") ability = "Str";
   else if (ability == "dex") ability = "Dex";
   else if (ability == "con") ability = "Con";
@@ -116,7 +116,7 @@ function SkillLookUpKeyAb(node)
   }
 
   // If we don't have a modifier, return without doing anything else.
-  if (!(sheet()[ability + "Mod"].value.length 
+  if (!(sheet()[ability + "Mod"].value.length
     || sheet()[ability + "TempMod"].value.length))
     return;
 

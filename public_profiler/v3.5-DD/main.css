@@ -22,7 +22,7 @@ input
 {
   font-size: 13px;
 }
-body 
+body
 {
   margin: auto;
   width: 7in;
@@ -35,14 +35,14 @@ body
     background: #f6ffb8;
     border: 1px solid #c1b44a;
     right: 20px;
-    top: 20px;  
+    top: 20px;
 }
 
 #processing {
     position: fixed;
     right: 20px;
     top: 90px;
-    display: none;  
+    display: none;
 }
 
 /*
@@ -58,7 +58,7 @@ body
   width: 7in;
 }
 
-#maintable td 
+#maintable td
 {
   font-size: 9px;
   color: black;
@@ -444,7 +444,7 @@ table.weapon tr.header td
   text-align: center;
 }
 
-#maintable table.weapon td.type 
+#maintable table.weapon td.type
 {
   font-weight: bold;
   font-size: 14px;
@@ -455,7 +455,7 @@ table.weapon td.type, table.armor td.type
   font-weight: bold;
   font-size: 14px;
 }
- 
+
 #maintable table.weapon tr.header td
 {
   color: white;
@@ -959,7 +959,7 @@ div.spellColumn div.spellHeaderRow {
 }
 div.spellColumn div.spellHeaderRow a {
     color: black;
-    text-decoration: none;	
+    text-decoration: none;
 }
 div.spellColumn div.spellRow {
     clear: both;
@@ -1029,7 +1029,7 @@ div#spellScroller {
 }
 
 div#spellScroller #spells {
-  margin: 0px;	
+  margin: 0px;
 }
 
 td.scrollerArrow a, td.scrollerArrow a:hover, td.scrollerArrow a:visited {

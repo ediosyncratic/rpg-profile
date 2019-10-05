@@ -33,7 +33,7 @@
     __printFatalErr("Failed to update database.", __LINE__, __FILE__);
   if ($rpgDB->num_rows() != 1)
     __printFatalErr("Failed to update campaign list.", __LINE__, __FILE__);
-  
+
   // Everything should be fine, generate the success message.
   $title = 'New Campaign';
   $success = true;

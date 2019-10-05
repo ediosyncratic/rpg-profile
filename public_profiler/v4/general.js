@@ -139,7 +139,7 @@ function Trim( str )
   return str.replace(/^\s*|\s*$/g,"");
 }
 
-function ToggleDisplay( id, tick ) 
+function ToggleDisplay( id, tick )
 {
   var obj = GetObject(id);
   if( obj != null ) {
@@ -168,7 +168,7 @@ jQuery(function() {
 		jQuery(document).keypress(function(e) {
 			if( e.ctrlKey || e.metaKey ) {
 				if( e.which == 115 || e.which == 83 ) {
-					SetSaveDate(); 
+					SetSaveDate();
 					Save();
         				e.preventDefault();
             			}
@@ -176,4 +176,3 @@ jQuery(function() {
 		});
 	}
 });
-

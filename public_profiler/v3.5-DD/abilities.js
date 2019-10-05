@@ -202,7 +202,7 @@ function _calcMod(abilityScore)
 function _isTempAbility(node)
 {
   var names = new Array("Str", "Dex", "Con", "Int", "Wis", "Cha");
-  for (var i = 0; i < names.length; ++i) 
+  for (var i = 0; i < names.length; ++i)
     if (node.name == names[i])
       return false;
   return true;

@@ -154,7 +154,7 @@ function SkillLookUpKeyAb(node)
   // Can't make any assumptions about the node value, since the user may
   // have written anything.
   var ability = GetText(node);
-  
+
   if (ability == "str") ability = "Str";
   else if (ability == "dex") ability = "Dex";
   else if (ability == "con") ability = "Con";
@@ -169,7 +169,7 @@ function SkillLookUpKeyAb(node)
   }
 
   // If we don't have a modifier, return without doing anything else.
-  if (!(sheet()[ability + "Mod"].value.length 
+  if (!(sheet()[ability + "Mod"].value.length
     || sheet()[ability + "TempMod"].value.length))
     return;
 
@@ -233,7 +233,7 @@ function SkillSort(sortfunc)
     sheet()["Skill" + num].value             = r.skill;
     sheet()["Skill" + num].style.textDecoration = "none";
     sheet()["Skill" + num + "Ab"].value      = r.ab;
-    sheet()["Skill" + num + "CC"].checked    = r.cc;               
+    sheet()["Skill" + num + "CC"].checked    = r.cc;
     sheet()["Skill" + num + "Mod"].value     = r.mod;
     sheet()["Skill" + num + "AbMod"].value   = r.abmod;
     sheet()["Skill" + num + "Rank"].value    = r.rank;
@@ -350,7 +350,7 @@ function SkillClear()
 
 function SkillsUpdateCheckPen() {
   var penalty = 0;
-  
+
   for (var i = 1; i <= 4; i++) {
     if( sheet()["Armor" + i + "Worn"].checked ) {
     penalty = Add(penalty, sheet()["Armor" + i + "Check"].value);
@@ -394,8 +394,8 @@ function SkillsUpdateCheckPen() {
 
     SkillCalc(sheet()["Skill" + num]);
   }
-  
-  
+
+
 }
 
 // Update the cross-class checkboxes according to the class information.

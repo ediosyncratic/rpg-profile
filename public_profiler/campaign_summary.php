@@ -1,4 +1,4 @@
-<?php 
+<?php
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/system.php");
@@ -31,7 +31,7 @@
     draw_page('view_campaign_error.php');
     exit;
   }
-  
+
   $title = $campaign->cname;
   draw_page('campaign_summary.php');
 ?>

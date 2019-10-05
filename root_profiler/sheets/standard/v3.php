@@ -11,7 +11,7 @@
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
-  
+
   This program is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -128,7 +128,7 @@
           <table id="stats" cellspacing="0">
             <tr>
               <td rowspan="2" class="unit top">
-                
+
                 <table id="statblock">
                   <tr>
                     <td class="header">Ability</td>
@@ -183,7 +183,7 @@
 
               </td>
               <td colspan="2" class="top">
-                
+
                 <table id="hp">
                   <tr>
                     <td />
@@ -251,7 +251,7 @@
             </tr>
             <tr>
               <td class="unit bottom">
-                
+
                 <table id="init">
                   <tr>
                     <td />
@@ -284,7 +284,7 @@
 
               </td>
               <td rowspan="2">
-              
+
                 <table id="imgload">
                   <tr>
                     <td rowspan="6" class="piccell"><img id="pic" src="v3/click.png" alt="Character Portrait" onclick="SetPic()" /></td>
@@ -312,12 +312,12 @@
                     <td><input type="text" <?php getnv('LiftPushDrag'); ?> /></td>
                   </tr>
                 </table>
-              
+
               </td>
             </tr>
             <tr>
               <td colspan="2" class="bottom">
-              
+
                 <table id="saves">
                   <tr>
                     <td class="header">Saving Throws</td>
@@ -447,7 +447,7 @@
               <td class="footer">Temp Mod</td>
             </tr>
           </table>
-          
+
           <!--
             table.weapon are weapon slots.
           -->
@@ -544,7 +544,7 @@
               <td><input <?php getnv('Weapon3Type'); ?> /></td>
             </tr>
           </table>
-          
+
           <!--
             table.armor are armor slots.
           -->
@@ -606,7 +606,7 @@
               <td><input <?php getnv('ShieldSpeed'); ?> /></td>
             </tr>
           </table>
-          
+
 
 
           <!--
@@ -1286,7 +1286,7 @@
                   </tr>
                   <tr>
                     <td>
-                      
+
                       <!--
                         Keep each column in a table to enforce a vertical tab order.
                         It's easier to do this rather than specify the tab order of
@@ -1313,7 +1313,7 @@
 
                     </td>
                     <td>
-                      
+
                       <table cellspacing="0">
                         <tr><td><input type="text" <?php getnv('Feat16'); ?> /></td></tr>
                         <tr><td><input type="text" <?php getnv('Feat17'); ?> /></td></tr>
@@ -1331,7 +1331,7 @@
                         <tr><td><input type="text" <?php getnv('Feat29'); ?> /></td></tr>
                         <tr><td><input type="text" <?php getnv('Feat30'); ?> /></td></tr>
                       </table>
-                    
+
                     </td>
 
                   </tr>
@@ -1771,7 +1771,7 @@
 
                     </td>
                     <td>
-                      
+
                       <table cellspacing="0" class="spelllist">
                         <tr class="header">
                           <td><a href="javascript:SpellSort(SpellSort.ByName)" title="Sort by Spell Name">Spell Name</a></td>

@@ -1,6 +1,6 @@
 // sort.js
 
-function Sort(table) { 
+function Sort(table) {
   // Create a shortcut to the rows of the skills table.
   var rows = table.rows;
 
@@ -52,4 +52,3 @@ Sort.ByWeight = function(a, b)
   else
     return (numa > numb) ? -1 : 1;
 }
-

@@ -27,11 +27,11 @@
 
     <link type="text/css" rel="stylesheet" href="v3.5-DD/main.css" media="screen,print" />
     <link type="text/css" rel="stylesheet" href="v3.5-DD/print.css" media="print" />
-    
+
     <!--[if IE]>
         <link type="text/css" rel="stylesheet" href="v3.5-DD/ie.css" media="screen,print" />
     <![endif]-->
-    
+
     <style type="text/css" media="print">
       #save
       , #notes tr.header span
@@ -809,11 +809,9 @@ if( $firefox ) { echo '<!--'; } ?>
                            }
                           } // for...
                         ?>
-
                       </table>
 
                     </td>
-
                   </tr>
                 </table>
 
@@ -906,7 +904,6 @@ if( $firefox ) { echo '<!--'; } ?>
 
                     </td>
                   </tr>
-
                 </table>
 
               </td>
@@ -921,8 +918,7 @@ if( $firefox ) { echo '<!--'; } ?>
                 </table>
                 <div id="spellScrollWrapper">
                     <div id="spellScroller">
-                    
-    
+
              <?php
               for ( $i = 1; $i <= 300; $i++ ) {
                 $spellName = sprintf( "Spell%02d", $i );

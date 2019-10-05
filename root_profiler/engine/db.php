@@ -153,7 +153,7 @@
 		return $result;
 	}
 
-  } // class Database 
+  } // class Database
 
   $rpgDB = new Database($DB_DSN, $DB_USER, $DB_PWD)
 ?>

@@ -42,7 +42,7 @@ create table campaign (
     max_players integer);
 
 -- Create campaign join status table
-create table campaign_join( 
-    campaign_id integer not null, 
-    char_id integer not null, 
+create table campaign_join(
+    campaign_id integer not null,
+    char_id integer not null,
     status enum ('RJ','IJ','DI','DJ') not null);

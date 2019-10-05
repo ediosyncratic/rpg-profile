@@ -12,10 +12,9 @@
 
   // Attempt to respawn a session.
   $sid = new SId();
- 
+
   $site = new Site();
 
   draw_page('stats.php');
 
 ?>
-

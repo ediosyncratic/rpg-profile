@@ -5,8 +5,8 @@
 // Dependencies:
 //    (alot...)
 
-var m_names = new Array("January", "February", "March", 
-"April", "May", "June", "July", "August", "September", 
+var m_names = new Array("January", "February", "March",
+"April", "May", "June", "July", "August", "September",
 "October", "November", "December");
 
 // int SkillCount(void)
@@ -37,7 +37,7 @@ function init()
     sheet()["MagicDisp"].checked=true;
   }
 
-  CheckDisplay(); 
+  CheckDisplay();
 
   // Set the link for the skills.
   var slots = SkillsCount();
@@ -89,7 +89,7 @@ function Save() {
         method: 'post',
         onComplete: function(transport) {
             $('processing').setStyle({display:'none'});
-            if( transport.responseText == 'SUCCESS' ) { 
+            if( transport.responseText == 'SUCCESS' ) {
                 alert('Character saved!');
             } else {
                 alert('Error: ' + transport.responseText);
@@ -109,4 +109,3 @@ function CheckDisplay() {
   }
   ToggleDisplay("magic", sheet()["MagicDisp"]);
 }
-

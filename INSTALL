@@ -17,16 +17,16 @@ Contents
 1. Requirements
 ===================================
 
-PHP v4.3 - 
-  There are reports of the profiler working on PHP v5, but at the 
+PHP v4.3 -
+  There are reports of the profiler working on PHP v5, but at the
   time of writing, PHP v5 is not officially supported.
 
 Apache 2.x -
-  The profiler should be able to be installed with Apache 1, but 
+  The profiler should be able to be installed with Apache 1, but
   this configuration is not supported.
 
 MySQL 4+ -
-  
+
 ===================================
 2. Downloading
 ===================================
@@ -37,13 +37,13 @@ at http://sourceforge.net/projects/rpgwebprofiler/
 Files downloaded should always be named rpgwebprofiler-x.x.x.tgz
 
 If you want the development version, this can be downloaded from the Subversion repository
-in the above project. 
+in the above project.
 
 ===================================
 3. Set up the MySQL database
 ===================================
 
-Create a MySQL database however you would do this. Use mysqladmin on the command line, or 
+Create a MySQL database however you would do this. Use mysqladmin on the command line, or
 whatever console you have if you are using a public hosting service.
 
 Execute the setup-mysqldb.sql script on the database.
@@ -60,7 +60,7 @@ This creates all the RPG Web Profiler tables, and default data.
 
 Before installation, you should extract the application into a temporary directory.
 
-You can either install the application using an Apache Alias directive, or into an 
+You can either install the application using an Apache Alias directive, or into an
 existing web folder. If you have access to the Apache configuration, it is recommended
 that you install using an Alias, as this keeps the two RPG Web Profiler folders together,
 and requires fewer configuration edits to get running. If you can install using an Alias,
@@ -70,7 +70,7 @@ However, if you are installing on a hosting service, and do not have access to t
 configuration, you will need to follow the instructions in section 4.2 to set up the
 profiler in an existing web folder.
 
-NOTE: Regardless of how you set up the application, you should be careful to ensure that 
+NOTE: Regardless of how you set up the application, you should be careful to ensure that
 the root_profiler folder is NOT located in a web accessible folder. This can cause security
 problems.
 

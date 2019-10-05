@@ -56,7 +56,7 @@ function CalcWeight()
   // color of "Total Weight", Speed, and DexMod input fields to red.
   if ( Clean( sheet().TotalWeight.value ) > Clean( sheet().LightLoad.value ) )
   {
-     debug.trace("Character is encumbered.");                     
+     debug.trace("Character is encumbered.");
      var maxDexMod = 99;
 
     if ( Clean( sheet().TotalWeight.value ) > Clean( sheet().MediumLoad.value ) )
@@ -147,11 +147,11 @@ function ChangeWeapon( wielded )
   }
 
   // We need to call this because we may have changed the 'carried' flag
-  CalcWeight();  
+  CalcWeight();
 }
 
 // Sum Cash
-function SumCash() 
+function SumCash()
 {
   ZeroFill(sheet()["CashPP"]);
   ZeroFill(sheet()["CashGP"]);
@@ -159,7 +159,7 @@ function SumCash()
   ZeroFill(sheet()["CashCP"]);
 
   var total = 0;
-  total += (parseInt(sheet()["CashPP"].value) * 10); 
+  total += (parseInt(sheet()["CashPP"].value) * 10);
   total += (parseInt(sheet()["CashGP"].value));
   total += (parseInt(sheet()["CashSP"].value) / 10);
   total += (parseInt(sheet()["CashCP"].value) / 100);
@@ -270,4 +270,3 @@ GearSort.ByLoc = function(a, b)
   else
     return GearSort.ByName(a, b);
 }
-

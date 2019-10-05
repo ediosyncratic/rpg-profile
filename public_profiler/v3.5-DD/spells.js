@@ -6,7 +6,7 @@ var SPELL_COUNT = 300;
 
 function SpellSort(sortfunc)
 {
- 
+
   // Copy the data from each of the items in the rows.
   debug.trace("Copying spell data...");
   var data = new Array();
@@ -248,19 +248,19 @@ function updateCast() {
         }
         var spellLevel = "Spell" + num + "Level";
         var spellCast = "Spell" + num + "Cast";
-        
+
         if( isNaN(sheet()[spellLevel].value) ) {
             continue;
         }
-      
+
         var castCount = "SpellCast" + sheet()[spellLevel].value;
 
         var currentCount = parseInt("0");
         var newCount = parseInt("0");
 
-        if( sheet()[castCount] ) {        
+        if( sheet()[castCount] ) {
             currentCount = parseInt(sheet()[castCount].value);
-            
+
             if( isNaN(currentCount) ) {
                 parseInt("0");
             }
@@ -289,9 +289,9 @@ function nextSpellPage() {
         return;
     }
     currentPage++;
-    
+
     var targetOffset = -columnWidth * currentPage;
-    
+
     $("spellScroller").morph("left:" + targetOffset + "px;");
     if( currentPage >= maxPage ) {
         $("nextSpellsArrow").addClassName("disabled");
@@ -306,9 +306,9 @@ function prevSpellPage() {
         return;
     }
     currentPage--;
-    
+
     var targetOffset = -columnWidth * currentPage;
-    
+
     $("spellScroller").morph("left:" + targetOffset + "px;");
     if( currentPage <= minPage ) {
         $("prevSpellsArrow").addClassName("disabled");
@@ -317,4 +317,3 @@ function prevSpellPage() {
         $("nextSpellsArrow").removeClassName("disabled");
     }
 }
-

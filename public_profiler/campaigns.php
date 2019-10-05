@@ -18,6 +18,6 @@
   $title = 'Campaign Options';
   $campaigns = $sid->GetCampaigns();
   $icampaigns = $sid->GetInactiveCampaigns();
-  
+
   draw_page('campaigns.php');
 ?>

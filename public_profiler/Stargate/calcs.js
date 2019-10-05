@@ -4,7 +4,7 @@ function updateDefense() {
              sheet().DefenseDexterity,
              sheet().DefenseSize,
              sheet().DefenseMisc);
-             
+
     sheet().Defense.value = Clean(Add(
         10,
         Math.max(sheet().DefenseClass.value,sheet().DefenseEquipment.value),
@@ -53,7 +53,7 @@ function updateBaseAttack() {
 
     updateMeleeAttack();
     updateRangedAttack();
-    
+
 }
 
 function updateMeleeAttack() {
@@ -61,7 +61,7 @@ function updateMeleeAttack() {
              sheet().MeleeStrength,
              sheet().MeleeSize,
              sheet().MeleeMisc);
-             
+
     sheet().MeleeAttack.value = Clean(Add(
              sheet().MeleeBase.value,
              sheet().MeleeStrength.value,
@@ -74,7 +74,7 @@ function updateRangedAttack() {
              sheet().RangedDexterity,
              sheet().RangedSize,
              sheet().RangedMisc);
-             
+
     sheet().RangedAttack.value = Clean(Add(
              sheet().RangedBase.value,
              sheet().RangedDexterity.value,
@@ -87,7 +87,7 @@ function updateFortitudeSave() {
     ZeroFill(sheet().FortBase,
              sheet().FortAbility,
              sheet().FortMisc);
-             
+
     sheet().FortSave.value = Clean(Add(
              sheet().FortBase.value,
              sheet().FortAbility.value,
@@ -98,7 +98,7 @@ function updateWillSave() {
     ZeroFill(sheet().WillBase,
              sheet().WillAbility,
              sheet().WillMisc);
-             
+
     sheet().WillSave.value = Clean(Add(
              sheet().WillBase.value,
              sheet().WillAbility.value,
@@ -109,7 +109,7 @@ function updateReflexSave() {
     ZeroFill(sheet().ReflexBase,
              sheet().ReflexAbility,
              sheet().ReflexMisc);
-             
+
     sheet().ReflexSave.value = Clean(Add(
              sheet().ReflexBase.value,
              sheet().ReflexAbility.value,

@@ -11,7 +11,7 @@ function init() {
     if (sheet().firstload.value == "true") {
         sheet().firstload.value = "false";
         //_skillFill();
-        
+
         for(var weap = 1; weap <= 4; weap++) {
             sheet()["Wep" + weap + "Disp"].checked=true;
         }
@@ -45,4 +45,3 @@ function CheckDisplay() {
   ToggleDisplay("notes", sheet()["NotesDisp"]);
   ToggleDisplay("background", sheet()["BackgroundDisp"]);
 }
-

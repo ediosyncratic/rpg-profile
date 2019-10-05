@@ -26,7 +26,7 @@
   if (!$sid->HasAccessTo($id))
     // Acess denied, give an error screen (omit line/file info since this is not a debug error).
     __printFatalErr("Access denied for user " . $sid->GetUserName() . ".");
-  
+
   // Get the character name.
   $_r = $rpgDB->query(sprintf("SELECT cname FROM %s WHERE id = %d",
     $TABLE_CHARS,
@@ -35,7 +35,7 @@
     __printFatalErr("Failed to query database for character name.", __LINE__, __FILE__);
   $r = $rpgDB->fetch_row($_r);
   $character = $r['cname'];
-  
+
   // Is the user confirming the deletion?
   if ($_POST['confirm'] != "yes")
   {
@@ -52,7 +52,7 @@
       $rpgDB->quote($sid->GetUserName())));
     if (!$_r)
       __printFatalErr("Failed to update database.", __LINE__, __FILE__);
-    
+
     // If the user is the owner of the character remove the character data.
     $removed = false;
     $_r = $rpgDB->query(sprintf("select owner from %s where id = %d",
@@ -69,16 +69,16 @@
         (int) $id));
       if (!$_r)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
-     
+
       // Delete all editors
       $_r = $rpgDB->query(sprintf("DELETE FROM %s WHERE cid = %d",
         $TABLE_OWNERS,
         (int) $id));
       if (!$_r)
         __printFatalErr("Failed to query database.", __LINE__, __FILE__);
- 
+
       $removed = true;
-    } 
+    }
 
     // Draw the result screen.
     $title = 'Remove Character';
