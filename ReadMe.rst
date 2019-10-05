@@ -8,5 +8,6 @@ exists).
 
 .. _on SourceForge: http://sourceforge.net/projects/rpgwebprofiler/
 
-A DnD group using it decided to hack on it a bit; we'll publish what we do here
-and see what we can do about mirroring it upstream.
+A DnD group using it decided to hack on it a bit; we'll publish what we do here.
+We have at least tarlen's blessing for this and appear to have thereby
+inherited the onerous burden of maintainership ;^>
