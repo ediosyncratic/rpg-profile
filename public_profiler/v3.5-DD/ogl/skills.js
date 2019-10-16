@@ -1145,6 +1145,36 @@ var spellsHelpURL = {
   "zone of silence":                      baseHelpURL + "spells/zoneofSilence.htm",
   "zone of truth":                        baseHelpURL + "spells/zoneofTruth.htm",
 
+  // Add the version of the spell names found in the Player’s Handbook (where different)
+  "bigby's clenched fist":                baseHelpURL + "spells/clenchedFist.htm",
+  "bigby's crushing hand":                baseHelpURL + "spells/crushingHand.htm",
+  "bigby's forceful hand":                baseHelpURL + "spells/forcefulHand.htm",
+  "bigby's grasping hand":                baseHelpURL + "spells/graspingHand.htm",
+  "bigby's interposing hand":             baseHelpURL + "spells/interposingHand.htm",
+  "drawmij's instant summons":            baseHelpURL + "spells/instantSummons.htm",
+  "evard's black tentacles":              baseHelpURL + "spells/blackTentacles.htm",
+  "leomund's secret chest":               baseHelpURL + "spells/secretChest.htm",
+  "leomund's secure shelter":             baseHelpURL + "spells/secureShelter.htm",
+  "leomund's tiny hut":                   baseHelpURL + "spells/tinyHut.htm",
+  "leomund's trap":                       baseHelpURL + "spells/phantomTrap.htm",
+  "melf's acid arrow":                    baseHelpURL + "spells/acidArrow.htm",
+  "mordenkainen's disjunction":           baseHelpURL + "spells/magesDisjunction.htm",
+  "mordenkainen's faithful hound":        baseHelpURL + "spells/magesFaithfulHound.htm",
+  "mordenkainen's lucubration":           baseHelpURL + "spells/magesLucubration.htm",
+  "mordenkainen's magnificent mansion":   baseHelpURL + "spells/magesMagnificentMansion.htm",
+  "mordenkainen's private sanctum":       baseHelpURL + "spells/magesPrivateSanctum.htm",
+  "mordenkainen's sword":                 baseHelpURL + "spells/magesSword.htm",
+  "nystul's magic aura":                  baseHelpURL + "spells/magicAura.htm",
+  "otiluke's freezing sphere":            baseHelpURL + "spells/freezingSphere.htm",
+  "otiluke's resilient sphere":           baseHelpURL + "spells/resilientSphere.htm",
+  "otiluke's telekinetic sphere":         baseHelpURL + "spells/telekineticSphere.htm",
+  "otto's irresistible dance":            baseHelpURL + "spells/irresistibleDance.htm",
+  "rary's mnemonic enhancer":             baseHelpURL + "spells/mnemonicEnhancer.htm",
+  "rary's telepathic bond":               baseHelpURL + "spells/telepathicBond.htm",
+  "tasha's hideous laughter":             baseHelpURL + "spells/hideousLaughter.htm",
+  "tenser's floating disk":               baseHelpURL + "spells/floatingDisk.htm",
+  "tenser's transformation":              baseHelpURL + "spells/transformation.htm",
+
   '###last one###'   :           ""
 };
 
