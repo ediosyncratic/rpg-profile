@@ -13,7 +13,7 @@
     //////////////////////////////////////////////////////////////////////
     // Constructor. Pass a profile name OR a character id to retrieve acess
     // rights. Otherwise, nothing is done at construction.
-    function CharPermission($pname, $cid)
+    public function __construct($pname, $cid)
     {
       $this->_pname = $pname;
       $this->_cid = $cid;
@@ -27,6 +27,10 @@
 
       // Otherwise, we don't have a specific profile/character,
       // or both. In either case, nothing is done in the ctor.
+    }
+    function CharPermission($pname, $cid)
+    {
+        self::__construct($pname, $cid);
     }
 
     //////////////////////////////////////////////////////////////////////

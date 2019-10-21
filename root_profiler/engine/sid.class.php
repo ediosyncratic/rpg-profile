@@ -21,7 +21,7 @@
 
     // Initialize the object with existing session data if requested, or
     // create a null session.
-    function SId($retrieve_existing = true)
+    public function __construct($retrieve_existing = true)
     {
       // Instantiate the base class.
       $this->Id();
@@ -33,6 +33,10 @@
       // Validate an existing session if requested.
       if ($retrieve_existing)
         $this->retrieve_session();
+    }
+    function SId($retrieve_existing = true)
+    {
+        self::__construct($retrieve_existing);
     }
 
     //////////////////////////////////////////////////////////////////////

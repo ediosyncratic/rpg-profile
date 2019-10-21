@@ -22,7 +22,7 @@
 	//
 	// Constructor
 	//
-	function Database($dsn, $username, $password)
+	public function __construct($dsn, $username, $password)
 	{
 		$this->username = $username;
 		$this->password = $password;
@@ -30,6 +30,10 @@
 
 		$this->dbh = new PDO($this->dsn, $this->username, $this->password);
 	}
+    function Database($dsn, $username, $password)
+    {
+        self::__construct($dsn, $username, $password);
+    }
 
 	//
 	// Other base methods

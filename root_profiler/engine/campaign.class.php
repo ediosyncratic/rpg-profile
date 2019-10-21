@@ -12,7 +12,7 @@
     // CTOR
     //////////////////////////////////////////////////////////////////////
 
-    function Campaign($id = 0)
+    public function __construct($id = 0)
     {
       global $TABLE_CAMPAIGNS, $rpgDB;
 
@@ -46,6 +46,10 @@
 
         $this->_valid = true;
       }
+    }
+    function Campaign($id = 0)
+    {
+        self::__construct();
     }
 
     //////////////////////////////////////////////////////////////////////
