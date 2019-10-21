@@ -62,7 +62,7 @@
 <!-- Ugly Internet Explorer Hack -->
 <?php
 $agent = $_SERVER['HTTP_USER_AGENT'];
-$firefox = eregi("Firefox", $agent);
+$firefox = preg_match('/Firefox/i', $agent);
 if( $firefox ) { echo '<!--'; } ?>
     <table id="maintable">
       <tr>

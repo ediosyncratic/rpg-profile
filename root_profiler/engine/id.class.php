@@ -36,7 +36,7 @@
         return false;
 
       // Check for illegal characters
-      if (ereg('[^a-zA-Z0-9]', $id))
+      if (preg_match('/[^a-zA-Z0-9]/', $id))
         return false;
 
       return true;
