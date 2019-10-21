@@ -10,12 +10,16 @@
   class Id
   {
     // Constructor: use to initialize the random number generator.
-    function Id()
+    public function __construct()
     {
       mt_srand((float) microtime() * 1000000);
       // Discard the first 100 numbers.
       for ($i = 0; $i < 100; $i++)
         mt_rand();
+    }
+    function Id()
+    {
+        self::__construct();
     }
 
     // GenerateId: generate a new id of specified length.
