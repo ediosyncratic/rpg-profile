@@ -24,7 +24,7 @@
     public function __construct($retrieve_existing = true)
     {
       // Instantiate the base class.
-      $this->Id();
+      parent::__construct();
 
       // Instantiate the data that is always valid for any SId object
       // (just the ip address for now).
