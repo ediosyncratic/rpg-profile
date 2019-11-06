@@ -88,16 +88,6 @@
     <input type="hidden" name="id" value="<?php echo $CHARID; ?>" />
     <input type="hidden" <?php getnv('LastSaveDate'); ?> />
   </div>
-<?php
-$agent = $_SERVER['HTTP_USER_AGENT'];
-$firefox = preg_match('/Firefox/i', $agent);
-if( $firefox ) { echo '<!--'; } ?>
-    <table id="maintable">
-      <tr>
-        <td>
-        </td>
-        <td id="main">
-<?php if( $firefox ) { echo '-->'; } ?>
           <!--
             table#info contains all the general information on the
             character that's found at the top of the character sheet.
@@ -1061,15 +1051,6 @@ if( $firefox ) { echo '<!--'; } ?>
             <input type="submit" value="Save Changes" onclick="SetSaveDate(); Save(); return false;" />
           </div>
           <?php } ?>
-
-<?php if( $firefox ) { echo '<!--'; } ?>
-          </td>
-        <td>
-        </td>
-      </tr>
-    </table>
-<?php if( $firefox ) { echo '-->'; } ?>
-
   </form>
 
   </body>

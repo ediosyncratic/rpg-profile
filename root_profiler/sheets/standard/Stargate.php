@@ -60,19 +60,6 @@
     <input type="hidden" <?php getnv('LastSaveDate'); ?> />
   </div>
 
-<!-- Ugly Internet Explorer Hack -->
-<?php
-$agent = $_SERVER['HTTP_USER_AGENT'];
-$firefox = preg_match('/Firefox/i', $agent);
-if( $firefox ) { echo '<!--'; } ?>
-    <table id="maintable">
-      <tr>
-        <td>
-        </td>
-        <td id="main">
-<?php if( $firefox ) { echo '-->'; } ?>
-
-
 <!-- Character -->
 <div class="section">
 
@@ -811,15 +798,6 @@ Display Background
             <input type="submit" value="Save Changes" onclick="SetSaveDate(); return true;" />
           </div>
           <?php } ?>
-
-<?php if( $firefox ) { echo '<!--'; } ?>
-          </td>
-        <td>
-        </td>
-      </tr>
-    </table>
-<?php if( $firefox ) { echo '-->'; } ?>
-
 
 
 </form>
