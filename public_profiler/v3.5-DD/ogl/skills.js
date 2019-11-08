@@ -324,7 +324,7 @@ var skillsHelpURL = {
     'change shape':                         baseHelpURL + "naturalSpecialAbilities.htm#changeShape",
     'charm':                                baseHelpURL + "naturalSpecialAbilities.htm#charmAndCompulsion",
     'claw':                                 baseHelpURL + "naturalSpecialAbilities.htm#claworTalon",
-    'climb':                                baseHelpURL + "naturalSpecialAbilities.htm#climb",
+//    'climb':                                baseHelpURL + "naturalSpecialAbilities.htm#climb",
     'cold immunity':                        baseHelpURL + "naturalSpecialAbilities.htm#coldImmunity",
     'compulsion':                           baseHelpURL + "naturalSpecialAbilities.htm#charmAndCompulsion",
     'constrict':                            baseHelpURL + "naturalSpecialAbilities.htm#constrict",
@@ -377,7 +377,7 @@ var skillsHelpURL = {
     'sting':                                baseHelpURL + "naturalSpecialAbilities.htm#sting",
     'summon':                               baseHelpURL + "naturalSpecialAbilities.htm#summon",
     'swallow whole':                        baseHelpURL + "naturalSpecialAbilities.htm#swallowWhole",
-    'swim':                                 baseHelpURL + "naturalSpecialAbilities.htm#swim",
+//    'swim':                                 baseHelpURL + "naturalSpecialAbilities.htm#swim",
     'talon':                                baseHelpURL + "naturalSpecialAbilities.htm#claworTalon",
     'telepathy':                            baseHelpURL + "naturalSpecialAbilities.htm#telepathy",
     'tentacle':                             baseHelpURL + "naturalSpecialAbilities.htm#tentacle",
@@ -431,7 +431,7 @@ var skillsHelpURL = {
 };
 
 var spellsHelpURL = {
-  // Spells
+    // Spells
     "acid arrow":                           baseHelpURL + "spells/acidArrow.htm",
     "acid fog":                             baseHelpURL + "spells/acidFog.htm",
     "acid splash":                          baseHelpURL + "spells/acidSplash.htm",
