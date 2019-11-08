@@ -137,8 +137,8 @@ function SkillLookUp(node)
   sheet()[node.name + "Ab"].value = abilityKeys[skillKeys[skill]];
 
   // Determine if the skill is a class skill or not.
-  // if (classSkills[node.value])
-  //   node.parentNode.parentNode.cells[2].firstChild.checked = _getClassBitSet() & classSkills[node.value] ? "" : "checked";
+  if (classSkills[node.value])
+    node.parentNode.parentNode.cells[3].firstElementChild.checked = _getClassBitSet() & classSkills[node.value] ? "checked" : "";
   SkillLookUpKeyAb(sheet()[node.name + "Ab"]);
 }
 
@@ -174,11 +174,14 @@ function SkillLookUpKeyAb(node)
     return;
 
   // Determine if skill is cross-class.
-  var skillRow = node.parentNode.parentNode;
+
+  // Do not recalculate class skills on ability score change. List does not understand non-standard classes and prestige classes.
+//  var skillRow = node.parentNode.parentNode;
+
   // If the skill name is found in our classSkills hash.
-  if (classSkills[skillRow.cells[0].firstChild.value])
+//  if (classSkills[skillRow.cells[1].firstElementChild.value])
     // Set the CC checkbox accordingly.
-    skillRow.cells[2].firstChild.checked = _getClassBitSet() & classSkills[skillRow.cells[0].firstChild.value] ? "checked" : "";
+//    skillRow.cells[3].firstElementChild.checked = _getClassBitSet() & classSkills[skillRow.cells[1].firstElementChild.value] ? "checked" : "";
 
   // If a temp mod exists, use it, otherwise use the regular one.
   var mod = String(sheet()[ability + "TempMod"].value).length > 0
