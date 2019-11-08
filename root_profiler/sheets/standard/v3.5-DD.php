@@ -28,9 +28,6 @@
     <link type="text/css" rel="stylesheet" href="v3.5-DD/main.css" media="screen,print" />
     <link type="text/css" rel="stylesheet" href="v3.5-DD/print.css" media="print" />
     
-    <!--[if IE]>
-        <link type="text/css" rel="stylesheet" href="v3.5-DD/ie.css" media="screen,print" />
-    <![endif]-->
     
     <style type="text/css" media="print">
       #save

@@ -15,9 +15,6 @@
     <title><?= $TITLE ?> - D&amp;D Fourth Edition</title>
     <link type="text/css" rel="stylesheet" href="v4/main.css" media="screen,print"/>
     <link type="text/css" rel="stylesheet" href="v4/print.css" media="print" />
-    <!--[if IE]>
-    <link type="text/css" rel="stylesheet" href="v4/main-ie.css" />
-    <![endif]-->
 
     <script type="text/javascript">var READONLY = <?= $READONLY ? "true" : "false"; ?>;</script>
     <script type="text/javascript" src="./v4/prototype.js"></script>
