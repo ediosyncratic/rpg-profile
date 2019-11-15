@@ -34,7 +34,10 @@
           display: none;
       }
     </style>
-    <script type="text/javascript">var READONLY = <?php echo $READONLY ? "true" : "false"; ?>;</script>
+    <script type="text/javascript">
+      var READONLY = <?php echo $READONLY ? "true" : "false"; ?>;
+      var baseExtraHelpURL = "<?php echo $BASE_EXTRA_HELP_URL ?>";
+    </script>
     <script type="text/javascript" src="./v3.5-DD/general.js"></script>
     <script type="text/javascript" src="./v3.5-DD/debug.js"></script>
     <script type="text/javascript" src="./v3.5-DD/prototype.js"></script>
