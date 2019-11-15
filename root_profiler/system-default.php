@@ -117,6 +117,10 @@
   // authentication fails.
   //$FORUM_LOGIN = "http://www.mydomaing.com/forum/login.php";
 
+  // The base URL to use to link to extra reference material for character
+  // sheets that can use it.
+  $BASE_EXTRA_HELP_URL = '';
+
   // *********************************************************************
   // OTHER PARAMETERS
   // ------------------------

@@ -65,7 +65,7 @@
 
   function draw_sheet_editable(&$char)
   {
-    global $INCLUDE_PATH, $READONLY, $SHOWSAVE, $DATA, $TITLE, $CHARID;
+    global $INCLUDE_PATH, $READONLY, $SHOWSAVE, $DATA, $TITLE, $CHARID, $BASE_EXTRA_HELP_URL;
 
     $READONLY = $_GET['preview'] == 'true';
     $SHOWSAVE = $_GET['preview'] != 'true';
