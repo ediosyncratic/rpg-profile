@@ -153,13 +153,14 @@ for (var skill in classSkills)
 }
 
 var baseHelpURL = "http://www.d20srd.org/srd/";
+var extraSpellHelp = baseExtraHelpURL.length > 0;
 
 // Defines the URL that points to help for each skill, feat, ability, etc.
 // NOTE: in cases where there is some overlap in names--like "armor proficiency"
 // and "armor proficiency (light)"--the more specific one MUST come first.
-var skillsHelpURL = {
-
-    // Skills
+var skillsHelpURL = Object.assign(
+  // First the SRD entries:
+  {
     'appraise':                             baseHelpURL + "skills/appraise.htm",
     'balance':                              baseHelpURL + "skills/balance.htm",
     'bluff':                                baseHelpURL + "skills/bluff.htm",
@@ -466,11 +467,10 @@ var skillsHelpURL = {
     'tremorsense':                          baseHelpURL + "naturalSpecialAbilities.htm#tremorsense",
     'turn resistance':                      baseHelpURL + "naturalSpecialAbilities.htm#turnResistance",
     'vulnerability to energy':              baseHelpURL + "naturalSpecialAbilities.htm#vulnerabilitytoEnergy",
+  },
 
-    // ****************
-    // Extra help Links
-    // ****************
-
+  // Next the extra help:
+  extraSpellHelp ? {
     // Feats:
     'expeditious dodge':                    baseExtraHelpURL + 'Expeditious_Dodge',
 
@@ -492,11 +492,15 @@ var skillsHelpURL = {
     'maximize healing':                     baseExtraHelpURL + 'Radiant_servant_of_Pelor#Maximize_Healing_.28Ex.29',
     'positive energy burst':                baseExtraHelpURL + 'Radiant_servant_of_Pelor#Positive_Energy_Burst_.28Su.29',
     'supreme healing':                      baseExtraHelpURL + 'Radiant_servant_of_Pelor#Supreme_Healing_.28Ex.29',
+  } : {},
 
+  {
     '###last one###':                       ""
-};
+  }
+);
 
-var spellsHelpURL = {
+var spellsHelpURL = Object.assign(
+  extraSpellHelp ? {
     // Each block is sorted in alphabetic order, with end-of-string sorted after all characters.
     // This ensures _RetrieveMatchingURL matches links correctly.
 
@@ -1705,7 +1709,9 @@ var spellsHelpURL = {
     "zeal":                                 baseExtraHelpURL + "Zeal",
     "zone of respite":                      baseExtraHelpURL + "Zone_of_respite",
     "zone of revelation":                   baseExtraHelpURL + "Zone_of_revelation",
+  } : {},
 
+  {
     // Then the SRD-spells
     "acid arrow":                           baseHelpURL + "spells/acidArrow.htm",
     "acid fog":                             baseHelpURL + "spells/acidFog.htm",
@@ -2342,10 +2348,15 @@ var spellsHelpURL = {
     "tasha's hideous laughter":             baseHelpURL + "spells/hideousLaughter.htm",
     "tenser's floating disk":               baseHelpURL + "spells/floatingDisk.htm",
     "tenser's transformation":              baseHelpURL + "spells/transformation.htm",
+  },
 
+  extraSpellHelp ? {
     // Finally the few spells from the spell compendium and PHBII that need to go last
     "halt":                                 baseExtraHelpURL + "Halt",
     "scorch":                               baseExtraHelpURL + "Scorch",
+  } : {},
 
+  {
     '###last one###':                       ""
-};
+  }
+);
