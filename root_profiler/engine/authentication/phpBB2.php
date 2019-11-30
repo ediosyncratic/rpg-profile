@@ -9,7 +9,7 @@
   global $phpbb_root_path;
   global $phpEx;
   global $starttime;
-  
+
   global $db;
 
   global $board_config;
@@ -37,7 +37,7 @@
   // Authenticate the user and set appropriate values in the SID class.
   function authenticate(&$sid) {
     global $userdata, $TABLE_USERS, $rpgDB;
-    
+
     if( ! $userdata['session_logged_in'] ) {
       return false;
     }

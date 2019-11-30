@@ -4,5 +4,5 @@
 -----------------------------------------------------------------
 
 -- Add the inactive flag to characters
-alter table characters add ( inactive enum('y','n') default 'n' ); 
+alter table characters add ( inactive enum('y','n') default 'n' );
 

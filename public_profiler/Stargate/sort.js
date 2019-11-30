@@ -1,6 +1,6 @@
 // sort.js
 
-function Sort(table) { 
+function Sort(table) {
   // Create a shortcut to the rows of the skills table.
   var rows = table.rows;
 

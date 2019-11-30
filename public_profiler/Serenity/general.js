@@ -136,7 +136,7 @@ function Trim( str )
   return str.replace(/^\s*|\s*$/g,"");
 }
 
-function ToggleDisplay( id, tick ) 
+function ToggleDisplay( id, tick )
 {
   var obj = GetObject(id);
   if( obj != null ) {

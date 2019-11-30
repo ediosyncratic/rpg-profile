@@ -10,14 +10,13 @@ function init() {
 }
 
 function cleanup() {
-
 }
 
 function SetSaveDate() {
 	var now = new Date();
 	var min = FormatNumber(now.getMinutes());
 	var sec = FormatNumber(now.getSeconds());
-	
+
 	sheet().LastSaveDate.value =  now.getDate() + " " + m_names[now.getMonth()] + " " + now.getFullYear() + " " +
 	                              now.getHours() + ":" + min + ":" + sec;
 	$("lastSavedDateDisplay").update(sheet().LastSaveDate.value);
@@ -29,7 +28,7 @@ function Save() {
 	    method: 'post',
         onComplete: function(transport) {
             document.getElementById('processing').style.display = 'none';
-            if( transport.responseText == 'SUCCESS' ) { 
+            if( transport.responseText == 'SUCCESS' ) {
                 alert('Character saved!');
             } else {
                 alert('Error: ' + transport.responseText);
@@ -41,4 +40,3 @@ function Save() {
 function CheckDisplay() {
     ToggleDisplay("notes", sheet()["NotesDisp"]);
 }
-

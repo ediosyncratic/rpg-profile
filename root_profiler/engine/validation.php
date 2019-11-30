@@ -13,7 +13,7 @@
   {
     $size = sizeof($err);
 
-    if (ereg('[^a-zA-Z0-9]', $pname))
+    if (preg_match('/[^a-zA-Z0-9]/', $pname))
       array_push($err, "Your profile name contains invalid (non-alphanumeric) characters.");
     else if (strlen($pname) < 3)
       array_push($err, "Your profile name is too short, it must be at least three characters.");
@@ -28,7 +28,7 @@
   {
     $size = sizeof($err);
 
-    if (ereg('[^a-zA-Z0-9]', $name))
+    if (preg_match('/[^a-zA-Z0-9]/', $name))
       array_push($err, "Your character name contains invalid (non-alphanumeric) characters.");
     else if (strlen($name) < 3)
       array_push($err, "Your character name is too short, it must be at least three characters.");
@@ -57,7 +57,7 @@
   {
     $size = sizeof($err);
 
-    if (ereg('[^a-zA-Z0-9]', $pwd))
+    if (preg_match('/[^a-zA-Z0-9]/', $pwd))
       array_push($err, "Your password contains invalid (non-alphanumeric) characters.");
     else if (strlen($pwd) < 3)
       array_push($err, "Your password is too short, it must be at least three characters.");

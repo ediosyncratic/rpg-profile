@@ -184,6 +184,6 @@ if( count( $campaign->GetJoinRequests() ) > 0 ) {
   <input type="submit" value="Invite" class="go"/>
 </p>
 </form>
-<?php } 
+<?php }
   }
 ?>

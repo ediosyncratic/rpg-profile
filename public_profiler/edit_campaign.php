@@ -1,4 +1,4 @@
-<?php 
+<?php
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/system.php");
@@ -31,7 +31,7 @@
     draw_page('view_campaign_error.php');
     exit;
   }
-  
+
   if( isset($_POST['update'])) {
     $campaign->cname = $_POST['name'];
     $campaign->active = isset($_POST['active']);
@@ -58,5 +58,5 @@
     }
     return "Unable to remove character " . $character->cname . ".";
   }
- 
+
 ?>

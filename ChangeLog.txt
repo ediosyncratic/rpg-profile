@@ -32,13 +32,13 @@ v0.3.0 - 12 July 2006
   - Users with DM Functions enabled can create campaigns.
   - Can search on campaign names, and see information on available campaigns.
   - Characters can request to join, or can be invited to join.
-  - Campaign Owner (DM) automatically gains full edit permissions to all 
+  - Campaign Owner (DM) automatically gains full edit permissions to all
     participating characters.
 - Tidied up search functionality.
 
 The major change for this release is the Campaign functionality. Users can set
 up campaigns, and characters can be added to those campaigns either by request
-or invitation. All requests and invitations must be accepted by both the 
+or invitation. All requests and invitations must be accepted by both the
 character and the campaign owner (DM) before the character is added.
 
 One of the advantages of the Campaign functionality is that the DM
@@ -61,7 +61,7 @@ v0.2.0 - 28 June 2006
 - Added imgs/blank.gif for use when no LOGO image is desired.
 
 The first two admin options listed above, along with the previous renaming of
-the system configuration file within the Subversion repository are intended to 
+the system configuration file within the Subversion repository are intended to
 make future upgrade paths easier. Ideally, you should be able to extract a new
 version of the application into the install directory without then having to
 re-configure the application for your site.

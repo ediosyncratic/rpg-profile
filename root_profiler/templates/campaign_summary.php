@@ -14,7 +14,7 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
         $char = new Character($character['id']);
         $temp = $templateCharacters[$char->template_id];
         if( $temp == null ) {
-            $temp = array();  
+            $temp = array();
         }
         array_push($temp, $char);
         $templateCharacters[$char->template_id] = $temp;
@@ -23,7 +23,7 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
     foreach( $templateCharacters as $key => $characters) {
         $sheet = "$INCLUDE_PATH/sheets/" . get_sheet_path($key);
         $sheet = preg_replace("/\.php/", "-Summary.php", $sheet);
-        
+
         $summaryAvailable = false;
         if( file_exists($sheet) ) {
             include($sheet);
@@ -43,7 +43,7 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
             </li>
 <?php
         $i = 1;
-        foreach( $characters as $character ) { 
+        foreach( $characters as $character ) {
             $data = $character->GetData();
 ?>
             <li class="row">
@@ -55,7 +55,7 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
                     <?php } } ?>
                 </ul>
             </li>
-<?php 
+<?php
         }
 ?>
         </ul>

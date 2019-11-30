@@ -101,7 +101,7 @@ html {
 }
 
 #bodyTable {
-  margin: 0px; 
+  margin: 0px;
   padding: 0px;
   width: 100%;
 }
@@ -335,7 +335,7 @@ ul.characterattribute {
 }
 
 ul.characterattribute li {
-    width: 80px;  
+    width: 80px;
     list-style-type: none;
     float: left;
     display: inline;

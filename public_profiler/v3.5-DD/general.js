@@ -137,11 +137,11 @@ function Trim( str )
   return str.replace(/^\s*|\s*$/g,"");
 }
 
-function ToggleDisplay( id, tick ) 
+function ToggleDisplay( id, tick )
 {
   var obj;
   var state = tick.checked ? "block" : "none";
-  
+
   if (document.all) { //IS IE 4 or 5 (or 6 beta)
     obj = eval( "document.all." + id + ".style");
   }
@@ -151,8 +151,7 @@ function ToggleDisplay( id, tick )
   if (document.getElementById && !document.all) {
     obj = document.getElementById(id).style;
   }
-  
+
   obj.display = state;
 
 }
-

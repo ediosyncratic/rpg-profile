@@ -27,11 +27,6 @@
 
     <link type="text/css" rel="stylesheet" href="v3.5-DD/main.css" media="screen,print" />
     <link type="text/css" rel="stylesheet" href="v3.5-DD/print.css" media="print" />
-    
-    <!--[if IE]>
-        <link type="text/css" rel="stylesheet" href="v3.5-DD/ie.css" media="screen,print" />
-    <![endif]-->
-    
     <style type="text/css" media="print">
       #save
       , #notes tr.header span
@@ -39,7 +34,10 @@
           display: none;
       }
     </style>
-    <script type="text/javascript">var READONLY = <?php echo $READONLY ? "true" : "false"; ?>;</script>
+    <script type="text/javascript">
+      var READONLY = <?php echo $READONLY ? "true" : "false"; ?>;
+      var baseExtraHelpURL = "<?php echo $BASE_EXTRA_HELP_URL ?>";
+    </script>
     <script type="text/javascript" src="./v3.5-DD/general.js"></script>
     <script type="text/javascript" src="./v3.5-DD/debug.js"></script>
     <script type="text/javascript" src="./v3.5-DD/prototype.js"></script>
@@ -88,16 +86,6 @@
     <input type="hidden" name="id" value="<?php echo $CHARID; ?>" />
     <input type="hidden" <?php getnv('LastSaveDate'); ?> />
   </div>
-<?php
-$agent = $_SERVER['HTTP_USER_AGENT'];
-$firefox = eregi("Firefox", $agent);
-if( $firefox ) { echo '<!--'; } ?>
-    <table id="maintable">
-      <tr>
-        <td>
-        </td>
-        <td id="main">
-<?php if( $firefox ) { echo '-->'; } ?>
           <!--
             table#info contains all the general information on the
             character that's found at the top of the character sheet.
@@ -809,11 +797,9 @@ if( $firefox ) { echo '<!--'; } ?>
                            }
                           } // for...
                         ?>
-
                       </table>
 
                     </td>
-
                   </tr>
                 </table>
 
@@ -844,6 +830,42 @@ if( $firefox ) { echo '<!--'; } ?>
               </td>
             </tr>
           </table> <!-- skillsandgear -->
+
+          <input type="checkbox" <?php getnc('ContainerDisp'); ?> onchange="ToggleDisplay('containers', this);" style="width:15px; border:none;"/>
+          Off-Character Containers
+          <div id="containers">
+          <p style="page-break-before: always; "/>
+          <table cellspacing="0" id="container">
+            <tr class="title">
+              <td colspan="3">Off-Character Possessions</td>
+            </tr>
+            <tr>
+<?php for ( $i = 1; $i <= 3; $i++ ) { $containerName = sprintf( "Cont%02d", $i ); ?>
+              <td>
+<?php echo '<table id="'.$containerName.'">'; ?>
+                  <tr class="title">
+                    <td colspan="2">Name: <input type="text" <?php getnv($containerName); ?> /></td>
+                  </tr>
+                  <tr class="header">
+                    <td class="name"><a <?php echo 'href="javascript:ContainerSort(\''.$containerName.'\', GearSort.ByName)"' ?> title="Sort by Item">Item</a></td>
+                    <td class="unit"><a <?php echo 'href="javascript:ContainerSort(\''.$containerName.'\', GearSort.ByWeight)"' ?> title="Sort by Weight">Weight<br />(lbs)</a></td>
+                  </tr>
+<?php for ( $j = 1; $j <= 20; $j++ ) { $gearName = $containerName.sprintf( "Gear%02d", $j ); ?>
+                  <tr class="slot">
+                    <td><input class="name" type="text" <?php getnv($gearName); ?> /></td>
+                    <td><input type="text" <?php getnv($gearName . 'W'); echo 'onchange="ContainerWeight(\''.$containerName.'\')"' ?>  /></td>
+                  </tr>
+<?php } ?>
+                  <tr class="footer">
+                    <td>Total Weight:</td>
+                    <td class="total"><span <?php echo 'id="'.$containerName.'Weight"' ?>>0</span></td>
+                  </tr>
+                </table>
+              </td>
+<?php } ?>
+            </tr>
+          </table>
+          </div>  <!-- containers -->
 
           <input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;" id="magiccheck"/>
           <label for="magiccheck">Display Spells &amp; Powers</label>
@@ -906,7 +928,6 @@ if( $firefox ) { echo '<!--'; } ?>
 
                     </td>
                   </tr>
-
                 </table>
 
               </td>
@@ -921,8 +942,7 @@ if( $firefox ) { echo '<!--'; } ?>
                 </table>
                 <div id="spellScrollWrapper">
                     <div id="spellScroller">
-                    
-    
+
              <?php
               for ( $i = 1; $i <= 300; $i++ ) {
                 $spellName = sprintf( "Spell%02d", $i );
@@ -1025,15 +1045,6 @@ if( $firefox ) { echo '<!--'; } ?>
             <input type="submit" value="Save Changes" onclick="SetSaveDate(); Save(); return false;" />
           </div>
           <?php } ?>
-
-<?php if( $firefox ) { echo '<!--'; } ?>
-          </td>
-        <td>
-        </td>
-      </tr>
-    </table>
-<?php if( $firefox ) { echo '-->'; } ?>
-
   </form>
 
   </body>

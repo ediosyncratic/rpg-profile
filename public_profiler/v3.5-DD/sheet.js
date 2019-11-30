@@ -5,8 +5,8 @@
 // Dependencies:
 //    (alot...)
 
-var m_names = new Array("January", "February", "March", 
-"April", "May", "June", "July", "August", "September", 
+var m_names = new Array("January", "February", "March",
+"April", "May", "June", "July", "August", "September",
 "October", "November", "December");
 
 // int SkillCount(void)
@@ -23,6 +23,10 @@ function init()
   // Do total calculations for the skill and weight tables.
   SkillCalcRanks();
   CalcWeight();
+  // Calculate off-character container totals
+  ContainerWeight("Cont01");
+  ContainerWeight("Cont02");
+  ContainerWeight("Cont03");
 
   if (sheet().firstload.value == "true")
   {
@@ -37,7 +41,7 @@ function init()
     sheet()["MagicDisp"].checked=true;
   }
 
-  CheckDisplay(); 
+  CheckDisplay();
 
   // Set the link for the skills.
   var slots = SkillsCount();
@@ -89,7 +93,7 @@ function Save() {
         method: 'post',
         onComplete: function(transport) {
             $('processing').setStyle({display:'none'});
-            if( transport.responseText == 'SUCCESS' ) { 
+            if( transport.responseText == 'SUCCESS' ) {
                 alert('Character saved!');
             } else {
                 alert('Error: ' + transport.responseText);
@@ -108,5 +112,5 @@ function CheckDisplay() {
     ToggleDisplay("ar" + i, obj);
   }
   ToggleDisplay("magic", sheet()["MagicDisp"]);
+  ToggleDisplay("containers", sheet()["ContainerDisp"]);
 }
-

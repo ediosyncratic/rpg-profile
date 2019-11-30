@@ -47,7 +47,7 @@ function Debug(mode)
 
   ////////////////////////////////////////////////////////////////////////
   // Member implementations.
-  
+
   // void __close(void)
   // Attempts to close the debug window. Error trapping is done in case
   // the function is called before the window finishes loading or if the
@@ -59,7 +59,7 @@ function Debug(mode)
   }
 
   // void __trace(string)
-  // The trace implementation that is used if the object is in a debug 
+  // The trace implementation that is used if the object is in a debug
   // ontext.
   function __trace(msg)
   {

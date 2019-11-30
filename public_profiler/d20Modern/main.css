@@ -151,7 +151,7 @@ textarea {
 h1 {
     font-size:      15px;
     background:     black;
-    color:          white;  
+    color:          white;
     margin:         0px;
     padding-left:   3px;
     text-align:     left;
@@ -213,9 +213,9 @@ table.character td {
     width:          12%;
 }
 
-td.label, 
-div.label, 
-div.header, 
+td.label,
+div.label,
+div.header,
 div.label-left,
 table.weapon tr.header td{
     text-align:     center;

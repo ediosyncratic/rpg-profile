@@ -1,4 +1,4 @@
-<?php 
+<?php
 
   include_once("config.php");
   include_once("$INCLUDE_PATH/system.php");
@@ -70,5 +70,4 @@
     return "Unable to add character " . $character->cname . " to campaign.";
 
   }
-
 ?>

@@ -24,7 +24,7 @@
     var $activeCampaigns;
     var $openCampaigns;
 
-    function Site()
+    public function __construct()
     {
       global $TABLE_CAMPAIGNS, $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_USERS, $rpgDB, $DISPLAY_STATS;
 
@@ -61,6 +61,10 @@
 		  }
       }
 
+    }
+    function Site()
+    {
+        self::__construct();
     }
 
     function GetCount($sql) {

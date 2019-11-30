@@ -36,7 +36,7 @@ function GBABCalc()
 {
   if (disable_autocalc())
     return;
-    
+
   ZeroFill(
     sheet().GABBase,
     sheet().GABStr,

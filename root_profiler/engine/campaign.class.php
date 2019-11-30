@@ -12,13 +12,13 @@
     // CTOR
     //////////////////////////////////////////////////////////////////////
 
-    function Campaign($id = 0)
+    public function __construct($id = 0)
     {
       global $TABLE_CAMPAIGNS, $rpgDB;
 
       $this->id = (int) $id;
       $this->_valid = false;
- 
+
       // Retrieve the character information if requested.
       if ($this->id)
       {
@@ -33,7 +33,7 @@
         if ($rpgDB->num_rows($res) != 1)
           return;
         $row = $rpgDB->fetch_row($res);
-        
+
         $this->cname = $row['name'];
         $this->owner = $row['owner'];
         $this->active = $row['active'] == 'Y';
@@ -46,6 +46,10 @@
 
         $this->_valid = true;
       }
+    }
+    function Campaign($id = 0)
+    {
+        self::__construct($id);
     }
 
     //////////////////////////////////////////////////////////////////////
@@ -86,8 +90,8 @@
       $res = $rpgDB->query($sql);
       if( !$res ) {
         __printFatalErr("Query Failed: $sql");
-      } 
- 
+      }
+
       while ($row = $rpgDB->fetch_row($res)) {
         array_push($characters, array('name' => $row['cname'], 'owner' => $row['owner'],
                                       'edited' => $row['lastedited'], 'template' => $row['name'], 'id' => $row['id'], 'public' => $row['public']));
@@ -97,7 +101,7 @@
     }
 
     function GetJoinRequests() {
-    
+
       global $TABLE_CHARS, $TABLE_TEMPLATES, $TABLE_CAMPAIGN_REQUESTS, $rpgDB;
 
       $characters = array();
@@ -117,7 +121,7 @@
 
       while ($row = $rpgDB->fetch_row($res)) {
         array_push($characters, array('name' => $row['cname'], 'owner' => $row['owner'],
-                                      'edited' => $row['lastedited'], 'template' => $row['name'], 
+                                      'edited' => $row['lastedited'], 'template' => $row['name'],
                                       'id' => $row['id'], 'type' => $row['status']));
       }
 
@@ -163,6 +167,6 @@
 
     var $_valid;
 
-    
+
   }
 ?>

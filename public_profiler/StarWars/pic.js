@@ -12,7 +12,7 @@ function SetPic()
   }
   // Get the current path.
   var path = sheet().PicURL.value;
-  
+
   if (path.length == 0)
     path = "http://";
   else if (path == "d20Modern/blank.png")

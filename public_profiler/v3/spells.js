@@ -4,7 +4,7 @@
 
 function SpellSort(sortfunc)
 {
-  var tblrows = 
+  var tblrows =
   [
     // Three child tables of the spells table, the first one is the spells
     // known table, which we don't care about, but get a reference to the
@@ -12,7 +12,7 @@ function SpellSort(sortfunc)
     document.getElementById("spells").getElementsByTagName("table")[1].rows,
     document.getElementById("spells").getElementsByTagName("table")[2].rows
   ];
-  
+
   // Copy the data from each of the items in the rows.
   debug.trace("Copying spell data...");
   var data = new Array();

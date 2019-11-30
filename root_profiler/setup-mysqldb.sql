@@ -7,7 +7,7 @@ CREATE TABLE character_owners (
   pname varchar(20) NOT NULL default '',
   cid int(11) NOT NULL default '0',
   PRIMARY KEY  (pname,cid)
-) TYPE=MyISAM;
+) ENGINE=InnoDB;
 
 # --------------------------------------------------------
 
@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS characters;
 CREATE TABLE characters (
   cname varchar(20) NOT NULL default '',
   id int(11) unsigned NOT NULL auto_increment,
-  lastedited timestamp(14) NOT NULL,
+  lastedited timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   public enum('y','n') default 'n',
   data text,
   editedby varchar(20) default NULL,
@@ -28,7 +28,7 @@ CREATE TABLE characters (
   campaign integer null,
   inactive enum('y','n') default 'n',
   PRIMARY KEY  (id)
-) TYPE=MyISAM;
+) ENGINE=InnoDB;
 
 # --------------------------------------------------------
 
@@ -41,7 +41,7 @@ CREATE TABLE profiles (
   pname varchar(20) NOT NULL default '',
   pwd varchar(50) NOT NULL default '',
   email varchar(50) default NULL,
-  lastlogin timestamp(14) NOT NULL,
+  lastlogin timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   pwd_key varchar(32) default NULL,
   sid varchar(32) default NULL,
   slength int(11) NOT NULL default '180',
@@ -49,7 +49,7 @@ CREATE TABLE profiles (
   ip varchar(15) default NULL,
   dm varchar(1) not null default 'N',
   PRIMARY KEY  (pname)
-) TYPE=MyISAM;
+) ENGINE=InnoDB;
 
 # --------------------------------------------------------
 
@@ -102,7 +102,7 @@ CREATE TABLE serialization_formats (
   id int(11) unsigned NOT NULL auto_increment,
   PRIMARY KEY  (id),
   UNIQUE KEY identifierindex (identifier)
-) TYPE=MyISAM;
+) ENGINE=InnoDB;
 
 INSERT INTO serialization_formats VALUES ('3EProfiler XML', '-//rpgprofiler.net//DTD 3EProfiler 1.0//EN', '3epxml/3epxml_imp.php', '3epxml/3epxml_exp.php', 1);
 
@@ -118,7 +118,7 @@ CREATE TABLE sheet_templates (
   name char(32) NOT NULL default '',
   filename char(64) NOT NULL default '',
   PRIMARY KEY  (id)
-) TYPE=MyISAM;
+) ENGINE=InnoDB;
 
 INSERT INTO sheet_templates VALUES (1, '3EProfiler Standard', 'standard/v3.php');
 INSERT INTO sheet_templates VALUES (2, 'd20 3.5 DnD', 'standard/v3.5-DD.php');

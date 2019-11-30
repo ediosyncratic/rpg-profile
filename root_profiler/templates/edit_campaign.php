@@ -89,7 +89,7 @@ global $update_invite, $update_details, $update_char;
 <tr valign="top">
   <td>Website</td>
   <td><input type="text" name="website" style="width:350px;" value="<?php echo $campaign->website; ?>"/></td>
-</tr> 
+</tr>
 <tr><td colspan="2"></td></tr>
 <tr>
   <td></td>
@@ -130,7 +130,7 @@ if( count( $campaign->GetCharacters() ) > 0 ) {
   </form>
 </td>
 </tr>
-<?php 
+<?php
   } // Foreach
 ?>
     </tbody>

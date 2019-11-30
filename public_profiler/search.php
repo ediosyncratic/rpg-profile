@@ -36,7 +36,7 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
              $TABLE_TEMPLATES,
              $TABLE_CHARS,
              $TABLE_CAMPAIGNS);
-  
+
   if( $type == 'begins' ) {
     $sql .= "AND UPPER(c.cname) LIKE UPPER('" . $name . "%') ";
   } else if( $type == 'contains' ) {
@@ -64,7 +64,7 @@ if( $_GET['cname'] || $_GET['type'] == 'all' ) {
   // Offset
   if( $page ) {
     $start = 1 + ((((int) $page) - 1) * $recordsPerPage);
-    
+
     $sql .= "OFFSET " . $start . " ";
   } else {
      $page = 1;

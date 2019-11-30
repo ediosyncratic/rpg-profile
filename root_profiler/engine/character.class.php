@@ -20,7 +20,7 @@
     // CTOR
     //////////////////////////////////////////////////////////////////////
 
-    function Character($id = 0)
+    public function __construct($id = 0)
     {
       global $TABLE_CHARS, $rpgDB;
 
@@ -56,6 +56,10 @@
         $this->_permissions = new CharPermission(null, $this->id);
         $this->_valid = true;
       }
+    }
+    function Character($id = 0)
+    {
+        self::__construct($id);
     }
 
     //////////////////////////////////////////////////////////////////////

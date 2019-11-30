@@ -6,7 +6,7 @@ var SPELL_COUNT = 300;
 
 function SpellSort(sortfunc)
 {
- 
+
   // Copy the data from each of the items in the rows.
   debug.trace("Copying spell data...");
   var data = new Array();
@@ -83,10 +83,11 @@ SpellSort.ByMem = function(a, b)
 // input element that contains the name of the skill.
 function ShowSpellHelp(node)
 {
-  var skillName = document.getElementsByName(node)[0].value;
+  var spellName = document.getElementsByName(node)[0].value;
   var URL;
 
-  URL = _RetrieveMatchingURL( skillName, spellsHelpURL )
+  spellName = Trim(spellName.toLowerCase()).replace(/^(lesser|greater|mass lesser|mass greater|mass) (.*)$/, "$2, $1");
+  URL = _RetrieveMatchingURL( spellName, spellsHelpURL )
 
   // Check to see if a matching skill was found.
   if ( URL == "" )
@@ -107,10 +108,11 @@ function ShowSpellHelp(node)
 */
 function CheckForSpellHelp(node)
 {
-  var skillName = document.getElementsByName(node)[0].value;
+  var spellName = document.getElementsByName(node)[0].value;
   var link      = document.getElementsByName(node + "Link")[ 0 ];
 
-  if ( _RetrieveMatchingURL( skillName, spellsHelpURL ) != "" )
+  spellName = Trim(spellName.toLowerCase()).replace(/^(lesser|greater|mass lesser|mass greater|mass) (.*)$/, "$2, $1");
+  if ( _RetrieveMatchingURL( spellName, spellsHelpURL ) != "" )
   {
     link.innerHTML = "?";
   }
@@ -248,19 +250,19 @@ function updateCast() {
         }
         var spellLevel = "Spell" + num + "Level";
         var spellCast = "Spell" + num + "Cast";
-        
+
         if( isNaN(sheet()[spellLevel].value) ) {
             continue;
         }
-      
+
         var castCount = "SpellCast" + sheet()[spellLevel].value;
 
         var currentCount = parseInt("0");
         var newCount = parseInt("0");
 
-        if( sheet()[castCount] ) {        
+        if( sheet()[castCount] ) {
             currentCount = parseInt(sheet()[castCount].value);
-            
+
             if( isNaN(currentCount) ) {
                 parseInt("0");
             }
@@ -289,9 +291,9 @@ function nextSpellPage() {
         return;
     }
     currentPage++;
-    
+
     var targetOffset = -columnWidth * currentPage;
-    
+
     $("spellScroller").morph("left:" + targetOffset + "px;");
     if( currentPage >= maxPage ) {
         $("nextSpellsArrow").addClassName("disabled");
@@ -306,9 +308,9 @@ function prevSpellPage() {
         return;
     }
     currentPage--;
-    
+
     var targetOffset = -columnWidth * currentPage;
-    
+
     $("spellScroller").morph("left:" + targetOffset + "px;");
     if( currentPage <= minPage ) {
         $("prevSpellsArrow").addClassName("disabled");
@@ -317,4 +319,3 @@ function prevSpellPage() {
         $("nextSpellsArrow").removeClassName("disabled");
     }
 }
-

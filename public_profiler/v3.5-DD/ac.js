@@ -97,7 +97,7 @@ function ACChangeArmor()
   ACCalc();
 
   // We need to call this because we may have changed the 'carried' flag
-  CalcWeight();  
+  CalcWeight();
 }
 
 // void ACChangeCarried(void)
@@ -148,7 +148,7 @@ function ACCheckMaxDex() {
   if ( Clean( sheet().TotalWeight.value ) > Clean( sheet().MediumLoad.value ) ) {
     if( dexBonus > 1 ) {
       dexBonus = 1;
-    } 
+    }
   } else if( Clean( sheet().TotalWeight.value ) > Clean( sheet().LightLoad.value ) ) {
     if( dexBonus > 3 ) {
       dexBonus = 3;

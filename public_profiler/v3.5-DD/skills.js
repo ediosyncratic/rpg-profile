@@ -137,8 +137,8 @@ function SkillLookUp(node)
   sheet()[node.name + "Ab"].value = abilityKeys[skillKeys[skill]];
 
   // Determine if the skill is a class skill or not.
-  // if (classSkills[node.value])
-  //   node.parentNode.parentNode.cells[2].firstChild.checked = _getClassBitSet() & classSkills[node.value] ? "" : "checked";
+  if (classSkills[node.value])
+    node.parentNode.parentNode.cells[3].firstElementChild.checked = _getClassBitSet() & classSkills[node.value] ? "checked" : "";
   SkillLookUpKeyAb(sheet()[node.name + "Ab"]);
 }
 
@@ -154,7 +154,7 @@ function SkillLookUpKeyAb(node)
   // Can't make any assumptions about the node value, since the user may
   // have written anything.
   var ability = GetText(node);
-  
+
   if (ability == "str") ability = "Str";
   else if (ability == "dex") ability = "Dex";
   else if (ability == "con") ability = "Con";
@@ -169,16 +169,19 @@ function SkillLookUpKeyAb(node)
   }
 
   // If we don't have a modifier, return without doing anything else.
-  if (!(sheet()[ability + "Mod"].value.length 
+  if (!(sheet()[ability + "Mod"].value.length
     || sheet()[ability + "TempMod"].value.length))
     return;
 
   // Determine if skill is cross-class.
-  var skillRow = node.parentNode.parentNode;
+
+  // Do not recalculate class skills on ability score change. List does not understand non-standard classes and prestige classes.
+//  var skillRow = node.parentNode.parentNode;
+
   // If the skill name is found in our classSkills hash.
-  if (classSkills[skillRow.cells[0].firstChild.value])
+//  if (classSkills[skillRow.cells[1].firstElementChild.value])
     // Set the CC checkbox accordingly.
-    skillRow.cells[2].firstChild.checked = _getClassBitSet() & classSkills[skillRow.cells[0].firstChild.value] ? "checked" : "";
+//    skillRow.cells[3].firstElementChild.checked = _getClassBitSet() & classSkills[skillRow.cells[1].firstElementChild.value] ? "checked" : "";
 
   // If a temp mod exists, use it, otherwise use the regular one.
   var mod = String(sheet()[ability + "TempMod"].value).length > 0
@@ -233,7 +236,7 @@ function SkillSort(sortfunc)
     sheet()["Skill" + num].value             = r.skill;
     sheet()["Skill" + num].style.textDecoration = "none";
     sheet()["Skill" + num + "Ab"].value      = r.ab;
-    sheet()["Skill" + num + "CC"].checked    = r.cc;               
+    sheet()["Skill" + num + "CC"].checked    = r.cc;
     sheet()["Skill" + num + "Mod"].value     = r.mod;
     sheet()["Skill" + num + "AbMod"].value   = r.abmod;
     sheet()["Skill" + num + "Rank"].value    = r.rank;
@@ -350,7 +353,7 @@ function SkillClear()
 
 function SkillsUpdateCheckPen() {
   var penalty = 0;
-  
+
   for (var i = 1; i <= 4; i++) {
     if( sheet()["Armor" + i + "Worn"].checked ) {
     penalty = Add(penalty, sheet()["Armor" + i + "Check"].value);
@@ -394,8 +397,8 @@ function SkillsUpdateCheckPen() {
 
     SkillCalc(sheet()["Skill" + num]);
   }
-  
-  
+
+
 }
 
 // Update the cross-class checkboxes according to the class information.
