@@ -13,7 +13,8 @@ var m_names = new Array("January", "February", "March",
 // Returns the number of skills listed in the Skills table.
 function SkillsCount()
 {
-    return document.getElementById("skills").rows.length - 6;
+    // root_profiler/sheets/standard/v3.5-DD.php has four header/footer rows:
+    return document.getElementById("skills").rows.length - 4;
 }
 
 // void init(void)
