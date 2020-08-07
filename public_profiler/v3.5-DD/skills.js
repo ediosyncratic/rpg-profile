@@ -546,7 +546,7 @@ function _skillClear()
 function _skillFill()
 {
   var row = 1;
-  var skilltable = document.getElementById("skills");
+  var skillcount = document.getElementById("skills").rows;
   for (var skill in classSkills)
   {
     // Don't actually print out the language skill.
@@ -554,7 +554,7 @@ function _skillFill()
       continue;
 
     // Don't continue if we're out of skill slots.
-    if (row > skilltable.rows)
+    if (row > skillcount)
       break;
 
     var skillNum = "Skill" + FormatNumber(row);
@@ -580,8 +580,8 @@ function _calcSkills(ability)
   var numskills = SkillsCount();
   for (var i = 1; i <= numskills; i++)
   {
-    var num = FormatNumber(i);
-    if (String(sheet()["Skill" + num + "Ab"].value).toLowerCase() == ability)
-      SkillLookUpKeyAb(sheet()["Skill" + num + "Ab"]);
+    var key = "Skill" + FormatNumber(i) + "Ab";
+    if (String(sheet()[key].value).toLowerCase() == ability)
+      SkillLookUpKeyAb(sheet()[key]);
   }
 }
