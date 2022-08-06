@@ -55,7 +55,7 @@ function init()
   }
 
   // Set the link for the feats and special abilities.
-  for (var i = 1; i <= 30; i++)
+  for (var i = 1; i <= 40; i++)
   {
     var num = FormatNumber(i);
      CheckForHelp( "Feat" + num );
