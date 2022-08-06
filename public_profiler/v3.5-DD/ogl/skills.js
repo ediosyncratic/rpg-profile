@@ -318,6 +318,7 @@ var skillsHelpURL = Object.assign(
     // Barbarian splecial abilities.
     'illiteracy':                           baseHelpURL + "classes/barbarian.htm#illiteracy",
     'rage':                                 baseHelpURL + "classes/barbarian.htm#rage",
+    'fast movement':                        baseHelpURL + "classes/barbarian.htm#barbarianFastMovement",
     'greater rage':                         baseHelpURL + "classes/barbarian.htm#greaterRage",
     'tireless rage':                        baseHelpURL + "classes/barbarian.htm#tirelessRage",
     'mighty rage':                          baseHelpURL + "classes/barbarian.htm#mightyRage",
@@ -391,6 +392,10 @@ var skillsHelpURL = Object.assign(
     // Wizard special abilities.
     'summon familiar':                      baseHelpURL + "classes/sorcererWizard.htm#wizardFamiliar",
     'scribe scroll':                        baseHelpURL + "classes/sorcererWizard.htm#scribeScroll",
+    'empathic link':                        baseHelpURL + "classes/sorcererWizard.htm#familiarEmpathicLink",
+    'scry on familiar':                     baseHelpURL + "classes/sorcererWizard.htm#scryonFamiliar", speakwithMaster
+    'speak with master':                    baseHelpURL + "classes/sorcererWizard.htm#speakwithMaster",
+    'speak with familiar':                  baseHelpURL + "classes/sorcererWizard.htm#speakwithMaster",
 
     // Abilities
     'ability damage':                       baseHelpURL + "naturalSpecialAbilities.htm#abilityDamage",
@@ -472,21 +477,35 @@ var skillsHelpURL = Object.assign(
   // Next the extra help:
   extraSpellHelp ? {
     // Feats:
+    'brutal throw':                         baseExtraHelpURL + 'Brutal_Throw',
+    'coordinated strike':                   baseExtraHelpURL + 'Coordinated_Strike',
+    'deadly defense':                       baseExtraHelpURL + 'Deadly_Defense',
+    'divine spell power':                   baseExtraHelpURL + 'Divine_Spell_Power',
     'expeditious dodge':                    baseExtraHelpURL + 'Expeditious_Dodge',
+    'scumpt spell':                         baseExtraHelpURL + 'Sculpt_Spell',
+    'versatile spellcaster':                baseExtraHelpURL + 'Versatile_Spellcaster',
 
-    // Dervish special abilities.
+    // Dervish class features.
+    'dervish ac bonus':                     baseExtraHelpURL + 'Dervish#AC_Bonus_.28Ex.29',
     'dervish dance':                        baseExtraHelpURL + 'Dervish#Dervish_Dance_.28Ex.29',
     'movement mastery':                     baseExtraHelpURL + 'Dervish#Movement_Mastery_.28Ex.29',
     'slashing blades':                      baseExtraHelpURL + 'Dervish#Slashing_Blades',
+    'dervish fast movement':                baseExtraHelpURL + 'Dervish#Fast_Movement_.28Ex.29',
     'dance of death':                       baseExtraHelpURL + 'Dervish#Dance_of_Death',
     'improved reaction':                    baseExtraHelpURL + 'Dervish#Improved_Reaction_.28Ex.29',
     'elaborate parry':                      baseExtraHelpURL + 'Dervish#Elaborate_Parry_.28Ex.29',
     'tireless dance':                       baseExtraHelpURL + 'Dervish#Tireless_Dance',
     'a thousand cuts':                      baseExtraHelpURL + 'Dervish#A_Thousand_Cuts_.28Ex.29',
 
-    // Radiant servant of Pelor special abilities.
-    'extra greater turning':                baseExtraHelpURL + 'Radiant_servant_of_Pelor#Extra_Greater_Turning',
+    // Outcast champion class features.
+    'aura of confidence':                   baseExtraHelpURL + 'Outcast_champion#Aura_of_Confidence_.28Ex.29',
+    'avenging strike':                      baseExtraHelpURL + 'Outcast_champion#Avenging_Strike_.28Ex.29',
+    'desperate fury':                       baseExtraHelpURL + 'Outcast_champion#Desperate_Fury_.28Ex.29',
+    'teamwork':                             baseExtraHelpURL + 'Outcast_champion#Teamwork_.28Ex.29',
+
+    // Radiant servant of Pelor class features.
     'radiance':                             baseExtraHelpURL + 'Radiant_servant_of_Pelor#Radiance',
+    'extra greater turning':                baseExtraHelpURL + 'Radiant_servant_of_Pelor#Extra_Greater_Turning',
     'empower healing':                      baseExtraHelpURL + 'Radiant_servant_of_Pelor#Empower_Healing_.28Ex.29',
     'aura of warding':                      baseExtraHelpURL + 'Radiant_servant_of_Pelor#Aura_of_Warding_.28Su.29',
     'maximize healing':                     baseExtraHelpURL + 'Radiant_servant_of_Pelor#Maximize_Healing_.28Ex.29',
