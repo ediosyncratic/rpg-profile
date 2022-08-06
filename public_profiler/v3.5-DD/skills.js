@@ -461,13 +461,13 @@ function _RetrieveMatchingURL( name, helpTable )
   if ( name.indexOf( "ability:" ) == 0 )
     name = Trim( name.substring( 9 ) );
 
-  // Loop through each of the members in skillsHelpURL.
-  for ( URL in helpTable )
+  // Loop through each of the key: URL entries in helpTable.
+  for ( key in helpTable )
   {
-    // If the URL member name starts with the same chars as name, then it matches.
-     if ( name.indexOf( URL ) == 0 )
+     // If name starts with the same chars as the key text, then it matches.
+     if ( name.indexOf( key ) == 0 )
      {
-       return helpTable[ URL ];
+       return helpTable[ key ];
      }
   }
 
