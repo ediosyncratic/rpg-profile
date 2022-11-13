@@ -5,7 +5,7 @@
 
   if (defined('_SERIALIZATION_INCLUDED_'))
     return;
-  define ('_SERIALIZATION_INCLUDED_', true, true);
+  define ('_SERIALIZATION_INCLUDED_', true);
 
   require_once('db.php');
 

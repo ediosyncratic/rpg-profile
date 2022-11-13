@@ -5,7 +5,7 @@
 
   if (defined('_SID_INCLUDED_'))
     return;
-  define ('_SID_INCLUDED_', true, true);
+  define ('_SID_INCLUDED_', true);
 
   require_once('sid.class.php');
   require_once(dirname(__FILE__) . '/../system.php');

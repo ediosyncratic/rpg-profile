@@ -5,7 +5,7 @@
 
   if (defined('_DB_INCLUDED_'))
     return;
-  define ('_DB_INCLUDED_', true, true);
+  define ('_DB_INCLUDED_', true);
 
   require_once(dirname(__FILE__) . '/../system.php');
   require_once(dirname(__FILE__) . '/../error.php');
@@ -24,11 +24,7 @@
 	//
 	public function __construct($dsn, $username, $password)
 	{
-		$this->username = $username;
-		$this->password = $password;
-		$this->dsn = $dsn;
-
-		$this->dbh = new PDO($this->dsn, $this->username, $this->password);
+		$this->dbh = new PDO($dsn, $username, $password);
 	}
     function Database($dsn, $username, $password)
     {
@@ -75,7 +71,7 @@
 		if( $query != "" )
 		{
 			$this->num_queries++;
-			if( $transaction == BEGIN_TRANSACTION && !$this->in_transaction )
+			if( $transaction == "BEGIN_TRANSACTION" && !$this->in_transaction )
 			{
 				if ($this->dbh->exec("BEGIN") === false)
 				{
@@ -86,14 +82,14 @@
 
 			$this->query_result = $this->dbh->query($query);
 		}
-		elseif( $transaction == END_TRANSACTION && $this->in_transaction )
+		elseif( $transaction == "END_TRANSACTION" && $this->in_transaction )
 		{
 			$this->dbh->exec("COMMIT");
 		}
 
 		if( $this->query_result )
 		{
-			if( $transaction == END_TRANSACTION && $this->in_transaction )
+			if( $transaction == "END_TRANSACTION" && $this->in_transaction )
 			{
 				$this->in_transaction = FALSE;
 

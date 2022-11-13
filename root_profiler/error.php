@@ -6,7 +6,7 @@
 
   if (defined ('_ERROR_INCLUDED_'))
     return;
-  define ('_ERROR_INCLUDED_', true, true);
+  define ('_ERROR_INCLUDED_', true);
 
   require_once('system.php');
   require_once('engine/templates.php');

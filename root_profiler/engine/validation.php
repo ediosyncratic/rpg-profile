@@ -6,7 +6,7 @@
 
   if (defined('_VALIDATION_INCLUDED_'))
     return;
-  define ('_VALIDATION_INCLUDED_', true, true);
+  define ('_VALIDATION_INCLUDED_', true);
 
   // Is the supplied profile name ok?
   function is_valid_pname($pname, &$err)

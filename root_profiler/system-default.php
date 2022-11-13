@@ -8,7 +8,7 @@
   // Standard include guard (DO NOT MODIFY).
   if (defined('_SYSTEM_INCLUDED_'))
     return;
-  define ('_SYSTEM_INCLUDED_', true, true);
+  define ('_SYSTEM_INCLUDED_', true);
 
 
   // *********************************************************************

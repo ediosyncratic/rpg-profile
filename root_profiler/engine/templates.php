@@ -6,7 +6,7 @@
 
   if (defined('_TEMPLATES_INCLUDED_'))
     return;
-  define ('_TEMPLATES_INCLUDED_', true, true);
+  define ('_TEMPLATES_INCLUDED_', true);
 
   require_once('db.php');
   require_once(dirname(__FILE__) . '/../error.php');

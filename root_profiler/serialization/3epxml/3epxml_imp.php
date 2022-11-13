@@ -3,7 +3,7 @@
 
   if (defined('_3EPXML_IMP_INCLUDED_'))
     return;
-  define ('_3EPXML_IMP_INCLUDED_', true, true);
+  define ('_3EPXML_IMP_INCLUDED_', true);
 
   require_once(dirname(__FILE__) . '/../../engine/templates.php');
   require_once(dirname(__FILE__) . '/../../engine/character.class.php');

@@ -8,7 +8,7 @@
 
   if (defined('_CHARACTER_CLASS_INCLUDED_'))
     return;
-  define ('_CHARACTER_CLASS_INCLUDED_', true, true);
+  define ('_CHARACTER_CLASS_INCLUDED_', true);
 
   require_once('db.php');
   require_once('charpermission.class.php');
@@ -49,9 +49,8 @@
         $this->campaign_id = $row['campaign'];
         $this->inactive = $row['inactive'];
 
-        while (list($key, $val) = @each($this->_data))
+        foreach ($this->_data as $key => $val)
           $this->_data[$key] = stripslashes($val);
-        @reset($this->_data);
 
         $this->_permissions = new CharPermission(null, $this->id);
         $this->_valid = true;
@@ -99,9 +98,10 @@
     {
       $this->_data = array();
       @reset($unvalidated);
-      while (list($key, $val) = @each($unvalidated))
+      foreach($unvalidated as $key => $val) {
         if (strlen($val))
           $this->_data[$key] = htmlspecialchars($val);
+      }
     }
 
     // Set a data key value.

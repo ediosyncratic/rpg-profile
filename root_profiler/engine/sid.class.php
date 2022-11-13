@@ -5,7 +5,7 @@
 
   if (defined('_SID_CLASS_INCLUDED_'))
     return;
-  define('_SID_CLASS_INCLUDED_', true, true);
+  define('_SID_CLASS_INCLUDED_', true);
 
   require_once('id.class.php');
   require_once('db.php');

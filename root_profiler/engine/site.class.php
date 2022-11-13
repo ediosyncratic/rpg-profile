@@ -1,7 +1,7 @@
 <?php
   if (defined('_CAMPAIGN_CLASS_INCLUDED_'))
     return;
-  define ('_CAMPAIGN_CLASS_INCLUDED_', true, true);
+  define ('_CAMPAIGN_CLASS_INCLUDED_', true);
 
   require_once('db.php');
   require_once(dirname(__FILE__) . '/../system.php');

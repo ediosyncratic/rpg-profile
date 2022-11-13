@@ -6,7 +6,7 @@
 
   if (defined('_3EPXML_EXP_INCLUDED_'))
     return;
-  define ('_3EPXML_EXP_INCLUDED_', true, true);
+  define ('_3EPXML_EXP_INCLUDED_', true);
 
   require_once(dirname(__FILE__) . '/../../system.php');
   require_once(dirname(__FILE__) . '/../../engine/templates.php');
@@ -34,7 +34,7 @@
     $out .= "  <data>\n";
 
     $data = $char->GetData();
-    while (list($key, $val) = @each($data))
+    foreach ($data as $key => $val)
       $out .= "    <node name=\"$key\">$val</node>\n";
 
     $out .= "  </data>\n";
