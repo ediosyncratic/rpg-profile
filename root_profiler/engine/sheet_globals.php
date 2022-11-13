@@ -5,7 +5,7 @@
 
   if (defined('_SHEET_GLOBALS_INCLUDED_'))
     return;
-  define ('_SHEET_GLOBALS_INCLUDED_', true, true);
+  define ('_SHEET_GLOBALS_INCLUDED_', true);
 
   // Echoes the name/value attributes for a tag, in addition to a readonly
   // atribute if necessary.

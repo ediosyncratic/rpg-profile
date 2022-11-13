@@ -2,7 +2,7 @@
 
   if (defined('_COOKIE_CLASS_INCLUDED_'))
     return;
-  define('_COOKIE_CLASS_INCLUDED_', true, true);
+  define('_COOKIE_CLASS_INCLUDED_', true);
 
   require_once(dirname(__FILE__) . '/../id.class.php');
   require_once(dirname(__FILE__) . '/../db.php');

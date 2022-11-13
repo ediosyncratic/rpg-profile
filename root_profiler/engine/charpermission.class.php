@@ -3,7 +3,7 @@
 
   if (defined('_CHARPERMISSIONS_CLASS_INCLUDED_'))
     return;
-  define ('_CHARPERMISSIONS_CLASS_INCLUDED_', true, true);
+  define ('_CHARPERMISSIONS_CLASS_INCLUDED_', true);
 
   require_once('db.php');
   require_once(dirname(__FILE__) . '/../error.php');

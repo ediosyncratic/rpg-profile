@@ -6,7 +6,7 @@
 
   if (defined('_USER_STATS_INCLUDED_'))
     return;
-  define ('_USER_STATS_INCLUDED_', true, true);
+  define ('_USER_STATS_INCLUDED_', true);
 
   require_once('engine/db.php');
 

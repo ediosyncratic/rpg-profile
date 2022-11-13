@@ -5,7 +5,7 @@
 
   if (defined('_ID_CLASS_INCLUDED_'))
     return;
-  define ('_ID_CLASS_INCLUDED_', true, true);
+  define ('_ID_CLASS_INCLUDED_', true);
 
   class Id
   {
@@ -28,7 +28,7 @@
       $ca = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
       $id = '';
       for ($i = 0; $i < $nWidth; $i++)
-        $id .= $ca{mt_rand(0, strlen($ca) - 1)};
+        $id .= $ca[mt_rand(0, strlen($ca) - 1)];
       return $id;
     }
 
