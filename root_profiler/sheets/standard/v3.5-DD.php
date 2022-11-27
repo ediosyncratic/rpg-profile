@@ -770,7 +770,7 @@
                       <table cellspacing="0" class="narrow">
                         <?php
 
-                         // Loop 30 times and output the feats/abilities lines.
+                         // Loop 40 times and output the feats/abilities lines.
                          for ( $i = 1; $i <= 40; $i++ ) {
                            $featName = sprintf( "Feat%02d", $i );
                          ?>
@@ -786,7 +786,7 @@
                            </tr>
 
                            <?php
-                            // After the 15th feat start a new table.
+                            // After the 20th feat start a new table.
                            if ( $i == 20 ) {
                            ?>
 
