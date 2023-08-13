@@ -813,7 +813,7 @@
                     <td class="unit"><a href="javascript:GearSort(GearSort.ByLoc)" title="Sort by Location">Loc</a></td>
                   </tr>
 
-<?php for ( $i = 1; $i <= 34; $i++ ) { $gearName = sprintf( "Gear%02d", $i ); ?>
+<?php for ( $i = 1; $i <= 37; $i++ ) { $gearName = sprintf( "Gear%02d", $i ); ?>
                   <tr class="slot">
                     <td><input class="name" type="text" <?php getnv($gearName); ?> /></td>
                     <td><input type="text" <?php getnv($gearName . 'W'); ?> onchange="CalcWeight()" /></td>
