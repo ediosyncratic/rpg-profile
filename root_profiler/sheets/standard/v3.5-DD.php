@@ -550,7 +550,7 @@
               <td><input type="checkbox" <?php getnc($weaponName . 'Carried'); ?> onchange="ChangeWeapon(false)"/></td>
               <td><input <?php getnv($weaponName . 'AB'); ?> /></td>
               <td><input <?php getnv($weaponName . 'Damage'); ?> /></td>
-              <td><input <?php getnv($weaponName . '1Crit'); ?> /></td>
+              <td><input <?php getnv($weaponName . 'Crit'); ?> /></td>
               <td><input <?php getnv($weaponName . 'Range'); ?> /></td>
             </tr>
             <tr class="header">
