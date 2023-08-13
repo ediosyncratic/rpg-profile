@@ -421,7 +421,9 @@
           </table>
 
           <!--
-            table#attacks contains the base melee and ranged attack bonuses.
+            table#attacks contains the base melee and ranged attack bonuses
+            along with spell resistance and controls for how many rows to
+            include in table#weapon and table#armor
           -->
 
           <table id="attacks">
@@ -491,13 +493,12 @@
               <td class="unit"><input type="text" class="temp" <?php getnv('RABTemp'); ?> onchange="RBABCalc()" /></td>
          <td class="char"></td>
          <td class="char"></td>
-              <td class="wide" align="left" nowrap>Weapons:
-
-         <?php for ( $i = 1; $i <= 4; $i++ ) { ?>
-<input type="checkbox" <?php getnc('Wep'.$i.'Disp'); ?> onclick="ToggleDisplay('we<?php echo $i ?>', this);" style="width:15px; border:none;"/>
-         <?php } ?>
-   <!--     </tr></table>-->
-      </td>
+              <td class="enablers" align="left" nowrap>Weapons:
+<?php for ( $i = 1; $i <= 8; $i++ ) { ?>
+                <input <?php getnc('Wep'.$i.'Disp'); ?> type="checkbox"
+                       onclick="ToggleDisplay('we<?php echo $i ?>', this);" />
+<?php } ?>
+              </td>
             </tr>
             <tr>
               <td />
@@ -514,20 +515,20 @@
               <td class="footer">Temp Mod</td>
          <td />
               <td />
-              <td class="wide" nowrap>Armor:&nbsp;&nbsp;&nbsp;&nbsp;
-         <?php for ( $i = 1; $i <= 4; $i++ ) { ?>
-<input type="checkbox" <?php getnc('Arm'.$i.'Disp'); ?> onclick="ToggleDisplay('ar<?php echo $i ?>', this);" style="width:15px; border:none;"/>
-         <?php } ?>
-                </td>
+              <td class="enablers" nowrap>Armor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php for ( $i = 1; $i <= 8; $i++ ) { ?>
+                <input <?php getnc('Arm'.$i.'Disp'); ?> type="checkbox"
+                       onclick="ToggleDisplay('ar<?php echo $i ?>', this);" />
+<?php } ?>
+              </td>
             </tr>
           </table> <!-- main -->
 
           <!--
             table.weapon are weapon slots.
           -->
-
           <?php
-          for ( $i = 1; $i <= 4; $i++ )
+          for ( $i = 1; $i <= 8; $i++ )
           {
              $weaponName = sprintf( "Weapon%d", $i );
           ?>
@@ -575,19 +576,18 @@
           <!--
             table.armor are armor slots.
           -->
-
-          <?php
-          for ( $i = 1; $i <= 4; $i++ )
+<?php
+          for ( $i = 1; $i <= 8; $i++ )
           {
              $armorName = sprintf( "Armor%d", $i );
 
-             if ( $i == 1 )
+             if ( $i % 4 == 1 )
                 $armorTitle = "armor1";
-             else if ( $i == 2 )
+             else if ( $i % 4 == 2 )
                 $armorTitle = "Shield";
              else
                 $armorTitle = "armor2";
-          ?>
+?>
           <div id="ar<?php echo $i ?>">
           <table class="armor" cellspacing="0">
             <tr class="header">

@@ -337,7 +337,16 @@ body
 }
 #attacks td.wide
 {
-  width: 20%;
+  width: 15%;
+}
+#attacks td.enablers
+{
+  width: 30%;
+}
+#attacks td.enablers input /* check-boxes to enable weapon/armour table rows */
+{
+  width: 15px;
+  border: none;
 }
 #attacks td.unit
 {

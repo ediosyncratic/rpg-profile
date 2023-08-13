@@ -25,8 +25,7 @@ function CalcWeight()
   document.getElementById("bagWeight").innerHTML = total.toFixed(1);
 
   // Add the armor weight.
-  for ( var i = 1; i <= 4; i++ )
-  {
+  for (var i = 1; i <= 8; i++) {
      // If the armor is flagged as not carried, then don't add it to the weight.
      if ( !sheet()["Armor" + i + "Carried"].checked )
          continue;
@@ -37,11 +36,9 @@ function CalcWeight()
   }
 
   // Add the weapon weight
-  for ( var i = 1; i <= 4; i++ )
-  {
-    if ( sheet()[ "Weapon" + i + "Carried" ].checked )
-     {
-      var num = parseFloat(sheet()["Weapon" + i + "Weight"].value);
+  for (var i = 1; i <= 8; i++) {
+    if (sheet()['Weapon' + i + 'Carried'].checked) {
+      var num = parseFloat(sheet()['Weapon' + i + 'Weight'].value);
       if (!isNaN(num))
           total += num;
      }
@@ -189,10 +186,9 @@ function ChangeWeapon( wielded )
      value  = false;
   }
 
-  for ( var i = 1; i <= 4; i++ )
-  {
-    if ( sheet()[ "Weapon" + i + source ].checked == value )
-        sheet()[ "Weapon" + i + target ].checked = value;
+  for (var i = 1; i <= 8; i++) {
+    if (sheet()['Weapon' + i + source].checked == value)
+        sheet()['Weapon' + i + target].checked = value;
   }
 
   // We need to call this because we may have changed the 'carried' flag

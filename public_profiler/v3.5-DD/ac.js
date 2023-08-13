@@ -59,8 +59,8 @@ function ACCalc()
 }
 
 // void ACChangeArmor(void)
-// Copies the data from the armor table to the ac block and recalculates
-// the ac.
+// Copies the data from the armor table to the AC block and
+// recalculates the AC.
 function ACChangeArmor()
 {
   if (disable_autocalc())
@@ -69,10 +69,10 @@ function ACChangeArmor()
   sheet().ACArmor.value  = 0;
   sheet().ACShield.value  = 0;
 
-  for (var i = 1; i <= 4; i++) {
+  for (var i = 1; i <= 8; i++) {
       if (sheet()['Armor' + i + 'Worn'].checked) {
           sheet()['Armor' + i + 'Carried'].checked = true;
-          if (i == 2)
+          if (i % 4 == 2)
               sheet().ACShield.value = Clean(Add(sheet().ACShield.value,
                                                  GetNum(sheet()['Armor' + i + 'Bonus'])));
           else
@@ -90,14 +90,14 @@ function ACChangeArmor()
 }
 
 // void ACChangeCarried(void)
-// Turns of the "worn" check for any armor not carried.
-// the ac.
+// Turns off the "worn" check for any armor not carried and
+// recalculates the AC.
 function ACChangeCarried()
 {
   if (disable_autocalc())
     return;
 
-  for (var i = 1; i <= 4; i++) {
+  for (var i = 1; i <= 8; i++) {
       if (!sheet()['Armor' + i + 'Carried'].checked)
           sheet()['Armor' + i + 'Worn'].checked = false;
   }
@@ -115,7 +115,7 @@ function ACCheckMaxDex() {
 
   var rawBonus = dexBonus;
 
-  for( var i = 1; i <= 4; i++ ) {
+  for (var i = 1; i <= 8; i++) {
     if( ! isNaN( sheet()["Armor" + i + "Dex"].value) ) {
       var armorMaxStr = sheet()["Armor" + i + "Dex"].value;
       if( Trim(armorMaxStr) != "" ) {
