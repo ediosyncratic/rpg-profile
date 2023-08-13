@@ -67,32 +67,21 @@ function ACChangeArmor()
     return;
 
   sheet().ACArmor.value  = 0;
-  if ( sheet().Armor1Worn.checked )
-  {
-      sheet().Armor1Carried.checked = true;
-      sheet().ACArmor.value = Clean(Add(sheet().ACArmor.value, GetNum(sheet().Armor1Bonus)));
-  }
-
-  if ( sheet().Armor3Worn.checked )
-  {
-      sheet().Armor3Carried.checked = true;
-      sheet().ACArmor.value = Clean(Add(sheet().ACArmor.value, GetNum(sheet().Armor3Bonus)));
-  }
-
-  if ( sheet().Armor4Worn.checked )
-  {
-      sheet().Armor4Carried.checked = true;
-          sheet().ACArmor.value = Clean(Add(sheet().ACArmor.value, GetNum(sheet().Armor4Bonus)));
-  }
-
   sheet().ACShield.value  = 0;
-  if ( sheet().Armor2Worn.checked )
-  {
-      sheet().Armor2Carried.checked = true;
-     sheet().ACShield.value = GetNum(sheet().Armor2Bonus);
+
+  for (var i = 1; i <= 4; i++) {
+      if (sheet()['Armor' + i + 'Worn'].checked) {
+          sheet()['Armor' + i + 'Carried'].checked = true;
+          if (i == 2)
+              sheet().ACShield.value = Clean(Add(sheet().ACShield.value,
+                                                 GetNum(sheet()['Armor' + i + 'Bonus'])));
+          else
+              sheet().ACArmor.value = Clean(Add(sheet().ACArmor.value,
+                                                GetNum(sheet()['Armor' + i + 'Bonus'])));
+      }
   }
 
-  debug.trace("Copied armor ac bonus to the ac block.");
+  debug.trace('Copied armor AC bonus to the AC block.');
 
   ACCalc();
 
@@ -108,17 +97,10 @@ function ACChangeCarried()
   if (disable_autocalc())
     return;
 
-  if ( !sheet().Armor1Carried.checked )
-      sheet().Armor1Worn.checked = false;
-
-  if ( !sheet().Armor2Carried.checked )
-      sheet().Armor2Worn.checked = false;
-
-  if ( !sheet().Armor3Carried.checked )
-      sheet().Armor3Worn.checked = false;
-
-  if ( !sheet().Armor4Carried.checked )
-      sheet().Armor4Worn.checked = false;
+  for (var i = 1; i <= 4; i++) {
+      if (!sheet()['Armor' + i + 'Carried'].checked)
+          sheet()['Armor' + i + 'Worn'].checked = false;
+  }
 
   ACChangeArmor();
 }
