@@ -29,9 +29,9 @@ function init()
   ContainerWeight("Cont02");
   ContainerWeight("Cont03");
 
-  if (sheet().firstload.value == "true")
+  if (sheet().firstload.value == 'true')
   {
-    sheet().firstload.value = "false";
+    sheet().firstload.value = 'false';
     _skillFill();
     for (var weap = 1; weap <= 8; weap++)
       sheet()['Wep' + weap + 'Disp'].checked = weap < 3;

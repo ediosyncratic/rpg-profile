@@ -116,14 +116,11 @@ function ACCheckMaxDex() {
   var rawBonus = dexBonus;
 
   for (var i = 1; i <= 8; i++) {
-    if( ! isNaN( sheet()["Armor" + i + "Dex"].value) ) {
-      var armorMaxStr = sheet()["Armor" + i + "Dex"].value;
-      if( Trim(armorMaxStr) != "" ) {
-        var armorMax = parseInt(armorMaxStr);
-        if( armorMax < dexBonus ) {
-          dexBonus = armorMax;
-        }
-      }
+    var armorMaxStr = sheet()['Armor' + i + 'Dex'].value;
+    if (!isNaN(armorMaxStr) && Trim(armorMaxStr) != '') {
+      var armorMax = parseInt(armorMaxStr);
+      if (armorMax < dexBonus)
+        dexBonus = armorMax;
     }
   }
 

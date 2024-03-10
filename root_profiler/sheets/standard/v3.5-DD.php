@@ -80,7 +80,7 @@
 <?php } ?>
 
   <div>
-    <input type="hidden" name="firstload" value="<?php echo isset($DATA['firstload']) ? "false" : "true"; ?>" />
+    <input type="hidden" name="firstload" value="<?php echo isset($DATA['firstload']) ? 'false' : 'true'; ?>" />
     <input type="hidden" <?php getnv('PicURL'); ?> />
     <input type="hidden" name="id" value="<?php echo $CHARID; ?>" />
     <input type="hidden" <?php getnv('LastSaveDate'); ?> />

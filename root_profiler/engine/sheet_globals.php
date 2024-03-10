@@ -36,9 +36,7 @@
     $value = backwardsCompatLookup($name);
     echo "name=\"$name\" value=\"$value\" title=\"$value\"";
     if ($setread && $READONLY)
-	 {
-      echo " readonly=\"readonly\"";
-	 }
+      echo ' readonly="readonly"';
   }
 
   // Echoes the name attribute for a tag, in addition to a readonly
@@ -49,7 +47,7 @@
 
     echo "name=\"$name\" title=\"" . backwardsCompatLookup($name) . '"';
     if ($setread && $READONLY)
-      echo " readonly=\"readonly\"";
+      echo ' readonly="readonly"';
   }
 
   // Echoes the value of some data.
@@ -68,6 +66,6 @@
     if (backwardsCompatIsSet($name))
       echo ' checked="checked"';
     if ($setread && $READONLY)
-      echo " readonly=\"readonly\"";
+      echo ' readonly="readonly"';
   }
 ?>
