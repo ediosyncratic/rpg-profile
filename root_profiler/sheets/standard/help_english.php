@@ -119,7 +119,7 @@
                                         "Special abilities",
                                        "http://www.d20srd.org/indexes/abilities.htm" );
   $staticHelp[ "spell resist" ] = array( "Spell resistance",
-                                        "SPELL RESIST",
+                                        "SPELL RESISTANCE",
                                           "http://www.d20srd.org/srd/magicOverview/spellDescriptions.htm#spellResistance" );
   $staticHelp[ "spells" ]    = array( "Spells",
                                         "Spells",

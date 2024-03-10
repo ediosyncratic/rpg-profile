@@ -11,13 +11,13 @@
   function GetStaticHelp( $name, $staticHelp, $class = "help" )
   {
     $helpArray = $staticHelp[ strtolower( $name ) ];
-    echo '<A href="' . $helpArray[ 2 ] . '" target="_blank" onmouseover="return overlib(\'';
+    echo '<a href="' . $helpArray[ 2 ] . '" target="_blank" onmouseover="return overlib(\'';
     echo $helpArray[ 0 ];
     echo '\')" onmouseout="return nd();">';
       echo '<span class="' . $class . '">';
       echo $helpArray[ 1 ];
       echo '</span>';
-    echo '</A>';
+    echo '</a>';
   }
 
   ?>
@@ -29,7 +29,6 @@
     <link type="text/css" rel="stylesheet" href="v3.5-DD/print.css" media="print" />
     <style type="text/css" media="print">
       #save
-      , #notes tr.header span
       {
           display: none;
       }
@@ -81,7 +80,7 @@
 <?php } ?>
 
   <div>
-    <input type="hidden" name="firstload" value="<?php echo isset($DATA['firstload']) ? "false" : "true"; ?>" />
+    <input type="hidden" name="firstload" value="<?php echo isset($DATA['firstload']) ? 'false' : 'true'; ?>" />
     <input type="hidden" <?php getnv('PicURL'); ?> />
     <input type="hidden" name="id" value="<?php echo $CHARID; ?>" />
     <input type="hidden" <?php getnv('LastSaveDate'); ?> />
@@ -116,7 +115,7 @@
               <td class="unit"><input type="text" <?php getnv('Eyes'); ?> /><br />Eyes</td>
               <td class="unit"><input type="text" <?php getnv('Hair'); ?> /><br />Hair</td>
             </tr>
-          </table>
+          </table><!-- info -->
 
           <!--
             table#stats contains the statblock, saves, the picture...
@@ -198,7 +197,7 @@
                     <td class="tag" colspan="3"><?php GetStaticHelp( "ACTION POINTS", $staticHelp ); ?></td>
           <td colspan="2"><input type="text" class="mod" <?php getnv('AP'); ?> /></td>
         </tr>
-                </table>
+                </table><!-- statblock -->
 
               </td>
               <td colspan="2" class="top">
@@ -268,7 +267,7 @@
                     <td />
                     <td class="footer">Misc</td>
                   </tr>
-                </table>
+                </table><!-- hp -->
 
               </td>
             </tr>
@@ -300,7 +299,7 @@
                     <td class="char">+</td>
                     <td class="unit"><input type="text" <?php getnv('InitMisc'); ?> onchange="InitCalc()" /></td>
                   </tr>
-                </table>
+                </table><!-- init -->
 
                 <table id="speed">
                   <tr>
@@ -311,7 +310,7 @@
                     <td class="footer">Speed</td>
                     <td class="footer">Armor Type</td>
                   </tr>
-                </table>
+                </table><!-- speed -->
 
               </td>
               <td rowspan="2">
@@ -346,7 +345,7 @@
                     <td class="loadtext title">Push/<br />Drag</td>
                     <td><input type="text" <?php getnv('LiftPushDrag'); ?> /></td>
                   </tr>
-                </table>
+                </table><!-- imgload -->
 
               </td>
             </tr>
@@ -414,14 +413,16 @@
                     <td class="char"><span class="dark">+</span></td>
                     <td><input type="text" class="temp" <?php getnv('WillTemp'); ?> onchange="SaveCalc('Will')" /></td>
                   </tr>
-                </table>
+                </table><!-- saves -->
 
               </td>
             </tr>
-          </table>
+          </table><!-- stats -->
 
           <!--
-            table#attacks contains the base melee and ranged attack bonuses.
+            table#attacks contains the base melee and ranged attack bonuses
+            along with spell resistance and controls for how many rows to
+            include in table#weapon and table#armor
           -->
 
           <table id="attacks">
@@ -489,15 +490,14 @@
               <td class="unit"><input type="text" <?php getnv('RABMisc'); ?> onchange="RBABCalc()" /></td>
               <td class="char">+</td>
               <td class="unit"><input type="text" class="temp" <?php getnv('RABTemp'); ?> onchange="RBABCalc()" /></td>
-         <td class="char"></td>
-         <td class="char"></td>
-              <td class="wide" align="left" nowrap>Weapons:
-
-         <?php for ( $i = 1; $i <= 4; $i++ ) { ?>
-<input type="checkbox" <?php getnc('Wep'.$i.'Disp'); ?> onclick="ToggleDisplay('we<?php echo $i ?>', this);" style="width:15px; border:none;"/>
-         <?php } ?>
-   <!--     </tr></table>-->
-      </td>
+              <td class="char"></td>
+              <td class="char"></td>
+              <td class="enablers" align="left" nowrap>Weapons:
+<?php for ( $i = 1; $i <= 8; $i++ ) { ?>
+                <input <?php getnc('Wep'.$i.'Disp'); ?> type="checkbox"
+                       onclick="ToggleDisplay('we<?php echo $i ?>', this);" />
+<?php } ?>
+              </td>
             </tr>
             <tr>
               <td />
@@ -512,27 +512,26 @@
               <td class="footer">Misc Mod</td>
               <td />
               <td class="footer">Temp Mod</td>
-         <td />
               <td />
-              <td class="wide" nowrap>Armor:&nbsp;&nbsp;&nbsp;&nbsp;
-         <?php for ( $i = 1; $i <= 4; $i++ ) { ?>
-<input type="checkbox" <?php getnc('Arm'.$i.'Disp'); ?> onclick="ToggleDisplay('ar<?php echo $i ?>', this);" style="width:15px; border:none;"/>
-         <?php } ?>
-                </td>
+              <td />
+              <td class="enablers" nowrap>Armor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<?php for ( $i = 1; $i <= 8; $i++ ) { ?>
+                <input <?php getnc('Arm'.$i.'Disp'); ?> type="checkbox"
+                       onclick="ToggleDisplay('ar<?php echo $i ?>', this);" />
+<?php } ?>
+              </td>
             </tr>
-          </table> <!-- main -->
+          </table><!-- attacks -->
 
           <!--
             table.weapon are weapon slots.
           -->
-
           <?php
-          for ( $i = 1; $i <= 4; $i++ )
+          for ( $i = 1; $i <= 8; $i++ )
           {
              $weaponName = sprintf( "Weapon%d", $i );
           ?>
-
-     <div id="we<?php echo $i ?>">
+        <div id="we<?php echo $i ?>">
           <table class="weapon" cellspacing="0">
             <tr class="header">
               <td class="type wide"><?php GetStaticHelp( "Weapon", $staticHelp ); ?></td>
@@ -549,7 +548,7 @@
               <td><input type="checkbox" <?php getnc($weaponName . 'Carried'); ?> onchange="ChangeWeapon(false)"/></td>
               <td><input <?php getnv($weaponName . 'AB'); ?> /></td>
               <td><input <?php getnv($weaponName . 'Damage'); ?> /></td>
-              <td><input <?php getnv($weaponName . '1Crit'); ?> /></td>
+              <td><input <?php getnv($weaponName . 'Crit'); ?> /></td>
               <td><input <?php getnv($weaponName . 'Range'); ?> /></td>
             </tr>
             <tr class="header">
@@ -566,8 +565,8 @@
               <td><input <?php getnv($weaponName . 'Size'); ?> /></td>
               <td><input <?php getnv($weaponName . 'Type'); ?> /></td>
             </tr>
-          </table>
-          </div>
+          </table><!-- weapon -->
+        </div>
           <?php
           }
           ?>
@@ -575,25 +574,24 @@
           <!--
             table.armor are armor slots.
           -->
-
-          <?php
-          for ( $i = 1; $i <= 4; $i++ )
+<?php
+          for ( $i = 1; $i <= 8; $i++ )
           {
              $armorName = sprintf( "Armor%d", $i );
 
-             if ( $i == 1 )
+             if ( $i % 4 == 1 )
                 $armorTitle = "armor1";
-             else if ( $i == 2 )
+             else if ( $i % 4 == 2 )
                 $armorTitle = "Shield";
              else
                 $armorTitle = "armor2";
-          ?>
-          <div id="ar<?php echo $i ?>">
+?>
+        <div id="ar<?php echo $i ?>">
           <table class="armor" cellspacing="0">
             <tr class="header">
               <td class="type wide"><?php GetStaticHelp( $armorTitle, $staticHelp ); ?></td>
-                <td class="small">Worn</td>
-                <td class="small">Carried</td>
+              <td class="small">Worn</td>
+              <td class="small">Carried</td>
               <td class="medium">Type</td>
               <td class="small">AC Bonus</td>
               <td class="small">Check Pen</td>
@@ -620,8 +618,8 @@
               <td><input <?php getnv($armorName . 'Spell'); ?> /></td>
               <td><input <?php getnv($armorName . 'Dex'); ?> onchange="ACCheckMaxDex();" /></td>
             </tr>
-          </table>
-          </div>
+          </table><!-- armor -->
+        </div>
           <?php
           }
           ?>
@@ -681,8 +679,8 @@
 
                   <tr class="skillslot">
                     <td>
-                    <A href="#" name="<?php echo $skillName; ?>Link"
-                       onclick="ShowHelp('<?php echo $skillName; ?>');return false;"></A>
+                      <a href="#" name="<?php echo $skillName; ?>Link"
+                         onclick="ShowHelp('<?php echo $skillName; ?>');return false;"></a>
                     </td>
                     <td class="name">
                        <input class="text" type="text" <?php getnv($skillName); ?>
@@ -744,7 +742,7 @@
                     <td>&nbsp;</td>
                   </tr>
 
-                </table>
+                </table><!-- skills -->
               </td>
 
               <td class="spacer"></td>
@@ -775,24 +773,24 @@
                            $featName = sprintf( "Feat%02d", $i );
                          ?>
 
-                           <tr>
-                              <td class="featshelp">
-                                 <A href="#" name="<?php echo $featName; ?>Link"
-                                        onclick="ShowHelp('<?php echo $featName; ?>');return false;"></A>
-                              </td>
-                              <td><input type="text" onchange="CheckForHelp('<?php echo $featName; ?>')"
-                                         <?php getnv( $featName ); ?> />
-                              </td>
-                           </tr>
+                        <tr>
+                          <td class="featshelp">
+                            <a href="#" name="<?php echo $featName; ?>Link"
+                               onclick="ShowHelp('<?php echo $featName; ?>');return false;"></a>
+                          </td>
+                          <td><input type="text" onchange="CheckForHelp('<?php echo $featName; ?>')"
+                                     <?php getnv( $featName ); ?> />
+                          </td>
+                        </tr>
 
-                           <?php
+                        <?php
                             // After the 20th feat start a new table.
                            if ( $i == 20 ) {
-                           ?>
+                        ?>
 
-                             </table>
-                             </td><td>
-                             <table cellspacing="0">
+                      </table>
+                    </td><td>
+                      <table cellspacing="0">
                         <?php
                            }
                           } // for...
@@ -801,7 +799,7 @@
 
                     </td>
                   </tr>
-                </table>
+                </table><!-- feats -->
 
                 <table id="gear" cellspacing="0">
                   <tr class="title">
@@ -813,7 +811,7 @@
                     <td class="unit"><a href="javascript:GearSort(GearSort.ByLoc)" title="Sort by Location">Loc</a></td>
                   </tr>
 
-<?php for ( $i = 1; $i <= 34; $i++ ) { $gearName = sprintf( "Gear%02d", $i ); ?>
+<?php for ( $i = 1; $i <= 37; $i++ ) { $gearName = sprintf( "Gear%02d", $i ); ?>
                   <tr class="slot">
                     <td><input class="name" type="text" <?php getnv($gearName); ?> /></td>
                     <td><input type="text" <?php getnv($gearName . 'W'); ?> onchange="CalcWeight()" /></td>
@@ -825,11 +823,11 @@
                     <td class="total"><span id="bagWeight">0</span></td>
                     <td />
                   </tr>
-                </table>
+                </table><!-- gear -->
 
               </td>
             </tr>
-          </table> <!-- skillsandgear -->
+          </table><!-- skillsandgear -->
 
           <input type="checkbox" <?php getnc('ContainerDisp'); ?> onchange="ToggleDisplay('containers', this);" style="width:15px; border:none;"/>
           Off-Character Containers
@@ -864,8 +862,8 @@
               </td>
 <?php } ?>
             </tr>
-          </table>
-          </div>  <!-- containers -->
+          </table><!-- container -->
+          </div><!-- containers -->
 
           <input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;" id="magiccheck"/>
           <label for="magiccheck">Display Spells &amp; Powers</label>
@@ -928,7 +926,7 @@
 
                     </td>
                   </tr>
-                </table>
+                </table><!-- spellsaves -->
 
               </td>
               <td class="list" rowspan="3">
@@ -970,12 +968,12 @@
 
               </td>
             </tr>
-          </table>
+          </table><!-- spellstuff -->
      </div>
 
      <p style="page-break-before: always;"/>
 
-     <table id="notes">
+     <table class="notes">
        <tr class="header">
          <td width="25%">Currency</td>
          <td width="75%">Other Notes <span>[ <a href="javascript:ShowNotes();">Show Printable Version</a> ]</span></td>
@@ -1006,14 +1004,14 @@
         <?php for( $i = 1; $i <= 8; $i++ ) { ?>
         <tr><td><input type="text" <?php getnv('Lang' . $i); ?> /></td></tr>
         <?php } ?>
-                </table>
+                </table><!-- languages -->
          </td>
             </tr>
-     </table>
+     </table><!-- notes -->
 
           <!-- Private notes will not be displayed unless we are in edit mode -->
           <?php if ($SHOWSAVE) { ?>
-          <table id="notes">
+          <table class="notes">
             <tr class="header">
               <td>
                 Private Notes <span>(Will not be displayed publically)</span>
@@ -1022,21 +1020,21 @@
             <tr>
               <td><textarea <?php getn('PrivateNotes'); ?> cols="10" rows="5"><?php getv('PrivateNotes'); ?></textarea></td>
             </tr>
-          </table>
+          </table><!-- private notes -->
           <?php } ?>
 
           <div id="footer">
-            <TABLE width="100%" cellspacing="0">
-               <TR>
-                  <TD>Last saved = <?php getv("LastSaveDate"); ?></TD>
-                  <TD align="right">3.5 sheet Deeg &amp; Tarlen.</TD>
-               </TR>
-               <TR>
-                  <TD></TD>
-                  <TD align="right">d20 SRD help created by Jans Carton.</TD>
-               </TR>
-            </TABLE>
-          </div>
+            <table width="100%" cellspacing="0">
+              <tr>
+                <td>Last saved = <?php getv("LastSaveDate"); ?></td>
+                <td align="right">3.5 sheet Deeg &amp; Tarlen.</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td align="right">d20 SRD help created by Jans Carton.</td>
+              </tr>
+            </table>
+          </div><!-- footer -->
 
           <?php if ($SHOWSAVE) { ?>
           <div id="save">
