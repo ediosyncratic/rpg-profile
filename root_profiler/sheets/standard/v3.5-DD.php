@@ -11,13 +11,13 @@
   function GetStaticHelp( $name, $staticHelp, $class = "help" )
   {
     $helpArray = $staticHelp[ strtolower( $name ) ];
-    echo '<A href="' . $helpArray[ 2 ] . '" target="_blank" onmouseover="return overlib(\'';
+    echo '<a href="' . $helpArray[ 2 ] . '" target="_blank" onmouseover="return overlib(\'';
     echo $helpArray[ 0 ];
     echo '\')" onmouseout="return nd();">';
       echo '<span class="' . $class . '">';
       echo $helpArray[ 1 ];
       echo '</span>';
-    echo '</A>';
+    echo '</a>';
   }
 
   ?>
@@ -490,8 +490,8 @@
               <td class="unit"><input type="text" <?php getnv('RABMisc'); ?> onchange="RBABCalc()" /></td>
               <td class="char">+</td>
               <td class="unit"><input type="text" class="temp" <?php getnv('RABTemp'); ?> onchange="RBABCalc()" /></td>
-         <td class="char"></td>
-         <td class="char"></td>
+              <td class="char"></td>
+              <td class="char"></td>
               <td class="enablers" align="left" nowrap>Weapons:
 <?php for ( $i = 1; $i <= 8; $i++ ) { ?>
                 <input <?php getnc('Wep'.$i.'Disp'); ?> type="checkbox"
@@ -512,7 +512,7 @@
               <td class="footer">Misc Mod</td>
               <td />
               <td class="footer">Temp Mod</td>
-         <td />
+              <td />
               <td />
               <td class="enablers" nowrap>Armor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <?php for ( $i = 1; $i <= 8; $i++ ) { ?>
@@ -531,8 +531,7 @@
           {
              $weaponName = sprintf( "Weapon%d", $i );
           ?>
-
-     <div id="we<?php echo $i ?>">
+        <div id="we<?php echo $i ?>">
           <table class="weapon" cellspacing="0">
             <tr class="header">
               <td class="type wide"><?php GetStaticHelp( "Weapon", $staticHelp ); ?></td>
@@ -567,7 +566,7 @@
               <td><input <?php getnv($weaponName . 'Type'); ?> /></td>
             </tr>
           </table>
-          </div>
+        </div>
           <?php
           }
           ?>
@@ -587,12 +586,12 @@
              else
                 $armorTitle = "armor2";
 ?>
-          <div id="ar<?php echo $i ?>">
+        <div id="ar<?php echo $i ?>">
           <table class="armor" cellspacing="0">
             <tr class="header">
               <td class="type wide"><?php GetStaticHelp( $armorTitle, $staticHelp ); ?></td>
-                <td class="small">Worn</td>
-                <td class="small">Carried</td>
+              <td class="small">Worn</td>
+              <td class="small">Carried</td>
               <td class="medium">Type</td>
               <td class="small">AC Bonus</td>
               <td class="small">Check Pen</td>
@@ -620,7 +619,7 @@
               <td><input <?php getnv($armorName . 'Dex'); ?> onchange="ACCheckMaxDex();" /></td>
             </tr>
           </table>
-          </div>
+        </div>
           <?php
           }
           ?>
@@ -680,8 +679,8 @@
 
                   <tr class="skillslot">
                     <td>
-                    <A href="#" name="<?php echo $skillName; ?>Link"
-                       onclick="ShowHelp('<?php echo $skillName; ?>');return false;"></A>
+                      <a href="#" name="<?php echo $skillName; ?>Link"
+                         onclick="ShowHelp('<?php echo $skillName; ?>');return false;"></a>
                     </td>
                     <td class="name">
                        <input class="text" type="text" <?php getnv($skillName); ?>
@@ -774,24 +773,24 @@
                            $featName = sprintf( "Feat%02d", $i );
                          ?>
 
-                           <tr>
-                              <td class="featshelp">
-                                 <A href="#" name="<?php echo $featName; ?>Link"
-                                        onclick="ShowHelp('<?php echo $featName; ?>');return false;"></A>
-                              </td>
-                              <td><input type="text" onchange="CheckForHelp('<?php echo $featName; ?>')"
-                                         <?php getnv( $featName ); ?> />
-                              </td>
-                           </tr>
+                        <tr>
+                          <td class="featshelp">
+                            <a href="#" name="<?php echo $featName; ?>Link"
+                               onclick="ShowHelp('<?php echo $featName; ?>');return false;"></a>
+                          </td>
+                          <td><input type="text" onchange="CheckForHelp('<?php echo $featName; ?>')"
+                                     <?php getnv( $featName ); ?> />
+                          </td>
+                        </tr>
 
-                           <?php
+                        <?php
                             // After the 20th feat start a new table.
                            if ( $i == 20 ) {
-                           ?>
+                        ?>
 
-                             </table>
-                             </td><td>
-                             <table cellspacing="0">
+                      </table>
+                    </td><td>
+                      <table cellspacing="0">
                         <?php
                            }
                           } // for...
@@ -1025,16 +1024,16 @@
           <?php } ?>
 
           <div id="footer">
-            <TABLE width="100%" cellspacing="0">
-               <TR>
-                  <TD>Last saved = <?php getv("LastSaveDate"); ?></TD>
-                  <TD align="right">3.5 sheet Deeg &amp; Tarlen.</TD>
-               </TR>
-               <TR>
-                  <TD></TD>
-                  <TD align="right">d20 SRD help created by Jans Carton.</TD>
-               </TR>
-            </TABLE>
+            <table width="100%" cellspacing="0">
+              <tr>
+                <td>Last saved = <?php getv("LastSaveDate"); ?></td>
+                <td align="right">3.5 sheet Deeg &amp; Tarlen.</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td align="right">d20 SRD help created by Jans Carton.</td>
+              </tr>
+            </table>
           </div>
 
           <?php if ($SHOWSAVE) { ?>
