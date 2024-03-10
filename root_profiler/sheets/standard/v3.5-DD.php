@@ -29,7 +29,6 @@
     <link type="text/css" rel="stylesheet" href="v3.5-DD/print.css" media="print" />
     <style type="text/css" media="print">
       #save
-      , #notes tr.header span
       {
           display: none;
       }
@@ -975,7 +974,7 @@
 
      <p style="page-break-before: always;"/>
 
-     <table id="notes">
+     <table class="notes">
        <tr class="header">
          <td width="25%">Currency</td>
          <td width="75%">Other Notes <span>[ <a href="javascript:ShowNotes();">Show Printable Version</a> ]</span></td>
@@ -1009,11 +1008,11 @@
                 </table>
          </td>
             </tr>
-     </table>
+     </table><!-- notes -->
 
           <!-- Private notes will not be displayed unless we are in edit mode -->
           <?php if ($SHOWSAVE) { ?>
-          <table id="notes">
+          <table class="notes">
             <tr class="header">
               <td>
                 Private Notes <span>(Will not be displayed publically)</span>
@@ -1022,7 +1021,7 @@
             <tr>
               <td><textarea <?php getn('PrivateNotes'); ?> cols="10" rows="5"><?php getv('PrivateNotes'); ?></textarea></td>
             </tr>
-          </table>
+          </table><!-- private notes -->
           <?php } ?>
 
           <div id="footer">

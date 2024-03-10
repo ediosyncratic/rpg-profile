@@ -1135,12 +1135,12 @@ td.scrollerArrow a.disabled {
 }
 /************************************************************************/
 
-#notes
+table.notes
 {
   width: 100%;
   margin-top: 2em;
 }
-#notes tr.header td
+table.notes tr.header td
 {
   background-color: black;
   color: white;
@@ -1149,8 +1149,8 @@ td.scrollerArrow a.disabled {
   font-family: Arial, sans-serif;
   text-align: center;
 }
-#notes tr.header td span
-, #notes tr.header td a
+table.notes tr.header td span
+, table.notes tr.header td a
 {
   background-color: black;
   color: white;
@@ -1159,13 +1159,13 @@ td.scrollerArrow a.disabled {
   font-variant: small-caps;
   text-decoration: none;
 }
-#notes tr.header td a:hover
+table.notes tr.header td a:hover
 {
   background-color: black;
   color: white;
   text-decoration: underline;
 }
-#notes textarea
+table.notes textarea
 {
   border: 1px solid black;
   width: 100%;
@@ -1174,7 +1174,7 @@ td.scrollerArrow a.disabled {
   height: 340px;
   padding: 2px;
 }
-#notes div
+table.notes div
 {
   border: 1px solid black;
   font-size: 12px;
