@@ -34,10 +34,10 @@ function init()
     sheet().firstload.value = "false";
     _skillFill();
     for (var weap = 1; weap <= 8; weap++)
-      sheet()['Wep' + weap + 'Disp'].checked = true;
+      sheet()['Wep' + weap + 'Disp'].checked = weap < 3;
 
     for (var arm = 1; arm <= 8; arm++)
-      sheet()['Arm' + arm + 'Disp'].checked = true;
+      sheet()['Arm' + arm + 'Disp'].checked = arm < 3;
 
     sheet()['MagicDisp'].checked = true;
   }
