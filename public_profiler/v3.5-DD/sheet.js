@@ -40,6 +40,7 @@ function init()
       sheet()['Arm' + arm + 'Disp'].checked = arm < 3;
 
     sheet()['MagicDisp'].checked = true;
+    sheet()["ContainerDisp"].checked = true;
   }
 
   CheckDisplay();
