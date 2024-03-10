@@ -115,7 +115,7 @@
               <td class="unit"><input type="text" <?php getnv('Eyes'); ?> /><br />Eyes</td>
               <td class="unit"><input type="text" <?php getnv('Hair'); ?> /><br />Hair</td>
             </tr>
-          </table>
+          </table><!-- info -->
 
           <!--
             table#stats contains the statblock, saves, the picture...
@@ -197,7 +197,7 @@
                     <td class="tag" colspan="3"><?php GetStaticHelp( "ACTION POINTS", $staticHelp ); ?></td>
           <td colspan="2"><input type="text" class="mod" <?php getnv('AP'); ?> /></td>
         </tr>
-                </table>
+                </table><!-- statblock -->
 
               </td>
               <td colspan="2" class="top">
@@ -267,7 +267,7 @@
                     <td />
                     <td class="footer">Misc</td>
                   </tr>
-                </table>
+                </table><!-- hp -->
 
               </td>
             </tr>
@@ -299,7 +299,7 @@
                     <td class="char">+</td>
                     <td class="unit"><input type="text" <?php getnv('InitMisc'); ?> onchange="InitCalc()" /></td>
                   </tr>
-                </table>
+                </table><!-- init -->
 
                 <table id="speed">
                   <tr>
@@ -310,7 +310,7 @@
                     <td class="footer">Speed</td>
                     <td class="footer">Armor Type</td>
                   </tr>
-                </table>
+                </table><!-- speed -->
 
               </td>
               <td rowspan="2">
@@ -345,7 +345,7 @@
                     <td class="loadtext title">Push/<br />Drag</td>
                     <td><input type="text" <?php getnv('LiftPushDrag'); ?> /></td>
                   </tr>
-                </table>
+                </table><!-- imgload -->
 
               </td>
             </tr>
@@ -413,11 +413,11 @@
                     <td class="char"><span class="dark">+</span></td>
                     <td><input type="text" class="temp" <?php getnv('WillTemp'); ?> onchange="SaveCalc('Will')" /></td>
                   </tr>
-                </table>
+                </table><!-- saves -->
 
               </td>
             </tr>
-          </table>
+          </table><!-- stats -->
 
           <!--
             table#attacks contains the base melee and ranged attack bonuses
@@ -521,7 +521,7 @@
 <?php } ?>
               </td>
             </tr>
-          </table> <!-- main -->
+          </table><!-- attacks -->
 
           <!--
             table.weapon are weapon slots.
@@ -565,7 +565,7 @@
               <td><input <?php getnv($weaponName . 'Size'); ?> /></td>
               <td><input <?php getnv($weaponName . 'Type'); ?> /></td>
             </tr>
-          </table>
+          </table><!-- weapon -->
         </div>
           <?php
           }
@@ -618,7 +618,7 @@
               <td><input <?php getnv($armorName . 'Spell'); ?> /></td>
               <td><input <?php getnv($armorName . 'Dex'); ?> onchange="ACCheckMaxDex();" /></td>
             </tr>
-          </table>
+          </table><!-- armor -->
         </div>
           <?php
           }
@@ -742,7 +742,7 @@
                     <td>&nbsp;</td>
                   </tr>
 
-                </table>
+                </table><!-- skills -->
               </td>
 
               <td class="spacer"></td>
@@ -799,7 +799,7 @@
 
                     </td>
                   </tr>
-                </table>
+                </table><!-- feats -->
 
                 <table id="gear" cellspacing="0">
                   <tr class="title">
@@ -823,11 +823,11 @@
                     <td class="total"><span id="bagWeight">0</span></td>
                     <td />
                   </tr>
-                </table>
+                </table><!-- gear -->
 
               </td>
             </tr>
-          </table> <!-- skillsandgear -->
+          </table><!-- skillsandgear -->
 
           <input type="checkbox" <?php getnc('ContainerDisp'); ?> onchange="ToggleDisplay('containers', this);" style="width:15px; border:none;"/>
           Off-Character Containers
@@ -862,8 +862,8 @@
               </td>
 <?php } ?>
             </tr>
-          </table>
-          </div>  <!-- containers -->
+          </table><!-- container -->
+          </div><!-- containers -->
 
           <input type="checkbox" <?php getnc('MagicDisp'); ?> onchange="ToggleDisplay('magic', this);" style="width:15px; border:none;" id="magiccheck"/>
           <label for="magiccheck">Display Spells &amp; Powers</label>
@@ -926,7 +926,7 @@
 
                     </td>
                   </tr>
-                </table>
+                </table><!-- spellsaves -->
 
               </td>
               <td class="list" rowspan="3">
@@ -968,7 +968,7 @@
 
               </td>
             </tr>
-          </table>
+          </table><!-- spellstuff -->
      </div>
 
      <p style="page-break-before: always;"/>
@@ -1004,7 +1004,7 @@
         <?php for( $i = 1; $i <= 8; $i++ ) { ?>
         <tr><td><input type="text" <?php getnv('Lang' . $i); ?> /></td></tr>
         <?php } ?>
-                </table>
+                </table><!-- languages -->
          </td>
             </tr>
      </table><!-- notes -->
@@ -1034,7 +1034,7 @@
                 <td align="right">d20 SRD help created by Jans Carton.</td>
               </tr>
             </table>
-          </div>
+          </div><!-- footer -->
 
           <?php if ($SHOWSAVE) { ?>
           <div id="save">
