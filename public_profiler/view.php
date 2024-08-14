@@ -68,7 +68,7 @@
     global $INCLUDE_PATH, $READONLY, $SHOWSAVE, $DATA, $TITLE, $CHARID, $BASE_EXTRA_HELP_URL;
 
     $READONLY = $_GET['preview'] == 'true';
-    $SHOWSAVE = $_GET['preview'] != 'true';
+    $SHOWSAVE = !$READONLY;
     $DATA = $char->GetData();
     $TITLE = "" . htmlspecialchars($char->cname);
     $CHARID = (int) $char->id;

@@ -29,17 +29,18 @@ function init()
   ContainerWeight("Cont02");
   ContainerWeight("Cont03");
 
-  if (sheet().firstload.value == "true")
+  if (sheet().firstload.value == 'true')
   {
-    sheet().firstload.value = "false";
+    sheet().firstload.value = 'false';
     _skillFill();
-    for(var weap = 1; weap <= 4; weap++) {
-      sheet()["Wep" + weap + "Disp"].checked=true;
-    }
-    for(var arm = 1; arm <= 4; arm++) {
-      sheet()["Arm" + arm + "Disp"].checked=true;
-    }
-    sheet()["MagicDisp"].checked=true;
+    for (var weap = 1; weap <= 8; weap++)
+      sheet()['Wep' + weap + 'Disp'].checked = weap < 3;
+
+    for (var arm = 1; arm <= 8; arm++)
+      sheet()['Arm' + arm + 'Disp'].checked = arm < 3;
+
+    sheet()['MagicDisp'].checked = true;
+    sheet()["ContainerDisp"].checked = true;
   }
 
   CheckDisplay();
@@ -104,14 +105,12 @@ function Save() {
 }
 
 function CheckDisplay() {
-  for(var i = 1; i <= 4; i++) {
-    var obj = sheet()["Wep" + i + "Disp"];
-    ToggleDisplay("we" + i, obj);
-  }
-  for(var i = 1; i <= 4; i++) {
-    var obj = sheet()["Arm" + i + "Disp"];
-    ToggleDisplay("ar" + i, obj);
-  }
+  for (var i = 1; i <= 8; i++)
+    ToggleDisplay('we' + i, sheet()['Wep' + i + 'Disp']);
+
+  for (var i = 1; i <= 8; i++)
+    ToggleDisplay('ar' + i, sheet()['Arm' + i + 'Disp']);
+
   ToggleDisplay("magic", sheet()["MagicDisp"]);
   ToggleDisplay("containers", sheet()["ContainerDisp"]);
 }

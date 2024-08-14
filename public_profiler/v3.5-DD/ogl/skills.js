@@ -393,7 +393,7 @@ var skillsHelpURL = Object.assign(
     'summon familiar':                      baseHelpURL + "classes/sorcererWizard.htm#wizardFamiliar",
     'scribe scroll':                        baseHelpURL + "classes/sorcererWizard.htm#scribeScroll",
     'empathic link':                        baseHelpURL + "classes/sorcererWizard.htm#familiarEmpathicLink",
-    'scry on familiar':                     baseHelpURL + "classes/sorcererWizard.htm#scryonFamiliar", speakwithMaster
+    'scry on familiar':                     baseHelpURL + "classes/sorcererWizard.htm#scryonFamiliar",
     'speak with master':                    baseHelpURL + "classes/sorcererWizard.htm#speakwithMaster",
     'speak with familiar':                  baseHelpURL + "classes/sorcererWizard.htm#speakwithMaster",
 
