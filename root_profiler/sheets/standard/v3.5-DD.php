@@ -493,7 +493,7 @@
               <td class="char"></td>
               <td class="char"></td>
               <td class="enablers" align="left" nowrap>Weapons:
-<?php for ( $i = 1; $i <= 8; $i++ ) { ?>
+<?php for ( $i = 1; $i <= maxWeaponRows; $i++ ) { ?>
                 <input <?php getnc('Wep'.$i.'Disp'); ?> type="checkbox"
                        onclick="ToggleDisplay('we<?php echo $i ?>', this);" />
 <?php } ?>
@@ -515,7 +515,7 @@
               <td />
               <td />
               <td class="enablers" nowrap>Armor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<?php for ( $i = 1; $i <= 8; $i++ ) { ?>
+<?php for ( $i = 1; $i <= maxArmorRows; $i++ ) { ?>
                 <input <?php getnc('Arm'.$i.'Disp'); ?> type="checkbox"
                        onclick="ToggleDisplay('ar<?php echo $i ?>', this);" />
 <?php } ?>
@@ -527,7 +527,7 @@
             table.weapon are weapon slots.
           -->
           <?php
-          for ( $i = 1; $i <= 8; $i++ )
+          for ( $i = 1; $i <= maxWeaponRows; $i++ )
           {
              $weaponName = sprintf( "Weapon%d", $i );
           ?>
@@ -575,7 +575,7 @@
             table.armor are armor slots.
           -->
 <?php
-          for ( $i = 1; $i <= 8; $i++ )
+          for ( $i = 1; $i <= maxArmorRows; $i++ )
           {
              $armorName = sprintf( "Armor%d", $i );
 

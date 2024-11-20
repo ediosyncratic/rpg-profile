@@ -9,6 +9,10 @@
 // automatically closes the windows when the page exits.
 var child_windows = new Array();
 
+// How many rows to put in their respective tables:
+var maxArmorRows = 8;
+var maxWeaponRows = 8;
+
 // In this version, autocalc is never disabled.
 function disable_autocalc()
 {
