@@ -20,6 +20,10 @@
     echo '</a>';
   }
 
+  // How many rows to put in their respective tables:
+  const maxWeaponRows = 8;
+  const maxArmorRows = 8;
+
   ?>
 
   <head>
@@ -34,8 +38,10 @@
       }
     </style>
     <script type="text/javascript">
-      var READONLY = <?php echo $READONLY ? "true" : "false"; ?>;
-      var baseExtraHelpURL = "<?php echo $BASE_EXTRA_HELP_URL ?>";
+      const READONLY = <?php echo $READONLY ? "true" : "false"; ?>;
+      const baseExtraHelpURL = "<?php echo $BASE_EXTRA_HELP_URL ?>";
+      const maxArmorRows = <?php echo maxArmorRows; ?>;
+      const maxWeaponRows = <?php echo maxWeaponRows; ?>;
     </script>
     <script type="text/javascript" src="./v3.5-DD/general.js"></script>
     <script type="text/javascript" src="./v3.5-DD/debug.js"></script>
@@ -493,7 +499,7 @@
               <td class="char"></td>
               <td class="char"></td>
               <td class="enablers" align="left" nowrap>Weapons:
-<?php for ( $i = 1; $i <= 8; $i++ ) { ?>
+<?php for ( $i = 1; $i <= maxWeaponRows; $i++ ) { ?>
                 <input <?php getnc('Wep'.$i.'Disp'); ?> type="checkbox"
                        onclick="ToggleDisplay('we<?php echo $i ?>', this);" />
 <?php } ?>
@@ -515,7 +521,7 @@
               <td />
               <td />
               <td class="enablers" nowrap>Armor:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<?php for ( $i = 1; $i <= 8; $i++ ) { ?>
+<?php for ( $i = 1; $i <= maxArmorRows; $i++ ) { ?>
                 <input <?php getnc('Arm'.$i.'Disp'); ?> type="checkbox"
                        onclick="ToggleDisplay('ar<?php echo $i ?>', this);" />
 <?php } ?>
@@ -527,7 +533,7 @@
             table.weapon are weapon slots.
           -->
           <?php
-          for ( $i = 1; $i <= 8; $i++ )
+          for ( $i = 1; $i <= maxWeaponRows; $i++ )
           {
              $weaponName = sprintf( "Weapon%d", $i );
           ?>
@@ -575,7 +581,7 @@
             table.armor are armor slots.
           -->
 <?php
-          for ( $i = 1; $i <= 8; $i++ )
+          for ( $i = 1; $i <= maxArmorRows; $i++ )
           {
              $armorName = sprintf( "Armor%d", $i );
 

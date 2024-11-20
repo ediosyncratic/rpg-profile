@@ -69,7 +69,7 @@ function ACChangeArmor()
   sheet().ACArmor.value  = 0;
   sheet().ACShield.value  = 0;
 
-  for (var i = 1; i <= 8; i++) {
+  for (var i = 1; i <= maxArmorRows; i++) {
       if (sheet()['Armor' + i + 'Worn'].checked) {
           sheet()['Armor' + i + 'Carried'].checked = true;
           if (i % 4 == 2)
@@ -97,7 +97,7 @@ function ACChangeCarried()
   if (disable_autocalc())
     return;
 
-  for (var i = 1; i <= 8; i++) {
+  for (var i = 1; i <= maxArmorRows; i++) {
       if (!sheet()['Armor' + i + 'Carried'].checked)
           sheet()['Armor' + i + 'Worn'].checked = false;
   }
@@ -115,7 +115,7 @@ function ACCheckMaxDex() {
 
   var rawBonus = dexBonus;
 
-  for (var i = 1; i <= 8; i++) {
+  for (var i = 1; i <= maxArmorRows; i++) {
     var armorMaxStr = sheet()['Armor' + i + 'Dex'].value;
     if (!isNaN(armorMaxStr) && Trim(armorMaxStr) != '') {
       var armorMax = parseInt(armorMaxStr);
