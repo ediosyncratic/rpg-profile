@@ -49,7 +49,8 @@ var Scriptaculous = {
     }).each( function(s) {
       var path = s.src.replace(/scriptaculous\.js(\?.*)?$/,'');
       var includes = s.src.match(/\?.*load=([a-z,]*)/);
-      (includes ? includes[1] : 'builder,effects,dragdrop,controls,slider,sound').split(',').each(
+      // Default was 'builder,effects,dragdrop,controls,slider,sound' but only effects.js exists:
+      (includes ? includes[1] : 'effects').split(',').each(
        function(include) { Scriptaculous.require(path+include+'.js') });
     });
   }

@@ -27,9 +27,8 @@
     {
       $xmlp = xml_parser_create();
       xml_parser_set_option($xmlp, XML_OPTION_CASE_FOLDING, 0);
-      xml_set_object($xmlp, &$this);
-      xml_set_element_handler($xmlp, "start_tag", "close_tag");
-      xml_set_character_data_handler($xmlp, "handle_cdata");
+      xml_set_element_handler($xmlp, $this->start_tag(...), $this->close_tag(...));
+      xml_set_character_data_handler($xmlp, $this, $this->handle_cdata(...));
       $success = xml_parse($xmlp, $xmlstring, true);
       xml_parser_free($xmlp);
       return $success;
